@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Live Trading - GrowVest</title>
+<title>Live Trading | GrowVest</title>
 
 <link rel="stylesheet" href="dashboard.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <script src="https://s3.tradingview.com/tv.js"></script>
 
@@ -18,113 +21,246 @@
 
 <div class="dashboard">
 
-<h2>📈 Live Crypto Trading</h2>
+<header class="topbar">
 
-<div class="card">
-
-<h3>BTC / USDT Live Chart</h3>
-
-<div id="tradingview_chart" style="height:500px;"></div>
-
+<div class="logo">
+<i class="fa-solid fa-chart-line"></i>
+<h2>GrowVest</h2>
 </div>
 
-<div class="card">
+</header>
 
-<h3>🔥 Live Crypto Prices</h3>
+<section class="welcome">
 
-<table style="width:100%;color:white;border-collapse:collapse;">
+<h1>📈 Live Crypto Trading</h1>
 
-<thead>
+<p>
+Track cryptocurrency prices, charts and market movements in real time.
+</p>
 
-<tr>
-<th align="left">Coin</th>
-<th align="right">Price</th>
-</tr>
+</section>
 
-</thead>
+<section class="chart-box">
 
-<tbody id="coinPrices">
+<h2>BTC / USDT Live Chart</h2>
 
-<tr><td>Loading...</td><td></td></tr>
+<div id="tradingview_chart" style="height:500px;width:100%;"></div>
 
-</tbody>
-
-</table>
-
-</div>
-  <div style="margin-top:20px;">
-
-<a href="dashboard.html" class="action">
-⬅ Back to Dashboard
-</a>
-
-</div>
-
-</div>
+</section>
 
 <script>
+
 new TradingView.widget({
-  "width": "100%",
-  "height": 500,
-  "symbol": "BINANCE:BTCUSDT",
-  "interval": "15",
-  "timezone": "Etc/UTC",
-  "theme": "dark",
-  "style": "1",
-  "locale": "en",
-  "toolbar_bg": "#131722",
-  "enable_publishing": false,
-  "allow_symbol_change": true,
-  "container_id": "tradingview_chart"
+
+"autosize":true,
+
+"symbol":"BINANCE:BTCUSDT",
+
+"interval":"15",
+
+"timezone":"Etc/UTC",
+
+"theme":"dark",
+
+"style":"1",
+
+"locale":"en",
+
+"toolbar_bg":"#111827",
+
+"enable_publishing":false,
+
+"allow_symbol_change":true,
+
+"container_id":"tradingview_chart"
+
 });
 
-async function loadPrices() {
-
-  try {
-
-    const res = await fetch("https://api.binance.com/api/v3/ticker/price");
-
-    const data = await res.json();
-
-    const coins = [
-      "BTCUSDT",
-      "ETHUSDT",
-      "BNBUSDT",
-      "SOLUSDT",
-      "XRPUSDT",
-      "DOGEUSDT"
-    ];
-
-    let html = "";
-
-    coins.forEach(symbol => {
-
-      const coin = data.find(c => c.symbol === symbol);
-
-      if (coin) {
-        html += `
-          <tr>
-            <td>${symbol.replace("USDT","")}</td>
-            <td style="text-align:right;">${Number(coin.price).toFixed(4)} USDT</td>
-          </tr>
-        `;
-      }
-
-    });
-
-    document.getElementById("coinPrices").innerHTML = html;
-
-  } catch (e) {
-
-    document.getElementById("coinPrices").innerHTML =
-      "<tr><td colspan='2'>Failed to load prices.</td></tr>";
-
-  }
-
-}
-
-loadPrices();
-setInterval(loadPrices, 5000);
 </script>
-  </body>
+
+<section class="live-prices">
+
+<h2>🔥 Live Crypto Prices</h2>
+
+<div class="coin-grid" id="coinGrid">
+
+</div>
+
+</section>
+<section class="market-section">
+
+    <h2>📊 Market Overview</h2>
+
+    <div class="market-overview">
+
+        <div class="overview-card">
+            <i class="fa-solid fa-coins"></i>
+            <h3>Total Market Cap</h3>
+            <h2 id="marketCap">$--</h2>
+        </div>
+
+        <div class="overview-card">
+            <i class="fa-solid fa-chart-column"></i>
+            <h3>24H Volume</h3>
+            <h2 id="volume">$--</h2>
+        </div>
+
+        <div class="overview-card">
+            <i class="fa-brands fa-bitcoin"></i>
+            <h3>BTC Dominance</h3>
+            <h2 id="dominance">--%</h2>
+        </div>
+
+        <div class="overview-card">
+            <i class="fa-solid fa-face-smile"></i>
+            <h3>Fear & Greed</h3>
+            <h2 id="fear">--</h2>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="market-grid">
+
+    <div class="market-box">
+
+        <h2>🚀 Top Gainers</h2>
+
+        <ul id="gainersList">
+            <li>Loading...</li>
+        </ul>
+
+    </div>
+
+    <div class="market-box">
+
+        <h2>📉 Top Losers</h2>
+
+        <ul id="losersList">
+            <li>Loading...</li>
+        </ul>
+
+    </div>
+
+</section>
+
+<section class="news-section">
+
+    <h2>📰 Latest Crypto News</h2>
+
+    <div class="news-grid">
+
+        <div class="news-card">
+            <h3>Bitcoin Market Update</h3>
+            <p>Live market analysis and price movement updates.</p>
+        </div>
+
+        <div class="news-card">
+            <h3>Ethereum Ecosystem</h3>
+            <p>Latest Ethereum network news and market performance.</p>
+        </div>
+
+        <div class="news-card">
+            <h3>Trending Coins</h3>
+            <p>Discover today's most active cryptocurrencies.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="action-section">
+
+    <h2>⚡ Quick Actions</h2>
+
+    <div class="action-buttons">
+
+        <a href="deposit.html" class="action-btn">
+            💰 Deposit
+        </a>
+
+        <a href="withdraw.html" class="action-btn">
+            💸 Withdraw
+        </a>
+
+        <a href="support.html" class="action-btn">
+            🎧 Support
+        </a>
+
+    </div>
+
+</section>
+<!-- Investment Benefits -->
+
+<section class="benefits-section">
+
+    <h2>Why Choose GrowVest?</h2>
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>100% Secure</h3>
+            <p>Advanced security to protect your account and investments.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Fast Transactions</h3>
+            <p>Quick deposits and withdrawals with reliable processing.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Live Market</h3>
+            <p>Real-time cryptocurrency prices and market updates.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Our support team is always ready to help you.</p>
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<!-- Bottom Navigation (Same as before) -->
+
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="invest.html">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Invest</span>
+    </a>
+
+    <a href="treding.html" class="active">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <span>Trading</span>
+    </a>
+
+    <a href="history.html">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+
+    <a href="profile.html">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+</nav>
+
+<script src="dashboard.js"></script>
+
+</body>
 </html>
