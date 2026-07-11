@@ -1,229 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>GrowVest Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+
+</head>
+
 <body>
 
 <div class="dashboard">
 
-    <!-- Header -->
+<header class="topbar">
 
-    <header class="topbar">
+<div>
+<h2>GrowVest</h2>
+<p>Welcome Back 👋</p>
+</div>
 
-        <div class="logo">
-            <h2>📈 GrowVest</h2>
-            <p>Professional Crypto Trading Dashboard</p>
-        </div>
+<div class="notify">
+<i class="fa-solid fa-bell"></i>
+</div>
 
-    </header>
+</header>
 
-    <!-- Hero -->
+<section class="balance-card">
 
-    <section class="welcome">
+<h4>Total Balance</h4>
 
-        <h1>Live Crypto Trading</h1>
+<h1 id="balance">0.00 USDT</h1>
 
-        <p>
-            Track live cryptocurrency prices, market trends and top gainers
-            in real time.
-        </p>
+<p id="userEmail">Loading...</p>
 
-    </section>
+</section>
 
-    <!-- Trading Chart -->
+<div class="stats">
 
-    <section class="chart-box">
+<div class="card">
+<h3>Investment</h3>
+<h2 id="investmentAmount">0.00 USDT</h2>
+</div>
 
-        <h2>BTC / USDT Live Chart</h2>
-
-        <div class="tradingview-widget-container">
-
-            <div id="tradingview_chart"></div>
-
-        </div>
-
-    </section>
-
-    <!-- Live Prices -->
-
-    <section class="live-prices">
-
-        <h2>🔥 Live Crypto Prices</h2>
-
-        <div id="coinGrid" class="coin-grid">
-
-        </div>
-
-    </section>
-
-    <!-- Market Overview -->
-
-    <section class="market-section">
-
-        <h2>📊 Market Overview</h2>
-
-        <div class="overview-grid">
-
-            <div class="overview-card">
-                <h3>Total Market Cap</h3>
-                <p id="marketCap">Loading...</p>
-            </div>
-
-            <div class="overview-card">
-                <h3>24H Volume</h3>
-                <p id="volume">Loading...</p>
-            </div>
-
-            <div class="overview-card">
-                <h3>BTC Dominance</h3>
-                <p id="dominance">Loading...</p>
-            </div>
-
-            <div class="overview-card">
-                <h3>Fear & Greed</h3>
-                <p id="fear">Loading...</p>
-            </div>
-
-        </div>
-
-    </section>
-        <!-- Top Gainers & Top Losers -->
-
-    <section class="market-box">
-
-        <div class="gainers">
-
-            <h2>🚀 Top Gainers</h2>
-
-            <ul id="gainersList"></ul>
-
-        </div>
-
-        <div class="losers">
-
-            <h2>📉 Top Losers</h2>
-
-            <ul id="losersList"></ul>
-
-        </div>
-
-    </section>
-
-    <!-- Live Crypto News -->
-
-    <section class="news-section">
-
-        <h2>📰 Crypto Market Updates</h2>
-
-        <div class="news-grid">
-
-            <div class="news-card">
-                <h3>📈 Bitcoin Market</h3>
-                <p>Track Bitcoin price movement and market trend in real time.</p>
-            </div>
-
-            <div class="news-card">
-                <h3>⚡ Ethereum Network</h3>
-                <p>Latest Ethereum updates and ecosystem performance.</p>
-            </div>
-
-            <div class="news-card">
-                <h3>🔥 Trending Coins</h3>
-                <p>Discover today's most active cryptocurrencies.</p>
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- Quick Actions -->
-
-    <section class="action-section">
-
-        <h2>⚡ Quick Actions</h2>
-
-        <div class="action-buttons">
-
-            <a href="deposit.html" class="action-btn deposit-btn">
-                💰 Deposit
-            </a>
-
-            <a href="withdraw.html" class="action-btn withdraw-btn">
-                💸 Withdraw
-            </a>
-
-            <a href="plans.html" class="action-btn plan-btn">
-                📊 Investment Plans
-            </a>
-
-        </div>
-
-    </section>
-        <!-- Investment Benefits -->
-
-    <section class="benefits-section">
-
-        <h2>Why Choose GrowVest?</h2>
-
-        <div class="benefits-grid">
-
-            <div class="benefit-card">
-                <i class="fa-solid fa-shield-halved"></i>
-                <h3>Secure Platform</h3>
-                <p>Your assets are protected with advanced security and encryption.</p>
-            </div>
-
-            <div class="benefit-card">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Real-Time Data</h3>
-                <p>Track live crypto prices and market movements instantly.</p>
-            </div>
-
-            <div class="benefit-card">
-                <i class="fa-solid fa-wallet"></i>
-                <h3>Fast Transactions</h3>
-                <p>Quick deposits and withdrawals with a smooth experience.</p>
-            </div>
-
-            <div class="benefit-card">
-                <i class="fa-solid fa-headset"></i>
-                <h3>24/7 Support</h3>
-                <p>Our support team is available anytime you need help.</p>
-            </div>
-
-        </div>
-
-    </section>
+<div class="card">
+<h3>Today's Profit</h3>
+<h2 id="todayProfit" style="color:#16a34a;">+0.00 USDT</h2>
+</div>
 
 </div>
 
-<!-- ⚠️ IMPORTANT: Bottom Navigation nu delete na karna -->
+<div class="quick">
+
+<a href="deposit.html" class="action">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="withdraw.html" class="action">
+<i class="fa-solid fa-money-bill-transfer"></i>
+<span>Withdraw</span>
+</a>
+
+<a href="plans.html" class="action">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
+
+<a href="history.html" class="action">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+</div>
+<section class="plan-box">
+
+<h3>Active Investment</h3>
+
+<div id="activePlan">
+<p>No Active Plan</p>
+</div>
+
+</section>
+
+<section class="menu-section">
+
+<h3>Quick Access</h3>
+
+<div class="quick-grid">
+
+<a href="trading.html" class="action">
+<i class="fa-solid fa-arrow-trend-up"></i>
+<span>Trading</span>
+</a>
+
+<a href="profile.html" class="action">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+<a href="admin.html" class="action">
+<i class="fa-solid fa-user-shield"></i>
+<span>Admin</span>
+</a>
+
+<a href="help.html" class="action">
+<i class="fa-solid fa-headset"></i>
+<span>Support</span>
+</a>
+
+</div>
+
+</section>
+
+<!-- Live Trading Chart -->
+
+<section class="plan-box">
+
+<h3>Live BTC/USDT Chart</h3>
+
+<div id="tradingview_chart"></div>
+
+</section>
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script>
+new TradingView.widget({
+  width: "100%",
+  height: 500,
+  symbol: "BINANCE:BTCUSDT",
+  interval: "15",
+  timezone: "Etc/UTC",
+  theme: "dark",
+  style: "1",
+  locale: "en",
+  toolbar_bg: "#0f172a",
+  enable_publishing: false,
+  allow_symbol_change: true,
+  container_id: "tradingview_chart"
+});
+</script>
+
+<button id="logoutBtn" class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+<span>Logout</span>
+</button>
+
+</div>
 <nav class="bottom-nav">
 
-    <a href="dashboard.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
+<a href="dashboard.html" class="active">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
 
-    <a href="invest.html">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Invest</span>
-    </a>
+<a href="plans.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Invest</span>
+</a>
 
-    <a href="trade.html" class="active">
-        <i class="fa-brands fa-bitcoin"></i>
-        <span>Trade</span>
-    </a>
+<a href="trading.html">
+<i class="fa-solid fa-arrow-trend-up"></i>
+<span>Trade</span>
+</a>
 
-    <a href="history.html">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
+<a href="history.html">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
 
-    <a href="profile.html">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
+<a href="profile.html">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
 
 </nav>
 
-<script src="dashboard.js"></script>
+<script type="module" src="dashboard.js"></script>
 
 </body>
 </html>
