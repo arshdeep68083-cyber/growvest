@@ -17,7 +17,7 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// ===== USDT Format =====
+// ===== Format Money =====
 function formatMoney(amount) {
   amount = Number(amount) || 0;
 
@@ -27,11 +27,16 @@ function formatMoney(amount) {
   }) + " USDT";
 }
 
+// ===== Elements =====
 const emailBox = document.getElementById("userEmail");
 const balanceBox = document.getElementById("balance");
 const logoutBtn = document.getElementById("logoutBtn");
 const activePlanBox = document.getElementById("activePlan");
 
+const investmentBox = document.getElementById("investmentAmount");
+const todayProfitBox = document.getElementById("todayProfit");
+
+// ===== Auth =====
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
@@ -50,8 +55,13 @@ onAuthStateChanged(auth, async (user) => {
   }
 
   let userData = userSnap.data();
+
   let balance = Number(userData.balance || 0);
-    try {
+
+  let totalInvestment = 0;
+  let todayProfit = 0;
+
+  try {
 
     const plansQuery = query(
       collection(db, "userPlans"),
@@ -61,15 +71,17 @@ onAuthStateChanged(auth, async (user) => {
 
     const plansSnap = await getDocs(plansQuery);
 
-    const today = new Date().toISOString().split("T")[0];
-
     activePlanBox.innerHTML = "";
 
-    for (const planDoc of plansSnap.docs) {
+    const today = new Date().toISOString().split("T")[0];
+        for (const planDoc of plansSnap.docs) {
 
       const plan = planDoc.data();
 
       let completedDays = Number(plan.daysCompleted || 0);
+
+      totalInvestment += Number(plan.price);
+      todayProfit += Number(plan.dailyProfit);
 
       if (plan.lastProfitDate !== today) {
 
@@ -84,7 +96,6 @@ onAuthStateChanged(auth, async (user) => {
         if (completedDays >= Number(plan.duration)) {
 
           balance += Number(plan.price);
-
           updateData.status = "Completed";
 
           await addDoc(collection(db, "history"), {
@@ -96,6 +107,7 @@ onAuthStateChanged(auth, async (user) => {
             description: plan.planName + " Capital Returned",
             createdAt: serverTimestamp()
           });
+
         }
 
         await updateDoc(userRef, {
@@ -116,6 +128,7 @@ onAuthStateChanged(auth, async (user) => {
           description: plan.planName + " Daily Profit",
           createdAt: serverTimestamp()
         });
+
       }
 
       activePlanBox.innerHTML += `
@@ -126,12 +139,12 @@ onAuthStateChanged(auth, async (user) => {
 
           <p><b>Daily Profit:</b> ${formatMoney(plan.dailyProfit)}</p>
 
-          <p><b>Days Completed:</b> ${completedDays}</p>
+          <p><b>Completed Days:</b> ${completedDays}</p>
 
-          <p><b>Remaining Days:</b> ${Math.max(
+          <p><b>Remaining:</b> ${Math.max(
             0,
             Number(plan.duration) - completedDays
-          )}</p>
+          )} Days</p>
 
           <p><b>Status:</b> ${
             completedDays >= Number(plan.duration)
@@ -140,6 +153,7 @@ onAuthStateChanged(auth, async (user) => {
           }</p>
         </div><br>
       `;
+
     }
 
     if (plansSnap.empty) {
@@ -147,7 +161,13 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     balanceBox.textContent = formatMoney(balance);
-    } catch (error) {
+
+    if (investmentBox)
+      investmentBox.textContent = formatMoney(totalInvestment);
+
+    if (todayProfitBox)
+      todayProfitBox.textContent = "+" + formatMoney(todayProfit);
+      } catch (error) {
 
     console.error(error);
     alert(error.message);
@@ -156,7 +176,8 @@ onAuthStateChanged(auth, async (user) => {
 
 });
 
-logoutBtn.addEventListener("click", async () => {
+// ===== Logout =====
+logoutBtn?.addEventListener("click", async () => {
 
   try {
 
@@ -173,7 +194,8 @@ logoutBtn.addEventListener("click", async () => {
 });
 
 // ===== Dashboard Ready =====
-
 window.addEventListener("DOMContentLoaded", () => {
-  console.log("GrowVest Dashboard Loaded Successfully");
+
+  console.log("GrowVest Premium Dashboard Loaded");
+
 });
