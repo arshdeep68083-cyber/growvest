@@ -1,95 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Transaction History - GrowVest</title>
+
+<title>GrowVest - History</title>
 
 <link rel="stylesheet" href="dashboard.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
 <div class="dashboard">
 
-<div class="balance-card">
-<h4>Transaction History</h4>
-<h1><i class="fas fa-clock-rotate-left"></i></h1>
-<p>View all your deposits, withdrawals and trading records.</p>
-</div>
+<header class="topbar">
 
-<div class="summary-box">
+    <div class="logo">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <h2>History</h2>
+    </div>
 
-<div class="summary-item">
-<h3 id="totalDeposit">0 USDT</h3>
-<p>Total Deposit</p>
-</div>
+    <div class="menu">
+        <i class="fa-solid fa-bell"></i>
+        <i class="fa-solid fa-user"></i>
+    </div>
 
-<div class="summary-item">
-<h3 id="totalWithdraw">0 USDT</h3>
-<p>Total Withdraw</p>
-</div>
+</header>
 
-<div class="summary-item">
-<h3 id="totalProfit">0 USDT</h3>
-<p>Total Profit</p>
-</div>
+<section class="welcome">
 
-</div>
+    <h1>Transaction History</h1>
 
-<div class="history-card">
+    <p>View all your deposits, withdrawals and investment activity.</p>
 
-<h2 class="history-title">
-<i class="fas fa-list"></i>
-Recent Transactions
-</h2>
+</section>
 
-<div id="historyList">
+<section class="live-prices">
 
-<!-- Transactions will load here -->
+    <h2>Recent Transactions</h2>
 
-</div>
+    <div class="coin-grid">
 
-</div>
-</div>
+        <div class="coin-card">
+            <h3>💰 Deposit</h3>
+            <p>Amount: <strong>$500</strong></p>
+            <p>Status: <span style="color:#22c55e;">Completed</span></p>
+            <p>Date: 10 Jul 2026</p>
+        </div>
 
-<div style="margin-top:20px;">
+        <div class="coin-card">
+            <h3>📈 Investment</h3>
+            <p>Gold Plan</p>
+            <p>Amount: <strong>$1000</strong></p>
+            <p>Status: <span style="color:#22c55e;">Active</span></p>
+        </div>
 
-<a href="dashboard.html" class="action">
-<i class="fas fa-house"></i>
-Back to Dashboard
-</a>
+        <div class="coin-card">
+            <h3>💸 Withdrawal</h3>
+            <p>Amount: <strong>$250</strong></p>
+            <p>Status: <span style="color:#f59e0b;">Pending</span></p>
+            <p>Date: 09 Jul 2026</p>
+        </div>
 
-</div>
+    </div>
 
+</section>
+<section class="benefits-section">
+
+    <h2>Account Summary</h2>
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-wallet"></i>
+            <h3>Total Deposits</h3>
+            <p>$5,000</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <h3>Total Withdrawals</h3>
+            <p>$1,250</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Total Profit</h3>
+            <p style="color:#22c55e;">+$850</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-coins"></i>
+            <h3>Active Plans</h3>
+            <p>3 Running</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="action-section">
+
+    <h2>Quick Actions</h2>
+
+    <div class="action-buttons">
+
+        <a href="deposit.html" class="action-btn">
+            💰 Deposit
+        </a>
+
+        <a href="withdraw.html" class="action-btn">
+            💸 Withdraw
+        </a>
+
+        <a href="dashboard.html" class="action-btn">
+            🏠 Dashboard
+        </a>
+
+    </div>
+
+</section>
 <nav class="bottom-nav">
 
-<a href="dashboard.html">
-<i class="fas fa-home"></i>
-<span>Home</span>
-</a>
+    <a href="dashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
 
-<a href="deposit.html">
-<i class="fas fa-wallet"></i>
-<span>Deposit</span>
-</a>
+    <a href="invest.html">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Invest</span>
+    </a>
 
-<a href="history.html" class="active">
-<i class="fas fa-clock-rotate-left"></i>
-<span>History</span>
-</a>
+    <a href="treding.html">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <span>Trading</span>
+    </a>
 
-<a href="profile.html">
-<i class="fas fa-user"></i>
-<span>Profile</span>
-</a>
+    <a href="history.html" class="active">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+
+    <a href="profile.html">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
 
 </nav>
 
-<script type="module" src="history.js"></script>
+</div>
+
+<script src="dashboard.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("History Page Loaded");
+});
+</script>
 
 </body>
 </html>
-
