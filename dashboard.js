@@ -1,172 +1,90 @@
-// ==========================
-// GrowVest Dashboard JS
-// Part 1
-// ==========================
+// ===================================
+// GrowVest Dashboard JS - Part 1
+// ===================================
 
-const coins = [
-    "bitcoin",
-    "ethereum",
-    "binancecoin",
-    "solana",
-    "ripple",
-    "cardano",
-    "dogecoin",
-    "tron",
-    "toncoin",
-    "avalanche-2"
-];
+document.addEventListener("DOMContentLoaded", () => {
 
-async function loadPrices(){
+    console.log("GrowVest Loaded Successfully");
 
-    try{
+    // Active Navigation
+    const currentPage = window.location.pathname.split("/").pop();
 
-        const res = await fetch(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" +
-            coins.join(",")
-        );
+    document.querySelectorAll(".bottom-nav a").forEach(link => {
 
-        const data = await res.json();
+        const href = link.getAttribute("href");
 
-        const coinGrid = document.getElementById("coinGrid");
+        if (href === currentPage) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
 
-        coinGrid.innerHTML = "";
+    });
 
-        data.forEach(coin=>{
+    // Welcome Animation
+    document.querySelectorAll(
+        ".overview-card, .coin-card, .market-box, .benefit-card, .news-card"
+    ).forEach((card, index) => {
 
-            coinGrid.innerHTML += `
-                <div class="coin-card">
+        card.style.opacity = "0";
+        card.style.transform = "translateY(20px)";
 
-                    <h3>
-                        <img src="${coin.image}"
-                        width="24"
-                        style="vertical-align:middle;margin-right:8px;">
-                        ${coin.symbol.toUpperCase()}
-                    </h3>
+        setTimeout(() => {
+            card.style.transition = "0.5s ease";
+            card.style.opacity = "1";
+            card.style.transform = "translateY(0)";
+        }, index * 100);
 
-                    <p><strong>Price:</strong> $${coin.current_price.toLocaleString()}</p>
+    });
 
-                    <p style="color:${coin.price_change_percentage_24h>=0?"#22c55e":"#ef4444"};">
-                        ${coin.price_change_percentage_24h.toFixed(2)}%
-                    </p>
+});
+// ===================================
+// GrowVest Dashboard JS - Part 2
+// ===================================
 
-                </div>
-            `;
-        });
+// Button Click Effects
+document.querySelectorAll(".action-btn").forEach(button => {
 
-    }catch(err){
+    button.addEventListener("click", function () {
 
-        console.log(err);
+        this.style.transform = "scale(0.96)";
 
+        setTimeout(() => {
+            this.style.transform = "scale(1)";
+        }, 150);
+
+    });
+
+});
+
+// Coin Card Hover Effect
+document.querySelectorAll(".coin-card").forEach(card => {
+
+    card.addEventListener("mouseenter", () => {
+        card.style.boxShadow = "0 20px 35px rgba(34,197,94,0.25)";
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.boxShadow = "";
+    });
+
+});
+
+// Simple Greeting
+const welcome = document.querySelector(".welcome h1");
+
+if (welcome) {
+
+    const hour = new Date().getHours();
+
+    if (hour < 12) {
+        welcome.innerHTML = "🌞 Good Morning";
+    } else if (hour < 18) {
+        welcome.innerHTML = "☀️ Good Afternoon";
+    } else {
+        welcome.innerHTML = "🌙 Good Evening";
     }
 
 }
 
-loadPrices();
-// ==========================
-// Market Overview
-// Part 2
-// ==========================
-
-async function loadMarketOverview(){
-
-    try{
-
-        const res = await fetch(
-            "https://api.coingecko.com/api/v3/global"
-        );
-
-        const result = await res.json();
-
-        const data = result.data;
-
-        document.getElementById("marketCap").innerHTML =
-            "$" + (data.total_market_cap.usd / 1000000000000).toFixed(2) + "T";
-
-        document.getElementById("volume").innerHTML =
-            "$" + (data.total_volume.usd / 1000000000).toFixed(2) + "B";
-
-        document.getElementById("dominance").innerHTML =
-            data.market_cap_percentage.btc.toFixed(2) + "%";
-
-        const fear = Math.floor(Math.random() * 30) + 60;
-
-        document.getElementById("fear").innerHTML =
-            fear + " / 100";
-
-    }catch(error){
-
-        console.log(error);
-
-    }
-
-}
-
-loadMarketOverview();
-
-// Auto refresh every 60 seconds
-setInterval(() => {
-    loadPrices();
-    loadMarketOverview();
-}, 60000);
-// ==========================
-// Top Gainers & Losers
-// Part 3
-// ==========================
-
-async function loadMarketLists(){
-
-    try{
-
-        const res = await fetch(
-            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-        );
-
-        const data = await res.json();
-
-        const sorted = [...data].sort(
-            (a,b)=>b.price_change_percentage_24h-a.price_change_percentage_24h
-        );
-
-        const gainers = sorted.slice(0,5);
-        const losers = sorted.slice(-5).reverse();
-
-        const gainersList = document.getElementById("gainersList");
-        const losersList = document.getElementById("losersList");
-
-        gainersList.innerHTML = "";
-        losersList.innerHTML = "";
-
-        gainers.forEach(coin=>{
-            gainersList.innerHTML += `
-                <li>
-                    ${coin.symbol.toUpperCase()} :
-                    <span style="color:#22c55e;">
-                        +${coin.price_change_percentage_24h.toFixed(2)}%
-                    </span>
-                </li>
-            `;
-        });
-
-        losers.forEach(coin=>{
-            losersList.innerHTML += `
-                <li>
-                    ${coin.symbol.toUpperCase()} :
-                    <span style="color:#ef4444;">
-                        ${coin.price_change_percentage_24h.toFixed(2)}%
-                    </span>
-                </li>
-            `;
-        });
-
-    }catch(error){
-        console.log(error);
-    }
-
-}
-
-loadMarketLists();
-
-// Refresh every minute
-setInterval(loadMarketLists, 60000);
-
-console.log("GrowVest Dashboard Loaded Successfully ✅");
+console.log("GrowVest Dashboard Ready 🚀");
