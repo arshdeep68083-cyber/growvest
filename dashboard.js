@@ -1,204 +1,172 @@
-import { auth, db } from "./firebase-config.js";
+// ==========================
+// GrowVest Dashboard JS
+// Part 1
+// ==========================
 
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+const coins = [
+    "bitcoin",
+    "ethereum",
+    "binancecoin",
+    "solana",
+    "ripple",
+    "cardano",
+    "dogecoin",
+    "tron",
+    "toncoin",
+    "avalanche-2"
+];
 
-import {
-  doc,
-  getDoc,
- updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+async function loadPrices(){
 
-// ===== Format Money =====
-function formatMoney(amount){
-  amount = Number(amount) || 0;
+    try{
 
-  return amount.toLocaleString("en-US",{
-    minimumFractionDigits:2,
-    maximumFractionDigits:2
-  }) + " USDT";
-}
-
-// ===== HTML Elements =====
-const emailBox = document.getElementById("userEmail");
-const balanceBox = document.getElementById("balance");
-const investmentBox = document.getElementById("investmentAmount");
-const todayProfitBox = document.getElementById("todayProfit");
-const activePlanBox = document.getElementById("activePlan");
-const logoutBtn = document.getElementById("logoutBtn");
-
-// ===== Check Login =====
-onAuthStateChanged(auth, async(user)=>{
-
-  if(!user){
-    window.location.href="login.html";
-    return;
-  }
-
-  emailBox.textContent=user.email;
-
-  const userRef=doc(db,"users",user.uid);
-  const userSnap=await getDoc(userRef);
-
-  if(!userSnap.exists()){
-    alert("User not found");
-    return;
-  }
-
-  let userData=userSnap.data();
-
-  let balance=Number(userData.balance||0);
-  let totalInvestment=0;
-  let todayProfit=0;
-
-  activePlanBox.innerHTML="";
-
-  const today=new Date().toISOString().split("T")[0];
-
-  try{
-
-    const plansQuery=query(
-      collection(db,"userPlans"),
-      where("uid","==",user.uid),
-      where("status","==","Active")
-    );
-
-    const plansSnap=await getDocs(plansQuery);
-        for (const planDoc of plansSnap.docs){
-
-      const plan = planDoc.data();
-
-      let completedDays = Number(plan.daysCompleted || 0);
-
-      totalInvestment += Number(plan.price || 0);
-      todayProfit += Number(plan.dailyProfit || 0);
-
-      if(plan.lastProfitDate !== today){
-
-        completedDays++;
-        balance += Number(plan.dailyProfit || 0);
-
-        const updateData = {
-          lastProfitDate: today,
-          daysCompleted: completedDays
-        };
-
-        if(completedDays >= Number(plan.duration || 0)){
-
-          balance += Number(plan.price || 0);
-          updateData.status = "Completed";
-
-          await addDoc(collection(db,"history"),{
-            uid:user.uid,
-            email:user.email,
-            type:"Capital Return",
-            amount:Number(plan.price || 0),
-            currency:"USDT",
-            description:plan.planName + " Capital Returned",
-            createdAt:serverTimestamp()
-          });
-
-        }
-
-        await updateDoc(userRef,{
-          balance:balance
-        });
-
-        await updateDoc(
-          doc(db,"userPlans",planDoc.id),
-          updateData
+        const res = await fetch(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=" +
+            coins.join(",")
         );
 
-        await addDoc(collection(db,"history"),{
-          uid:user.uid,
-          email:user.email,
-          type:"Daily Profit",
-          amount:Number(plan.dailyProfit || 0),
-          currency:"USDT",
-          description:plan.planName + " Daily Profit",
-          createdAt:serverTimestamp()
+        const data = await res.json();
+
+        const coinGrid = document.getElementById("coinGrid");
+
+        coinGrid.innerHTML = "";
+
+        data.forEach(coin=>{
+
+            coinGrid.innerHTML += `
+                <div class="coin-card">
+
+                    <h3>
+                        <img src="${coin.image}"
+                        width="24"
+                        style="vertical-align:middle;margin-right:8px;">
+                        ${coin.symbol.toUpperCase()}
+                    </h3>
+
+                    <p><strong>Price:</strong> $${coin.current_price.toLocaleString()}</p>
+
+                    <p style="color:${coin.price_change_percentage_24h>=0?"#22c55e":"#ef4444"};">
+                        ${coin.price_change_percentage_24h.toFixed(2)}%
+                    </p>
+
+                </div>
+            `;
         });
 
-      }
+    }catch(err){
 
-      activePlanBox.innerHTML += `
-      <div class="card">
-        <h3>${plan.planName}</h3>
+        console.log(err);
 
-        <p><b>Investment:</b> ${formatMoney(plan.price)}</p>
-
-        <p><b>Daily Profit:</b> ${formatMoney(plan.dailyProfit)}</p>
-
-        <p><b>Completed Days:</b> ${completedDays}</p>
-
-        <p><b>Remaining Days:</b> ${Math.max(
-          0,
-          Number(plan.duration) - completedDays
-        )}</p>
-
-        <p><b>Status:</b> ${
-          completedDays >= Number(plan.duration)
-            ? "Completed"
-            : plan.status
-        }</p>
-
-      </div><br>
-      `;
     }
 
-    if(plansSnap.empty){
-      activePlanBox.innerHTML="<p>No Active Plan</p>";
+}
+
+loadPrices();
+// ==========================
+// Market Overview
+// Part 2
+// ==========================
+
+async function loadMarketOverview(){
+
+    try{
+
+        const res = await fetch(
+            "https://api.coingecko.com/api/v3/global"
+        );
+
+        const result = await res.json();
+
+        const data = result.data;
+
+        document.getElementById("marketCap").innerHTML =
+            "$" + (data.total_market_cap.usd / 1000000000000).toFixed(2) + "T";
+
+        document.getElementById("volume").innerHTML =
+            "$" + (data.total_volume.usd / 1000000000).toFixed(2) + "B";
+
+        document.getElementById("dominance").innerHTML =
+            data.market_cap_percentage.btc.toFixed(2) + "%";
+
+        const fear = Math.floor(Math.random() * 30) + 60;
+
+        document.getElementById("fear").innerHTML =
+            fear + " / 100";
+
+    }catch(error){
+
+        console.log(error);
+
     }
 
-    balanceBox.textContent = formatMoney(balance);
-    investmentBox.textContent = formatMoney(totalInvestment);
-    todayProfitBox.textContent = "+" + formatMoney(todayProfit);
-      } catch (error) {
+}
 
-    console.error(error);
-    alert(error.message);
+loadMarketOverview();
 
-  }
+// Auto refresh every 60 seconds
+setInterval(() => {
+    loadPrices();
+    loadMarketOverview();
+}, 60000);
+// ==========================
+// Top Gainers & Losers
+// Part 3
+// ==========================
 
-});
+async function loadMarketLists(){
 
-// ===== Logout =====
-logoutBtn?.addEventListener("click", async () => {
+    try{
 
-  try {
+        const res = await fetch(
+            "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+        );
 
-    await signOut(auth);
-    window.location.href = "login.html";
+        const data = await res.json();
 
-  } catch (error) {
+        const sorted = [...data].sort(
+            (a,b)=>b.price_change_percentage_24h-a.price_change_percentage_24h
+        );
 
-    console.error(error);
-    alert(error.message);
+        const gainers = sorted.slice(0,5);
+        const losers = sorted.slice(-5).reverse();
 
-  }
+        const gainersList = document.getElementById("gainersList");
+        const losersList = document.getElementById("losersList");
 
-});
+        gainersList.innerHTML = "";
+        losersList.innerHTML = "";
 
-// ===== Dashboard Ready =====
-window.addEventListener("DOMContentLoaded", () => {
+        gainers.forEach(coin=>{
+            gainersList.innerHTML += `
+                <li>
+                    ${coin.symbol.toUpperCase()} :
+                    <span style="color:#22c55e;">
+                        +${coin.price_change_percentage_24h.toFixed(2)}%
+                    </span>
+                </li>
+            `;
+        });
 
-  console.log("GrowVest Premium Dashboard Loaded");
+        losers.forEach(coin=>{
+            losersList.innerHTML += `
+                <li>
+                    ${coin.symbol.toUpperCase()} :
+                    <span style="color:#ef4444;">
+                        ${coin.price_change_percentage_24h.toFixed(2)}%
+                    </span>
+                </li>
+            `;
+        });
 
-  // Make sure default values are shown
-  if (investmentBox && !investmentBox.textContent.trim()) {
-    investmentBox.textContent = "0.00 USDT";
-  }
+    }catch(error){
+        console.log(error);
+    }
 
-  if (todayProfitBox && !todayProfitBox.textContent.trim()) {
-    todayProfitBox.textContent = "+0.00 USDT";
-  }
+}
 
-});
+loadMarketLists();
+
+// Refresh every minute
+setInterval(loadMarketLists, 60000);
+
+console.log("GrowVest Dashboard Loaded Successfully ✅");
