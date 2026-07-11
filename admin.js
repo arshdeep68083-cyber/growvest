@@ -101,6 +101,17 @@ import {
   collection,
   getDocs,
   doc,
+  updateDoc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+// baaki code...
+import { db } from "./firebase-config.js";
+
+import {
+  collection,
+  getDocs,
+  doc,
   updateDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
