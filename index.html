@@ -18,172 +18,94 @@
 
 <body>
 
-<div id="splash-screen">
+<div class="hero">
 
-<div class="splash-content">
-
-<i class="fa-solid fa-chart-line splash-icon"></i>
-
-<h1>GrowVest</h1>
-
-<p>Trusted Digital Asset Investment Platform</p>
-
-</div>
-
-</div>
-
-<div id="main-content" style="display:none;">
-
-<section class="hero">
+<div class="overlay"></div>
 
 <div class="container">
 
-<div class="hero-content">
-
-<div class="logo-circle">
-<i class="fa-solid fa-chart-line"></i>
+<div class="logo-box">
+<i class="fa-solid fa-chart-line logo-icon"></i>
+<h1>GrowVest</h1>
+<p class="tagline">
+Secure Crypto Investment Platform
+</p>
 </div>
 
-<h1>GrowVest</h1>
+<div class="features">
 
-<h2>Grow Your Wealth Securely</h2>
+<div class="feature">
+<i class="fa-solid fa-shield-halved"></i>
+<span>100% Secure Platform</span>
+</div>
 
-<p class="tagline">
-Trusted Crypto Investment Platform with Secure Deposits,
-Fast Withdrawals and 24/7 Customer Support.
-</p>
+<div class="feature">
+<i class="fa-solid fa-bolt"></i>
+<span>Fast Deposits & Withdrawals</span>
+</div>
 
-<div class="hero-buttons">
+<div class="feature">
+<i class="fa-solid fa-chart-simple"></i>
+<span>Live Crypto Trading</span>
+</div>
 
-<a href="register.html" class="btn btn-green">
+<div class="feature">
+<i class="fa-solid fa-headset"></i>
+<span>24/7 Customer Support</span>
+</div>
+
+</div>
+
+<div class="buttons">
+
+<a href="register.html" class="btn register-btn">
 <i class="fa-solid fa-user-plus"></i>
-Create Account
+Register
 </a>
 
-<a href="login.html" class="btn btn-blue">
+<a href="login.html" class="btn login-btn">
 <i class="fa-solid fa-right-to-bracket"></i>
 Login
 </a>
 
 </div>
-
-<div class="features-grid">
-
-<div class="feature-card">
-<i class="fa-solid fa-shield-halved"></i>
-<h3>100% Secure</h3>
-<p>Bank-level security for your investments.</p>
-</div>
-
-<div class="feature-card">
-<i class="fa-solid fa-wallet"></i>
-<h3>Fast Withdrawals</h3>
-<p>Quick deposits and instant withdrawals.</p>
-</div>
-    
-<div class="feature-card">
-    <i class="fa-solid fa-chart-line"></i>
-    <h3>Daily Returns</h3>
-    <p>Professional investment plans designed for steady growth.</p>
-</div>
-
-<div class="feature-card">
-    <i class="fa-solid fa-headset"></i>
-    <h3>24/7 Support</h3>
-    <p>Our support team is always ready to help you.</p>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="stats-section">
-
-<div class="stats-card">
-
-<div class="stat">
-<h2>10K+</h2>
-<p>Active Investors</p>
-</div>
-
-<div class="stat">
-<h2>$5M+</h2>
-<p>Total Investments</p>
-</div>
-
-<div class="stat">
-<h2>99.9%</h2>
-<p>Secure Transactions</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="why-section">
+<div class="support-card">
 
 <h2>Why Choose GrowVest?</h2>
 
-<div class="why-grid">
-
-<div class="why-card">
-<i class="fa-solid fa-lock"></i>
-<h3>Safe & Secure</h3>
-<p>Your funds are protected with advanced security technology.</p>
-</div>
-
-<div class="why-card">
-<i class="fa-solid fa-bolt"></i>
-<h3>Fast Processing</h3>
-<p>Quick deposits, instant withdrawals and smooth experience.</p>
-</div>
-
-<div class="why-card">
-<i class="fa-solid fa-coins"></i>
-<h3>Smart Investment</h3>
-<p>Grow your digital assets with trusted investment solutions.</p>
-</div>
-
-</div>
-
-</section>
-<section class="support-section">
-
-<div class="support-card">
-
-<h2>Need Help?</h2>
-
 <p>
-Our support team is available 24/7 to assist you with your account,
-deposits, withdrawals and investments.
+Invest in cryptocurrency with confidence using our secure,
+fast and user-friendly investment platform.
 </p>
 
-<div class="support-info">
+<div class="support-list">
+
+<p><i class="fa-solid fa-check"></i> Secure Investment System</p>
+
+<p><i class="fa-solid fa-check"></i> Instant Deposit & Withdraw</p>
+
+<p><i class="fa-solid fa-check"></i> Live Crypto Market</p>
+
+<p><i class="fa-solid fa-check"></i> 24/7 Customer Support</p>
+
+</div>
+
+<div class="contact-box">
+
+<h3><i class="fa-solid fa-envelope"></i> Help & Support</h3>
 
 <p>
-<i class="fa-solid fa-envelope"></i>
-<a href="mailto:growvestsupport78@gmail.com">
+For any questions or assistance, contact us:
+</p>
+
+<a class="support-email"
+href="mailto:growvestsupport78@gmail.com">
 growvestsupport78@gmail.com
 </a>
-</p>
-
-<p>
-<i class="fa-solid fa-clock"></i>
-24/7 Customer Support
-</p>
-
-<p>
-<i class="fa-solid fa-shield-halved"></i>
-SSL Secured Platform
-</p>
 
 </div>
 
 </div>
-
-</section>
 
 <footer class="footer">
 
@@ -199,7 +121,7 @@ SSL Secured Platform
 
 </div>
 
-<p>
+<p class="copyright">
 © 2023 GrowVest. All Rights Reserved.
 </p>
 
@@ -208,19 +130,11 @@ SSL Secured Platform
 </div>
 
 <script>
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-        document.getElementById("splash-screen").style.display = "none";
-        document.getElementById("main-content").style.display = "block";
-    }, 2000);
-
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./pwabuilder-sw.js");
-    }
-
-});
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./pwabuilder-sw.js');
+  });
+}
 </script>
-
 </body>
 </html>
