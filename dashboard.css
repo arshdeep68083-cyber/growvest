@@ -1,1 +1,160 @@
-/* GrowVest Dashboard CSS */
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#f3f6fb;
+color:#1f2937;
+padding-bottom:90px;
+}
+
+.dashboard{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+
+.topbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+}
+
+.topbar h2{
+font-size:28px;
+font-weight:700;
+color:#0f172a;
+}
+
+.topbar p{
+color:#64748b;
+font-size:14px;
+}
+
+.notify{
+width:45px;
+height:45px;
+background:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+font-size:18px;
+}
+
+.balance-card{
+background:linear-gradient(135deg,#0f172a,#2563eb);
+color:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(37,99,235,.25);
+margin-bottom:20px;
+}
+
+.balance-card h4{
+font-weight:400;
+opacity:.9;
+}
+
+.balance-card h1{
+font-size:34px;
+margin:12px 0;
+}
+
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:20px;
+}
+
+.card{
+background:white;
+padding:18px;
+border-radius:18px;
+box-shadow:0 6px 20px rgba(0,0,0,.08);
+text-align:center;
+}
+
+.card h3{
+font-size:15px;
+color:#64748b;
+margin-bottom:8px;
+}
+
+.card h2{
+font-size:22px;
+color:#111827;
+}
+
+.quick{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-bottom:20px;
+}
+
+.action{
+background:white;
+text-decoration:none;
+color:#111827;
+padding:18px;
+border-radius:18px;
+text-align:center;
+box-shadow:0 6px 20px rgba(0,0,0,.08);
+transition:.3s;
+}
+
+.action:hover{
+transform:translateY(-4px);
+}
+
+.action i{
+font-size:24px;
+color:#2563eb;
+margin-bottom:10px;
+display:block;
+}
+
+.plan-box{
+background:white;
+padding:20px;
+border-radius:18px;
+box-shadow:0 6px 20px rgba(0,0,0,.08);
+margin-bottom:25px;
+}
+
+.bottom-nav{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:white;
+display:flex;
+justify-content:space-around;
+padding:12px 0;
+box-shadow:0 -5px 20px rgba(0,0,0,.12);
+}
+
+.bottom-nav a{
+text-decoration:none;
+color:#64748b;
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:12px;
+}
+
+.bottom-nav i{
+font-size:22px;
+margin-bottom:4px;
+}
+
+.bottom-nav a:hover{
+color:#2563eb;
+}
