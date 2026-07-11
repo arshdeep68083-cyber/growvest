@@ -11,42 +11,33 @@
 <link rel="manifest" href="manifest.json">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<!-- Splash Screen -->
 <div id="splash-screen">
-
     <div class="splash-content">
-
         <i class="fa-solid fa-chart-line splash-icon"></i>
-
         <h1>GrowVest</h1>
-
         <p>Secure Crypto Investment Platform</p>
-
     </div>
-
 </div>
 
-<!-- Main Website -->
 <div id="main-content" style="display:none;">
 
-<section class="hero">
+<div class="hero">
 
 <div class="container">
 
 <div class="logo-box">
-
 <i class="fa-solid fa-chart-line logo-icon"></i>
 
 <h1>GrowVest</h1>
 
 <p class="tagline">
-Invest Smart • Grow Securely
+Secure Crypto Investment Platform
 </p>
 
 </div>
@@ -59,12 +50,12 @@ Invest Smart • Grow Securely
 </div>
 
 <div class="feature">
-<i class="fa-solid fa-wallet"></i>
-<span>Fast Deposit & Withdraw</span>
+<i class="fa-solid fa-bolt"></i>
+<span>Fast Deposits & Withdrawals</span>
 </div>
 
 <div class="feature">
-<i class="fa-solid fa-chart-line"></i>
+<i class="fa-solid fa-chart-simple"></i>
 <span>Live Crypto Trading</span>
 </div>
 
@@ -93,25 +84,33 @@ Login
 <h2>Why Choose GrowVest?</h2>
 
 <p>
-GrowVest provides a secure, modern and easy-to-use crypto investment experience.
+Invest in cryptocurrency with confidence using our secure,
+fast and user-friendly investment platform.
 </p>
 
 <div class="support-list">
 
-<p><i class="fa-solid fa-check"></i> Secure Investment Platform</p>
-<p><i class="fa-solid fa-check"></i> Fast Deposit & Withdrawal</p>
+<p><i class="fa-solid fa-check"></i> Secure Investment System</p>
+
+<p><i class="fa-solid fa-check"></i> Instant Deposit & Withdraw</p>
+
 <p><i class="fa-solid fa-check"></i> Live Crypto Market</p>
+
 <p><i class="fa-solid fa-check"></i> 24/7 Customer Support</p>
 
 </div>
 
 <div class="contact-box">
 
-<h3><i class="fa-solid fa-envelope"></i> Help & Support</h3>
+<h3>
+<i class="fa-solid fa-envelope"></i>
+Help & Support
+</h3>
 
-<p>Email us anytime:</p>
+<p>Need help? Contact our support team anytime.</p>
 
-<a class="support-email" href="mailto:growvestsupport78@gmail.com">
+<a class="support-email"
+href="mailto:growvestsupport78@gmail.com">
 growvestsupport78@gmail.com
 </a>
 
@@ -124,8 +123,11 @@ growvestsupport78@gmail.com
 <div class="footer-links">
 
 <a href="about.html">About Us</a>
+
 <a href="privacy.html">Privacy Policy</a>
+
 <a href="terms.html">Terms & Conditions</a>
+
 <a href="help.html">Help & Support</a>
 
 </div>
@@ -138,25 +140,25 @@ growvestsupport78@gmail.com
 
 </div>
 
-</section>
-
 </div>
-
 <script>
-window.addEventListener("load", function () {
+window.onload = function () {
 
-    setTimeout(() => {
+    setTimeout(function () {
 
         document.getElementById("splash-screen").style.display = "none";
         document.getElementById("main-content").style.display = "block";
 
     }, 2000);
 
-    if ("serviceWorker" in navigator) {
-        navigator.serviceWorker.register("./pwabuilder-sw.js");
-    }
+};
 
-});
+// Register Service Worker
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", function () {
+        navigator.serviceWorker.register("./pwabuilder-sw.js");
+    });
+}
 </script>
 
 </body>
