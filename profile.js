@@ -29,7 +29,7 @@ const logoutBtn = document.getElementById("logoutBtn");
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
-    location.href = "login.html";
+    window.location.href = "login.html";
     return;
   }
 
@@ -40,37 +40,54 @@ onAuthStateChanged(auth, async (user) => {
   referralLink.value =
     `${window.location.origin}/register.html?ref=${user.uid}`;
 
-  const snap = await getDoc(doc(db, "users", user.uid));
+  try {
 
-  if (snap.exists()) {
+    const snap = await getDoc(doc(db, "users", user.uid));
 
-    const data = snap.data();
+    if (snap.exists()) {
 
-    userName.textContent = data.name || "GrowVest User";
-    userBalance.textContent = `${data.balance || 0} USDT`;
-    userInvestment.textContent = `${data.investment || 0} USDT`;
-    userEarnings.textContent = `${data.earnings || 0} USDT`;
+      const data = snap.data();
 
-    totalReferrals.textContent = data.referrals || 0;
-    referralBonus.textContent =
-      `${data.referralBonus || 0} USDT`;
+      userName.textContent = data.name || "GrowVest User";
 
-    if (data.createdAt?.toDate) {
-      joinDate.textContent =
-        data.createdAt.toDate().toLocaleDateString();
+      userBalance.textContent =
+        `${Number(data.balance || 0).toFixed(2)} USDT`;
+
+      userInvestment.textContent =
+        `${Number(data.investment || 0).toFixed(2)} USDT`;
+
+      userEarnings.textContent =
+        `${Number(data.earnings || 0).toFixed(2)} USDT`;
+
+      totalReferrals.textContent =
+        Number(data.referrals || 0);
+
+      referralBonus.textContent =
+        `${Number(data.referralBonus || 0).toFixed(2)} USDT`;
+
+      if (data.createdAt?.toDate) {
+        joinDate.textContent =
+          data.createdAt.toDate().toLocaleDateString();
+      } else {
+        joinDate.textContent = "N/A";
+      }
+
     } else {
+
+      userName.textContent = "GrowVest User";
+      userBalance.textContent = "0.00 USDT";
+      userInvestment.textContent = "0.00 USDT";
+      userEarnings.textContent = "0.00 USDT";
+      totalReferrals.textContent = "0";
+      referralBonus.textContent = "0.00 USDT";
       joinDate.textContent = "N/A";
+
     }
 
-  } else {
+  } catch (error) {
 
-    userName.textContent = "GrowVest User";
-    userBalance.textContent = "0 USDT";
-    userInvestment.textContent = "0 USDT";
-    userEarnings.textContent = "0 USDT";
-    totalReferrals.textContent = "0";
-    referralBonus.textContent = "0 USDT";
-    joinDate.textContent = "N/A";
+    console.error(error);
+    alert("Failed to load profile.");
 
   }
 
@@ -78,24 +95,40 @@ onAuthStateChanged(auth, async (user) => {
 
 copyReferralBtn.onclick = async () => {
 
-  await navigator.clipboard.writeText(referralLink.value);
+  try {
 
-  copyReferralBtn.innerHTML =
-    '<i class="fas fa-check"></i> Copied';
-
-  setTimeout(() => {
+    await navigator.clipboard.writeText(referralLink.value);
 
     copyReferralBtn.innerHTML =
-      '<i class="fas fa-copy"></i> Copy Invite Link';
+      '<i class="fas fa-check"></i> Copied';
 
-  },2000);
+    setTimeout(() => {
+
+      copyReferralBtn.innerHTML =
+        '<i class="fas fa-copy"></i> Copy Invite Link';
+
+    }, 2000);
+
+  } catch (error) {
+
+    alert("Copy failed.");
+
+  }
 
 };
 
 logoutBtn.onclick = async () => {
 
-  await signOut(auth);
+  try {
 
-  location.href = "login.html";
+    await signOut(auth);
+
+    window.location.href = "login.html";
+
+  } catch (error) {
+
+    alert("Logout failed.");
+
+  }
 
 };
