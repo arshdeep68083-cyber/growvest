@@ -1,0 +1,13 @@
+{
+  "background_color": "#ffffff",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "GrowVest",
+  "orientation": "any",
+  "scope": "/",
+  "short_name": "GrowVest",
+  "start_url": "/",
+  "theme_color": "#0f172a",
+  "description": "GrowVest Investment Platform",
+  "id": "/"
+}
