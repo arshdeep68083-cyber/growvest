@@ -1,92 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Live Trading | GrowVest</title>
+<title>GrowVest Trading</title>
 
 <link rel="stylesheet" href="dashboard.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 <script src="https://s3.tradingview.com/tv.js"></script>
-
 </head>
 
 <body>
 
-<div class="dashboard">
-
 <header class="topbar">
-
-<div class="logo">
-<i class="fa-solid fa-chart-line"></i>
-<h2>GrowVest</h2>
-</div>
-
+    <div class="logo">
+        <i class="fa-solid fa-chart-line"></i>
+        <h2>GrowVest</h2>
+    </div>
 </header>
 
 <section class="welcome">
-
-<h1>📈 Live Crypto Trading</h1>
-
-<p>
-Track cryptocurrency prices, charts and market movements in real time.
-</p>
-
+    <h1>Live Crypto Trading</h1>
+    <p>Trade with live charts and real-time market data.</p>
 </section>
 
 <section class="chart-box">
-
-<h2>BTC / USDT Live Chart</h2>
-
-<div id="tradingview_chart" style="height:500px;width:100%;"></div>
-
+    <div id="tradingview_chart" style="height:500px;"></div>
 </section>
 
 <script>
-
 new TradingView.widget({
-
-"autosize":true,
-
-"symbol":"BINANCE:BTCUSDT",
-
-"interval":"15",
-
-"timezone":"Etc/UTC",
-
-"theme":"dark",
-
-"style":"1",
-
-"locale":"en",
-
-"toolbar_bg":"#111827",
-
-"enable_publishing":false,
-
-"allow_symbol_change":true,
-
-"container_id":"tradingview_chart"
-
+    autosize:true,
+    symbol:"BINANCE:BTCUSDT",
+    interval:"15",
+    theme:"dark",
+    style:"1",
+    locale:"en",
+    toolbar_bg:"#111827",
+    container_id:"tradingview_chart"
 });
-
 </script>
 
 <section class="live-prices">
-
-<h2>🔥 Live Crypto Prices</h2>
-
-<div class="coin-grid" id="coinGrid">
-
-</div>
-
+    <h2>🔥 Live Crypto Prices</h2>
+    <div id="coinGrid" class="coin-grid"></div>
 </section>
+<!-- Market Overview -->
+
 <section class="market-section">
 
     <h2>📊 Market Overview</h2>
@@ -112,7 +72,7 @@ new TradingView.widget({
         </div>
 
         <div class="overview-card">
-            <i class="fa-solid fa-face-smile"></i>
+            <i class="fa-solid fa-fire"></i>
             <h3>Fear & Greed</h3>
             <h2 id="fear">--</h2>
         </div>
@@ -120,6 +80,8 @@ new TradingView.widget({
     </div>
 
 </section>
+
+<!-- Top Gainers & Losers -->
 
 <section class="market-grid">
 
@@ -145,30 +107,7 @@ new TradingView.widget({
 
 </section>
 
-<section class="news-section">
-
-    <h2>📰 Latest Crypto News</h2>
-
-    <div class="news-grid">
-
-        <div class="news-card">
-            <h3>Bitcoin Market Update</h3>
-            <p>Live market analysis and price movement updates.</p>
-        </div>
-
-        <div class="news-card">
-            <h3>Ethereum Ecosystem</h3>
-            <p>Latest Ethereum network news and market performance.</p>
-        </div>
-
-        <div class="news-card">
-            <h3>Trending Coins</h3>
-            <p>Discover today's most active cryptocurrencies.</p>
-        </div>
-
-    </div>
-
-</section>
+<!-- Quick Actions -->
 
 <section class="action-section">
 
@@ -184,52 +123,14 @@ new TradingView.widget({
             💸 Withdraw
         </a>
 
-        <a href="support.html" class="action-btn">
-            🎧 Support
+        <a href="history.html" class="action-btn">
+            📜 History
         </a>
 
     </div>
 
 </section>
-<!-- Investment Benefits -->
-
-<section class="benefits-section">
-
-    <h2>Why Choose GrowVest?</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>100% Secure</h3>
-            <p>Advanced security to protect your account and investments.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Fast Transactions</h3>
-            <p>Quick deposits and withdrawals with reliable processing.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Live Market</h3>
-            <p>Real-time cryptocurrency prices and market updates.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Our support team is always ready to help you.</p>
-        </div>
-
-    </div>
-
-</section>
-
-</div>
-
-<!-- Bottom Navigation (Same as before) -->
+<!-- Bottom Navigation -->
 
 <nav class="bottom-nav">
 
@@ -261,6 +162,16 @@ new TradingView.widget({
 </nav>
 
 <script src="dashboard.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    if (typeof loadPrices === "function") loadPrices();
+    if (typeof loadMarketOverview === "function") loadMarketOverview();
+    if (typeof loadMarketLists === "function") loadMarketLists();
+
+});
+</script>
 
 </body>
 </html>
