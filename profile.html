@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>My Profile - GrowVest</title>
+<title>GrowVest - Profile</title>
 
 <link rel="stylesheet" href="dashboard.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -18,149 +23,172 @@
 
 <div class="dashboard">
 
-<div class="profile-header-card">
+<header class="topbar">
 
-<div class="profile-cover"></div>
+    <div class="logo">
+        <i class="fa-solid fa-user"></i>
+        <h2>My Profile</h2>
+    </div>
 
-<img
-id="profilePhoto"
-src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff&size=200"
-class="profile-photo"
-alt="Profile">
+    <div class="menu">
+        <i class="fa-solid fa-gear"></i>
+        <i class="fa-solid fa-bell"></i>
+    </div>
 
-<h2 id="userName">Loading...</h2>
+</header>
 
-<p id="userEmail">Loading...</p>
+<section class="welcome">
 
-<div class="verified-badge">
-<i class="fas fa-circle-check"></i>
-Verified Member
+    <h1>Welcome, Admin 👋</h1>
+
+    <p>Manage your account details and settings.</p>
+
+</section>
+
+<section class="market-overview">
+
+    <div class="overview-card">
+        <i class="fa-solid fa-user"></i>
+        <h3>Name</h3>
+        <h2>Admin</h2>
+    </div>
+
+    <div class="overview-card">
+        <i class="fa-solid fa-envelope"></i>
+        <h3>Email</h3>
+        <h2>admin@growvest.com</h2>
+    </div>
+
+    <div class="overview-card">
+        <i class="fa-solid fa-wallet"></i>
+        <h3>Balance</h3>
+        <h2>$25,000</h2>
+    </div>
+
+    <div class="overview-card">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Account</h3>
+        <h2>Verified</h2>
+    </div>
+
+</section>
+
+<section class="action-section">
+
+    <h2>Account Options</h2>
+
+    <div class="action-buttons">
+
+        <a href="#" class="action-btn">✏️ Edit Profile</a>
+
+        <a href="#" class="action-btn">🔒 Change Password</a>
+
+        <a href="index.html" class="action-btn">🚪 Logout</a>
+
+    </div>
+
+</section>
+<section class="benefits-section">
+
+    <h2>Account Statistics</h2>
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-coins"></i>
+            <h3>Total Investment</h3>
+            <p>$15,000</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Total Profit</h3>
+            <p style="color:#22c55e;">+$4,250</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-wallet"></i>
+            <h3>Available Balance</h3>
+            <p>$25,000</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-calendar-check"></i>
+            <h3>Member Since</h3>
+            <p>January 2026</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="live-prices">
+
+    <h2>Personal Information</h2>
+
+    <div class="coin-grid">
+
+        <div class="coin-card">
+            <h3>👤 Full Name</h3>
+            <p>Admin User</p>
+        </div>
+
+        <div class="coin-card">
+            <h3>📧 Email</h3>
+            <p>admin@growvest.com</p>
+        </div>
+
+        <div class="coin-card">
+            <h3>📱 Phone</h3>
+            <p>+91 9876543210</p>
+        </div>
+
+        <div class="coin-card">
+            <h3>🌍 Country</h3>
+            <p>India</p>
+        </div>
+
+    </div>
+
+</section>
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="invest.html">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Invest</span>
+    </a>
+
+    <a href="treding.html">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <span>Trading</span>
+    </a>
+
+    <a href="history.html">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+
+    <a href="profile.html" class="active">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+</nav>
+
 </div>
 
-<button id="editProfileBtn" class="edit-profile-btn">
-<i class="fas fa-camera"></i>
-Edit Profile
-</button>
+<script src="dashboard.js"></script>
 
-<input
-type="file"
-id="profileImageInput"
-accept="image/*"
-style="display:none;">
-
-</div>
-
-<div class="profile-stats">
-
-<div class="stat-box">
-<i class="fas fa-wallet"></i>
-<h3 id="userBalance">0.00 USDT</h3>
-<p>Balance</p>
-</div>
-
-<div class="stat-box">
-<i class="fas fa-chart-line"></i>
-<h3 id="userInvestment">0.00 USDT</h3>
-<p>Investment</p>
-</div>
-
-<div class="stat-box">
-<i class="fas fa-coins"></i>
-<h3 id="userEarnings">0.00 USDT</h3>
-<p>Total Earnings</p>
-</div>
-
-</div>
-
-<div class="card">
-
-<h3><i class="fas fa-user"></i> Account Details</h3>
-
-<p><strong>User ID</strong></p>
-<p id="userId">Loading...</p>
-
-<hr>
-
-<p><strong>Member Since</strong></p>
-<p id="joinDate">Loading...</p>
-
-<hr>
-
-<p><strong>Email</strong></p>
-<p id="userEmail2">Loading...</p>
-
-</div>
-<div class="card">
-
-<h3><i class="fas fa-gift"></i> Invite & Earn</h3>
-
-<input
-type="text"
-id="referralLink"
-readonly
-class="referral-input">
-
-<button id="copyReferralBtn" class="btn-primary">
-<i class="fas fa-copy"></i>
-Copy Invite Link
-</button>
-
-<div class="referral-info">
-
-<div class="referral-item">
-<i class="fas fa-users"></i>
-<div>
-<h4>Total Referrals</h4>
-<p id="totalReferrals">0</p>
-</div>
-</div>
-
-<div class="referral-item">
-<i class="fas fa-money-bill-wave"></i>
-<div>
-<h4>Referral Bonus</h4>
-<p id="referralBonus">0.00 USDT</p>
-</div>
-</div>
-
-<div class="bonus-card">
-<h4>Referral Rewards</h4>
-
-<p>🥇 Level 1 : <strong>10%</strong> Bonus</p>
-<p>🥈 Level 2 : <strong>5%</strong> Bonus</p>
-<p>🥉 Level 3 : <strong>2%</strong> Bonus</p>
-
-</div>
-
-</div>
-
-</div>
-
-<div class="card">
-
-<button id="changePasswordBtn" class="btn-primary">
-<i class="fas fa-key"></i>
-Change Password
-</button>
-
-<button id="logoutBtn" class="btn-danger">
-<i class="fas fa-right-from-bracket"></i>
-Logout
-</button>
-
-</div>
-
-<div style="margin-top:20px;">
-
-<a href="dashboard.html" class="action">
-<i class="fas fa-arrow-left"></i>
-Back to Dashboard
-</a>
-
-</div>
-</div>
-
-<script type="module" src="profile.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("Profile Page Loaded");
+});
+</script>
 
 </body>
 </html>
