@@ -1,52 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GrowVest Trading</title>
+
+<title>GrowVest Live Trading</title>
 
 <link rel="stylesheet" href="dashboard.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <script src="https://s3.tradingview.com/tv.js"></script>
+
 </head>
 
 <body>
 
+<div class="dashboard">
+
 <header class="topbar">
-    <div class="logo">
-        <i class="fa-solid fa-chart-line"></i>
-        <h2>GrowVest</h2>
-    </div>
+
+<div class="logo">
+<i class="fa-solid fa-chart-line"></i>
+<h2>GrowVest</h2>
+</div>
+
+<div class="menu">
+<i class="fa-solid fa-bell"></i>
+<i class="fa-solid fa-wallet"></i>
+</div>
+
 </header>
 
 <section class="welcome">
-    <h1>Live Crypto Trading</h1>
-    <p>Trade with live charts and real-time market data.</p>
+
+<h1>📈 Live Trading</h1>
+
+<p>Track live cryptocurrency markets in real time.</p>
+
 </section>
 
 <section class="chart-box">
-    <div id="tradingview_chart" style="height:500px;"></div>
+
+<h2>BTC / USDT Live Chart</h2>
+
+<div id="tradingview_chart"></div>
+
 </section>
 
 <script>
 new TradingView.widget({
-    autosize:true,
-    symbol:"BINANCE:BTCUSDT",
-    interval:"15",
-    theme:"dark",
-    style:"1",
-    locale:"en",
-    toolbar_bg:"#111827",
-    container_id:"tradingview_chart"
+    "autosize": true,
+    "symbol": "BINANCE:BTCUSDT",
+    "interval": "15",
+    "timezone": "Etc/UTC",
+    "theme": "dark",
+    "style": "1",
+    "locale": "en",
+    "toolbar_bg": "#111827",
+    "enable_publishing": false,
+    "hide_top_toolbar": false,
+    "allow_symbol_change": true,
+    "container_id": "tradingview_chart"
 });
 </script>
 
 <section class="live-prices">
-    <h2>🔥 Live Crypto Prices</h2>
-    <div id="coinGrid" class="coin-grid"></div>
-</section>
-<!-- Market Overview -->
 
+<h2>🔥 Live Crypto Prices</h2>
+
+<div class="coin-grid">
+
+<div class="coin-card">
+<h3>Bitcoin (BTC)</h3>
+<p>Price: Loading...</p>
+</div>
+
+<div class="coin-card">
+<h3>Ethereum (ETH)</h3>
+<p>Price: Loading...</p>
+</div>
+
+<div class="coin-card">
+<h3>BNB</h3>
+<p>Price: Loading...</p>
+</div>
+
+<div class="coin-card">
+<h3>Solana (SOL)</h3>
+<p>Price: Loading...</p>
+</div>
+
+</div>
+
+</section>
 <section class="market-section">
 
     <h2>📊 Market Overview</h2>
@@ -56,32 +110,30 @@ new TradingView.widget({
         <div class="overview-card">
             <i class="fa-solid fa-coins"></i>
             <h3>Total Market Cap</h3>
-            <h2 id="marketCap">$--</h2>
+            <h2>$2.8T</h2>
         </div>
 
         <div class="overview-card">
             <i class="fa-solid fa-chart-column"></i>
             <h3>24H Volume</h3>
-            <h2 id="volume">$--</h2>
+            <h2>$95B</h2>
         </div>
 
         <div class="overview-card">
             <i class="fa-brands fa-bitcoin"></i>
             <h3>BTC Dominance</h3>
-            <h2 id="dominance">--%</h2>
+            <h2>56.2%</h2>
         </div>
 
         <div class="overview-card">
             <i class="fa-solid fa-fire"></i>
             <h3>Fear & Greed</h3>
-            <h2 id="fear">--</h2>
+            <h2>72 (Greed)</h2>
         </div>
 
     </div>
 
 </section>
-
-<!-- Top Gainers & Losers -->
 
 <section class="market-grid">
 
@@ -89,8 +141,12 @@ new TradingView.widget({
 
         <h2>🚀 Top Gainers</h2>
 
-        <ul id="gainersList">
-            <li>Loading...</li>
+        <ul>
+            <li><span>SOL</span><span style="color:#22c55e;">+12.5%</span></li>
+            <li><span>AVAX</span><span style="color:#22c55e;">+9.4%</span></li>
+            <li><span>LINK</span><span style="color:#22c55e;">+8.1%</span></li>
+            <li><span>ADA</span><span style="color:#22c55e;">+6.8%</span></li>
+            <li><span>XRP</span><span style="color:#22c55e;">+5.9%</span></li>
         </ul>
 
     </div>
@@ -99,15 +155,17 @@ new TradingView.widget({
 
         <h2>📉 Top Losers</h2>
 
-        <ul id="losersList">
-            <li>Loading...</li>
+        <ul>
+            <li><span>DOGE</span><span style="color:#ef4444;">-2.8%</span></li>
+            <li><span>DOT</span><span style="color:#ef4444;">-2.3%</span></li>
+            <li><span>ATOM</span><span style="color:#ef4444;">-1.9%</span></li>
+            <li><span>LTC</span><span style="color:#ef4444;">-1.5%</span></li>
+            <li><span>BCH</span><span style="color:#ef4444;">-1.2%</span></li>
         </ul>
 
     </div>
 
 </section>
-
-<!-- Quick Actions -->
 
 <section class="action-section">
 
@@ -115,22 +173,48 @@ new TradingView.widget({
 
     <div class="action-buttons">
 
-        <a href="deposit.html" class="action-btn">
-            💰 Deposit
-        </a>
+        <a href="deposit.html" class="action-btn">💰 Deposit</a>
 
-        <a href="withdraw.html" class="action-btn">
-            💸 Withdraw
-        </a>
+        <a href="withdraw.html" class="action-btn">💸 Withdraw</a>
 
-        <a href="history.html" class="action-btn">
-            📜 History
-        </a>
+        <a href="history.html" class="action-btn">📜 History</a>
 
     </div>
 
 </section>
-<!-- Bottom Navigation -->
+<section class="benefits-section">
+
+    <h2>Why Trade With GrowVest?</h2>
+
+    <div class="benefits-grid">
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h3>Secure Trading</h3>
+            <p>Advanced security keeps your account and funds protected.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-bolt"></i>
+            <h3>Fast Execution</h3>
+            <p>Real-time market updates with fast order execution.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-chart-line"></i>
+            <h3>Professional Charts</h3>
+            <p>Analyze the market using TradingView live charts.</p>
+        </div>
+
+        <div class="benefit-card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>24/7 Support</h3>
+            <p>Our support team is always available to help you.</p>
+        </div>
+
+    </div>
+
+</section>
 
 <nav class="bottom-nav">
 
@@ -161,17 +245,9 @@ new TradingView.widget({
 
 </nav>
 
+</div>
+
 <script src="dashboard.js"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-
-    if (typeof loadPrices === "function") loadPrices();
-    if (typeof loadMarketOverview === "function") loadMarketOverview();
-    if (typeof loadMarketLists === "function") loadMarketLists();
-
-});
-</script>
 
 </body>
 </html>
