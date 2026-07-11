@@ -1,72 +1,67 @@
-import { auth, db } from "./firebase-config.js";
+import { db, auth } from "./firebase-config.js";
 
 import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
-  collection,
-  addDoc,
+  doc,
+  setDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const amountInput = document.getElementById("amount");
-const depositBtn = document.getElementById("depositBtn");
+const walletInput = document.getElementById("walletAddress");
+const copyBtn = document.getElementById("copyBtn");
+const submitBtn = document.getElementById("submitDeposit");
+const amountInput = document.getElementById("depositAmount");
+const txidInput = document.getElementById("txid");
+const status = document.getElementById("depositStatus");
 
-let currentUser = null;
-
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Please login first.");
-    window.location.href = "login.html";
-    return;
+copyBtn.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText(walletInput.value);
+    copyBtn.textContent = "Copied!";
+    setTimeout(() => {
+      copyBtn.textContent = "Copy Address";
+    }, 2000);
+  } catch (e) {
+    alert("Copy failed. Please copy manually.");
   }
-
-  currentUser = user;
 });
 
-depositBtn.addEventListener("click", async () => {
+submitBtn.addEventListener("click", async () => {
 
-  if (!currentUser) {
-    alert("User not logged in.");
+  const user = auth.currentUser;
+
+  if (!user) {
+    alert("Please login first.");
     return;
   }
 
-  const amount = Number(amountInput.value);
+  const amount = amountInput.value.trim();
+  const txid = txidInput.value.trim();
 
-  if (amount <= 0 || isNaN(amount)) {
-    alert("Enter a valid amount.");
+  if (!amount || !txid) {
+    alert("Enter amount and TXID.");
     return;
   }
+    try {
 
-  depositBtn.disabled = true;
-  depositBtn.textContent = "Submitting...";
-
-  try {
-
-    await addDoc(collection(db, "deposits"), {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      amount: amount,
-      wallet: "TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF",
+    await setDoc(doc(db, "deposits", user.uid + "_" + Date.now()), {
+      uid: user.uid,
+      email: user.email,
+      amount: Number(amount),
+      txid: txid,
+      wallet: walletInput.value,
+      network: "TRC20",
       status: "Pending",
       createdAt: serverTimestamp()
     });
 
-    alert("Deposit request submitted successfully.");
+    status.textContent = "✅ Deposit request submitted. Waiting for admin approval.";
 
     amountInput.value = "";
+    txidInput.value = "";
 
   } catch (error) {
-
     console.error(error);
-    alert("Error: " + error.message);
-
-  } finally {
-
-    depositBtn.disabled = false;
-    depositBtn.textContent = "Submit Deposit";
-
+    alert("Failed to submit deposit request.");
   }
 
 });
