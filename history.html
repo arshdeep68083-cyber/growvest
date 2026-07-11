@@ -3,55 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>History - GrowVest</title>
+<title>Transaction History - GrowVest</title>
 
 <link rel="stylesheet" href="dashboard.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
 <div class="dashboard">
 
-<h2>Transaction History</h2>
+<div class="balance-card">
+<h4>Transaction History</h4>
+<h1><i class="fas fa-clock-rotate-left"></i></h1>
+<p>View all your deposits, withdrawals and trading records.</p>
+</div>
 
-<div class="card">
+<div class="summary-box">
 
-<h3>Recent Transactions</h3>
+<div class="summary-item">
+<h3 id="totalDeposit">0 USDT</h3>
+<p>Total Deposit</p>
+</div>
+
+<div class="summary-item">
+<h3 id="totalWithdraw">0 USDT</h3>
+<p>Total Withdraw</p>
+</div>
+
+<div class="summary-item">
+<h3 id="totalProfit">0 USDT</h3>
+<p>Total Profit</p>
+</div>
+
+</div>
+
+<div class="history-card">
+
+<h2 class="history-title">
+<i class="fas fa-list"></i>
+Recent Transactions
+</h2>
 
 <div id="historyList">
 
-<p>No transactions found.</p>
+<!-- Transactions will load here -->
 
 </div>
 
 </div>
-
-<div class="card">
-
-<h3>Summary</h3>
-
-<p><strong>Total Deposits:</strong> <span id="totalDeposits">0.00 USDT</span></p>
-
-<p><strong>Total Withdrawals:</strong> <span id="totalWithdrawals">0.00 USDT</span></p>
-
-<p><strong>Total Profit:</strong> <span id="totalProfit">0.00 USDT</span></p>
-
 </div>
-  <div style="margin-top:20px;">
+
+<div style="margin-top:20px;">
 
 <a href="dashboard.html" class="action">
+<i class="fas fa-house"></i>
 Back to Dashboard
 </a>
 
 </div>
 
-</div>
+<nav class="bottom-nav">
+
+<a href="dashboard.html">
+<i class="fas fa-home"></i>
+<span>Home</span>
+</a>
+
+<a href="deposit.html">
+<i class="fas fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="history.html" class="active">
+<i class="fas fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+<a href="profile.html">
+<i class="fas fa-user"></i>
+<span>Profile</span>
+</a>
+
+</nav>
 
 <script type="module" src="history.js"></script>
 
 </body>
 </html>
-  
+
