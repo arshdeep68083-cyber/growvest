@@ -4,63 +4,127 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Trading - GrowVest</title>
+<title>Live Trading - GrowVest</title>
 
 <link rel="stylesheet" href="dashboard.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
 </head>
 
 <body>
 
 <div class="dashboard">
 
-<h2>Trading</h2>
+<h2>📈 Live Crypto Trading</h2>
 
 <div class="card">
 
-<h3>Trade Amount</h3>
+<h3>BTC / USDT Live Chart</h3>
 
-<input
-type="number"
-id="tradeAmount"
-placeholder="Enter Amount (USDT)">
-
-<h3>Select Trade</h3>
-
-<select id="tradeType">
-  <option value="buy">Buy</option>
-  <option value="sell">Sell</option>
-</select>
-
-<button id="startTrade">Start Trade</button>
-
-<p id="tradeStatus" style="margin-top:15px;">
-No active trade.
-</p>
+<div id="tradingview_chart" style="height:500px;"></div>
 
 </div>
+
 <div class="card">
 
-<h3>Trading Summary</h3>
+<h3>🔥 Live Crypto Prices</h3>
 
-<p><strong>Today's Profit:</strong> <span id="todayProfit">0.00 USDT</span></p>
+<table style="width:100%;color:white;border-collapse:collapse;">
 
-<p><strong>Active Trades:</strong> <span id="activeTrades">0</span></p>
+<thead>
+
+<tr>
+<th align="left">Coin</th>
+<th align="right">Price</th>
+</tr>
+
+</thead>
+
+<tbody id="coinPrices">
+
+<tr><td>Loading...</td><td></td></tr>
+
+</tbody>
+
+</table>
 
 </div>
-
-<div style="margin-top:20px;">
+  <div style="margin-top:20px;">
 
 <a href="dashboard.html" class="action">
-Back to Dashboard
+⬅ Back to Dashboard
 </a>
 
 </div>
 
 </div>
 
-<script type="module" src="trading.js"></script>
+<script>
+new TradingView.widget({
+  "width": "100%",
+  "height": 500,
+  "symbol": "BINANCE:BTCUSDT",
+  "interval": "15",
+  "timezone": "Etc/UTC",
+  "theme": "dark",
+  "style": "1",
+  "locale": "en",
+  "toolbar_bg": "#131722",
+  "enable_publishing": false,
+  "allow_symbol_change": true,
+  "container_id": "tradingview_chart"
+});
 
-</body>
+async function loadPrices() {
+
+  try {
+
+    const res = await fetch("https://api.binance.com/api/v3/ticker/price");
+
+    const data = await res.json();
+
+    const coins = [
+      "BTCUSDT",
+      "ETHUSDT",
+      "BNBUSDT",
+      "SOLUSDT",
+      "XRPUSDT",
+      "DOGEUSDT"
+    ];
+
+    let html = "";
+
+    coins.forEach(symbol => {
+
+      const coin = data.find(c => c.symbol === symbol);
+
+      if (coin) {
+        html += `
+          <tr>
+            <td>${symbol.replace("USDT","")}</td>
+            <td style="text-align:right;">${Number(coin.price).toFixed(4)} USDT</td>
+          </tr>
+        `;
+      }
+
+    });
+
+    document.getElementById("coinPrices").innerHTML = html;
+
+  } catch (e) {
+
+    document.getElementById("coinPrices").innerHTML =
+      "<tr><td colspan='2'>Failed to load prices.</td></tr>";
+
+  }
+
+}
+
+loadPrices();
+setInterval(loadPrices, 5000);
+</script>
+  </body>
 </html>
