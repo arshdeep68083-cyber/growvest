@@ -4,14 +4,18 @@ import {
   collection,
   getDocs,
   doc,
-  updateDoc,
-  getDoc
+  getDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const pendingDeposits = document.getElementById("pendingDeposits");
 const approvedDeposits = document.getElementById("approvedDeposits");
 const pendingWithdrawals = document.getElementById("pendingWithdrawals");
 const approvedWithdrawals = document.getElementById("approvedWithdrawals");
+
+// ==========================
+// LOAD DEPOSITS
+// ==========================
 
 async function loadDeposits() {
 
@@ -66,9 +70,9 @@ async function loadDeposits() {
 
         loadDeposits();
         loadWithdrawals();
-      };
 
-      const rejectBtn = document.createElement("button");
+      };
+            const rejectBtn = document.createElement("button");
       rejectBtn.textContent = "Reject";
       rejectBtn.style.marginLeft = "10px";
 
@@ -79,6 +83,7 @@ async function loadDeposits() {
         });
 
         loadDeposits();
+
       };
 
       card.appendChild(approveBtn);
@@ -94,40 +99,28 @@ async function loadDeposits() {
 
   });
 
-} 
-import { db } from "./firebase-config.js";
+}
 
-import {
-  collection,
-  getDocs,
-  doc,
-  updateDoc,
-  getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+// ==========================
+// LOAD WITHDRAWALS
+// ==========================
 
-// baaki code...
-import { db } from "./firebase-config.js";
+async function loadWithdrawals() {
 
-import {
-  collection,
-  getDocs,
-  doc,
-  updateDoc
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  pendingWithdrawals.innerHTML = "";
+  approvedWithdrawals.innerHTML = "";
 
-const pendingContainer = document.getElementById("pendingDeposits");
-const approvedContainer = document.getElementById("approvedDeposits");
+  const snapshot = await getDocs(collection(db, "withdrawals"));
 
-async function loadDeposits() {
+  if (snapshot.empty) {
+    pendingWithdrawals.innerHTML = "<p>No pending withdrawals.</p>";
+    approvedWithdrawals.innerHTML = "<p>No approved withdrawals.</p>";
+    return;
+  }
 
-  pendingContainer.innerHTML = "";
-  approvedContainer.innerHTML = "";
+  snapshot.forEach((withdrawDoc) => {
 
-  const snapshot = await getDocs(collection(db, "deposits"));
-
-  snapshot.forEach((depositDoc) => {
-
-    const data = depositDoc.data();
+    const data = withdrawDoc.data();
 
     const card = document.createElement("div");
     card.className = "card";
@@ -135,7 +128,7 @@ async function loadDeposits() {
     card.innerHTML = `
       <p><b>${data.email}</b></p>
       <p>Amount: ${data.amount} USDT</p>
-      <p>TXID: ${data.txid}</p>
+      <p>Wallet: ${data.wallet}</p>
       <p>Status: ${data.status}</p>
     `;
 
@@ -143,36 +136,52 @@ async function loadDeposits() {
 
       const approveBtn = document.createElement("button");
       approveBtn.textContent = "Approve";
+
       approveBtn.onclick = async () => {
 
-        await updateDoc(doc(db, "deposits", depositDoc.id), {
+        await updateDoc(doc(db, "withdrawals", withdrawDoc.id), {
           status: "Approved"
         });
 
-        loadDeposits();
-      };
+        loadWithdrawals();
 
-      card.appendChild(approveBtn);
+      };
             const rejectBtn = document.createElement("button");
       rejectBtn.textContent = "Reject";
       rejectBtn.style.marginLeft = "10px";
 
       rejectBtn.onclick = async () => {
-        await updateDoc(doc(db, "deposits", depositDoc.id), {
+
+        // Refund balance
+        const userRef = doc(db, "users", data.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+
+          const balance = Number(userSnap.data().balance || 0);
+
+          await updateDoc(userRef, {
+            balance: balance + Number(data.amount)
+          });
+
+        }
+
+        await updateDoc(doc(db, "withdrawals", withdrawDoc.id), {
           status: "Rejected"
         });
 
-        loadDeposits();
+        loadWithdrawals();
+
       };
 
-      card.appendChild(rejectBtn);
+      card.appendChild(approveBtn);
       card.appendChild(rejectBtn);
 
-      pendingContainer.appendChild(card);
+      pendingWithdrawals.appendChild(card);
 
     } else {
 
-      approvedContainer.appendChild(card);
+      approvedWithdrawals.appendChild(card);
 
     }
 
@@ -180,4 +189,9 @@ async function loadDeposits() {
 
 }
 
+// ==========================
+// INITIAL LOAD
+// ==========================
+
 loadDeposits();
+loadWithdrawals();
