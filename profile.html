@@ -3,49 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Profile</title>
-<link rel="stylesheet" href="style.css">
+
+<title>Profile - GrowVest</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-<h1>My Profile</h1>
+<h2>My Profile</h2>
 
-<p><strong>Name:</strong></p>
-<p id="name">Loading...</p>
+<div class="card" style="text-align:center;">
 
-<p><strong>Email:</strong></p>
-<p id="email">Loading...</p>
+<img src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff&size=120"
+     id="profilePhoto"
+     style="width:100px;height:100px;border-radius:50%;margin-bottom:15px;">
 
-<p><strong>Balance:</strong></p>
-<p id="balance">₹0</p>
+<h3 id="userName">Loading...</h3>
 
-<p><strong>Join Date:</strong></p>
-<p id="joinDate">Loading...</p>
+<p id="userEmail">Loading...</p>
 
-<br>
+<p><strong>Balance:</strong> <span id="userBalance">0.00 USDT</span></p>
 
-<a href="dashboard.html">
-<button class="btn">Back to Dashboard</button>
+<p><strong>Investment:</strong> <span id="userInvestment">0.00 USDT</span></p>
+
+</div>
+
+<div class="card">
+
+<h3>Account</h3>
+
+<button id="changePasswordBtn">Change Password</button>
+
+<button id="logoutBtn" style="margin-top:10px;background:#ef4444;color:#fff;">
+Logout
+</button>
+
+</div>
+  
+<div class="card">
+
+<h3>Account Information</h3>
+
+<p><strong>User ID:</strong> <span id="userId">Loading...</span></p>
+
+<p><strong>Account Status:</strong>
+<span style="color:#16a34a;">Active</span>
+</p>
+
+<p><strong>Member Since:</strong>
+<span id="joinDate">Loading...</span>
+</p>
+
+</div>
+
+<a href="dashboard.html" class="action" style="margin-top:20px;display:inline-flex;">
+Back to Dashboard
 </a>
 
 </div>
 
 <script type="module" src="profile.js"></script>
-<hr>
 
-<footer style="text-align:center; padding:20px;">
-
-  <p>
-    <a href="about.html">About Us</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms & Conditions</a> |
-    <a href="help.html">Help & Support</a>
-  </p>
-
-  <p>© 2023 GrowVest. All Rights Reserved.</p>
-
-</footer>
 </body>
-</html>
+                                         </html>
