@@ -11,9 +11,10 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const amountInput = document.getElementById("amount");
-const walletInput = document.getElementById("wallet");
-const withdrawBtn = document.getElementById("withdrawBtn");
+const amountInput = document.getElementById("withdrawAmount");
+const walletInput = document.getElementById("walletAddress");
+const withdrawBtn = document.getElementById("submitWithdraw");
+const status = document.getElementById("withdrawStatus");
 
 let currentUser = null;
 
@@ -27,7 +28,7 @@ onAuthStateChanged(auth, (user) => {
   currentUser = user;
 });
 
-withdrawBtn.onclick = async () => {
+withdrawBtn.addEventListener("click", async () => {
 
   if (!currentUser) {
     alert("Please wait...");
@@ -37,13 +38,13 @@ withdrawBtn.onclick = async () => {
   const amount = Number(amountInput.value);
   const wallet = walletInput.value.trim();
 
-  if (amount < 100 || isNaN(amount)) {
-    alert("Minimum withdrawal is 100 USDT");
+  if (isNaN(amount) || amount < 10) {
+    alert("Minimum withdrawal is 10 USDT");
     return;
   }
 
   if (wallet === "") {
-    alert("Enter TRC20 Wallet Address");
+    alert("Please enter your TRC20 wallet address.");
     return;
   }
 
@@ -53,23 +54,25 @@ withdrawBtn.onclick = async () => {
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
-      alert("User not found");
+      alert("User not found.");
       return;
     }
 
     let balance = Number(userSnap.data().balance || 0);
 
     if (balance < amount) {
-      alert("Insufficient Balance");
+      alert("❌ Insufficient Balance");
       return;
     }
 
+    // Deduct Balance
     balance -= amount;
 
     await updateDoc(userRef, {
       balance: balance
     });
 
+    // Save Withdrawal Request
     await addDoc(collection(db, "withdrawals"), {
       uid: currentUser.uid,
       email: currentUser.email,
@@ -80,6 +83,7 @@ withdrawBtn.onclick = async () => {
       createdAt: serverTimestamp()
     });
 
+    // Save History
     await addDoc(collection(db, "history"), {
       uid: currentUser.uid,
       email: currentUser.email,
@@ -91,16 +95,20 @@ withdrawBtn.onclick = async () => {
       createdAt: serverTimestamp()
     });
 
-    alert("Withdrawal Request Submitted Successfully!");
+    status.textContent = "✅ Withdrawal request submitted. Waiting for admin approval.";
+
+    alert("✅ Withdrawal Request Submitted Successfully!");
 
     amountInput.value = "";
     walletInput.value = "";
 
-    window.location.href = "dashboard.html";
+    setTimeout(() => {
+      window.location.href = "dashboard.html";
+    }, 1000);
 
   } catch (error) {
     console.error(error);
-    alert("Error: " + error.message);
+    alert(error.message);
   }
 
-};
+});
