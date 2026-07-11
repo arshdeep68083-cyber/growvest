@@ -32,6 +32,11 @@ class="profile-photo">
 Verified Member
 </div>
 
+<button class="edit-profile-btn">
+<i class="fas fa-pen"></i>
+Edit Profile
+</button>
+
 </div>
 
 <div class="profile-stats">
@@ -48,6 +53,12 @@ Verified Member
 <p>Investment</p>
 </div>
 
+<div class="stat-box">
+<i class="fas fa-coins"></i>
+<h3 id="userEarnings">0.00 USDT</h3>
+<p>Total Earnings</p>
+</div>
+
 </div>
 
 <div class="card">
@@ -57,17 +68,59 @@ Verified Member
 <p><strong>User ID</strong></p>
 <p id="userId">Loading...</p>
 
-<hr style="margin:15px 0;">
+<hr>
 
 <p><strong>Member Since</strong></p>
 <p id="joinDate">Loading...</p>
 
-<hr style="margin:15px 0;">
-<p><strong>Account Status</strong></p>
+<hr>
 
-<p style="color:#22c55e;font-weight:600;">
-Active
-</p>
+<p><strong>Email</strong></p>
+<p id="userEmail2">Loading...</p>
+
+</div>
+
+<div class="card">
+
+<h3><i class="fas fa-gift"></i> Invite & Earn</h3>
+
+<input
+type="text"
+id="referralLink"
+readonly
+class="referral-input">
+
+<button id="copyReferralBtn" class="btn-primary">
+<i class="fas fa-copy"></i>
+Copy Invite Link
+</button>
+<div class="referral-info">
+
+<div class="referral-item">
+<i class="fas fa-users"></i>
+<div>
+<h4>Total Referrals</h4>
+<p id="totalReferrals">0</p>
+</div>
+</div>
+
+<div class="referral-item">
+<i class="fas fa-money-bill-wave"></i>
+<div>
+<h4>Referral Bonus</h4>
+<p id="referralBonus">0.00 USDT</p>
+</div>
+</div>
+
+<div class="bonus-card">
+<h4>Referral Rewards</h4>
+
+<p>🥇 Level 1 : <strong>10%</strong> Bonus</p>
+<p>🥈 Level 2 : <strong>5%</strong> Bonus</p>
+<p>🥉 Level 3 : <strong>2%</strong> Bonus</p>
+</div>
+
+</div>
 
 </div>
 
@@ -85,7 +138,7 @@ Logout
 
 </div>
 
-<div style="margin-top:20px;">
+<div style="margin-top:20px">
 
 <a href="dashboard.html" class="action">
 <i class="fas fa-arrow-left"></i>
