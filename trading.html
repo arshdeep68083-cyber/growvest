@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowVest Professional Trading</title>
+
+  <link rel="stylesheet" href="trading.css">
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+    <h1>📈 Professional Trading Dashboard</h1>
+
+    <a href="dashboard.html" class="back-btn">
+      ⬅ Back to Dashboard
+    </a>
+  </div>
+
+  <div class="grid">
+
+    <!-- Trading Chart -->
+    <div class="card">
+      <h2>Live BTC/USDT Chart</h2>
+
+      <div class="chart-container">
+
+        <div class="tradingview-widget-container">
+          <div id="tradingview_chart"></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Buy Sell -->
+    <div class="card">
+
+      <h2>Buy / Sell</h2>
+
+      <div class="price-box">
+        <p>BTC/USDT</p>
+        <h1 id="marketPrice">$108,250.00</h1>
+        <p class="green">Live Market</p>
+      </div>
+
+      <input
+        type="number"
+        id="amount"
+        placeholder="Enter Amount">
+
+      <div class="btn-group">
+        <button id="buyBtn" class="buy-btn">
+          BUY
+        </button>
+
+        <button id="sellBtn" class="sell-btn">
+          SELL
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Top Gainers -->
+    <div class="card">
+
+      <h2>🔥 Top Gainers</h2>
+
+      <table>
+
+        <tr>
+          <th>Coin</th>
+          <th>Change</th>
+        </tr>
+
+        <tr>
+          <td>BTC</td>
+          <td class="green">+2.45%</td>
+        </tr>
+
+        <tr>
+          <td>ETH</td>
+          <td class="green">+3.18%</td>
+        </tr>
+
+        <tr>
+          <td>SOL</td>
+          <td class="green">+5.64%</td>
+        </tr>
+
+        <tr>
+          <td>BNB</td>
+          <td class="green">+1.92%</td>
+        </tr>
+
+      </table>
+
+    </div>
+        <!-- Top Losers -->
+    <div class="card">
+
+      <h2>📉 Top Losers</h2>
+
+      <table>
+
+        <tr>
+          <th>Coin</th>
+          <th>Change</th>
+        </tr>
+
+        <tr>
+          <td>XRP</td>
+          <td class="red">-1.84%</td>
+        </tr>
+
+        <tr>
+          <td>DOGE</td>
+          <td class="red">-2.73%</td>
+        </tr>
+
+        <tr>
+          <td>ADA</td>
+          <td class="red">-1.43%</td>
+        </tr>
+
+        <tr>
+          <td>DOT</td>
+          <td class="red">-0.98%</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <!-- Market News -->
+    <div class="card">
+
+      <h2>📰 Market News</h2>
+
+      <ul id="newsList" class="news-list">
+      </ul>
+
+    </div>
+
+    <!-- Watchlist -->
+    <div class="card">
+
+      <h2>👀 Watchlist</h2>
+
+      <div id="watchlist">
+      </div>
+
+    </div>
+
+    <!-- Open Positions -->
+    <div class="card">
+
+      <h2>💼 Open Positions</h2>
+
+      <div id="positions">
+        <p>No active trades.</p>
+      </div>
+
+    </div>
+
+    <!-- Reviews -->
+    <div class="card">
+
+      <h2>⭐ User Reviews</h2>
+
+      <div class="review">
+        <strong>Overall Rating:</strong> 4.8/5
+        <br><br>
+        Excellent trading experience with a clean interface.
+      </div>
+
+    </div>
+
+  </div>
+    <div class="footer">
+    <p>© 2026 GrowVest. All Rights Reserved.</p>
+  </div>
+
+</div>
+
+<!-- TradingView Widget -->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
+<script>
+window.addEventListener("load", function () {
+  if (typeof TradingView !== "undefined") {
+    new TradingView.widget({
+      autosize: true,
+      symbol: "BINANCE:BTCUSDT",
+      interval: "15",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#1e293b",
+      enable_publishing: false,
+      hide_top_toolbar: false,
+      allow_symbol_change: true,
+      container_id: "tradingview_chart"
+    });
+  }
+});
+</script>
+
+<script type="module" src="trading.js"></script>
+<hr>
+
+<footer style="text-align:center; padding:20px;">
+
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
+</body>
+</html>
