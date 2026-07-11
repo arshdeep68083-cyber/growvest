@@ -2,13 +2,16 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Secure Crypto Investment</title>
+<title>GrowVest</title>
 
-<link rel="stylesheet" href="style.css">
-<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="dashboard.css">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -18,123 +21,134 @@
 
 <body>
 
-<div class="hero">
+<div class="login-container">
 
-<div class="overlay"></div>
+<div class="login-card">
 
-<div class="container">
+<div class="logo">
 
-<div class="logo-box">
-<i class="fa-solid fa-chart-line logo-icon"></i>
+<i class="fa-solid fa-chart-line"></i>
+
 <h1>GrowVest</h1>
-<p class="tagline">
-Secure Crypto Investment Platform
-</p>
+
 </div>
 
+<h2>Welcome Back</h2>
+
+<p>Login to your investment account</p>
+
+<form id="loginForm">
+
+<div class="input-box">
+
+<i class="fa-solid fa-user"></i>
+
+<input
+type="text"
+id="username"
+placeholder="Username"
+required>
+
+</div>
+
+<div class="input-box">
+
+<i class="fa-solid fa-lock"></i>
+
+<input
+type="password"
+id="password"
+placeholder="Password"
+required>
+
+</div>
+
+<button type="submit" class="login-btn">
+
+Login
+
+</button>
+
+</form>
+
+<div class="extra-links">
+
+<a href="#">Forgot Password?</a>
+
+<a href="#">Create Account</a>
+
+</div>
+
+</div>
+
+</div>
 <div class="features">
 
-<div class="feature">
-<i class="fa-solid fa-shield-halved"></i>
-<span>100% Secure Platform</span>
-</div>
+    <div class="feature-card">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>100% Secure</h3>
+        <p>Your investments are protected with advanced security.</p>
+    </div>
 
-<div class="feature">
-<i class="fa-solid fa-bolt"></i>
-<span>Fast Deposits & Withdrawals</span>
-</div>
+    <div class="feature-card">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Live Trading</h3>
+        <p>Track live crypto prices and market trends.</p>
+    </div>
 
-<div class="feature">
-<i class="fa-solid fa-chart-simple"></i>
-<span>Live Crypto Trading</span>
-</div>
-
-<div class="feature">
-<i class="fa-solid fa-headset"></i>
-<span>24/7 Customer Support</span>
-</div>
-
-</div>
-
-<div class="buttons">
-
-<a href="register.html" class="btn register-btn">
-<i class="fa-solid fa-user-plus"></i>
-Register
-</a>
-
-<a href="login.html" class="btn login-btn">
-<i class="fa-solid fa-right-to-bracket"></i>
-Login
-</a>
-
-</div>
-<div class="support-card">
-
-<h2>Why Choose GrowVest?</h2>
-
-<p>
-Invest in cryptocurrency with confidence using our secure,
-fast and user-friendly investment platform.
-</p>
-
-<div class="support-list">
-
-<p><i class="fa-solid fa-check"></i> Secure Investment System</p>
-
-<p><i class="fa-solid fa-check"></i> Instant Deposit & Withdraw</p>
-
-<p><i class="fa-solid fa-check"></i> Live Crypto Market</p>
-
-<p><i class="fa-solid fa-check"></i> 24/7 Customer Support</p>
-
-</div>
-
-<div class="contact-box">
-
-<h3><i class="fa-solid fa-envelope"></i> Help & Support</h3>
-
-<p>
-For any questions or assistance, contact us:
-</p>
-
-<a class="support-email"
-href="mailto:growvestsupport78@gmail.com">
-growvestsupport78@gmail.com
-</a>
-
-</div>
+    <div class="feature-card">
+        <i class="fa-solid fa-wallet"></i>
+        <h3>Fast Withdraw</h3>
+        <p>Quick deposits and withdrawals anytime.</p>
+    </div>
 
 </div>
 
 <footer class="footer">
 
-<div class="footer-links">
-
-<a href="about.html">About Us</a>
-
-<a href="privacy.html">Privacy Policy</a>
-
-<a href="terms.html">Terms & Conditions</a>
-
-<a href="help.html">Help & Support</a>
-
-</div>
-
-<p class="copyright">
-© 2023 GrowVest. All Rights Reserved.
-</p>
+    <p>&copy; 2026 GrowVest. All Rights Reserved.</p>
 
 </footer>
 
-</div>
-
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function () {
-    navigator.serviceWorker.register('./pwabuilder-sw.js');
-  });
-}
+
+document.getElementById("loginForm").addEventListener("submit", function(e){
+
+    e.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if(username==="admin" && password==="admin123"){
+
+        window.location.href="dashboard.html";
+
+    }else{
+
+        alert("Invalid Username or Password");
+
+    }
+
+});
+
 </script>
+<script>
+
+const inputs = document.querySelectorAll("input");
+
+inputs.forEach(input => {
+
+    input.addEventListener("focus", function () {
+        this.parentElement.classList.add("active");
+    });
+
+    input.addEventListener("blur", function () {
+        this.parentElement.classList.remove("active");
+    });
+
+});
+
+</script>
+
 </body>
 </html>
