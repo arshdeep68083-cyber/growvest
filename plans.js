@@ -9,84 +9,80 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const plans = {
-  "Starter Plan": {
-    price: 100,
-    duration: 30,
-    monthlyProfit: 5
-  },
-  "Silver Plan": {
-    price: 500,
-    duration: 30,
-    monthlyProfit: 7
-  },
-  "Gold Plan": {
-    price: 1000,
-    duration: 30,
-    monthlyProfit: 10
-  },
-  "Platinum Plan": {
-    price: 5000,
-    duration: 30,
-    monthlyProfit: 15
-  }
-};
-
-window.investSuccess = async function(planName){
+window.investPlan = async function(planName, price, duration, monthlyProfit){
 
   const user = auth.currentUser;
 
-  if(!user){
+  if (!user) {
     alert("Please login first.");
     return;
   }
 
-  const userRef = doc(db,"users",user.uid);
-  const snap = await getDoc(userRef);
+  try {
 
-  if(!snap.exists()){
-    alert("User not found.");
-    return;
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) {
+      alert("User not found.");
+      return;
+    }
+
+    const userData = userSnap.data();
+
+    let balance = Number(userData.balance || 0);
+    let investment = Number(userData.investment || 0);
+
+    // Balance Check
+    if (balance < price) {
+      alert("❌ Insufficient Balance");
+      return;
+    }
+
+    // Deduct Balance
+    balance -= price;
+    investment += price;
+
+    const dailyProfit = (price * (monthlyProfit / 100)) / 30;
+
+    // Update User Balance
+    await updateDoc(userRef, {
+      balance: balance,
+      investment: investment
+    });
+
+    // Save Investment
+    await addDoc(collection(db, "userPlans"), {
+      uid: user.uid,
+      email: user.email,
+      planName: planName,
+      price: price,
+      duration: duration,
+      monthlyProfit: monthlyProfit,
+      dailyProfit: dailyProfit,
+      daysCompleted: 0,
+      lastProfitDate: "",
+      status: "Active",
+      createdAt: serverTimestamp()
+    });
+
+    // Save History
+    await addDoc(collection(db, "history"), {
+      uid: user.uid,
+      email: user.email,
+      type: "Investment",
+      amount: price,
+      currency: "USDT",
+      description: planName + " Activated",
+      createdAt: serverTimestamp()
+    });
+
+    alert("✅ Investment Successful!\n\nYour plan has been activated successfully.");
+
+    window.location.href = "dashboard.html";
+
+  } catch (error) {
+    console.error(error);
+    alert(error.message);
   }
-
-  const userData = snap.data();
-
-  let balance = Number(userData.balance || 0);
-  let investment = Number(userData.investment || 0);
-
-  const plan = plans[planName];
-
-  if(balance < plan.price){
-    alert("❌ Insufficient Balance");
-    return;
-  }
-
-  balance -= plan.price;
-  investment += plan.price;
-
-  const dailyProfit =
-      (plan.price * (plan.monthlyProfit/100)) / 30;
-
-  await updateDoc(userRef,{
-    balance: balance,
-    investment: investment
-  });
-
-  await addDoc(collection(db,"userPlans"),{
-    uid:user.uid,
-    email:user.email,
-    planName:planName,
-    price:plan.price,
-    duration:plan.duration,
-    dailyProfit:dailyProfit,
-    monthlyProfit:plan.monthlyProfit,
-    daysCompleted:0,
-    status:"Active",
-    createdAt:serverTimestamp()
-  });
-
-  alert("✅ Investment Successful!\n\nYour plan has been activated successfully.");
-
-  location.href="dashboard.html";
-
 }
