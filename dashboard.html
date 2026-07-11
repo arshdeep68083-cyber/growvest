@@ -6,7 +6,7 @@
 
 <title>GrowVest Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
@@ -22,7 +22,7 @@
 
 <div>
 <h2>GrowVest</h2>
-<p>Welcome Back</p>
+<p>Welcome Back 👋</p>
 </div>
 
 <div class="notify">
@@ -31,7 +31,7 @@
 
 </header>
 
-<div class="balance-card">
+<section class="balance-card">
 
 <h4>Total Balance</h4>
 
@@ -39,18 +39,18 @@
 
 <p id="userEmail">Loading...</p>
 
-</div>
+</section>
 
 <div class="stats">
 
 <div class="card">
 <h3>Investment</h3>
-<h2>$0</h2>
+<h2>$0.00</h2>
 </div>
 
 <div class="card">
-<h3>Profit</h3>
-<h2 style="color:green;">+$0</h2>
+<h3>Today's Profit</h3>
+<h2 style="color:#16a34a;">+$0.00</h2>
 </div>
 
 </div>
@@ -63,7 +63,7 @@
 </a>
 
 <a href="withdraw.html" class="action">
-<i class="fa-solid fa-money-bill-wave"></i>
+<i class="fa-solid fa-money-bill-transfer"></i>
 <span>Withdraw</span>
 </a>
 
@@ -79,35 +79,74 @@
 
 </div>
 
-<div class="plan-box">
+<section class="plan-box">
 
-<h3>My Active Plan</h3>
+<h3>Active Investment</h3>
 
 <div id="activePlan">
 
-No Active Plan
+<p>No Active Plan</p>
+
+</div>
+
+</section>
+<div class="menu-section">
+
+<h3>Quick Access</h3>
+
+<div class="quick-grid">
+
+<a href="trading.html" class="action">
+<i class="fa-solid fa-arrow-trend-up"></i>
+<span>Trading</span>
+</a>
+
+<a href="profile.html" class="action">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+<a href="admin.html" class="action">
+<i class="fa-solid fa-user-shield"></i>
+<span>Admin</span>
+</a>
+
+<a href="help.html" class="action">
+<i class="fa-solid fa-headset"></i>
+<span>Support</span>
+</a>
 
 </div>
 
 </div>
+
+<button id="logoutBtn" class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</button>
 
 </div>
 
 <nav class="bottom-nav">
 
-<a href="dashboard.html">
+<a href="dashboard.html" class="active">
 <i class="fa-solid fa-house"></i>
 <span>Home</span>
 </a>
 
-<a href="trading.html">
+<a href="plans.html">
 <i class="fa-solid fa-chart-line"></i>
+<span>Invest</span>
+</a>
+
+<a href="trading.html">
+<i class="fa-solid fa-arrow-trend-up"></i>
 <span>Trade</span>
 </a>
 
-<a href="plans.html">
-<i class="fa-solid fa-coins"></i>
-<span>Invest</span>
+<a href="history.html">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
 </a>
 
 <a href="profile.html">
@@ -115,15 +154,9 @@ No Active Plan
 <span>Profile</span>
 </a>
 
-<a href="help.html">
-<i class="fa-solid fa-headset"></i>
-<span>Help</span>
-</a>
-
 </nav>
 
 <script type="module" src="dashboard.js"></script>
 
 </body>
-
 </html>
