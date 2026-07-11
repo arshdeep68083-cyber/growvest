@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Investment Plans - GrowVest</title>
 
 <link rel="stylesheet" href="dashboard.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
@@ -17,60 +22,96 @@
 <div class="balance-card">
 <h4>Investment Plans</h4>
 <h1><i class="fas fa-chart-line"></i></h1>
-<p>Choose your investment plan.</p>
+<p>Choose the best investment plan and start growing your wealth.</p>
 </div>
 
 <div class="plan-grid">
 
-<!-- Starter -->
+<!-- Starter Plan -->
 <div class="plan-card">
+
 <div class="plan-icon">
 <i class="fas fa-seedling"></i>
 </div>
 
 <h2>Starter Plan</h2>
+
 <p class="plan-range">$100 - $499</p>
+
 <h3 class="plan-profit">5% Monthly Profit</h3>
+
 <p>Duration: 30 Days</p>
 
-<a href="deposit.html" class="plan-btn">Invest Now</a>
+<button class="plan-btn" onclick="investSuccess('Starter Plan')">
+Invest Now
+</button>
+
+<p class="plan-note">
+✔ Secure Investment<br>
+✔ Instant Activation<br>
+✔ Monthly Profit
+</p>
 
 </div>
 
-<!-- Silver -->
+<!-- Silver Plan -->
 <div class="plan-card">
+
 <div class="plan-icon silver">
 <i class="fas fa-medal"></i>
 </div>
 
 <h2>Silver Plan</h2>
+
 <p class="plan-range">$500 - $999</p>
+
 <h3 class="plan-profit">7% Monthly Profit</h3>
+
 <p>Duration: 30 Days</p>
 
-<a href="deposit.html" class="plan-btn">Invest Now</a>
+<button class="plan-btn" onclick="investSuccess('Silver Plan')">
+Invest Now
+</button>
+
+<p class="plan-note">
+✔ Secure Investment<br>
+✔ Instant Activation<br>
+✔ Monthly Profit
+</p>
 
 </div>
-
-<!-- Gold -->
+<!-- Gold Plan -->
 <div class="plan-card popular">
 
-<div class="popular-badge">Most Popular</div>
+<div class="popular-badge">
+Most Popular
+</div>
 
 <div class="plan-icon gold">
 <i class="fas fa-crown"></i>
 </div>
 
 <h2>Gold Plan</h2>
+
 <p class="plan-range">$1000 - $4999</p>
+
 <h3 class="plan-profit">10% Monthly Profit</h3>
+
 <p>Duration: 30 Days</p>
 
-<a href="deposit.html" class="plan-btn">Invest Now</a>
+<button class="plan-btn" onclick="investSuccess('Gold Plan')">
+Invest Now
+</button>
+
+<p class="plan-note">
+✔ Premium Investment<br>
+✔ Instant Activation<br>
+✔ Monthly Profit
+</p>
 
 </div>
 
-<!-- Platinum -->
+<!-- Platinum Plan -->
 <div class="plan-card">
 
 <div class="plan-icon platinum">
@@ -78,11 +119,22 @@
 </div>
 
 <h2>Platinum Plan</h2>
+
 <p class="plan-range">$5000 - $99995</p>
+
 <h3 class="plan-profit">15% Monthly Profit</h3>
+
 <p>Duration: 30 Days</p>
 
-<a href="deposit.html" class="plan-btn">Invest Now</a>
+<button class="plan-btn" onclick="investSuccess('Platinum Plan')">
+Invest Now
+</button>
+
+<p class="plan-note">
+✔ VIP Investment<br>
+✔ Instant Activation<br>
+✔ Highest Monthly Profit
+</p>
 
 </div>
 
@@ -118,6 +170,17 @@ Back to Dashboard
 </a>
 
 </nav>
+<script>
+function investSuccess(plan) {
+    alert(
+        "🎉 Investment Successful!\n\n" +
+        "Plan: " + plan + "\n\n" +
+        "Congratulations!\n" +
+        "Your investment has been activated successfully.\n\n" +
+        "Thank you for choosing GrowVest!"
+    );
+}
+</script>
 
 </div>
 
