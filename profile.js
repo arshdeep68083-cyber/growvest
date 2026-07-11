@@ -1,17 +1,22 @@
 import { auth, db } from "./firebase-config.js";
 
 import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 import {
-  doc,
-  getDoc,
-  collection,
-  query,
-  where,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+const userName = document.getElementById("userName");
+const userEmail = document.getElementById("userEmail");
+const userBalance = document.getElementById("userBalance");
+const userInvestment = document.getElementById("userInvestment");
+const userId = document.getElementById("userId");
+const joinDate = document.getElementById("joinDate");
+const logoutBtn = document.getElementById("logoutBtn");
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -20,52 +25,40 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  try {
+  userEmail.textContent = user.email;
+  userId.textContent = user.uid;
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+  const userRef = doc(db, "users", user.uid);
+  const userSnap = await getDoc(userRef);
 
-    if (!userSnap.exists()) {
-      alert("User profile not found!");
-      return;
-    }
-
+  if (userSnap.exists()) {
     const data = userSnap.data();
 
-    document.getElementById("name").textContent =
-      data.name || "N/A";
+    userName.textContent = data.name || "GrowVest User";
+    userBalance.textContent = `${data.balance || 0} USDT`;
+    userInvestment.textContent = `${data.investment || 0} USDT`;
 
-    document.getElementById("email").textContent =
-      data.email || user.email;
-
-    document.getElementById("balance").textContent =
-      (Number(data.balance || 0)).toFixed(2) + " USDT";
-
-    document.getElementById("joinDate").textContent =
-      data.joinDate || data.joindate || "N/A";
-
-    const plansSnap = await getDocs(
-      query(
-        collection(db, "userPlans"),
-        where("uid", "==", user.uid),
-        where("status", "==", "Active")
-      )
-    );
-
-    let activePlans = document.getElementById("activePlans");
-
-    if (!activePlans) {
-      activePlans = document.createElement("p");
-      activePlans.id = "activePlans";
-      document.querySelector(".container").appendChild(activePlans);
+    if (data.createdAt?.toDate) {
+      joinDate.textContent = data.createdAt.toDate().toLocaleDateString();
+    } else {
+      joinDate.textContent = "N/A";
     }
-
-    activePlans.innerHTML =
-      "<strong>Active Plans:</strong> " + plansSnap.size;
-
-  } catch (error) {
-    console.log(error);
-    alert(error.message);
+  }
+    else {
+    userName.textContent = "GrowVest User";
+    userBalance.textContent = "0.00 USDT";
+    userInvestment.textContent = "0.00 USDT";
+    joinDate.textContent = "N/A";
   }
 
+});
+
+logoutBtn.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+    window.location.href = "login.html";
+  } catch (error) {
+    console.error(error);
+    alert("Logout failed.");
+  }
 });
