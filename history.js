@@ -1,69 +1,92 @@
-import { auth, db } from "./firebase-config.js";
-
+import { auth, db } from "./firebase.js";
 import {
   collection,
   query,
   where,
   getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-const historyList = document.getElementById("historyList");
-const totalDeposits = document.getElementById("totalDeposits");
-const totalWithdrawals = document.getElementById("totalWithdrawals");
-const totalProfit = document.getElementById("totalProfit");
-
-onAuthStateChanged(auth, async (user) => {
-
+auth.onAuthStateChanged(async (user) => {
   if (!user) {
-    window.location.href = "login.html";
+    location.href = "login.html";
     return;
   }
 
-  historyList.innerHTML = "";
+  const historyList = document.getElementById("historyList");
+  const totalDeposit = document.getElementById("totalDeposit");
+  const totalWithdraw = document.getElementById("totalWithdraw");
+  const totalProfit = document.getElementById("totalProfit");
 
-  let deposits = 0;
-  let withdrawals = 0;
+  let deposit = 0;
+  let withdraw = 0;
   let profit = 0;
 
+  historyList.innerHTML = "";
+
   const q = query(
-    collection(db, "history"),
+    collection(db, "transactions"),
     where("uid", "==", user.uid)
   );
 
   const snapshot = await getDocs(q);
-    snapshot.forEach((docSnap) => {
-    const data = docSnap.data();
-
-    const item = document.createElement("div");
-    item.className = "card";
-
-    item.innerHTML = `
-      <p><strong>Type:</strong> ${data.type || "Transaction"}</p>
-      <p><strong>Amount:</strong> ${data.amount || 0} USDT</p>
-      <p><strong>Status:</strong> ${data.status || "Completed"}</p>
-    `;
-
-    historyList.appendChild(item);
-
-    if (data.type === "Deposit") {
-      deposits += Number(data.amount || 0);
-    } else if (data.type === "Withdraw") {
-      withdrawals += Number(data.amount || 0);
-    } else if (data.type === "Profit") {
-      profit += Number(data.amount || 0);
-    }
-  });
 
   if (snapshot.empty) {
-    historyList.innerHTML = "<p>No transactions found.</p>";
+    historyList.innerHTML = `
+      <div class="card">
+        <h3>No Transactions Found</h3>
+        <p>Your transaction history will appear here.</p>
+      </div>
+    `;
+    return;
   }
 
-  totalDeposits.textContent = `${deposits.toFixed(2)} USDT`;
-  totalWithdrawals.textContent = `${withdrawals.toFixed(2)} USDT`;
-  totalProfit.textContent = `${profit.toFixed(2)} USDT`;
+  snapshot.forEach((doc) => {
+    const data = doc.data();
 
+    const type = data.type || "Transaction";
+    const amount = Number(data.amount || 0);
+    const status = data.status || "Pending";
+    const date = data.date || "";
+
+    if (type === "Deposit") deposit += amount;
+    if (type === "Withdraw") withdraw += amount;
+    if (type === "Profit") profit += amount;
+
+    let icon = "fa-wallet";
+    let color = "deposit";
+
+    if (type === "Withdraw") {
+      icon = "fa-arrow-up";
+      color = "withdraw";
+    }
+
+    if (type === "Profit") {
+      icon = "fa-chart-line";
+      color = "profit";
+    }
+
+    historyList.innerHTML += `
+      <div class="history-item">
+        <div class="history-left">
+          <div class="history-icon ${color}">
+            <i class="fas ${icon}"></i>
+          </div>
+
+          <div>
+            <div class="history-name">${type}</div>
+            <div class="history-date">${date}</div>
+          </div>
+        </div>
+
+        <div class="history-right">
+          <div class="history-amount">${amount} USDT</div>
+          <span class="status status-${status.toLowerCase()}">${status}</span>
+        </div>
+      </div>
+    `;
+  });
+
+  totalDeposit.textContent = deposit + " USDT";
+  totalWithdraw.textContent = withdraw + " USDT";
+  totalProfit.textContent = profit + " USDT";
 });
