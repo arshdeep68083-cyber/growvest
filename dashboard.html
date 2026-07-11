@@ -1,105 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrowVest Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
+<title>GrowVest Dashboard</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-  <h1>GrowVest Dashboard</h1>
+<header class="topbar">
 
-  <h2>Welcome</h2>
+<div>
+<h2>GrowVest</h2>
+<p>Welcome Back</p>
+</div>
 
-  <p id="userEmail">Loading...</p>
+<div class="notify">
+<i class="fa-solid fa-bell"></i>
+</div>
 
-  <p>
-    <strong>Balance:</strong>
-    <span id="balance">0.00 USDT</span>
-  </p>
+</header>
 
-  <hr>
+<div class="balance-card">
 
-  <h2>My Active Plan</h2>
+<h4>Total Balance</h4>
 
-  <div id="activePlan">
-    <p>No Active Plan</p>
-  </div>
+<h1 id="balance">0.00 USDT</h1>
 
-  <hr>
-
-  <a href="deposit.html">
-    <button class="btn">Deposit</button>
-  </a>
-
-  <br><br>
-
-  <a href="withdraw.html">
-    <button class="btn">Withdraw</button>
-  </a>
-
-  <br><br>
-
-  <a href="history.html">
-    <button class="btn">History</button>
-  </a>
-
-  <br><br>
-
-  <a href="plans.html">
-    <button class="btn">Investment Plans</button>
-  </a>
-
-  <br><br>
-
-  <a href="trading.html">
-    <button class="btn">📈 Trading</button>
-  </a>
-
-  <br><br>
-
-  <a href="profile.html">
-    <button class="btn">Profile</button>
-  </a>
-
-  <br><br>
-
-  <a href="admin.html">
-    <button class="btn">Admin Panel</button>
-  </a>
-
-  <br><br>
-
-  <a href="help.html">
-    <button class="btn">Help & Support</button>
-  </a>
-
-  <br><br>
-
-  <button id="logoutBtn" class="btn">
-    Logout
-  </button>
+<p id="userEmail">Loading...</p>
 
 </div>
 
+<div class="stats">
+
+<div class="card">
+<h3>Investment</h3>
+<h2>$0</h2>
+</div>
+
+<div class="card">
+<h3>Profit</h3>
+<h2 style="color:green;">+$0</h2>
+</div>
+
+</div>
+
+<div class="quick">
+
+<a href="deposit.html" class="action">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="withdraw.html" class="action">
+<i class="fa-solid fa-money-bill-wave"></i>
+<span>Withdraw</span>
+</a>
+
+<a href="plans.html" class="action">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
+
+<a href="history.html" class="action">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+</div>
+
+<div class="plan-box">
+
+<h3>My Active Plan</h3>
+
+<div id="activePlan">
+
+No Active Plan
+
+</div>
+
+</div>
+
+</div>
+
+<nav class="bottom-nav">
+
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="trading.html">
+<i class="fa-solid fa-chart-line"></i>
+<span>Trade</span>
+</a>
+
+<a href="plans.html">
+<i class="fa-solid fa-coins"></i>
+<span>Invest</span>
+</a>
+
+<a href="profile.html">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+<a href="help.html">
+<i class="fa-solid fa-headset"></i>
+<span>Help</span>
+</a>
+
+</nav>
+
 <script type="module" src="dashboard.js"></script>
-<hr>
 
-<footer style="text-align:center; padding:20px;">
-
-  <p>
-    <a href="about.html">About Us</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms & Conditions</a> |
-    <a href="help.html">Help & Support</a>
-  </p>
-
-  <p>© 2023 GrowVest. All Rights Reserved.</p>
-
-</footer>
 </body>
+
 </html>
