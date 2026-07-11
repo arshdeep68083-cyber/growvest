@@ -3,41 +3,55 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>History</title>
-<link rel="stylesheet" href="style.css">
+
+<title>History - GrowVest</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-<h1>Transaction History</h1>
+<h2>Transaction History</h2>
+
+<div class="card">
+
+<h3>Recent Transactions</h3>
 
 <div id="historyList">
-<p>No Transactions Found</p>
+
+<p>No transactions found.</p>
+
 </div>
 
-<br>
+</div>
 
-<a href="dashboard.html">
-<button class="btn">Back to Dashboard</button>
+<div class="card">
+
+<h3>Summary</h3>
+
+<p><strong>Total Deposits:</strong> <span id="totalDeposits">0.00 USDT</span></p>
+
+<p><strong>Total Withdrawals:</strong> <span id="totalWithdrawals">0.00 USDT</span></p>
+
+<p><strong>Total Profit:</strong> <span id="totalProfit">0.00 USDT</span></p>
+
+</div>
+  <div style="margin-top:20px;">
+
+<a href="dashboard.html" class="action">
+Back to Dashboard
 </a>
 
 </div>
 
+</div>
+
 <script type="module" src="history.js"></script>
-<hr>
 
-<footer style="text-align:center; padding:20px;">
-
-  <p>
-    <a href="about.html">About Us</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms & Conditions</a> |
-    <a href="help.html">Help & Support</a>
-  </p>
-
-  <p>© 2023 GrowVest. All Rights Reserved.</p>
-
-</footer>
 </body>
 </html>
+  
