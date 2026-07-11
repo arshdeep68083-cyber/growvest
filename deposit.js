@@ -13,6 +13,7 @@ const amountInput = document.getElementById("depositAmount");
 const txidInput = document.getElementById("txid");
 const status = document.getElementById("depositStatus");
 
+// Copy Wallet Address
 copyBtn.addEventListener("click", async () => {
   try {
     await navigator.clipboard.writeText(walletInput.value);
@@ -25,6 +26,7 @@ copyBtn.addEventListener("click", async () => {
   }
 });
 
+// Submit Deposit
 submitBtn.addEventListener("click", async () => {
 
   const user = auth.currentUser;
@@ -38,10 +40,11 @@ submitBtn.addEventListener("click", async () => {
   const txid = txidInput.value.trim();
 
   if (!amount || !txid) {
-    alert("Enter amount and TXID.");
+    alert("Please enter Deposit Amount and TXID.");
     return;
   }
-    try {
+
+  try {
 
     await setDoc(doc(db, "deposits", user.uid + "_" + Date.now()), {
       uid: user.uid,
@@ -50,11 +53,26 @@ submitBtn.addEventListener("click", async () => {
       txid: txid,
       wallet: walletInput.value,
       network: "TRC20",
-      status: "Pending",
+      status: "Pending Verification",
       createdAt: serverTimestamp()
     });
 
-    status.textContent = "✅ Deposit request submitted. Waiting for admin approval.";
+    status.innerHTML =
+      "🟡 <b>Pending Verification</b><br>Your deposit request has been submitted successfully.";
+
+    alert(
+`🎉 Investment Request Submitted!
+
+Your deposit request has been received successfully.
+
+Status: Pending Verification
+
+Our team will verify your payment within 24 hours.
+
+After approval, your investment plan will be activated automatically.
+
+Thank you for choosing GrowVest!`
+    );
 
     amountInput.value = "";
     txidInput.value = "";
