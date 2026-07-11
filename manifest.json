@@ -1,13 +1,23 @@
 {
   "background_color": "#ffffff",
-  "dir": "ltr",
-  "display": "standalone",
-  "name": "GrowVest",
-  "orientation": "any",
-  "scope": "/",
-  "short_name": "GrowVest",
-  "start_url": "/",
   "theme_color": "#0f172a",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "id": "/",
+  "name": "GrowVest",
+  "short_name": "GrowVest",
   "description": "GrowVest Investment Platform",
-  "id": "/"
+  "icons": [
+    {
+      "src": "/192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
