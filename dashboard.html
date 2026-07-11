@@ -1,262 +1,227 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GrowVest Dashboard</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-</head>
-
 <body>
 
-<header class="topbar">
+<div class="dashboard">
 
-<div class="logo">
-<i class="fa-solid fa-chart-line"></i>
-<h2>GrowVest</h2>
-</div>
+    <!-- Header -->
 
-<div class="menu">
-<i class="fa-solid fa-bell"></i>
-<i class="fa-solid fa-user"></i>
-</div>
+    <header class="topbar">
 
-</header>
-
-<section class="welcome">
-
-<h1>Welcome Back 👋</h1>
-
-<p>
-Track your investments and monitor the live crypto market in real time.
-</p>
-
-</section>
-
-<section class="market-overview">
-
-<div class="overview-card">
-<i class="fa-solid fa-coins"></i>
-<h3>Total Market Cap</h3>
-<h2 id="marketCap">$--</h2>
-</div>
-
-<div class="overview-card">
-<i class="fa-solid fa-chart-column"></i>
-<h3>24h Volume</h3>
-<h2 id="volume">$--</h2>
-</div>
-
-<div class="overview-card">
-<i class="fa-brands fa-bitcoin"></i>
-<h3>BTC Dominance</h3>
-<h2 id="dominance">--%</h2>
-</div>
-
-<div class="overview-card">
-<i class="fa-solid fa-face-smile"></i>
-<h3>Fear & Greed</h3>
-<h2 id="fear">--</h2>
-</div>
-
-</section>
-
-<section class="chart-box">
-
-<h2>📈 Live BTC / USDT Chart</h2>
-
-<div id="tradingview_chart"
-style="height:500px;width:100%;"></div>
-
-</section>
-
-<script>
-
-new TradingView.widget({
-
-"autosize":true,
-
-"symbol":"BINANCE:BTCUSDT",
-
-"interval":"15",
-
-"timezone":"Etc/UTC",
-
-"theme":"dark",
-
-"style":"1",
-
-"locale":"en",
-
-"toolbar_bg":"#111827",
-
-"enable_publishing":false,
-
-"hide_top_toolbar":false,
-
-"allow_symbol_change":true,
-
-"container_id":"tradingview_chart"
-
-});
-
-</script>
-
-<section class="live-prices">
-
-<h2>🔥 Live Crypto Prices</h2>
-
-<div class="coin-grid" id="coinGrid">
-
-<!-- JS will load live prices here -->
-
-</div>
-
-</section>
-<section class="market-section">
-
-<h2>🚀 Market Highlights</h2>
-
-<div class="market-grid">
-
-<div class="market-box">
-<h3>🔥 Top Gainers</h3>
-
-<ul id="gainersList">
-<li>Loading...</li>
-</ul>
-
-</div>
-
-<div class="market-box">
-<h3>📉 Top Losers</h3>
-
-<ul id="losersList">
-<li>Loading...</li>
-</ul>
-
-</div>
-
-<div class="market-box">
-<h3>⭐ Trending Coins</h3>
-
-<ul>
-<li>Bitcoin (BTC)</li>
-<li>Ethereum (ETH)</li>
-<li>BNB</li>
-<li>Solana (SOL)</li>
-<li>XRP</li>
-</ul>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="news-section">
-
-<h2>📰 Latest Crypto News</h2>
-
-<div class="news-grid">
-
-<div class="news-card">
-<h3>Bitcoin Market Update</h3>
-<p>Stay updated with the latest Bitcoin market movements and price trends.</p>
-</div>
-
-<div class="news-card">
-<h3>Ethereum Network</h3>
-<p>Ethereum continues to expand with new upgrades and ecosystem growth.</p>
-</div>
-
-<div class="news-card">
-<h3>Altcoin Watch</h3>
-<p>Track the best-performing altcoins and discover new investment opportunities.</p>
-</div>
-
-</div>
-
-</section>
-
-<section class="action-section">
-
-<h2>⚡ Quick Actions</h2>
-
-<div class="action-buttons">
-
-<a href="#" class="action-btn deposit">
-<i class="fa-solid fa-wallet"></i>
-Deposit
-</a>
-
-<a href="#" class="action-btn withdraw">
-<i class="fa-solid fa-money-bill-transfer"></i>
-Withdraw
-</a>
-
-<a href="#" class="action-btn support">
-<i class="fa-solid fa-headset"></i>
-Support
-</a>
-
-</div>
-
-</section>
-<section class="benefits-section">
-
-    <h2>Why Invest With GrowVest?</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>100% Secure</h3>
-            <p>Your funds and account are protected with advanced security.</p>
+        <div class="logo">
+            <h2>📈 GrowVest</h2>
+            <p>Professional Crypto Trading Dashboard</p>
         </div>
 
-        <div class="benefit-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Instant Transactions</h3>
-            <p>Fast deposits and withdrawals with reliable processing.</p>
+    </header>
+
+    <!-- Hero -->
+
+    <section class="welcome">
+
+        <h1>Live Crypto Trading</h1>
+
+        <p>
+            Track live cryptocurrency prices, market trends and top gainers
+            in real time.
+        </p>
+
+    </section>
+
+    <!-- Trading Chart -->
+
+    <section class="chart-box">
+
+        <h2>BTC / USDT Live Chart</h2>
+
+        <div class="tradingview-widget-container">
+
+            <div id="tradingview_chart"></div>
+
         </div>
 
-        <div class="benefit-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Live Market</h3>
-            <p>Monitor cryptocurrency prices and market movements in real time.</p>
+    </section>
+
+    <!-- Live Prices -->
+
+    <section class="live-prices">
+
+        <h2>🔥 Live Crypto Prices</h2>
+
+        <div id="coinGrid" class="coin-grid">
+
         </div>
 
-        <div class="benefit-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Our support team is always available to help you.</p>
+    </section>
+
+    <!-- Market Overview -->
+
+    <section class="market-section">
+
+        <h2>📊 Market Overview</h2>
+
+        <div class="overview-grid">
+
+            <div class="overview-card">
+                <h3>Total Market Cap</h3>
+                <p id="marketCap">Loading...</p>
+            </div>
+
+            <div class="overview-card">
+                <h3>24H Volume</h3>
+                <p id="volume">Loading...</p>
+            </div>
+
+            <div class="overview-card">
+                <h3>BTC Dominance</h3>
+                <p id="dominance">Loading...</p>
+            </div>
+
+            <div class="overview-card">
+                <h3>Fear & Greed</h3>
+                <p id="fear">Loading...</p>
+            </div>
+
         </div>
 
-    </div>
+    </section>
+        <!-- Top Gainers & Top Losers -->
 
-</section>
+    <section class="market-box">
 
-<footer class="footer">
+        <div class="gainers">
 
-    <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="deposit.html">Deposit</a>
-        <a href="withdraw.html">Withdraw</a>
-        <a href="support.html">Support</a>
-    </div>
+            <h2>🚀 Top Gainers</h2>
 
-    <p>© 2026 GrowVest. All Rights Reserved.</p>
+            <ul id="gainersList"></ul>
 
-</footer>
+        </div>
+
+        <div class="losers">
+
+            <h2>📉 Top Losers</h2>
+
+            <ul id="losersList"></ul>
+
+        </div>
+
+    </section>
+
+    <!-- Live Crypto News -->
+
+    <section class="news-section">
+
+        <h2>📰 Crypto Market Updates</h2>
+
+        <div class="news-grid">
+
+            <div class="news-card">
+                <h3>📈 Bitcoin Market</h3>
+                <p>Track Bitcoin price movement and market trend in real time.</p>
+            </div>
+
+            <div class="news-card">
+                <h3>⚡ Ethereum Network</h3>
+                <p>Latest Ethereum updates and ecosystem performance.</p>
+            </div>
+
+            <div class="news-card">
+                <h3>🔥 Trending Coins</h3>
+                <p>Discover today's most active cryptocurrencies.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Quick Actions -->
+
+    <section class="action-section">
+
+        <h2>⚡ Quick Actions</h2>
+
+        <div class="action-buttons">
+
+            <a href="deposit.html" class="action-btn deposit-btn">
+                💰 Deposit
+            </a>
+
+            <a href="withdraw.html" class="action-btn withdraw-btn">
+                💸 Withdraw
+            </a>
+
+            <a href="plans.html" class="action-btn plan-btn">
+                📊 Investment Plans
+            </a>
+
+        </div>
+
+    </section>
+        <!-- Investment Benefits -->
+
+    <section class="benefits-section">
+
+        <h2>Why Choose GrowVest?</h2>
+
+        <div class="benefits-grid">
+
+            <div class="benefit-card">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h3>Secure Platform</h3>
+                <p>Your assets are protected with advanced security and encryption.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Real-Time Data</h3>
+                <p>Track live crypto prices and market movements instantly.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fa-solid fa-wallet"></i>
+                <h3>Fast Transactions</h3>
+                <p>Quick deposits and withdrawals with a smooth experience.</p>
+            </div>
+
+            <div class="benefit-card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24/7 Support</h3>
+                <p>Our support team is available anytime you need help.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- ⚠️ IMPORTANT: Bottom Navigation nu delete na karna -->
+<nav class="bottom-nav">
+
+    <a href="dashboard.html">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="invest.html">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Invest</span>
+    </a>
+
+    <a href="trade.html" class="active">
+        <i class="fa-brands fa-bitcoin"></i>
+        <span>Trade</span>
+    </a>
+
+    <a href="history.html">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+
+    <a href="profile.html">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+</nav>
 
 <script src="dashboard.js"></script>
 
