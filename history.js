@@ -1,27 +1,20 @@
 import { auth, db } from "./firebase-config.js";
 
 import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
   collection,
   query,
   where,
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
 const historyList = document.getElementById("historyList");
-
-// ===== USDT Format =====
-function formatUSDT(amount) {
-  amount = Number(amount) || 0;
-
-  return amount.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }) + " USDT";
-}
+const totalDeposits = document.getElementById("totalDeposits");
+const totalWithdrawals = document.getElementById("totalWithdrawals");
+const totalProfit = document.getElementById("totalProfit");
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -30,97 +23,47 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  historyList.innerHTML = "<p>Loading...</p>";
+  historyList.innerHTML = "";
 
-  try {
+  let deposits = 0;
+  let withdrawals = 0;
+  let profit = 0;
 
-    historyList.innerHTML = "";
+  const q = query(
+    collection(db, "history"),
+    where("uid", "==", user.uid)
+  );
 
-    // ===== Deposit History =====
-    const depositSnap = await getDocs(
-      query(
-        collection(db, "deposits"),
-        where("uid", "==", user.uid)
-      )
-    );
+  const snapshot = await getDocs(q);
+    snapshot.forEach((docSnap) => {
+    const data = docSnap.data();
 
-    depositSnap.forEach((docSnap) => {
+    const item = document.createElement("div");
+    item.className = "card";
 
-      const data = docSnap.data();
-
-      historyList.innerHTML += `
-        <div class="card">
-          <h3>💰 Deposit</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Status:</b> ${data.status || "Pending"}</p>
-        </div>
-        <br>
-      `;
-
-    });
-
-    // ===== Withdrawal History =====
-    const withdrawSnap = await getDocs(
-      query(
-        collection(db, "withdrawals"),
-        where("uid", "==", user.uid)
-      )
-    );
-
-    withdrawSnap.forEach((docSnap) => {
-
-      const data = docSnap.data();
-
-      historyList.innerHTML += `
-        <div class="card">
-          <h3>💸 Withdrawal</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Status:</b> ${data.status || "Pending"}</p>
-        </div>
-        <br>
-      `;
-
-    });
-
-    // ===== Trading / Profit / Plan History =====
-    const historySnap = await getDocs(
-      query(
-        collection(db, "history"),
-        where("uid", "==", user.uid)
-      )
-    );
-
-    historySnap.forEach((docSnap) => {
-
-      const data = docSnap.data();
-
-      historyList.innerHTML += `
-        <div class="card">
-          <h3>${data.type || "History"}</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Description:</b> ${data.description || "-"}</p>
-          <p><b>Status:</b> ${data.status || "Completed"}</p>
-        </div>
-        <br>
-      `;
-
-    });
-
-    if (historyList.innerHTML === "") {
-      historyList.innerHTML = "<p>No transaction history found.</p>";
-    }
-
-  } catch (error) {
-
-    console.error(error);
-
-    historyList.innerHTML = `
-      <div class="card">
-        <h3>Error</h3>
-        <p>${error.message}</p>
-      </div>
+    item.innerHTML = `
+      <p><strong>Type:</strong> ${data.type || "Transaction"}</p>
+      <p><strong>Amount:</strong> ${data.amount || 0} USDT</p>
+      <p><strong>Status:</strong> ${data.status || "Completed"}</p>
     `;
 
+    historyList.appendChild(item);
+
+    if (data.type === "Deposit") {
+      deposits += Number(data.amount || 0);
+    } else if (data.type === "Withdraw") {
+      withdrawals += Number(data.amount || 0);
+    } else if (data.type === "Profit") {
+      profit += Number(data.amount || 0);
+    }
+  });
+
+  if (snapshot.empty) {
+    historyList.innerHTML = "<p>No transactions found.</p>";
   }
+
+  totalDeposits.textContent = `${deposits.toFixed(2)} USDT`;
+  totalWithdrawals.textContent = `${withdrawals.toFixed(2)} USDT`;
+  totalProfit.textContent = `${profit.toFixed(2)} USDT`;
 
 });
