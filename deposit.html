@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit - GrowVest</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <h1>Deposit</h1>
+
+  <p>Enter Deposit Amount</p>
+
+  <input
+    type="number"
+    id="amount"
+    placeholder="Enter Amount">
+
+  <br><br>
+
+  <p><strong>USDT (TRC20) Wallet Address</strong></p>
+
+  <p id="wallet">
+    TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF
+  </p>
+
+  <br>
+
+  <button type="button" class="btn" id="copyBtn">
+    Copy Wallet Address
+  </button>
+
+  <br><br>
+
+  <button type="button" class="btn" id="depositBtn">
+    Submit Deposit
+  </button>
+
+  <br><br>
+
+  <a href="dashboard.html">
+    <button type="button" class="btn">
+      Back to Dashboard
+    </button>
+  </a>
+
+</div>
+
+<script>
+const copyBtn = document.getElementById("copyBtn");
+
+copyBtn.addEventListener("click", function () {
+  navigator.clipboard.writeText("TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF");
+  alert("Wallet copied successfully!");
+});
+</script>
+
+<script type="module" src="./deposit.js"></script>
+
+</body>
+</html>
