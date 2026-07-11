@@ -7,8 +7,11 @@
 <title>My Profile - GrowVest</title>
 
 <link rel="stylesheet" href="dashboard.css">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
@@ -19,9 +22,11 @@
 
 <div class="profile-cover"></div>
 
-<img id="profilePhoto"
+<img
+id="profilePhoto"
 src="https://ui-avatars.com/api/?name=User&background=2563eb&color=fff&size=200"
-class="profile-photo">
+class="profile-photo"
+alt="Profile">
 
 <h2 id="userName">Loading...</h2>
 
@@ -32,10 +37,16 @@ class="profile-photo">
 Verified Member
 </div>
 
-<button class="edit-profile-btn">
-<i class="fas fa-pen"></i>
+<button id="editProfileBtn" class="edit-profile-btn">
+<i class="fas fa-camera"></i>
 Edit Profile
 </button>
+
+<input
+type="file"
+id="profileImageInput"
+accept="image/*"
+style="display:none;">
 
 </div>
 
@@ -79,7 +90,6 @@ Edit Profile
 <p id="userEmail2">Loading...</p>
 
 </div>
-
 <div class="card">
 
 <h3><i class="fas fa-gift"></i> Invite & Earn</h3>
@@ -94,6 +104,7 @@ class="referral-input">
 <i class="fas fa-copy"></i>
 Copy Invite Link
 </button>
+
 <div class="referral-info">
 
 <div class="referral-item">
@@ -118,6 +129,7 @@ Copy Invite Link
 <p>🥇 Level 1 : <strong>10%</strong> Bonus</p>
 <p>🥈 Level 2 : <strong>5%</strong> Bonus</p>
 <p>🥉 Level 3 : <strong>2%</strong> Bonus</p>
+
 </div>
 
 </div>
@@ -138,7 +150,7 @@ Logout
 
 </div>
 
-<div style="margin-top:20px">
+<div style="margin-top:20px;">
 
 <a href="dashboard.html" class="action">
 <i class="fas fa-arrow-left"></i>
@@ -146,7 +158,6 @@ Back to Dashboard
 </a>
 
 </div>
-
 </div>
 
 <script type="module" src="profile.js"></script>
