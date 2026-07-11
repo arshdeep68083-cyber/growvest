@@ -2,59 +2,139 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GrowVest</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link rel="stylesheet" href="style.css">
-  <link rel="manifest" href="manifest.json">
+<title>GrowVest | Secure Crypto Investment</title>
+
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
 
 <body>
 
-  <div class="container">
+<div class="hero">
 
-    <h1>GrowVest</h1>
+<div class="overlay"></div>
 
-    <p>Welcome to GrowVest Investment Platform</p>
+<div class="container">
 
-    <br>
+<div class="logo-box">
+<i class="fa-solid fa-chart-line logo-icon"></i>
+<h1>GrowVest</h1>
+<p class="tagline">
+Secure Crypto Investment Platform
+</p>
+</div>
 
-    <a href="register.html">
-      <button class="btn">Register</button>
-    </a>
+<div class="features">
 
-    <br><br>
+<div class="feature">
+<i class="fa-solid fa-shield-halved"></i>
+<span>100% Secure Platform</span>
+</div>
 
-    <a href="login.html">
-      <button class="btn">Login</button>
-    </a>
+<div class="feature">
+<i class="fa-solid fa-bolt"></i>
+<span>Fast Deposits & Withdrawals</span>
+</div>
 
-  </div>
+<div class="feature">
+<i class="fa-solid fa-chart-simple"></i>
+<span>Live Crypto Trading</span>
+</div>
 
-  <hr>
+<div class="feature">
+<i class="fa-solid fa-headset"></i>
+<span>24/7 Customer Support</span>
+</div>
 
-  <footer style="text-align:center; padding:20px;">
+</div>
 
-    <p>
-      <a href="about.html">About Us</a> |
-      <a href="privacy.html">Privacy Policy</a> |
-      <a href="terms.html">Terms & Conditions</a> |
-      <a href="help.html">Help & Support</a>
-    </p>
+<div class="buttons">
 
-    <p>© 2023 GrowVest. All Rights Reserved.</p>
+<a href="register.html" class="btn register-btn">
+<i class="fa-solid fa-user-plus"></i>
+Register
+</a>
 
-  </footer>
+<a href="login.html" class="btn login-btn">
+<i class="fa-solid fa-right-to-bracket"></i>
+Login
+</a>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('./pwabuilder-sw.js');
-      });
-    }
-  </script>
+</div>
+<div class="support-card">
 
+<h2>Why Choose GrowVest?</h2>
+
+<p>
+Invest in cryptocurrency with confidence using our secure,
+fast and user-friendly investment platform.
+</p>
+
+<div class="support-list">
+
+<p><i class="fa-solid fa-check"></i> Secure Investment System</p>
+
+<p><i class="fa-solid fa-check"></i> Instant Deposit & Withdraw</p>
+
+<p><i class="fa-solid fa-check"></i> Live Crypto Market</p>
+
+<p><i class="fa-solid fa-check"></i> 24/7 Customer Support</p>
+
+</div>
+
+<div class="contact-box">
+
+<h3><i class="fa-solid fa-envelope"></i> Help & Support</h3>
+
+<p>
+For any questions or assistance, contact us:
+</p>
+
+<a class="support-email"
+href="mailto:growvestsupport78@gmail.com">
+growvestsupport78@gmail.com
+</a>
+
+</div>
+
+</div>
+
+<footer class="footer">
+
+<div class="footer-links">
+
+<a href="about.html">About Us</a>
+
+<a href="privacy.html">Privacy Policy</a>
+
+<a href="terms.html">Terms & Conditions</a>
+
+<a href="help.html">Help & Support</a>
+
+</div>
+
+<p class="copyright">
+© 2023 GrowVest. All Rights Reserved.
+</p>
+
+</footer>
+
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./pwabuilder-sw.js');
+  });
+}
+</script>
 </body>
-
 </html>
