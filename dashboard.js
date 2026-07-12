@@ -17,26 +17,35 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// ===== USDT Format =====
+// ===== Format Balance =====
+
 function formatMoney(amount) {
+
   amount = Number(amount) || 0;
 
   return amount.toLocaleString("en-US", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
   }) + " USDT";
+
 }
+
+// ===== Elements =====
 
 const emailBox = document.getElementById("userEmail");
 const balanceBox = document.getElementById("balance");
 const logoutBtn = document.getElementById("logoutBtn");
 const activePlanBox = document.getElementById("activePlan");
 
+// ===== Check Login =====
+
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
+
     window.location.href = "login.html";
     return;
+
   }
 
   emailBox.textContent = user.email;
@@ -45,13 +54,18 @@ onAuthStateChanged(auth, async (user) => {
   const userSnap = await getDoc(userRef);
 
   if (!userSnap.exists()) {
+
     alert("User not found");
     return;
+
   }
 
   let userData = userSnap.data();
   let balance = Number(userData.balance || 0);
-    try {
+
+  balanceBox.textContent = formatMoney(balance);
+
+  try {
 
     const plansQuery = query(
       collection(db, "userPlans"),
@@ -61,93 +75,123 @@ onAuthStateChanged(auth, async (user) => {
 
     const plansSnap = await getDocs(plansQuery);
 
-    const today = new Date().toISOString().split("T")[0];
-
     activePlanBox.innerHTML = "";
+        if (plansSnap.empty) {
 
-    for (const planDoc of plansSnap.docs) {
+      activePlanBox.innerHTML = `
+        <div class="plan-card-item">
+          <h3>No Active Plan</h3>
+          <p>You haven't purchased any investment plan yet.</p>
+        </div>
+      `;
 
-      const plan = planDoc.data();
+    } else {
 
-      let completedDays = Number(plan.daysCompleted || 0);
+      const today = new Date().toISOString().split("T")[0];
 
-      if (plan.lastProfitDate !== today) {
+      for (const planDoc of plansSnap.docs) {
 
-        completedDays++;
-        balance += Number(plan.dailyProfit);
+        const plan = planDoc.data();
 
-        const updateData = {
-          lastProfitDate: today,
-          daysCompleted: completedDays
-        };
+        let completedDays = Number(plan.daysCompleted || 0);
 
-        if (completedDays >= Number(plan.duration)) {
+        if (plan.lastProfitDate !== today) {
 
-          balance += Number(plan.price);
+          completedDays++;
 
-          updateData.status = "Completed";
+          balance += Number(plan.dailyProfit);
+
+          const updateData = {
+            lastProfitDate: today,
+            daysCompleted: completedDays
+          };
+
+          if (completedDays >= Number(plan.duration)) {
+
+            balance += Number(plan.price);
+
+            updateData.status = "Completed";
+
+            await addDoc(collection(db, "history"), {
+              uid: user.uid,
+              email: user.email,
+              type: "Capital Return",
+              amount: Number(plan.price),
+              currency: "USDT",
+              description: plan.planName + " Capital Returned",
+              createdAt: serverTimestamp()
+            });
+
+          }
+
+          await updateDoc(userRef, {
+            balance: balance
+          });
+
+          await updateDoc(
+            doc(db, "userPlans", planDoc.id),
+            updateData
+          );
 
           await addDoc(collection(db, "history"), {
             uid: user.uid,
             email: user.email,
-            type: "Capital Return",
-            amount: Number(plan.price),
+            type: "Daily Profit",
+            amount: Number(plan.dailyProfit),
             currency: "USDT",
-            description: plan.planName + " Capital Returned",
+            description: plan.planName + " Daily Profit",
             createdAt: serverTimestamp()
           });
+
         }
 
-        await updateDoc(userRef, {
-          balance: balance
-        });
+        balanceBox.textContent = formatMoney(balance);
 
-        await updateDoc(
-          doc(db, "userPlans", planDoc.id),
-          updateData
-        );
+        activePlanBox.innerHTML += `
+          <div class="plan-card-item">
+            <h3>${plan.planName}</h3>
 
-        await addDoc(collection(db, "history"), {
-          uid: user.uid,
-          email: user.email,
-          type: "Daily Profit",
-          amount: Number(plan.dailyProfit),
-          currency: "USDT",
-          description: plan.planName + " Daily Profit",
-          createdAt: serverTimestamp()
-        });
+            <div class="plan-row">
+              <span>Investment</span>
+              <strong>${formatMoney(plan.price)}</strong>
+            </div>
+
+            <div class="plan-row">
+              <span>Daily Profit</span>
+              <strong>${formatMoney(plan.dailyProfit)}</strong>
+            </div>
+
+            <div class="plan-row">
+              <span>Completed</span>
+              <strong>${completedDays}/${plan.duration} Days</strong>
+            </div>
+                        <div class="plan-row">
+              <span>Remaining</span>
+              <strong>${Math.max(
+                0,
+                Number(plan.duration) - completedDays
+              )} Days</strong>
+            </div>
+
+            <div class="plan-status ${
+              completedDays >= Number(plan.duration)
+                ? "completed"
+                : "active"
+            }">
+              ${
+                completedDays >= Number(plan.duration)
+                  ? "Completed"
+                  : "Active"
+              }
+            </div>
+          </div>
+        `;
+
       }
 
-      activePlanBox.innerHTML += `
-        <div class="card">
-          <h3>${plan.planName}</h3>
-
-          <p><b>Investment:</b> ${formatMoney(plan.price)}</p>
-
-          <p><b>Daily Profit:</b> ${formatMoney(plan.dailyProfit)}</p>
-
-          <p><b>Days Completed:</b> ${completedDays}</p>
-
-          <p><b>Remaining Days:</b> ${Math.max(
-            0,
-            Number(plan.duration) - completedDays
-          )}</p>
-
-          <p><b>Status:</b> ${
-            completedDays >= Number(plan.duration)
-              ? "Completed"
-              : plan.status
-          }</p>
-        </div><br>
-      `;
     }
 
-    if (plansSnap.empty) {
-      activePlanBox.innerHTML = "<p>No Active Plan</p>";
-    }
-
-    balanceBox.textContent = formatMoney(balance);
-    } catch (error) {
+  } catch (error) {
 
     console.error(error);
     alert(error.message);
@@ -156,11 +200,14 @@ onAuthStateChanged(auth, async (user) => {
 
 });
 
+// ===== Logout =====
+
 logoutBtn.addEventListener("click", async () => {
 
   try {
 
     await signOut(auth);
+
     window.location.href = "login.html";
 
   } catch (error) {
@@ -175,5 +222,7 @@ logoutBtn.addEventListener("click", async () => {
 // ===== Dashboard Ready =====
 
 window.addEventListener("DOMContentLoaded", () => {
+
   console.log("GrowVest Dashboard Loaded Successfully");
+
 });
