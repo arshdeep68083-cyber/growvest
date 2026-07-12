@@ -3,57 +3,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
 
-<title>GrowVest Admin Panel</title>
+<link rel="stylesheet" href="style.css">
 
-<link rel="stylesheet" href="dashboard.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<h2>GrowVest Admin Panel</h2>
+<h1>Admin Panel</h1>
 
-<div class="card">
-<h3>Pending Deposits</h3>
-<div id="pendingDeposits">
-<p>No pending deposits.</p>
-</div>
-</div>
+<hr>
 
-<div class="card">
-<h3>Approved Deposits</h3>
-<div id="approvedDeposits">
-<p>No approved deposits.</p>
-</div>
-</div>
+<h3>Dashboard Statistics</h3>
 
-<div class="card">
-<h3>Pending Withdrawals</h3>
-<div id="pendingWithdrawals">
-<p>No pending withdrawals.</p>
-</div>
+<div id="stats">
+
+<p><strong>Total Users:</strong> <span id="totalUsers">0</span></p>
+
+<p><strong>Total Deposits:</strong> ₹<span id="totalDeposits">0</span></p>
+
+<p><strong>Total Withdrawals:</strong> ₹<span id="totalWithdrawals">0</span></p>
+
+<p><strong>Active Plans:</strong> <span id="activePlans">0</span></p>
+
 </div>
 
-<div class="card">
-<h3>Approved Withdrawals</h3>
-<div id="approvedWithdrawals">
-<p>No approved withdrawals.</p>
-</div>
+<hr>
+
+<h3>Users</h3>
+<div id="usersList">
+<p>Loading...</p>
 </div>
 
-<div style="margin-top:20px;">
-<a href="dashboard.html" class="action">
-← Back to Dashboard
+<br>
+
+<h3>Deposit Requests</h3>
+<div id="depositList">
+<p>Loading...</p>
+</div>
+
+<br>
+
+<h3>Withdrawal Requests</h3>
+<div id="withdrawList">
+<p>Loading...</p>
+</div>
+
+<br>
+
+<hr>
+
+<h3>Support</h3>
+
+<p><strong>Email:</strong></p>
+
+<p>
+<a href="mailto:growvestsupport78@gmail.com">
+growvestsupport78@gmail.com
 </a>
-</div>
+</p>
+
+<br>
+
+<a href="dashboard.html">
+<button class="btn">Back to Dashboard</button>
+</a>
 
 </div>
 
 <script type="module" src="admin.js"></script>
+<hr>
 
+<footer style="text-align:center; padding:20px;">
+
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
 </body>
 </html>
