@@ -2,16 +2,17 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest - Trade</title>
+<title>GrowVest - Live Trading</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<script src="https://s3.tradingview.com/tv.js"></script>
 
 </head>
 
@@ -19,219 +20,252 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="container fade-up">
 
-    <!-- Header -->
+<!-- Header -->
 
-    <div class="header">
+<div class="header">
 
-        <div class="header-left">
-            <h2>📈 Live Trading</h2>
-            <p>Track today's crypto market</p>
-        </div>
+<div class="header-left">
+<h2>📈 Live Trading</h2>
+<p>Track today's crypto market</p>
+</div>
 
-        <div class="header-right">
+<div class="header-right">
+<div class="icon-btn">
+<i class="fa-solid fa-chart-line"></i>
+</div>
+</div>
 
-            <div class="icon-btn">
-                <i class="fa-solid fa-chart-line"></i>
-            </div>
+</div>
 
-        </div>
+<!-- Live Trading Chart -->
 
+<div class="section">
+
+<div class="section-title">
+<h3>📊 Live BTC/USDT Chart</h3>
+</div>
+
+<div class="glass-card">
+
+<div id="tradingview_chart"
+style="height:500px;width:100%;">
+</div>
+
+</div>
+
+</div>
+
+<!-- Market Cards -->
+
+<div class="market-scroll">
+
+<div class="market-card">
+<h4>BTC</h4>
+<div class="market-price">$108,450</div>
+<div class="up">▲ +2.34%</div>
+</div>
+
+<div class="market-card">
+<h4>ETH</h4>
+<div class="market-price">$2,980</div>
+<div class="up">▲ +1.12%</div>
+</div>
+
+<div class="market-card">
+<h4>BNB</h4>
+<div class="market-price">$705</div>
+<div class="down">▼ -0.64%</div>
+</div>
+
+<div class="market-card">
+<h4>SOL</h4>
+<div class="market-price">$162</div>
+<div class="up">▲ +4.08%</div>
+</div>
+
+</div>
+<!-- Market Overview -->
+
+<div class="section">
+
+    <div class="section-title">
+        <h3>📊 Market Overview</h3>
     </div>
 
-    <!-- Market Cards -->
+    <div class="glass-card">
 
-    <div class="market-scroll">
+        <p>🟢 Market Status:
+            <strong style="color:#22C55E;">Bullish</strong>
+        </p>
 
-        <div class="market-card">
-            <h4>BTC</h4>
-            <div class="market-price">$108,450</div>
-            <div class="up">▲ +2.34%</div>
-        </div>
+        <br>
 
-        <div class="market-card">
-            <h4>ETH</h4>
-            <div class="market-price">$2,980</div>
-            <div class="up">▲ +1.12%</div>
-        </div>
+        <p>24H Volume:
+            <strong>$3.25B</strong>
+        </p>
 
-        <div class="market-card">
-            <h4>BNB</h4>
-            <div class="market-price">$705</div>
-            <div class="down">▼ -0.64%</div>
-        </div>
+        <br>
 
-        <div class="market-card">
-            <h4>SOL</h4>
-            <div class="market-price">$162</div>
-            <div class="up">▲ +4.08%</div>
-        </div>
-
-    </div>
-
-    <!-- Trading Overview -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>📊 Market Overview</h3>
-        </div>
-
-        <div class="glass-card">
-
-            <p>🟢 Market Status:
-                <strong style="color:#22C55E;">Bullish</strong>
-            </p>
-
-            <br>
-
-            <p>24H Volume:
-                <strong>$3.25B</strong>
-            </p>
-
-            <br>
-
-            <p>Bitcoin Dominance:
-                <strong>54.8%</strong>
-            </p>
-
-        </div>
-
-    </div>
-        <!-- Top Gainers -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>🚀 Top Gainers</h3>
-        </div>
-
-        <div class="glass-card">
-
-            <p>🟢 BTC <strong>+2.34%</strong></p>
-            <br>
-
-            <p>🟢 SOL <strong>+4.08%</strong></p>
-            <br>
-
-            <p>🟢 ETH <strong>+1.12%</strong></p>
-
-        </div>
-
-    </div>
-
-    <!-- Top Losers -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>📉 Top Losers</h3>
-        </div>
-
-        <div class="glass-card">
-
-            <p>🔴 BNB <strong>-0.64%</strong></p>
-            <br>
-
-            <p>🔴 XRP <strong>-1.28%</strong></p>
-            <br>
-
-            <p>🔴 DOGE <strong>-0.91%</strong></p>
-
-        </div>
-
-    </div>
-
-    <!-- Trending Coins -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>🔥 Trending Coins</h3>
-        </div>
-
-        <div class="market-scroll">
-
-            <div class="market-card">
-                <h4>PEPE</h4>
-                <div class="market-price">$0.000012</div>
-                <div class="up">▲ +8.5%</div>
-            </div>
-
-            <div class="market-card">
-                <h4>TON</h4>
-                <div class="market-price">$7.85</div>
-                <div class="up">▲ +3.9%</div>
-            </div>
-
-            <div class="market-card">
-                <h4>LINK</h4>
-                <div class="market-price">$18.42</div>
-                <div class="up">▲ +2.8%</div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Quick Trade -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>⚡ Quick Trade</h3>
-        </div>
-
-        <div class="glass-card">
-
-            <button class="btn deposit" style="width:100%;margin-bottom:12px;">
-                Buy Crypto
-            </button>
-
-            <button class="btn withdraw" style="width:100%;">
-                Sell Crypto
-            </button>
-
-        </div>
-
-    </div>
-        <!-- Bottom Navigation -->
-
-    <div class="bottom-nav">
-
-        <a href="dashboard.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-
-        <a href="invest.html" class="nav-item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Invest</span>
-        </a>
-
-        <a href="trade.html" class="nav-item active">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Trade</span>
-        </a>
-
-        <a href="history.html" class="nav-item">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>History</span>
-        </a>
-
-        <a href="profile.html" class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </a>
+        <p>Bitcoin Dominance:
+            <strong>54.8%</strong>
+        </p>
 
     </div>
 
 </div>
 
+<!-- Top Gainers -->
+
+<div class="section">
+
+    <div class="section-title">
+        <h3>🚀 Top Gainers</h3>
+    </div>
+
+    <div class="glass-card">
+
+        <p>🟢 BTC <strong>+2.34%</strong></p>
+        <br>
+
+        <p>🟢 SOL <strong>+4.08%</strong></p>
+        <br>
+
+        <p>🟢 ETH <strong>+1.12%</strong></p>
+
+    </div>
+
+</div>
+
+<!-- Top Losers -->
+
+<div class="section">
+
+    <div class="section-title">
+        <h3>📉 Top Losers</h3>
+    </div>
+
+    <div class="glass-card">
+
+        <p>🔴 BNB <strong>-0.64%</strong></p>
+        <br>
+
+        <p>🔴 XRP <strong>-1.28%</strong></p>
+        <br>
+
+        <p>🔴 DOGE <strong>-0.91%</strong></p>
+
+    </div>
+
+</div>
+
+<!-- Trending Coins -->
+
+<div class="section">
+
+    <div class="section-title">
+        <h3>🔥 Trending Coins</h3>
+    </div>
+
+    <div class="market-scroll">
+
+        <div class="market-card">
+            <h4>PEPE</h4>
+            <div class="market-price">$0.000012</div>
+            <div class="up">▲ +8.5%</div>
+        </div>
+
+        <div class="market-card">
+            <h4>TON</h4>
+            <div class="market-price">$7.85</div>
+            <div class="up">▲ +3.9%</div>
+        </div>
+
+        <div class="market-card">
+            <h4>LINK</h4>
+            <div class="market-price">$18.42</div>
+            <div class="up">▲ +2.8%</div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Quick Trade -->
+
+<div class="section">
+
+    <div class="section-title">
+        <h3>⚡ Quick Trade</h3>
+    </div>
+
+    <div class="glass-card">
+
+        <button class="btn deposit" style="width:100%;margin-bottom:12px;">
+            Buy Crypto
+        </button>
+
+        <button class="btn withdraw" style="width:100%;">
+            Sell Crypto
+        </button>
+
+    </div>
+
+</div>
+
+<!-- Bottom Navigation -->
+
+<div class="bottom-nav">
+
+    <a href="dashboard.html" class="nav-item">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+    </a>
+
+    <a href="plans.html" class="nav-item">
+        <i class="fa-solid fa-wallet"></i>
+        <span>Invest</span>
+    </a>
+
+    <a href="trading.html" class="nav-item active">
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Trade</span>
+    </a>
+
+    <a href="history.html" class="nav-item">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <span>History</span>
+    </a>
+
+    <a href="profile.html" class="nav-item">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+    </a>
+
+</div>
+</div>
+
 <!-- Firebase -->
-<script type="module" src="firebase.js"></script>
+<script type="module" src="firebase-config.js"></script>
 
 <!-- Main JS -->
 <script src="app.js"></script>
+
+<!-- TradingView Chart -->
+<script>
+new TradingView.widget({
+    autosize: true,
+    symbol: "BINANCE:BTCUSDT",
+    interval: "15",
+    timezone: "Etc/UTC",
+    theme: "dark",
+    style: "1",
+    locale: "en",
+    toolbar_bg: "#0f172a",
+    enable_publishing: false,
+    hide_top_toolbar: false,
+    allow_symbol_change: true,
+    container_id: "tradingview_chart"
+});
+</script>
 
 <script>
 document.querySelectorAll(".btn").forEach(button => {
