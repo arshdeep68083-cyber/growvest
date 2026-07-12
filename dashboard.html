@@ -1,177 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>GrowVest Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
-<body class="dashboard-page">
+<body>
 
-<div class="dashboard">
+<div class="container">
 
-<header class="topbar">
-
-<div class="brand">
+<div class="logo-box">
+<div class="logo-icon">
 <i class="fa-solid fa-chart-line"></i>
-<h2>GrowVest</h2>
 </div>
 
-<div class="profile-mini">
-<i class="fa-solid fa-user-circle"></i>
+<h1>GrowVest</h1>
+<p>Welcome Back</p>
+
 </div>
 
-</header>
+<div class="card">
 
-<section class="balance-card">
+<h2>Your Account</h2>
 
-<p>Total Portfolio</p>
+<p id="userEmail">Loading...</p>
 
 <h1 id="balance">0.00 USDT</h1>
 
-<span id="userEmail">Loading...</span>
+</div>
 
-</section>
+<br>
 
-<section class="quick-actions">
+<div class="card">
 
-<a href="deposit.html" class="action-card">
-<i class="fa-solid fa-wallet"></i>
-<span>Deposit</span>
-</a>
-
-<a href="withdraw.html" class="action-card">
-<i class="fa-solid fa-money-bill-transfer"></i>
-<span>Withdraw</span>
-</a>
-
-<a href="plans.html" class="action-card">
-<i class="fa-solid fa-coins"></i>
-<span>Plans</span>
-</a>
-
-<a href="trading.html" class="action-card">
-<i class="fa-solid fa-chart-line"></i>
-<span>Trading</span>
-</a>
-
-</section>
-
-<section class="plan-card">
-
-<h3>Active Investment</h3>
+<h2>Active Investment Plan</h2>
 
 <div id="activePlan">
-
 <p>No Active Plan</p>
-
-</div>
-
-</section>
-<section class="market-section">
-
-<div class="section-title">
-<h3>Market Overview</h3>
-<a href="trading.html">View All</a>
-</div>
-
-<div class="market-grid">
-
-<div class="market-card">
-<h4>Bitcoin</h4>
-<h2>$108,450</h2>
-<p class="green">+2.45%</p>
-</div>
-
-<div class="market-card">
-<h4>Ethereum</h4>
-<h2>$2,690</h2>
-<p class="green">+1.87%</p>
-</div>
-
-<div class="market-card">
-<h4>BNB</h4>
-<h2>$695</h2>
-<p class="green">+3.21%</p>
 </div>
 
 </div>
 
-</section>
+<br>
 
-<section class="services">
-
-<a href="history.html" class="service-card">
-<i class="fa-solid fa-clock-rotate-left"></i>
-<span>History</span>
+<a href="deposit.html">
+<button class="btn">
+💰 Deposit
+</button>
 </a>
 
-<a href="profile.html" class="service-card">
-<i class="fa-solid fa-user"></i>
-<span>Profile</span>
-</a>
-
-<a href="help.html" class="service-card">
-<i class="fa-solid fa-headset"></i>
-<span>Support</span>
-</a>
-
-<a href="admin.html" class="service-card">
-<i class="fa-solid fa-shield-halved"></i>
-<span>Admin</span>
-</a>
-
-</section>
-
-<nav class="bottom-nav">
-
-<a href="dashboard.html" class="active">
-<i class="fa-solid fa-house"></i>
-<p>Home</p>
-</a>
-
-<a href="plans.html">
-<i class="fa-solid fa-coins"></i>
-<p>Invest</p>
-</a>
-
-<a href="trading.html">
-<i class="fa-solid fa-chart-line"></i>
-<p>Trade</p>
+<a href="withdraw.html">
+<button class="btn">
+💸 Withdraw
+</button>
 </a>
 
 <a href="history.html">
-<i class="fa-solid fa-clock"></i>
-<p>History</p>
+<button class="btn">
+📄 History
+</button>
+</a>
+
+<a href="plans.html">
+<button class="btn">
+📈 Investment Plans
+</button>
+</a>
+
+<a href="trading.html">
+<button class="btn">
+📊 Trading
+</button>
 </a>
 
 <a href="profile.html">
-<i class="fa-solid fa-user"></i>
-<p>Profile</p>
+<button class="btn">
+👤 Profile
+</button>
 </a>
 
-</nav>
+<a href="admin.html">
+<button class="btn">
+⚙️ Admin Panel
+</button>
+</a>
 
-<button id="logoutBtn" class="logout-btn">
-<i class="fa-solid fa-right-from-bracket"></i>
-Logout
+<a href="help.html">
+<button class="btn">
+🛟 Help & Support
+</button>
+</a>
+
+<button id="logoutBtn" class="btn logoutBtn">
+🚪 Logout
 </button>
 
 </div>
 
 <script type="module" src="dashboard.js"></script>
+
+<hr>
+
+<footer>
+
+<p>
+
+<a href="about.html">About Us</a> |
+
+<a href="privacy.html">Privacy Policy</a> |
+
+<a href="terms.html">Terms & Conditions</a> |
+
+<a href="help.html">Help & Support</a>
+
+</p>
+
+<p>© 2026 GrowVest. All Rights Reserved.</p>
+
+</footer>
 
 </body>
 </html>
