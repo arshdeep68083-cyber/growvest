@@ -1,183 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Investment Plans - GrowVest</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<title>Investment Plans</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<div class="balance-card">
-    <h4>Investment Plans</h4>
-    <h1><i class="fas fa-chart-line"></i></h1>
-    <p>Choose the best investment plan and start growing your wealth.</p>
+<h1>Investment Plans</h1>
+
+<div id="plansList">
+<p>Loading plans...</p>
 </div>
 
-<div class="plan-grid">
+<br>
 
-<!-- Starter Plan -->
-<div class="plan-card">
-
-    <div class="plan-icon">
-        <i class="fas fa-seedling"></i>
-    </div>
-
-    <h2>Starter Plan</h2>
-
-    <p class="plan-range">$100 - $499</p>
-
-    <h3 class="plan-profit">5% Monthly Profit</h3>
-
-    <p>Duration: 30 Days</p>
-
-    <button class="plan-btn"
-        onclick="investPlan('Starter Plan',100,30,5)">
-        Invest Now
-    </button>
-
-    <p class="plan-note">
-        ✔ Minimum Investment: 100 USDT<br>
-        ✔ Monthly Profit: 5%<br>
-        ✔ Capital Returned After 30 Days
-    </p>
-
-</div>
-
-<!-- Silver Plan -->
-<div class="plan-card">
-
-    <div class="plan-icon silver">
-        <i class="fas fa-medal"></i>
-    </div>
-
-    <h2>Silver Plan</h2>
-
-    <p class="plan-range">$500 - $999</p>
-
-    <h3 class="plan-profit">7% Monthly Profit</h3>
-
-    <p>Duration: 30 Days</p>
-
-    <button class="plan-btn"
-        onclick="investPlan('Silver Plan',500,30,7)">
-        Invest Now
-    </button>
-
-    <p class="plan-note">
-        ✔ Minimum Investment: 500 USDT<br>
-        ✔ Monthly Profit: 7%<br>
-        ✔ Capital Returned After 30 Days
-    </p>
-
-</div>
-<!-- Gold Plan -->
-<div class="plan-card popular">
-
-    <div class="popular-badge">
-        Most Popular
-    </div>
-
-    <div class="plan-icon gold">
-        <i class="fas fa-crown"></i>
-    </div>
-
-    <h2>Gold Plan</h2>
-
-    <p class="plan-range">$1000 - $4999</p>
-
-    <h3 class="plan-profit">10% Monthly Profit</h3>
-
-    <p>Duration: 30 Days</p>
-
-    <button class="plan-btn"
-        onclick="investPlan('Gold Plan',1000,30,10)">
-        Invest Now
-    </button>
-
-    <p class="plan-note">
-        ✔ Minimum Investment: 1000 USDT<br>
-        ✔ Monthly Profit: 10%<br>
-        ✔ Capital Returned After 30 Days
-    </p>
-
-</div>
-
-<!-- Platinum Plan -->
-<div class="plan-card">
-
-    <div class="plan-icon platinum">
-        <i class="fas fa-gem"></i>
-    </div>
-
-    <h2>Platinum Plan</h2>
-
-    <p class="plan-range">$5000 - $99995</p>
-
-    <h3 class="plan-profit">15% Monthly Profit</h3>
-
-    <p>Duration: 30 Days</p>
-
-    <button class="plan-btn"
-        onclick="investPlan('Platinum Plan',5000,30,15)">
-        Invest Now
-    </button>
-
-    <p class="plan-note">
-        ✔ Minimum Investment: 5000 USDT<br>
-        ✔ Monthly Profit: 15%<br>
-        ✔ Capital Returned After 30 Days
-    </p>
-
-</div>
-
-</div>
-
-<div style="margin-top:20px;">
-    <a href="dashboard.html" class="action">
-        <i class="fas fa-arrow-left"></i>
-        Back to Dashboard
-    </a>
-</div>
-
-<nav class="bottom-nav">
-
-<a href="dashboard.html" class="active">
-    <i class="fas fa-home"></i>
-    <span>Home</span>
+<a href="dashboard.html">
+<button class="btn">Back to Dashboard</button>
 </a>
 
-<a href="deposit.html">
-    <i class="fas fa-wallet"></i>
-    <span>Deposit</span>
-</a>
-
-<a href="plans.html">
-    <i class="fas fa-chart-line"></i>
-    <span>Plans</span>
-</a>
-
-<a href="profile.html">
-    <i class="fas fa-user"></i>
-    <span>Profile</span>
-</a>
-
-</nav>
+</div>
 
 <script type="module" src="plans.js"></script>
+<hr>
 
-</div>
+<footer style="text-align:center; padding:20px;">
 
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
 </body>
 </html>
