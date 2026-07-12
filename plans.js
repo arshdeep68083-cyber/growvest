@@ -1,6 +1,8 @@
 import { auth, db } from "./firebase-config.js";
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+import {
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
   collection,
@@ -46,56 +48,80 @@ async function loadPlans() {
   let plans = [];
 
   snapshot.forEach((docSnap) => {
+
     plans.push({
       id: docSnap.id,
       ...docSnap.data()
     });
+
   });
 
-  plans.sort((a, b) => a.price - b.price);
+  plans.sort((a, b) => Number(a.price) - Number(b.price));
 
   plans.forEach((plan) => {
 
     plansList.innerHTML += `
-      <div class="card">
+      <div class="card" style="
+        background:rgba(255,255,255,.08);
+        backdrop-filter:blur(18px);
+        border:1px solid rgba(255,255,255,.12);
+        border-radius:22px;
+        padding:25px;
+        margin-bottom:25px;
+        box-shadow:0 20px 40px rgba(0,0,0,.35);
+      ">
 
-        <h2>${plan.name}</h2>
+        <h2 style="margin-bottom:15px;color:#fff;">
+          ${plan.name}
+        </h2>
 
-        <p><b>💰 Investment:</b> $${plan.minInvestment} - $${plan.maxInvestment}</p>
+        <p><b>💰 Investment:</b> ${formatUSDT(plan.price)}</p>
 
-        <p><b>📈 Monthly Profit:</b> ${plan.monthlyProfit}%</p>
+        <p><b>📈 Daily Profit:</b> ${formatUSDT(plan.dailyProfit)}</p>
 
         <p><b>⏳ Duration:</b> ${plan.duration} Days</p>
 
         <p><b>✅ Status:</b> ${plan.status}</p>
+                <div style="
+          margin-top:20px;
+          padding:18px;
+          border-radius:18px;
+          background:rgba(255,255,255,.05);
+          border:1px solid rgba(255,255,255,.10);
+        ">
 
-        <button class="btn investBtn" data-id="${plan.id}">
-          Buy Now
-        </button>
+          <button
+            class="login-btn investBtn"
+            data-id="${plan.id}"
+            style="width:100%;">
+            🚀 Buy Now
+          </button>
+
+        </div>
 
       </div>
 
-      <br>
     `;
 
   });
 
-  document.querySelectorAll(".investBtn").forEach(btn => {
+  document.querySelectorAll(".investBtn").forEach((btn) => {
 
-    btn.onclick = async () => {
+    btn.addEventListener("click", async () => {
 
-      const plan = plans.find(p => p.id === btn.dataset.id);
+      const plan = plans.find(
+        p => p.id === btn.dataset.id
+      );
 
       if (plan) {
         await buyPlan(plan);
       }
 
-    };
+    });
 
   });
 
 }
-
 async function buyPlan(plan) {
 
   try {
@@ -146,7 +172,7 @@ async function buyPlan(plan) {
       createdAt: serverTimestamp()
     });
 
-    alert("Plan Purchased Successfully!");
+    alert("✅ Plan Purchased Successfully!");
 
     window.location.href = "dashboard.html";
 
