@@ -1,85 +1,72 @@
-import { db, auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 
 import {
-  doc,
-  setDoc,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
+import {
+  collection,
+  addDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const walletInput = document.getElementById("walletAddress");
-const copyBtn = document.getElementById("copyBtn");
-const submitBtn = document.getElementById("submitDeposit");
-const amountInput = document.getElementById("depositAmount");
-const txidInput = document.getElementById("txid");
-const status = document.getElementById("depositStatus");
+const amountInput = document.getElementById("amount");
+const depositBtn = document.getElementById("depositBtn");
 
-// Copy Wallet Address
-copyBtn.addEventListener("click", async () => {
-  try {
-    await navigator.clipboard.writeText(walletInput.value);
-    copyBtn.textContent = "Copied!";
-    setTimeout(() => {
-      copyBtn.textContent = "Copy Address";
-    }, 2000);
-  } catch (e) {
-    alert("Copy failed. Please copy manually.");
-  }
-});
+let currentUser = null;
 
-// Submit Deposit
-submitBtn.addEventListener("click", async () => {
-
-  const user = auth.currentUser;
-
+onAuthStateChanged(auth, (user) => {
   if (!user) {
     alert("Please login first.");
+    window.location.href = "login.html";
     return;
   }
 
-  const amount = amountInput.value.trim();
-  const txid = txidInput.value.trim();
+  currentUser = user;
+});
 
-  if (!amount || !txid) {
-    alert("Please enter Deposit Amount and TXID.");
+depositBtn.addEventListener("click", async () => {
+
+  if (!currentUser) {
+    alert("User not logged in.");
     return;
   }
+
+  const amount = Number(amountInput.value);
+
+  if (amount <= 0 || isNaN(amount)) {
+    alert("Enter a valid amount.");
+    return;
+  }
+
+  depositBtn.disabled = true;
+  depositBtn.textContent = "Submitting...";
 
   try {
 
-    await setDoc(doc(db, "deposits", user.uid + "_" + Date.now()), {
-      uid: user.uid,
-      email: user.email,
-      amount: Number(amount),
-      txid: txid,
-      wallet: walletInput.value,
-      network: "TRC20",
-      status: "Pending Verification",
+    await addDoc(collection(db, "deposits"), {
+      uid: currentUser.uid,
+      email: currentUser.email,
+      amount: amount,
+      wallet: "TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF",
+      status: "Pending",
       createdAt: serverTimestamp()
     });
 
-    status.innerHTML =
-      "🟡 <b>Pending Verification</b><br>Your deposit request has been submitted successfully.";
-
-    alert(
-`🎉 Investment Request Submitted!
-
-Your deposit request has been received successfully.
-
-Status: Pending Verification
-
-Our team will verify your payment within 24 hours.
-
-After approval, your investment plan will be activated automatically.
-
-Thank you for choosing GrowVest!`
-    );
+    alert("Deposit request submitted successfully.");
 
     amountInput.value = "";
-    txidInput.value = "";
 
   } catch (error) {
+
     console.error(error);
-    alert("Failed to submit deposit request.");
+    alert("Error: " + error.message);
+
+  } finally {
+
+    depositBtn.disabled = false;
+    depositBtn.textContent = "Submit Deposit";
+
   }
 
 });
