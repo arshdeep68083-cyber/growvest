@@ -1,4 +1,8 @@
-/* ===== Google Font ===== */
+/* ==========================
+   GrowVest Premium Dashboard
+   Part 1
+========================== */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 *{
@@ -8,10 +12,15 @@
     font-family:'Poppins',sans-serif;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     background:#0b1120;
     color:#fff;
     min-height:100vh;
+    overflow-x:hidden;
     padding-bottom:90px;
 }
 
@@ -44,6 +53,10 @@ a{
     color:#00d4ff;
 }
 
+.logo i{
+    font-size:30px;
+}
+
 .user{
     display:flex;
     align-items:center;
@@ -62,16 +75,22 @@ a{
 
 .balance-card{
     background:linear-gradient(135deg,#2563eb,#06b6d4);
-    padding:30px;
     border-radius:25px;
+    padding:30px;
     text-align:center;
-    box-shadow:0 15px 35px rgba(0,212,255,.25);
     margin-bottom:25px;
+    box-shadow:0 15px 35px rgba(0,212,255,.25);
+}
+
+.balance-card h4{
+    font-size:18px;
+    opacity:.9;
 }
 
 .balance-card h1{
     font-size:42px;
     margin:12px 0;
+    font-weight:700;
 }
 
 .balance-card p{
@@ -88,9 +107,12 @@ a{
 }
 
 .action-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
     padding:16px;
     border-radius:18px;
-    text-align:center;
     font-size:18px;
     font-weight:600;
     transition:.3s;
@@ -105,7 +127,7 @@ a{
 }
 
 .action-btn:hover{
-    transform:translateY(-4px);
+    transform:translateY(-5px);
 }
 
 /* ===== Cards ===== */
@@ -127,7 +149,7 @@ a{
     margin-bottom:18px;
 }
 
-/* ===== Market Ticker ===== */
+/* ===== Live Market ===== */
 
 .ticker{
     display:grid;
@@ -137,15 +159,15 @@ a{
 
 .coin{
     background:#111827;
-    border-radius:15px;
+    border-radius:16px;
     padding:16px;
     text-align:center;
     transition:.3s;
 }
 
 .coin:hover{
-    background:#1e293b;
     transform:translateY(-5px);
+    background:#1e293b;
 }
 
 .coin span{
@@ -173,21 +195,22 @@ a{
     border-radius:20px;
     padding:22px;
     text-align:center;
-    transition:.3s;
     backdrop-filter:blur(12px);
+    transition:.3s;
+    cursor:pointer;
 }
 
 .menu-card:hover{
     transform:translateY(-6px);
     background:rgba(0,212,255,.12);
-    box-shadow:0 10px 25px rgba(0,212,255,.25);
+    box-shadow:0 12px 25px rgba(0,212,255,.25);
 }
 
 .menu-card i{
+    display:block;
     font-size:32px;
     color:#00d4ff;
     margin-bottom:12px;
-    display:block;
 }
 
 .menu-card span{
@@ -217,6 +240,28 @@ a{
     box-shadow:0 12px 25px rgba(239,68,68,.35);
 }
 
+/* ===== Footer ===== */
+
+.footer{
+    text-align:center;
+    color:#94a3b8;
+    padding:30px 15px 100px;
+    font-size:14px;
+}
+
+.footer a{
+    color:#00d4ff;
+    transition:.3s;
+}
+
+.footer a:hover{
+    color:#38bdf8;
+}
+
+.footer p{
+    margin:8px 0;
+}
+
 /* ===== Bottom Navigation ===== */
 
 .bottom-nav{
@@ -225,20 +270,20 @@ a{
     left:0;
     width:100%;
     height:72px;
-    background:#111827;
+    background:rgba(15,23,42,.95);
     border-top:1px solid rgba(255,255,255,.08);
     display:flex;
     justify-content:space-around;
     align-items:center;
+    backdrop-filter:blur(18px);
     z-index:999;
-    backdrop-filter:blur(15px);
 }
 
 .bottom-nav a{
     display:flex;
     flex-direction:column;
     align-items:center;
-    gap:5px;
+    gap:4px;
     color:#94a3b8;
     font-size:12px;
     transition:.3s;
@@ -251,49 +296,118 @@ a{
 .bottom-nav a.active,
 .bottom-nav a:hover{
     color:#00d4ff;
+    transform:translateY(-2px);
 }
 
-/* ===== Footer ===== */
+/* ===== Scrollbar ===== */
 
-.footer{
-    text-align:center;
-    color:#94a3b8;
-    padding:25px 15px 100px;
-    font-size:14px;
+::-webkit-scrollbar{
+    width:8px;
 }
 
-.footer a{
-    color:#00d4ff;
+::-webkit-scrollbar-track{
+    background:#111827;
 }
 
-.footer p{
-    margin:8px 0;
+::-webkit-scrollbar-thumb{
+    background:#00d4ff;
+    border-radius:10px;
 }
 
-/* ===== Responsive ===== */
+::-webkit-scrollbar-thumb:hover{
+    background:#38bdf8;
+}
+/* ==========================
+   Responsive Design
+========================== */
 
-@media(max-width:768px){
+@media (max-width:992px){
+
+.dashboard{
+    padding:15px;
+}
 
 .balance-card h1{
-    font-size:34px;
+    font-size:36px;
+}
+
+.ticker{
+    grid-template-columns:repeat(2,1fr);
+}
+
+}
+
+@media (max-width:768px){
+
+.top-bar{
+    flex-direction:column;
+    gap:15px;
 }
 
 .logo{
-    font-size:22px;
+    font-size:24px;
 }
 
 .user{
-    font-size:13px;
-    padding:8px 12px;
+    width:100%;
+    justify-content:center;
 }
 
-.action-buttons,
+.action-buttons{
+    grid-template-columns:1fr;
+}
+
+.menu-grid{
+    grid-template-columns:1fr 1fr;
+}
+
+.balance-card{
+    padding:24px;
+}
+
+.balance-card h1{
+    font-size:32px;
+}
+
+.chart-section iframe,
+#tradingview_chart{
+    height:350px !important;
+}
+
+}
+
+@media (max-width:480px){
+
+.dashboard{
+    padding:12px;
+}
+
+.logo{
+    font-size:20px;
+}
+
+.balance-card h1{
+    font-size:28px;
+}
+
+.balance-card h4{
+    font-size:16px;
+}
+
 .menu-grid{
     grid-template-columns:1fr;
 }
 
+.ticker{
+    grid-template-columns:1fr;
+}
+
 .coin{
-    padding:14px;
+    padding:18px;
+}
+
+.action-btn{
+    font-size:16px;
 }
 
 .bottom-nav{
@@ -304,4 +418,57 @@ a{
     font-size:20px;
 }
 
+.bottom-nav a span{
+    font-size:11px;
 }
+
+}
+
+/* ==========================
+   Animations
+========================== */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.balance-card,
+.market-section,
+.chart-section,
+.plan-card,
+.menu-card{
+    animation:fadeUp .6s ease;
+}
+
+/* ==========================
+   Premium Effects
+========================== */
+
+.balance-card:hover,
+.market-section:hover,
+.chart-section:hover,
+.plan-card:hover{
+    transform:translateY(-4px);
+    transition:.3s ease;
+    box-shadow:0 15px 35px rgba(0,212,255,.18);
+}
+
+.menu-card:active,
+.action-btn:active,
+.logout-btn:active{
+    transform:scale(.98);
+}
+
+.footer{
+    border-top:1px solid rgba(255,255,255,.08);
+    margin-top:20px;
+}
+
+/* ===== End of GrowVest Dashboard CSS ===== */
