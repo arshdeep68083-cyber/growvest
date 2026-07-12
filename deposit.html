@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GrowVest - Deposit</title>
+<title>Deposit - GrowVest</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="login-page">
-
-<div class="bg-blur blur1"></div>
-<div class="bg-blur blur2"></div>
-
-<div class="login-wrapper">
-
-<div class="login-card">
+<div class="container">
 
 <div class="logo-box">
-
-<div class="logo-icon">💰</div>
+<div class="logo-icon">
+<i class="fa-solid fa-wallet"></i>
+</div>
 
 <h1>Deposit Funds</h1>
-
-<p>Top up your account securely using USDT (TRC20).</p>
+<p>Top up your GrowVest account</p>
 
 </div>
 
-<div class="input-group">
+<div class="card">
+
+<h3>Deposit Amount</h3>
+
 <input
 type="number"
 id="amount"
-placeholder="Enter Deposit Amount">
-</div>
+placeholder="Enter Amount (USDT)"
+>
 
-<div class="card" style="margin:25px 0;text-align:left;">
+<br><br>
 
-<h3 style="margin-bottom:10px;">USDT (TRC20) Wallet</h3>
+<h3>USDT (TRC20) Wallet</h3>
 
-<p id="wallet" style="word-break:break-all;color:#00d4ff;font-weight:600;">
+<div class="wallet-box">
+
+<p id="wallet">
 TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF
 </p>
 
 </div>
 
-<button class="login-btn" id="copyBtn">
+<br>
+
+<button class="btn" id="copyBtn">
 📋 Copy Wallet Address
 </button>
 
 <br><br>
 
-<button class="login-btn" id="depositBtn">
-💳 Submit Deposit
+<button class="btn" id="depositBtn">
+💰 Submit Deposit
 </button>
 
 <br><br>
 
 <a href="dashboard.html">
-<button class="login-btn">
+<button class="btn logoutBtn">
 ⬅ Back to Dashboard
 </button>
 </a>
@@ -71,29 +72,14 @@ TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF
 
 </div>
 
-</div>
-
 <script>
-document.getElementById("copyBtn").onclick = function () {
-navigator.clipboard.writeText("TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF");
-alert("Wallet address copied successfully.");
+document.getElementById("copyBtn").onclick=function(){
+navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+alert("Wallet copied successfully");
 };
 </script>
 
 <script type="module" src="deposit.js"></script>
-
-<footer>
-
-<p>
-<a href="about.html">About Us</a> |
-<a href="privacy.html">Privacy Policy</a> |
-<a href="terms.html">Terms & Conditions</a> |
-<a href="help.html">Help & Support</a>
-</p>
-
-<p>© 2026 GrowVest. All Rights Reserved.</p>
-
-</footer>
 
 </body>
 </html>
