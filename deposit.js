@@ -1,4 +1,4 @@
-import { auth, db } from "./firebase-config.js";
+import { auth, db, storage } from "./firebase-config.js";
 
 import {
   onAuthStateChanged
@@ -10,62 +10,91 @@ import {
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+import {
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-storage.js";
+
 const amountInput = document.getElementById("amount");
+const proofInput = document.getElementById("paymentProof");
 const depositBtn = document.getElementById("depositBtn");
 
 let currentUser = null;
 
 onAuthStateChanged(auth, (user) => {
+
   if (!user) {
-    alert("Please login first.");
     window.location.href = "login.html";
     return;
   }
 
   currentUser = user;
+
 });
 
 depositBtn.addEventListener("click", async () => {
 
   if (!currentUser) {
-    alert("User not logged in.");
+    alert("Please login first.");
     return;
   }
 
   const amount = Number(amountInput.value);
+  const proof = proofInput.files[0];
 
-  if (amount <= 0 || isNaN(amount)) {
-    alert("Enter a valid amount.");
+  if (!amount || amount <= 0) {
+    alert("Please enter a valid deposit amount.");
+    return;
+  }
+
+  if (!proof) {
+    alert("Please upload payment screenshot.");
     return;
   }
 
   depositBtn.disabled = true;
-  depositBtn.textContent = "Submitting...";
+  depositBtn.textContent = "Uploading...";
+    try {
 
-  try {
+    // Upload screenshot to Firebase Storage
+    const fileName =
+      `depositProofs/${currentUser.uid}_${Date.now()}_${proof.name}`;
 
+    const storageRef = ref(storage, fileName);
+
+    await uploadBytes(storageRef, proof);
+
+    const proofURL = await getDownloadURL(storageRef);
+
+    // Save deposit request
     await addDoc(collection(db, "deposits"), {
       uid: currentUser.uid,
       email: currentUser.email,
       amount: amount,
       wallet: "TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF",
+      proofURL: proofURL,
       status: "Pending",
       createdAt: serverTimestamp()
     });
 
-    alert("Deposit request submitted successfully.");
+    alert("✅ Deposit request submitted successfully!");
 
     amountInput.value = "";
+    proofInput.value = "";
 
   } catch (error) {
 
     console.error(error);
-    alert("Error: " + error.message);
+    alert("❌ " + error.message);
 
   } finally {
 
     depositBtn.disabled = false;
-    depositBtn.textContent = "Submit Deposit";
+    depositBtn.innerHTML = `
+      <i class="fas fa-paper-plane"></i>
+      Submit Deposit
+    `;
 
   }
 
