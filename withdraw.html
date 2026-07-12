@@ -3,64 +3,61 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Withdraw - GrowVest</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<h2>Withdraw USDT (TRC20)</h2>
+<h1>Withdraw</h1>
 
-<div class="card">
-
-<h3>Amount</h3>
+<p>Enter Withdrawal Amount</p>
 
 <input
 type="number"
-id="withdrawAmount"
+id="amount"
 placeholder="Enter Amount">
 
-<h3>Your TRC20 Wallet Address</h3>
+<br><br>
+
+<p>USDT (TRC20) Wallet Address</p>
 
 <input
 type="text"
-id="walletAddress"
-placeholder="Enter Your TRC20 Wallet">
+id="wallet"
+placeholder="Enter Your Wallet Address">
 
-<p style="margin-top:10px;color:#ef4444;">
-Minimum Withdrawal: <b>10 USDT</b>
-</p>
-  <button id="submitWithdraw">Submit Withdrawal</button>
+<br><br>
 
-<p style="margin-top:15px;color:#64748b;font-size:14px;">
-⚠️ Withdrawals are processed after admin verification.
-Please make sure your TRC20 wallet address is correct.
-</p>
+<button class="btn" id="withdrawBtn">
+Submit Withdrawal
+</button>
 
-</div>
+<br><br>
 
-<div class="card">
-
-<h3>Withdrawal Status</h3>
-
-<p id="withdrawStatus">No withdrawal request.</p>
-
-</div>
-
-<a href="dashboard.html" class="action" style="margin-top:20px;display:inline-flex;">
+<a href="dashboard.html">
+<button class="btn">
 Back to Dashboard
+</button>
 </a>
 
 </div>
 
 <script type="module" src="withdraw.js"></script>
+<hr>
 
+<footer style="text-align:center; padding:20px;">
+
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
 </body>
 </html>
-
