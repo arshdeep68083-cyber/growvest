@@ -1,7 +1,7 @@
-// ======================================
-// GrowVest Premium Dashboard
+// =====================================
+// GrowVest Dashboard
 // dashboard.js - Part 1
-// ======================================
+// =====================================
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -17,8 +17,8 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ---------- Firebase Config ----------
-// ⚠️ Apna Firebase config ithhe paste karo
+// ================= Firebase Config =================
+// Replace with your own Firebase project details
 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
@@ -29,21 +29,21 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID"
 };
 
-// ---------- Initialize ----------
+// ================= Initialize Firebase =================
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ---------- Elements ----------
+// ================= HTML Elements =================
 
-const emailEl = document.getElementById("userEmail");
 const balanceEl = document.getElementById("balance");
-const activePlanEl = document.getElementById("activePlan");
+const emailEl = document.getElementById("userEmail");
 const todayProfitEl = document.getElementById("todayProfit");
 const logoutBtn = document.getElementById("logoutBtn");
+const activePlanEl = document.getElementById("activePlan");
 
-// ---------- Load User ----------
+// ================= Load Logged-in User =================
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -56,99 +56,108 @@ onAuthStateChanged(auth, async (user) => {
 
   try {
 
-    const ref = doc(db, "users", user.uid);
-    const snap = await getDoc(ref);
+    const userRef = doc(db, "users", user.uid);
+    const snap = await getDoc(userRef);
 
-    if (snap.exists()) {
+    if (!snap.exists()) return;
 
-      const data = snap.data();
+    const data = snap.data();
 
-      balanceEl.textContent =
-        (data.balance || 0).toFixed(2) + " USDT";
+    balanceEl.textContent =
+      Number(data.balance || 0).toFixed(2) + " USDT";
 
-      todayProfitEl.textContent =
-        "+" + (data.todayProfit || 0).toFixed(2) + " USDT";
+    todayProfitEl.textContent =
+      "+" + Number(data.todayProfit || 0).toFixed(2) + " USDT";
 
-    }
+  } catch (error) {
 
-  } catch (err) {
-    console.error(err);
+    console.error("User Load Error:", error);
+
   }
 
 });
-// ======================================
+// =====================================
 // dashboard.js - Part 2
-// ======================================
+// =====================================
 
-// ---------- Balance Show / Hide ----------
-
-let balanceVisible = true;
+// ================= Balance Show / Hide =================
 
 const toggleBtn = document.getElementById("toggleBalance");
+
+let balanceVisible = true;
+let realBalance = "";
 
 if (toggleBtn) {
 
   toggleBtn.addEventListener("click", () => {
 
-    balanceVisible = !balanceVisible;
-
     if (balanceVisible) {
 
-      balanceEl.textContent =
-        balanceEl.dataset.real || "0.00 USDT";
+      realBalance = balanceEl.textContent;
+      balanceEl.textContent = "********";
 
-      toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+      toggleBtn.innerHTML =
+        '<i class="fas fa-eye-slash"></i>';
 
     } else {
 
-      balanceEl.dataset.real = balanceEl.textContent;
-      balanceEl.textContent = "********";
+      balanceEl.textContent = realBalance;
 
-      toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+      toggleBtn.innerHTML =
+        '<i class="fas fa-eye"></i>';
 
     }
+
+    balanceVisible = !balanceVisible;
 
   });
 
 }
 
-// ---------- Live Crypto Prices ----------
+// ================= Live Crypto Prices =================
 
 async function loadPrices() {
 
   try {
 
-    const res = await fetch(
+    const response = await fetch(
       "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd"
     );
 
-    const data = await res.json();
+    const data = await response.json();
 
-    const set = (id, value) => {
+    const setPrice = (id, value) => {
       const el = document.getElementById(id);
-      if (el) el.textContent = "$" + Number(value).toLocaleString();
+      if (el) {
+        el.textContent = "$" + Number(value).toLocaleString();
+      }
     };
 
-    set("btcPrice", data.bitcoin.usd);
-    set("ethPrice", data.ethereum.usd);
-    set("bnbPrice", data.binancecoin.usd);
-    set("solPrice", data.solana.usd);
-    set("xrpPrice", data.ripple.usd);
+    setPrice("btcPrice", data.bitcoin.usd);
+    setPrice("ethPrice", data.ethereum.usd);
+    setPrice("bnbPrice", data.binancecoin.usd);
+    setPrice("solPrice", data.solana.usd);
+    setPrice("xrpPrice", data.ripple.usd);
 
-  } catch (e) {
+  } catch (err) {
 
-    console.log("Price Error", e);
+    console.log("Price Error:", err);
 
   }
 
 }
 
+// First Load
 loadPrices();
+
+// Refresh Every 30 Seconds
 setInterval(loadPrices, 30000);
 
-// ---------- Active Investment Plan ----------
+// ================= Active Investment Plans =================
 
 async function loadPlans(uid) {
+
+  if (!activePlanEl) return;
 
   try {
 
@@ -173,40 +182,52 @@ async function loadPlans(uid) {
     data.activePlans.forEach(plan => {
 
       activePlanEl.innerHTML += `
+
       <div class="plan-card">
+
         <h4>${plan.name}</h4>
-        <p>Investment: ${plan.amount} USDT</p>
-        <p>Daily Profit: ${plan.dailyProfit} USDT</p>
-        <p>Status:
-          <span style="color:#22c55e;">${plan.status}</span>
+
+        <p><strong>Investment:</strong> ${plan.amount} USDT</p>
+
+        <p><strong>Monthly Profit:</strong> ${plan.monthlyProfit}%</p>
+
+        <p>
+          <strong>Status:</strong>
+          <span style="color:#22c55e;">
+            ${plan.status}
+          </span>
         </p>
+
       </div>
+
       `;
 
     });
 
   } catch (err) {
 
-    console.log(err);
+    console.error(err);
 
   }
 
 }
 
-// ---------- Load After Login ----------
+// Load Plans After Login
 
 onAuthStateChanged(auth, (user) => {
 
   if (user) {
+
     loadPlans(user.uid);
+
   }
 
 });
-// ======================================
-// dashboard.js - Part 3
-// ======================================
+// =====================================
+// dashboard.js - Part 3 (Final)
+// =====================================
 
-// ---------- Recent Transactions ----------
+// ================= Recent Transactions =================
 
 const transactionEl = document.getElementById("transactions");
 
@@ -223,6 +244,8 @@ async function loadTransactions(uid) {
 
     const data = snap.data();
 
+    transactionEl.innerHTML = "";
+
     if (!data.transactions || data.transactions.length === 0) {
 
       transactionEl.innerHTML =
@@ -232,61 +255,45 @@ async function loadTransactions(uid) {
 
     }
 
-    transactionEl.innerHTML = "";
-
     data.transactions
       .slice()
       .reverse()
       .forEach(tx => {
 
         transactionEl.innerHTML += `
-        <div class="transaction-card">
-          <div>
-            <h4>${tx.type}</h4>
-            <p>${tx.date}</p>
-          </div>
+          <div class="transaction-card">
 
-          <div>
-            <strong>${Number(tx.amount).toFixed(2)} USDT</strong><br>
-            <span class="${tx.status.toLowerCase()}">
-              ${tx.status}
-            </span>
+            <div>
+              <h4>${tx.type}</h4>
+              <p>${tx.date}</p>
+            </div>
+
+            <div style="text-align:right;">
+              <strong>${Number(tx.amount).toFixed(2)} USDT</strong><br>
+
+              <span style="color:${
+                tx.status === "Completed"
+                  ? "#22c55e"
+                  : "#facc15"
+              };">
+                ${tx.status}
+              </span>
+            </div>
+
           </div>
-        </div>
         `;
 
       });
 
   } catch (err) {
 
-    console.error(err);
+    console.error("Transaction Error:", err);
 
   }
 
 }
 
-// ---------- Logout ----------
-
-if (logoutBtn) {
-
-  logoutBtn.addEventListener("click", async () => {
-
-    try {
-
-      await signOut(auth);
-      window.location.href = "login.html";
-
-    } catch (err) {
-
-      alert("Logout Failed");
-
-    }
-
-  });
-
-}
-
-// ---------- Dashboard Load ----------
+// ================= Dashboard Auto Load =================
 
 onAuthStateChanged(auth, (user) => {
 
@@ -297,7 +304,7 @@ onAuthStateChanged(auth, (user) => {
 
 });
 
-// ---------- Auto Refresh ----------
+// ================= Auto Refresh =================
 
 setInterval(() => {
 
@@ -305,14 +312,42 @@ setInterval(() => {
 
   if (user) {
 
+    loadPrices();
     loadPlans(user.uid);
     loadTransactions(user.uid);
-    loadPrices();
 
   }
 
 }, 30000);
 
-// ======================================
-// End of dashboard.js
-// ======================================
+// ================= Logout =================
+
+if (logoutBtn) {
+
+  logoutBtn.addEventListener("click", async () => {
+
+    const ok = confirm("Are you sure you want to logout?");
+
+    if (!ok) return;
+
+    try {
+
+      await signOut(auth);
+
+      window.location.href = "login.html";
+
+    } catch (err) {
+
+      alert("Logout Failed!");
+
+      console.error(err);
+
+    }
+
+  });
+
+}
+
+// ================= Welcome =================
+
+console.log("GrowVest Dashboard Loaded Successfully");
