@@ -1,176 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Create Account | GrowVest</title>
-
-<link rel="stylesheet" href="auth.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<title>Register - GrowVest</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="auth-page">
+<div class="container">
+<h2>Create Account</h2>
 
-<div class="auth-card">
+<input type="text" id="name" placeholder="Full Name"><br><br>
 
-<div class="logo">
+<input type="email" id="email" placeholder="Email Address"><br><br>
 
-<i class="fa-solid fa-chart-line"></i>
+<input type="password" id="password" placeholder="Password"><br><br>
 
-<h1>GrowVest</h1>
+<input type="password" id="confirmPassword" placeholder="Confirm Password"><br><br>
 
-<p>Create your secure investment account</p>
+<button class="btn">Register</button>
 
-</div>
+<br><br>
 
-<form id="registerForm">
-
-<div class="input-group">
-
-<i class="fa-solid fa-user"></i>
-
-<input
-type="text"
-id="name"
-placeholder="Full Name"
-required>
+<a href="login.html">Already have an account? Login</a>
 
 </div>
-
-<div class="input-group">
-
-<i class="fa-solid fa-envelope"></i>
-
-<input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
-
-</div>
-
-<div class="input-group">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="password"
-placeholder="Password"
-required>
-
-</div>
-<div class="input-group">
-
-    <i class="fa-solid fa-lock"></i>
-
-    <input
-        type="password"
-        id="confirmPassword"
-        placeholder="Confirm Password"
-        required>
-
-</div>
-
-<div class="terms">
-
-    <label>
-
-        <input type="checkbox" required>
-
-        I agree to the
-        <a href="terms.html">Terms & Conditions</a>
-
-    </label>
-
-</div>
-
-<button
-    type="submit"
-    class="auth-btn">
-
-    <i class="fa-solid fa-user-plus"></i>
-
-    Create Account
-
-</button>
-
-</form>
-
-<div class="bottom-text">
-
-    Already have an account?
-
-    <a href="login.html">
-        Login
-    </a>
-
-</div>
-
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="auth.js"></script>
 <hr>
 
-<div class="security-box">
+<footer style="text-align:center; padding:20px;">
 
-    <i class="fa-solid fa-shield-halved"></i>
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
 
-    <h3>Secure Registration</h3>
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
 
-    <p>
-        Your personal information is protected using
-        advanced encryption and secure authentication.
-    </p>
-
-</div>
-<div class="support-box">
-
-    <h3>
-        <i class="fa-solid fa-headset"></i>
-        Need Help?
-    </h3>
-
-    <p>
-        Contact our support team anytime.
-    </p>
-
-    <a href="mailto:growvestsupport78@gmail.com">
-        growvestsupport78@gmail.com
-    </a>
-
-</div>
-
-</div>
-
-</div>
-
-<script>
-document.getElementById("registerForm").addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
-
-    if(password !== confirmPassword){
-        alert("Passwords do not match.");
-        return;
-    }
-
-    alert("Account created successfully!");
-
-    window.location.href = "login.html";
-
-});
-</script>
-
+</footer>
 </body>
 </html>
