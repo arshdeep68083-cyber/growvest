@@ -1,141 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Login | GrowVest</title>
-
-<link rel="stylesheet" href="auth.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<title>Login - GrowVest</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="auth-page">
+<div class="container">
+<h2>Login</h2>
 
-<div class="auth-card">
+<input type="email" id="email" placeholder="Email Address"><br><br>
 
-<div class="logo">
+<input type="password" id="password" placeholder="Password"><br><br>
 
-<i class="fa-solid fa-chart-line"></i>
+<button class="btn">Login</button>
 
-<h1>GrowVest</h1>
+<br><br>
 
-<p>Welcome Back</p>
-
-</div>
-
-<form id="loginForm">
-
-<div class="input-group">
-
-<i class="fa-solid fa-envelope"></i>
-
-<input
-type="email"
-id="email"
-placeholder="Email Address"
-required>
+<a href="register.html">Create New Account</a>
 
 </div>
-
-<div class="input-group">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="password"
-placeholder="Password"
-required>
-
-</div>
-
-<button
-type="submit"
-class="auth-btn">
-
-<i class="fa-solid fa-right-to-bracket"></i>
-
-Login
-
-</button>
-<div class="bottom-text">
-
-    <p>
-        Don't have an account?
-        <a href="register.html">Create Account</a>
-    </p>
-
-</div>
-
+<script type="module" src="firebase-config.js"></script>
+<script type="module" src="auth.js"></script>
 <hr>
 
-<div class="security-box">
+<footer style="text-align:center; padding:20px;">
 
-    <i class="fa-solid fa-shield-halved"></i>
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
 
-    <h3>Secure Login</h3>
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
 
-    <p>
-        Login safely using our encrypted authentication system
-        to protect your account and investments.
-    </p>
-
-</div>
-
-<div class="support-box">
-
-    <h3>
-        <i class="fa-solid fa-headset"></i>
-        Need Help?
-    </h3>
-
-    <p>
-        Contact our support team anytime.
-    </p>
-
-    <a href="mailto:growvestsupport78@gmail.com">
-        growvestsupport78@gmail.com
-    </a>
-
-</div>
-</form>
-
-</div>
-
-</div>
-
-<script>
-
-document.getElementById("loginForm").addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-
-    if(email === "" || password === ""){
-        alert("Please enter your email and password.");
-        return;
-    }
-
-    alert("Login Successful!");
-
-    // Change this page if your dashboard file has a different name
-    window.location.href = "dashboard.html";
-
-});
-
-</script>
-
+</footer>
 </body>
 </html>
