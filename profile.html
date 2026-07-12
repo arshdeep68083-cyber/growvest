@@ -29,11 +29,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         </div>
 
         <div class="header-right">
-
             <div class="icon-btn">
                 <i class="fa-solid fa-gear"></i>
             </div>
-
         </div>
 
     </div>
@@ -86,7 +84,26 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             <span>🎁 Invite Friends</span>
             <i class="fa-solid fa-chevron-right"></i>
         </div>
-              <!-- Referral Section -->
+            <!-- Account Menu -->
+
+    <div class="profile-menu">
+
+        <div class="profile-item">
+            <span>💰 Total Balance</span>
+            <strong>12,750 USDT</strong>
+        </div>
+
+        <div class="profile-item">
+            <span>📈 Active Plan</span>
+            <strong>Gold Plan</strong>
+        </div>
+
+        <div class="profile-item">
+            <span>👥 Referral Bonus</span>
+            <strong>320 USDT</strong>
+        </div>
+
+        <!-- Referral Section -->
 
         <div class="glass-card">
 
@@ -103,20 +120,11 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
                 id="referralLink"
                 value="https://growvest.app/register.html?ref=GV123456"
                 readonly
-                style="
-                    width:100%;
-                    padding:14px;
-                    border:none;
-                    border-radius:12px;
-                    background:#1B2436;
-                    color:#fff;
-                ">
+                style="width:100%;padding:14px;border:none;border-radius:12px;background:#1B2436;color:#fff;">
 
             <br><br>
 
-            <button class="btn deposit"
-                style="width:100%;"
-                onclick="copyReferral()">
+            <button class="btn deposit" style="width:100%;" onclick="copyReferral()">
                 <i class="fa-solid fa-copy"></i>
                 Copy Invite Link
             </button>
@@ -124,8 +132,6 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         </div>
 
         <br>
-
-        <!-- Settings -->
 
         <div class="profile-item">
             <span>🔒 Change Password</span>
@@ -153,7 +159,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         <i class="fa-solid fa-right-from-bracket"></i>
         Logout
     </button>
-      <!-- Bottom Navigation -->
+        <!-- Bottom Navigation -->
 
     <div class="bottom-nav">
 
@@ -162,12 +168,12 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
             <span>Home</span>
         </a>
 
-        <a href="invest.html" class="nav-item">
+        <a href="plans.html" class="nav-item">
             <i class="fa-solid fa-wallet"></i>
             <span>Invest</span>
         </a>
 
-        <a href="trade.html" class="nav-item">
+        <a href="trading.html" class="nav-item">
             <i class="fa-solid fa-chart-line"></i>
             <span>Trade</span>
         </a>
@@ -184,10 +190,9 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
     </div>
 
-</div>
-
-<!-- Firebase -->
-<script type="module" src="firebase.js"></script>
+    </div>
+    <!-- Firebase -->
+<script type="module" src="firebase-config.js"></script>
 
 <!-- Main JS -->
 <script src="app.js"></script>
