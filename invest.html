@@ -8,175 +8,230 @@
 
 <title>GrowVest - Invest</title>
 
-<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="style.css">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="dashboard">
+<div class="container fade-up">
 
-<header class="topbar">
+    <!-- Header -->
 
-<div class="logo">
-<i class="fa-solid fa-chart-line"></i>
-<h2>GrowVest</h2>
-</div>
+    <div class="header">
 
-<div class="menu">
-<i class="fa-solid fa-wallet"></i>
-<i class="fa-solid fa-user"></i>
-</div>
-
-</header>
-
-<section class="welcome">
-
-<h1>💰 Investment Plans</h1>
-
-<p>Choose the best investment plan for your future.</p>
-
-</section>
-
-<section class="live-prices">
-
-<h2>Available Plans</h2>
-
-<div class="coin-grid">
-
-<div class="coin-card">
-<h3>Starter Plan</h3>
-<p>Investment: <strong>$100</strong></p>
-<p>Daily Profit: <strong>2%</strong></p>
-<p>Duration: 30 Days</p>
-<a href="#" class="action-btn deposit">Invest Now</a>
-</div>
-
-<div class="coin-card">
-<h3>Silver Plan</h3>
-<p>Investment: <strong>$500</strong></p>
-<p>Daily Profit: <strong>3%</strong></p>
-<p>Duration: 45 Days</p>
-<a href="#" class="action-btn deposit">Invest Now</a>
-</div>
-
-<div class="coin-card">
-<h3>Gold Plan</h3>
-<p>Investment: <strong>$1000</strong></p>
-<p>Daily Profit: <strong>4%</strong></p>
-<p>Duration: 60 Days</p>
-<a href="#" class="action-btn deposit">Invest Now</a>
-</div>
-
-<div class="coin-card">
-<h3>VIP Plan</h3>
-<p>Investment: <strong>$5000</strong></p>
-<p>Daily Profit: <strong>5%</strong></p>
-<p>Duration: 90 Days</p>
-<a href="#" class="action-btn deposit">Invest Now</a>
-</div>
-
-</div>
-
-</section>
-<section class="benefits-section">
-
-    <h2>Why Invest With GrowVest?</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>100% Secure</h3>
-            <p>Your investments are protected with advanced security.</p>
+        <div class="header-left">
+            <h2>💰 Investment Plans</h2>
+            <p>Choose your best investment plan</p>
         </div>
 
-        <div class="benefit-card">
+        <div class="header-right">
+
+            <div class="icon-btn">
+                <i class="fa-solid fa-wallet"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Starter Plan -->
+
+    <div class="plan-card">
+
+        <h4>🥉 Starter Plan</h4>
+
+        <p>
+            Investment:
+            <strong>$100 - $999</strong>
+        </p>
+
+        <h3 style="color:#22C55E;">
+            5% Monthly Profit
+        </h3>
+
+        <br>
+
+        <button class="plan-btn">
+            Invest Now
+        </button>
+
+    </div>
+
+    <!-- Silver Plan -->
+
+    <div class="plan-card">
+
+        <h4>🥈 Silver Plan</h4>
+
+        <p>
+            Investment:
+            <strong>$1,000 - $4,999</strong>
+        </p>
+
+        <h3 style="color:#22C55E;">
+            10% Monthly Profit
+        </h3>
+
+        <br>
+
+        <button class="plan-btn">
+            Invest Now
+        </button>
+
+    </div>
+        <!-- Gold Plan -->
+
+    <div class="plan-card">
+
+        <h4>🥇 Gold Plan</h4>
+
+        <p>
+            Investment:
+            <strong>$5,000 - $9,999</strong>
+        </p>
+
+        <h3 style="color:#22C55E;">
+            15% Monthly Profit
+        </h3>
+
+        <br>
+
+        <button class="plan-btn">
+            Invest Now
+        </button>
+
+    </div>
+
+    <!-- VIP Plan -->
+
+    <div class="plan-card">
+
+        <h4>💎 VIP Plan</h4>
+
+        <p>
+            Investment:
+            <strong>$10,000+</strong>
+        </p>
+
+        <h3 style="color:#22C55E;">
+            20% Monthly Profit
+        </h3>
+
+        <br>
+
+        <button class="plan-btn">
+            Invest Now
+        </button>
+
+    </div>
+
+    <!-- Active Investment -->
+
+    <div class="section">
+
+        <div class="section-title">
+            <h3>📊 Your Active Investment</h3>
+        </div>
+
+        <div class="invest-card">
+
+            <div class="plan-name">
+                Gold Plan
+            </div>
+
+            <div class="plan-profit">
+                15% Monthly Return
+            </div>
+
+            <p>
+                Invested Amount:
+                <strong id="activeInvestment">
+                    5,500.00 USDT
+                </strong>
+            </p>
+
+            <br>
+
+            <p>
+                Monthly Profit:
+                <strong style="color:#22C55E;">
+                    +825.00 USDT
+                </strong>
+            </p>
+
+            <div class="progress">
+                <span></span>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Investment Tips -->
+
+    <div class="section">
+
+        <div class="glass-card">
+
+            <h3>💡 Investment Tips</h3>
+
+            <br>
+
+            <p>✔ Invest according to your budget.</p>
+            <p>✔ Track your monthly earnings.</p>
+            <p>✔ Invite friends to earn referral bonuses.</p>
+
+        </div>
+
+    </div>
+        <!-- Bottom Navigation -->
+
+    <div class="bottom-nav">
+
+        <a href="dashboard.html" class="nav-item">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="invest.html" class="nav-item active">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Invest</span>
+        </a>
+
+        <a href="trade.html" class="nav-item">
             <i class="fa-solid fa-chart-line"></i>
-            <h3>High Returns</h3>
-            <p>Choose from multiple profitable investment plans.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Instant Processing</h3>
-            <p>Fast deposits and quick investment activation.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Our support team is always available for assistance.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="action-section">
-
-    <h2>Quick Actions</h2>
-
-    <div class="action-buttons">
-
-        <a href="dashboard.html" class="action-btn deposit">
-            🏠 Dashboard
+            <span>Trade</span>
         </a>
 
-        <a href="treding.html" class="action-btn withdraw">
-            📈 Trading
+        <a href="history.html" class="nav-item">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>History</span>
         </a>
 
-        <a href="history.html" class="action-btn support">
-            📜 History
+        <a href="profile.html" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
         </a>
 
     </div>
-
-</section>
-<nav class="bottom-nav">
-
-    <a href="dashboard.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
-
-    <a href="invest.html" class="active">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Invest</span>
-    </a>
-
-    <a href="treding.html">
-        <i class="fa-solid fa-arrow-trend-up"></i>
-        <span>Trading</span>
-    </a>
-
-    <a href="history.html">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
-
-    <a href="profile.html">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
-
-</nav>
 
 </div>
 
-<script src="dashboard.js"></script>
+<!-- Firebase -->
+<script type="module" src="firebase.js"></script>
+
+<!-- Main JS -->
+<script src="app.js"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Invest Page Loaded");
+document.querySelectorAll(".plan-btn").forEach(button => {
+    button.addEventListener("click", () => {
+        alert("Investment request submitted successfully!");
+    });
 });
 </script>
 
