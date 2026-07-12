@@ -1,7 +1,7 @@
-/* ==========================
+/* ===================================
    GrowVest Premium Dashboard
    Part 1
-========================== */
+=================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -12,16 +12,21 @@
     font-family:'Poppins',sans-serif;
 }
 
-html{
-    scroll-behavior:smooth;
+:root{
+    --bg:#07111f;
+    --card:#101b2d;
+    --card2:#162338;
+    --primary:#00c2ff;
+    --green:#22c55e;
+    --red:#ef4444;
+    --text:#ffffff;
+    --muted:#94a3b8;
 }
 
 body{
-    background:#0b1120;
-    color:#fff;
-    min-height:100vh;
+    background:var(--bg);
+    color:var(--text);
     overflow-x:hidden;
-    padding-bottom:90px;
 }
 
 a{
@@ -33,203 +38,360 @@ a{
     max-width:1200px;
     margin:auto;
     padding:20px;
+    padding-bottom:100px;
 }
 
-/* ===== Top Bar ===== */
+/* ================= Header ================= */
 
-.top-bar{
+.top-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-bottom:25px;
 }
 
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.top-header h2{
     font-size:28px;
     font-weight:700;
-    color:#00d4ff;
 }
 
-.logo i{
-    font-size:30px;
+.top-header p{
+    color:var(--muted);
+    margin-top:5px;
 }
 
-.user{
+.right{
     display:flex;
-    align-items:center;
-    gap:10px;
-    background:rgba(255,255,255,.08);
-    padding:10px 18px;
-    border-radius:50px;
-    backdrop-filter:blur(12px);
-}
-
-.user i{
-    font-size:24px;
-}
-
-/* ===== Balance Card ===== */
-
-.balance-card{
-    background:linear-gradient(135deg,#2563eb,#06b6d4);
-    border-radius:25px;
-    padding:30px;
-    text-align:center;
-    margin-bottom:25px;
-    box-shadow:0 15px 35px rgba(0,212,255,.25);
-}
-
-.balance-card h4{
-    font-size:18px;
-    opacity:.9;
-}
-
-.balance-card h1{
-    font-size:42px;
-    margin:12px 0;
-    font-weight:700;
-}
-
-.balance-card p{
-    opacity:.9;
-}
-
-/* ===== Action Buttons ===== */
-
-.action-buttons{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
     gap:15px;
-    margin-bottom:25px;
 }
 
-.action-btn{
+.notification,
+.avatar{
+    width:48px;
+    height:48px;
+    border-radius:50%;
     display:flex;
     justify-content:center;
     align-items:center;
-    gap:10px;
-    padding:16px;
-    border-radius:18px;
-    font-size:18px;
-    font-weight:600;
+    background:var(--card);
+    border:1px solid rgba(255,255,255,.08);
+    cursor:pointer;
     transition:.3s;
 }
 
-.deposit{
-    background:#16a34a;
+.notification:hover,
+.avatar:hover{
+    background:var(--primary);
+    color:#fff;
 }
 
-.withdraw{
-    background:#dc2626;
-}
+/* ================= Wallet ================= */
 
-.action-btn:hover{
-    transform:translateY(-5px);
-}
-
-/* ===== Cards ===== */
-
-.market-section,
-.chart-section,
-.plan-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:22px;
-    padding:20px;
+.wallet-card{
+    background:linear-gradient(135deg,#2563eb,#06b6d4);
+    border-radius:25px;
+    padding:28px;
     margin-bottom:25px;
-    backdrop-filter:blur(15px);
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
 }
 
-.market-section h2,
-.chart-section h2,
-.plan-card h2{
+.wallet-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.wallet-top p{
+    opacity:.9;
+}
+
+.wallet-top h1{
+    margin-top:8px;
+    font-size:42px;
+    font-weight:700;
+}
+
+#toggleBalance{
+    width:50px;
+    height:50px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.18);
+    color:#fff;
+    cursor:pointer;
+    font-size:18px;
+}
+
+.wallet-bottom{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:25px;
+}
+
+.wallet-bottom div{
+    background:rgba(255,255,255,.12);
+    padding:15px;
+    border-radius:18px;
+}
+
+.wallet-bottom span{
+    display:block;
+    font-size:14px;
+    opacity:.9;
+}
+
+.wallet-bottom h3{
+    margin-top:6px;
+    font-size:22px;
+}
+
+/* ================= Live Market ================= */
+
+.market-box{
+    background:var(--card);
+    border-radius:22px;
+    padding:22px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.market-box h3{
     margin-bottom:18px;
 }
 
-/* ===== Live Market ===== */
-
 .ticker{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
     gap:15px;
 }
 
 .coin{
-    background:#111827;
-    border-radius:16px;
+    background:var(--card2);
     padding:16px;
+    border-radius:16px;
     text-align:center;
     transition:.3s;
 }
 
 .coin:hover{
     transform:translateY(-5px);
-    background:#1e293b;
+    border:1px solid var(--primary);
 }
 
-.coin span{
-    display:block;
-    color:#94a3b8;
+.coin h4{
+    color:var(--primary);
     margin-bottom:8px;
 }
 
-.coin strong{
-    color:#22c55e;
-    font-size:18px;
+.coin p{
+    font-size:17px;
+    font-weight:600;
 }
-/* ===== Menu Grid ===== */
 
-.menu-grid{
+/* ================= Trading Chart ================= */
+
+.chart-card{
+    background:var(--card);
+    border-radius:22px;
+    padding:22px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.chart-card h3{
+    margin-bottom:15px;
+}
+/* ================= Action Grid ================= */
+
+.action-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-bottom:25px;
+}
+
+.action{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    padding:22px;
+    border-radius:20px;
+    color:#fff;
+    font-weight:600;
+    transition:.3s;
+}
+
+.action i{
+    font-size:28px;
+}
+
+.deposit{
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+}
+
+.withdraw{
+    background:linear-gradient(135deg,#dc2626,#ef4444);
+}
+
+.invest{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+}
+
+.history{
+    background:linear-gradient(135deg,#7c3aed,#9333ea);
+}
+
+.action:hover{
+    transform:translateY(-6px);
+    box-shadow:0 15px 30px rgba(0,0,0,.35);
+}
+
+/* ================= Investment Section ================= */
+
+.plan-section{
+    background:var(--card);
+    border-radius:22px;
+    padding:22px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.plan-section h3{
+    margin-bottom:18px;
+}
+
+.plan-card{
+    background:var(--card2);
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:15px;
+    border-left:4px solid var(--primary);
+}
+
+.plan-card h4{
+    margin-bottom:10px;
+}
+
+.progress{
+    width:100%;
+    height:8px;
+    background:#253247;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:12px;
+}
+
+.progress span{
+    display:block;
+    height:100%;
+    background:linear-gradient(90deg,#00c2ff,#22c55e);
+    border-radius:10px;
+}
+
+/* ================= Transactions ================= */
+
+.transactions-section{
+    background:var(--card);
+    border-radius:22px;
+    padding:22px;
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.transactions-section h3{
+    margin-bottom:18px;
+}
+
+.transaction-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:var(--card2);
+    padding:16px;
+    border-radius:16px;
+    margin-bottom:12px;
+}
+
+.transaction-card h4{
+    margin-bottom:5px;
+}
+
+.transaction-card p{
+    color:var(--muted);
+    font-size:14px;
+}
+
+.pending{
+    background:#f59e0b;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+.success{
+    background:#16a34a;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+.failed{
+    background:#dc2626;
+    color:#fff;
+    padding:6px 12px;
+    border-radius:30px;
+    font-size:12px;
+}
+
+/* ================= Quick Menu ================= */
+
+.quick-menu{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
     gap:15px;
     margin-bottom:25px;
 }
 
-.menu-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:22px;
+.menu-item{
+    background:var(--card);
+    border-radius:18px;
+    padding:20px 10px;
     text-align:center;
-    backdrop-filter:blur(12px);
     transition:.3s;
-    cursor:pointer;
+    border:1px solid rgba(255,255,255,.06);
 }
 
-.menu-card:hover{
-    transform:translateY(-6px);
-    background:rgba(0,212,255,.12);
-    box-shadow:0 12px 25px rgba(0,212,255,.25);
+.menu-item:hover{
+    background:var(--primary);
+    transform:translateY(-5px);
 }
 
-.menu-card i{
+.menu-item i{
     display:block;
-    font-size:32px;
-    color:#00d4ff;
-    margin-bottom:12px;
+    font-size:28px;
+    margin-bottom:10px;
 }
 
-.menu-card span{
-    font-size:16px;
+.menu-item span{
+    font-size:14px;
     font-weight:600;
 }
-
-/* ===== Logout Button ===== */
+/* ================= Logout Button ================= */
 
 .logout-btn{
     width:100%;
+    padding:16px;
     border:none;
-    outline:none;
-    padding:18px;
     border-radius:18px;
     background:linear-gradient(135deg,#ef4444,#b91c1c);
     color:#fff;
     font-size:18px;
-    font-weight:700;
+    font-weight:600;
     cursor:pointer;
     transition:.3s;
     margin-bottom:25px;
@@ -240,42 +402,20 @@ a{
     box-shadow:0 12px 25px rgba(239,68,68,.35);
 }
 
-/* ===== Footer ===== */
-
-.footer{
-    text-align:center;
-    color:#94a3b8;
-    padding:30px 15px 100px;
-    font-size:14px;
-}
-
-.footer a{
-    color:#00d4ff;
-    transition:.3s;
-}
-
-.footer a:hover{
-    color:#38bdf8;
-}
-
-.footer p{
-    margin:8px 0;
-}
-
-/* ===== Bottom Navigation ===== */
+/* ================= Bottom Navigation ================= */
 
 .bottom-nav{
     position:fixed;
-    bottom:0;
     left:0;
+    bottom:0;
     width:100%;
     height:72px;
-    background:rgba(15,23,42,.95);
+    background:rgba(8,17,31,.96);
+    backdrop-filter:blur(16px);
     border-top:1px solid rgba(255,255,255,.08);
     display:flex;
     justify-content:space-around;
     align-items:center;
-    backdrop-filter:blur(18px);
     z-index:999;
 }
 
@@ -284,8 +424,7 @@ a{
     flex-direction:column;
     align-items:center;
     gap:4px;
-    color:#94a3b8;
-    font-size:12px;
+    color:var(--muted);
     transition:.3s;
 }
 
@@ -293,13 +432,38 @@ a{
     font-size:22px;
 }
 
-.bottom-nav a.active,
-.bottom-nav a:hover{
-    color:#00d4ff;
-    transform:translateY(-2px);
+.bottom-nav a span{
+    font-size:12px;
 }
 
-/* ===== Scrollbar ===== */
+.bottom-nav a.active,
+.bottom-nav a:hover{
+    color:var(--primary);
+    transform:translateY(-3px);
+}
+
+/* ================= Footer ================= */
+
+.footer{
+    text-align:center;
+    color:var(--muted);
+    padding:30px 15px 100px;
+    font-size:14px;
+}
+
+.footer p{
+    margin:8px 0;
+}
+
+.footer a{
+    color:var(--primary);
+}
+
+.footer a:hover{
+    color:#38bdf8;
+}
+
+/* ================= Scrollbar ================= */
 
 ::-webkit-scrollbar{
     width:8px;
@@ -310,123 +474,11 @@ a{
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#00d4ff;
+    background:var(--primary);
     border-radius:10px;
 }
 
-::-webkit-scrollbar-thumb:hover{
-    background:#38bdf8;
-}
-/* ==========================
-   Responsive Design
-========================== */
-
-@media (max-width:992px){
-
-.dashboard{
-    padding:15px;
-}
-
-.balance-card h1{
-    font-size:36px;
-}
-
-.ticker{
-    grid-template-columns:repeat(2,1fr);
-}
-
-}
-
-@media (max-width:768px){
-
-.top-bar{
-    flex-direction:column;
-    gap:15px;
-}
-
-.logo{
-    font-size:24px;
-}
-
-.user{
-    width:100%;
-    justify-content:center;
-}
-
-.action-buttons{
-    grid-template-columns:1fr;
-}
-
-.menu-grid{
-    grid-template-columns:1fr 1fr;
-}
-
-.balance-card{
-    padding:24px;
-}
-
-.balance-card h1{
-    font-size:32px;
-}
-
-.chart-section iframe,
-#tradingview_chart{
-    height:350px !important;
-}
-
-}
-
-@media (max-width:480px){
-
-.dashboard{
-    padding:12px;
-}
-
-.logo{
-    font-size:20px;
-}
-
-.balance-card h1{
-    font-size:28px;
-}
-
-.balance-card h4{
-    font-size:16px;
-}
-
-.menu-grid{
-    grid-template-columns:1fr;
-}
-
-.ticker{
-    grid-template-columns:1fr;
-}
-
-.coin{
-    padding:18px;
-}
-
-.action-btn{
-    font-size:16px;
-}
-
-.bottom-nav{
-    height:70px;
-}
-
-.bottom-nav a i{
-    font-size:20px;
-}
-
-.bottom-nav a span{
-    font-size:11px;
-}
-
-}
-
-/* ==========================
-   Animations
-========================== */
+/* ================= Animations ================= */
 
 @keyframes fadeUp{
     from{
@@ -439,36 +491,102 @@ a{
     }
 }
 
-.balance-card,
-.market-section,
-.chart-section,
-.plan-card,
-.menu-card{
+.wallet-card,
+.market-box,
+.chart-card,
+.plan-section,
+.transactions-section,
+.quick-menu,
+.action-grid{
     animation:fadeUp .6s ease;
 }
 
-/* ==========================
-   Premium Effects
-========================== */
+/* ================= Responsive ================= */
 
-.balance-card:hover,
-.market-section:hover,
-.chart-section:hover,
-.plan-card:hover{
-    transform:translateY(-4px);
-    transition:.3s ease;
-    box-shadow:0 15px 35px rgba(0,212,255,.18);
+@media(max-width:768px){
+
+.dashboard{
+    padding:15px;
 }
 
-.menu-card:active,
-.action-btn:active,
+.top-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.wallet-bottom{
+    grid-template-columns:1fr;
+}
+
+.action-grid{
+    grid-template-columns:1fr 1fr;
+}
+
+.quick-menu{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.ticker{
+    grid-template-columns:repeat(2,1fr);
+}
+
+#tradingview_chart{
+    height:350px !important;
+}
+
+}
+
+@media(max-width:480px){
+
+.dashboard{
+    padding:12px;
+}
+
+.top-header h2{
+    font-size:22px;
+}
+
+.wallet-top h1{
+    font-size:30px;
+}
+
+.action-grid,
+.quick-menu,
+.ticker{
+    grid-template-columns:1fr;
+}
+
+.bottom-nav{
+    height:68px;
+}
+
+.bottom-nav a i{
+    font-size:20px;
+}
+
+.bottom-nav a span{
+    font-size:11px;
+}
+
+}
+
+/* ================= Hover Effects ================= */
+
+.wallet-card:hover,
+.market-box:hover,
+.chart-card:hover,
+.plan-section:hover,
+.transactions-section:hover{
+    transform:translateY(-4px);
+    transition:.3s;
+    box-shadow:0 15px 35px rgba(0,194,255,.18);
+}
+
+.action:active,
+.menu-item:active,
 .logout-btn:active{
     transform:scale(.98);
 }
 
-.footer{
-    border-top:1px solid rgba(255,255,255,.08);
-    margin-top:20px;
-}
-
-/* ===== End of GrowVest Dashboard CSS ===== */
+/* ===== End of Style.css ===== */
