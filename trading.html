@@ -1,229 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowVest Professional Trading</title>
 
-<title>GrowVest - Live Trading</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-<script src="https://s3.tradingview.com/tv.js"></script>
-
+  <link rel="stylesheet" href="trading.css">
 </head>
+
 <body>
 
-<header class="topbar">
+<div class="container">
 
-    <div class="logo">
-        <i class="fa-solid fa-chart-line"></i>
-        <h2>GrowVest</h2>
+  <div class="header">
+    <h1>📈 Professional Trading Dashboard</h1>
+
+    <a href="dashboard.html" class="back-btn">
+      ⬅ Back to Dashboard
+    </a>
+  </div>
+
+  <div class="grid">
+
+    <!-- Trading Chart -->
+    <div class="card">
+      <h2>Live BTC/USDT Chart</h2>
+
+      <div class="chart-container">
+
+        <div class="tradingview-widget-container">
+          <div id="tradingview_chart"></div>
+        </div>
+
+      </div>
     </div>
 
-    <div class="menu">
-        <i class="fa-solid fa-bell"></i>
-        <i class="fa-solid fa-user"></i>
+    <!-- Buy Sell -->
+    <div class="card">
+
+      <h2>Buy / Sell</h2>
+
+      <div class="price-box">
+        <p>BTC/USDT</p>
+        <h1 id="marketPrice">$108,250.00</h1>
+        <p class="green">Live Market</p>
+      </div>
+
+      <input
+        type="number"
+        id="amount"
+        placeholder="Enter Amount">
+
+      <div class="btn-group">
+        <button id="buyBtn" class="buy-btn">
+          BUY
+        </button>
+
+        <button id="sellBtn" class="sell-btn">
+          SELL
+        </button>
+      </div>
+
     </div>
 
-</header>
+    <!-- Top Gainers -->
+    <div class="card">
 
-<section class="welcome">
+      <h2>🔥 Top Gainers</h2>
 
-    <h1>📈 Live Trading</h1>
+      <table>
 
-    <p>Track cryptocurrency markets in real time.</p>
+        <tr>
+          <th>Coin</th>
+          <th>Change</th>
+        </tr>
 
-</section>
+        <tr>
+          <td>BTC</td>
+          <td class="green">+2.45%</td>
+        </tr>
 
-<section class="chart-box">
+        <tr>
+          <td>ETH</td>
+          <td class="green">+3.18%</td>
+        </tr>
 
-    <h2>BTC / USDT Live Chart</h2>
+        <tr>
+          <td>SOL</td>
+          <td class="green">+5.64%</td>
+        </tr>
 
-    <div id="tradingview_chart" style="height:600px;width:100%;"></div>
+        <tr>
+          <td>BNB</td>
+          <td class="green">+1.92%</td>
+        </tr>
 
-</section>
+      </table>
+
+    </div>
+        <!-- Top Losers -->
+    <div class="card">
+
+      <h2>📉 Top Losers</h2>
+
+      <table>
+
+        <tr>
+          <th>Coin</th>
+          <th>Change</th>
+        </tr>
+
+        <tr>
+          <td>XRP</td>
+          <td class="red">-1.84%</td>
+        </tr>
+
+        <tr>
+          <td>DOGE</td>
+          <td class="red">-2.73%</td>
+        </tr>
+
+        <tr>
+          <td>ADA</td>
+          <td class="red">-1.43%</td>
+        </tr>
+
+        <tr>
+          <td>DOT</td>
+          <td class="red">-0.98%</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+    <!-- Market News -->
+    <div class="card">
+
+      <h2>📰 Market News</h2>
+
+      <ul id="newsList" class="news-list">
+      </ul>
+
+    </div>
+
+    <!-- Watchlist -->
+    <div class="card">
+
+      <h2>👀 Watchlist</h2>
+
+      <div id="watchlist">
+      </div>
+
+    </div>
+
+    <!-- Open Positions -->
+    <div class="card">
+
+      <h2>💼 Open Positions</h2>
+
+      <div id="positions">
+        <p>No active trades.</p>
+      </div>
+
+    </div>
+
+    <!-- Reviews -->
+    <div class="card">
+
+      <h2>⭐ User Reviews</h2>
+
+      <div class="review">
+        <strong>Overall Rating:</strong> 4.8/5
+        <br><br>
+        Excellent trading experience with a clean interface.
+      </div>
+
+    </div>
+
+  </div>
+    <div class="footer">
+    <p>© 2026 GrowVest. All Rights Reserved.</p>
+  </div>
+
+</div>
+
+<!-- TradingView Widget -->
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 
 <script>
-new TradingView.widget({
-    "autosize": true,
-    "symbol": "BINANCE:BTCUSDT",
-    "interval": "15",
-    "timezone": "Etc/UTC",
-    "theme": "dark",
-    "style": "1",
-    "locale": "en",
-    "toolbar_bg": "#111827",
-    "enable_publishing": false,
-    "allow_symbol_change": true,
-    "container_id": "tradingview_chart"
+window.addEventListener("load", function () {
+  if (typeof TradingView !== "undefined") {
+    new TradingView.widget({
+      autosize: true,
+      symbol: "BINANCE:BTCUSDT",
+      interval: "15",
+      timezone: "Etc/UTC",
+      theme: "dark",
+      style: "1",
+      locale: "en",
+      toolbar_bg: "#1e293b",
+      enable_publishing: false,
+      hide_top_toolbar: false,
+      allow_symbol_change: true,
+      container_id: "tradingview_chart"
+    });
+  }
 });
 </script>
 
-<section class="live-prices">
+<script type="module" src="trading.js"></script>
+<hr>
 
-<h2>🔥 Live Crypto Prices</h2>
+<footer style="text-align:center; padding:20px;">
 
-<div class="coin-grid">
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
 
-<div class="coin-card">
-<h3>Bitcoin (BTC)</h3>
-<p>$108,000+</p>
-</div>
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
 
-<div class="coin-card">
-<h3>Ethereum (ETH)</h3>
-<p>$2,500+</p>
-</div>
-
-<div class="coin-card">
-<h3>BNB</h3>
-<p>$650+</p>
-</div>
-
-<div class="coin-card">
-<h3>Solana (SOL)</h3>
-<p>$150+</p>
-</div>
-
-</div>
-
-</section>
-<section class="market-section">
-
-    <h2>📊 Market Overview</h2>
-
-    <div class="market-grid">
-
-        <div class="market-box">
-            <h3>🚀 Top Gainers</h3>
-            <ul>
-                <li>Bitcoin (BTC) <span style="float:right;color:#22c55e;">+4.82%</span></li>
-                <li>Ethereum (ETH) <span style="float:right;color:#22c55e;">+3.10%</span></li>
-                <li>Solana (SOL) <span style="float:right;color:#22c55e;">+8.42%</span></li>
-                <li>BNB <span style="float:right;color:#22c55e;">+2.75%</span></li>
-            </ul>
-        </div>
-
-        <div class="market-box">
-            <h3>📉 Top Losers</h3>
-            <ul>
-                <li>Dogecoin (DOGE) <span style="float:right;color:#ef4444;">-1.92%</span></li>
-                <li>Litecoin (LTC) <span style="float:right;color:#ef4444;">-2.15%</span></li>
-                <li>Polkadot (DOT) <span style="float:right;color:#ef4444;">-1.08%</span></li>
-                <li>Avalanche (AVAX) <span style="float:right;color:#ef4444;">-0.96%</span></li>
-            </ul>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="news-section">
-
-    <h2>📰 Crypto News</h2>
-
-    <div class="news-grid">
-
-        <div class="news-card">
-            <h3>Bitcoin Hits New High</h3>
-            <p>Bitcoin continues strong momentum as investors remain bullish.</p>
-        </div>
-
-        <div class="news-card">
-            <h3>Ethereum Network Update</h3>
-            <p>Ethereum ecosystem keeps expanding with faster and cheaper transactions.</p>
-        </div>
-
-        <div class="news-card">
-            <h3>Altcoins Rally</h3>
-            <p>Several major altcoins posted impressive gains in today's market.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="action-section">
-
-    <h2>⚡ Quick Actions</h2>
-
-    <div class="action-buttons">
-
-        <a href="dashboard.html" class="action-btn deposit">🏠 Dashboard</a>
-
-        <a href="history.html" class="action-btn withdraw">📜 History</a>
-
-        <a href="profile.html" class="action-btn support">👤 Profile</a>
-
-    </div>
-
-</section>
-<section class="benefits-section">
-
-    <h2>Why Choose GrowVest?</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Secure Trading</h3>
-            <p>Your funds are protected with advanced security.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Live Market Data</h3>
-            <p>Monitor crypto prices and charts in real time.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Fast Execution</h3>
-            <p>Quick order execution with a smooth experience.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Our support team is always ready to help you.</p>
-        </div>
-
-    </div>
-
-</section>
-
-<nav class="bottom-nav">
-
-    <a href="dashboard.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
-
-    <a href="treding.html" class="active">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Trading</span>
-    </a>
-
-    <a href="history.html">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
-
-    <a href="profile.html">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
-
-</nav>
-
-<script src="dashboard.js"></script>
-
+</footer>
 </body>
 </html>
