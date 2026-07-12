@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GrowVest Aviator</title>
 
+    <link rel="stylesheet" href="aviator.css">
+</head>
+<body>
+
+<div class="game-container">
+
+    <h1>GrowVest Aviator</h1>
+
+    <h2 id="multiplier">1.00x</h2>
+
+    <canvas id="gameCanvas" width="400" height="300"></canvas>
+
+    <div class="bet-box">
+
+        <input
+            type="number"
+            id="betAmount"
+            placeholder="Enter Bet Amount">
+
+        <button id="betBtn">
+            Place Bet
+        </button>
+
+        <button id="cashoutBtn">
+            Cash Out
+        </button>
+
+    </div>
+
+    <p id="status">
+        Waiting for next round...
+    </p>
+
+</div>
+
+<script src="aviator.js"></script>
+
+</body>
+</html>
