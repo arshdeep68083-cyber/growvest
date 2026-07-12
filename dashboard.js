@@ -7,222 +7,149 @@ import {
 
 import {
   doc,
-  getDoc,
-  updateDoc,
-  collection,
-  query,
-  where,
-  getDocs,
-  addDoc,
-  serverTimestamp
+  getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// ===== Format Balance =====
-
-function formatMoney(amount) {
-
-  amount = Number(amount) || 0;
-
-  return amount.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }) + " USDT";
-
-}
-
-// ===== Elements =====
-
-const emailBox = document.getElementById("userEmail");
-const balanceBox = document.getElementById("balance");
+const userEmail = document.getElementById("userEmail");
+const balance = document.getElementById("balance");
+const activePlan = document.getElementById("activePlan");
 const logoutBtn = document.getElementById("logoutBtn");
-const activePlanBox = document.getElementById("activePlan");
-
-// ===== Check Login =====
 
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
-
     window.location.href = "login.html";
     return;
-
   }
 
-  emailBox.textContent = user.email;
-
-  const userRef = doc(db, "users", user.uid);
-  const userSnap = await getDoc(userRef);
-
-  if (!userSnap.exists()) {
-
-    alert("User not found");
-    return;
-
-  }
-
-  let userData = userSnap.data();
-  let balance = Number(userData.balance || 0);
-
-  balanceBox.textContent = formatMoney(balance);
+  userEmail.textContent = user.email;
 
   try {
 
-    const plansQuery = query(
-      collection(db, "userPlans"),
-      where("uid", "==", user.uid),
-      where("status", "==", "Active")
-    );
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
 
-    const plansSnap = await getDocs(plansQuery);
+    if (userSnap.exists()) {
 
-    activePlanBox.innerHTML = "";
-        if (plansSnap.empty) {
+      const data = userSnap.data();
 
-      activePlanBox.innerHTML = `
-        <div class="plan-card-item">
-          <h3>No Active Plan</h3>
-          <p>You haven't purchased any investment plan yet.</p>
-        </div>
-      `;
+      balance.textContent =
+        (data.balance || 0).toFixed(2) + " USDT";
 
-    } else {
+      if (data.activePlan) {
 
-      const today = new Date().toISOString().split("T")[0];
+        activePlan.innerHTML = `
+          <h3>${data.activePlan}</h3>
+          <p>Investment Active</p>
+        `;
 
-      for (const planDoc of plansSnap.docs) {
+      } else {
 
-        const plan = planDoc.data();
-
-        let completedDays = Number(plan.daysCompleted || 0);
-
-        if (plan.lastProfitDate !== today) {
-
-          completedDays++;
-
-          balance += Number(plan.dailyProfit);
-
-          const updateData = {
-            lastProfitDate: today,
-            daysCompleted: completedDays
-          };
-
-          if (completedDays >= Number(plan.duration)) {
-
-            balance += Number(plan.price);
-
-            updateData.status = "Completed";
-
-            await addDoc(collection(db, "history"), {
-              uid: user.uid,
-              email: user.email,
-              type: "Capital Return",
-              amount: Number(plan.price),
-              currency: "USDT",
-              description: plan.planName + " Capital Returned",
-              createdAt: serverTimestamp()
-            });
-
-          }
-
-          await updateDoc(userRef, {
-            balance: balance
-          });
-
-          await updateDoc(
-            doc(db, "userPlans", planDoc.id),
-            updateData
-          );
-
-          await addDoc(collection(db, "history"), {
-            uid: user.uid,
-            email: user.email,
-            type: "Daily Profit",
-            amount: Number(plan.dailyProfit),
-            currency: "USDT",
-            description: plan.planName + " Daily Profit",
-            createdAt: serverTimestamp()
-          });
-
-        }
-
-        balanceBox.textContent = formatMoney(balance);
-
-        activePlanBox.innerHTML += `
-          <div class="plan-card-item">
-            <h3>${plan.planName}</h3>
-
-            <div class="plan-row">
-              <span>Investment</span>
-              <strong>${formatMoney(plan.price)}</strong>
-            </div>
-
-            <div class="plan-row">
-              <span>Daily Profit</span>
-              <strong>${formatMoney(plan.dailyProfit)}</strong>
-            </div>
-
-            <div class="plan-row">
-              <span>Completed</span>
-              <strong>${completedDays}/${plan.duration} Days</strong>
-            </div>
-                        <div class="plan-row">
-              <span>Remaining</span>
-              <strong>${Math.max(
-                0,
-                Number(plan.duration) - completedDays
-              )} Days</strong>
-            </div>
-
-            <div class="plan-status ${
-              completedDays >= Number(plan.duration)
-                ? "completed"
-                : "active"
-            }">
-              ${
-                completedDays >= Number(plan.duration)
-                  ? "Completed"
-                  : "Active"
-              }
-            </div>
-          </div>
+        activePlan.innerHTML = `
+          <p>No Active Plan</p>
         `;
 
       }
 
     }
 
-  } catch (error) {
-
-    console.error(error);
-    alert(error.message);
-
+  } catch (err) {
+    console.error(err);
   }
 
 });
-
-// ===== Logout =====
 
 logoutBtn.addEventListener("click", async () => {
 
+  await signOut(auth);
+
+  window.location.href = "login.html";
+
+});
+
+// ===== Live Crypto Prices =====
+
+async function loadCryptoPrices() {
+
   try {
 
-    await signOut(auth);
+    const res = await fetch(
+      "https://api.binance.com/api/v3/ticker/price?symbols=%5B%22BTCUSDT%22,%22ETHUSDT%22,%22BNBUSDT%22,%22SOLUSDT%22%5D"
+    );
 
-    window.location.href = "login.html";
+    const prices = await res.json();
+
+    document.getElementById("btcPrice").textContent =
+      "$" + Number(prices[0].price).toLocaleString();
+
+    document.getElementById("ethPrice").textContent =
+      "$" + Number(prices[1].price).toLocaleString();
+
+    document.getElementById("bnbPrice").textContent =
+      "$" + Number(prices[2].price).toLocaleString();
+
+    document.getElementById("solPrice").textContent =
+      "$" + Number(prices[3].price).toLocaleString();
 
   } catch (error) {
 
-    console.error(error);
-    alert(error.message);
+    console.error("Price Load Error:", error);
+
+    document.getElementById("btcPrice").textContent = "--";
+    document.getElementById("ethPrice").textContent = "--";
+    document.getElementById("bnbPrice").textContent = "--";
+    document.getElementById("solPrice").textContent = "--";
 
   }
 
-});
+}
 
-// ===== Dashboard Ready =====
+// First Load
+loadCryptoPrices();
 
-window.addEventListener("DOMContentLoaded", () => {
+// Refresh every 10 seconds
+setInterval(loadCryptoPrices, 10000);
+// ===== Dashboard Final Setup =====
 
-  console.log("GrowVest Dashboard Loaded Successfully");
+function startDashboard() {
+  console.log("GrowVest Dashboard Loaded");
+}
 
-});
+// Refresh active plan every 30 seconds
+async function refreshDashboard() {
+  const user = auth.currentUser;
+
+  if (!user) return;
+
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (userSnap.exists()) {
+      const data = userSnap.data();
+
+      balance.textContent =
+        (data.balance || 0).toFixed(2) + " USDT";
+
+      if (data.activePlan) {
+        activePlan.innerHTML = `
+          <h3>${data.activePlan}</h3>
+          <p>Investment Active</p>
+        `;
+      } else {
+        activePlan.innerHTML = `
+          <p>No Active Plan</p>
+        `;
+      }
+    }
+
+  } catch (err) {
+    console.error("Dashboard Refresh Error:", err);
+  }
+}
+
+// Refresh dashboard every 30 seconds
+setInterval(refreshDashboard, 30000);
+
+// Start dashboard
+startDashboard();
