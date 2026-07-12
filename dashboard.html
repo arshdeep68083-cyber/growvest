@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>GrowVest Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
@@ -10,35 +12,93 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+<script src="https://s3.tradingview.com/tv.js"></script>
+
 </head>
 
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-<div class="logo-box">
-<div class="logo-icon">
+<header class="top-bar">
+
+<div class="logo">
 <i class="fa-solid fa-chart-line"></i>
+<span>GrowVest</span>
 </div>
 
-<h1>GrowVest</h1>
-<p>Welcome Back</p>
-
+<div class="user">
+<i class="fa-solid fa-user-circle"></i>
+<span id="userEmail">Loading...</span>
 </div>
 
-<div class="card">
+</header>
 
-<h2>Your Account</h2>
+<section class="balance-card">
 
-<p id="userEmail">Loading...</p>
+<h4>Total Balance</h4>
 
 <h1 id="balance">0.00 USDT</h1>
 
+<p>Your Digital Investment Wallet</p>
+
+</section>
+
+<section class="action-buttons">
+
+<a href="deposit.html" class="action-btn deposit">
+<i class="fas fa-arrow-down"></i>
+Deposit
+</a>
+
+<a href="withdraw.html" class="action-btn withdraw">
+<i class="fas fa-arrow-up"></i>
+Withdraw
+</a>
+
+</section>
+
+<section class="market-section">
+
+<h2>🔥 Live Crypto Market</h2>
+
+<div class="ticker">
+
+<div class="coin">
+<span>BTC</span>
+<strong id="btcPrice">Loading...</strong>
 </div>
 
-<br>
+<div class="coin">
+<span>ETH</span>
+<strong id="ethPrice">Loading...</strong>
+</div>
 
-<div class="card">
+<div class="coin">
+<span>BNB</span>
+<strong id="bnbPrice">Loading...</strong>
+</div>
+
+<div class="coin">
+<span>SOL</span>
+<strong id="solPrice">Loading...</strong>
+</div>
+
+</div>
+
+</section>
+
+<section class="chart-section">
+
+<h2>📈 Live Trading Chart</h2>
+
+<div id="tradingview_chart"
+style="height:450px;width:100%;">
+</div>
+
+</section>
+
+<section class="plan-card">
 
 <h2>Active Investment Plan</h2>
 
@@ -46,69 +106,77 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 <p>No Active Plan</p>
 </div>
 
+</section>
+
+<section class="menu-grid">
+
+<a href="plans.html" class="menu-card">
+<i class="fas fa-chart-pie"></i>
+<span>Plans</span>
+</a>
+
+<a href="history.html" class="menu-card">
+<i class="fas fa-history"></i>
+<span>History</span>
+</a>
+
+<a href="profile.html" class="menu-card">
+<i class="fas fa-user"></i>
+<span>Profile</span>
+</a>
+
+<a href="help.html" class="menu-card">
+<i class="fas fa-headset"></i>
+<span>Support</span>
+</a>
+<a href="admin.html" class="menu-card">
+<i class="fas fa-user-shield"></i>
+<span>Admin</span>
+</a>
+
+</section>
+
+<button id="logoutBtn" class="logout-btn">
+<i class="fas fa-sign-out-alt"></i>
+Logout
+</button>
+
 </div>
 
-<br>
+<!-- Bottom Navigation -->
 
-<a href="deposit.html">
-<button class="btn">
-💰 Deposit
-</button>
-</a>
+<nav class="bottom-nav">
 
-<a href="withdraw.html">
-<button class="btn">
-💸 Withdraw
-</button>
-</a>
-
-<a href="history.html">
-<button class="btn">
-📄 History
-</button>
-</a>
-
-<a href="plans.html">
-<button class="btn">
-📈 Investment Plans
-</button>
+<a href="dashboard.html" class="active">
+<i class="fas fa-house"></i>
+<span>Home</span>
 </a>
 
 <a href="trading.html">
-<button class="btn">
-📊 Trading
-</button>
+<i class="fas fa-chart-line"></i>
+<span>Markets</span>
+</a>
+
+<a href="plans.html">
+<i class="fas fa-coins"></i>
+<span>Invest</span>
+</a>
+
+<a href="history.html">
+<i class="fas fa-clock-rotate-left"></i>
+<span>History</span>
 </a>
 
 <a href="profile.html">
-<button class="btn">
-👤 Profile
-</button>
+<i class="fas fa-user"></i>
+<span>Profile</span>
 </a>
 
-<a href="admin.html">
-<button class="btn">
-⚙️ Admin Panel
-</button>
-</a>
-
-<a href="help.html">
-<button class="btn">
-🛟 Help & Support
-</button>
-</a>
-
-<button id="logoutBtn" class="btn logoutBtn">
-🚪 Logout
-</button>
-
-</div>
-
-<script type="module" src="dashboard.js"></script>
+</nav>
 
 <hr>
 
-<footer>
+<footer class="footer">
 
 <p>
 
@@ -126,5 +194,40 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 </footer>
 
+<script>
+
+new TradingView.widget({
+
+"autosize": true,
+
+"symbol": "BINANCE:BTCUSDT",
+
+"interval": "15",
+
+"timezone": "Etc/UTC",
+
+"theme": "dark",
+
+"style": "1",
+
+"locale": "en",
+
+"toolbar_bg": "#0f172a",
+
+"enable_publishing": false,
+
+"hide_top_toolbar": false,
+
+"allow_symbol_change": true,
+
+"container_id": "tradingview_chart"
+
+});
+
+</script>
+
+<script type="module" src="dashboard.js"></script>
+
 </body>
+
 </html>
