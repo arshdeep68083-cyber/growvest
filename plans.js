@@ -1,26 +1,106 @@
 import { auth, db } from "./firebase-config.js";
 
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+
 import {
-  doc,
+  collection,
+  getDocs,
   getDoc,
+  doc,
   updateDoc,
   addDoc,
-  collection,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-window.investPlan = async function(planName, price, duration, monthlyProfit){
+const plansList = document.getElementById("plansList");
 
-  const user = auth.currentUser;
+let currentUser = null;
+
+function formatUSDT(amount) {
+  amount = Number(amount) || 0;
+
+  return amount.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  }) + " USDT";
+}
+
+onAuthStateChanged(auth, (user) => {
 
   if (!user) {
-    alert("Please login first.");
+    window.location.href = "login.html";
     return;
   }
 
+  currentUser = user;
+  loadPlans();
+
+});
+
+async function loadPlans() {
+
+  plansList.innerHTML = "";
+
+  const snapshot = await getDocs(collection(db, "plans"));
+
+  let plans = [];
+
+  snapshot.forEach((docSnap) => {
+    plans.push({
+      id: docSnap.id,
+      ...docSnap.data()
+    });
+  });
+
+  plans.sort((a, b) => a.price - b.price);
+
+  plans.forEach((plan) => {
+
+    plansList.innerHTML += `
+      <div class="card">
+
+        <h2>${plan.name}</h2>
+
+        <p><b>💰 Investment:</b> $${plan.minInvestment} - $${plan.maxInvestment}</p>
+
+        <p><b>📈 Monthly Profit:</b> ${plan.monthlyProfit}%</p>
+
+        <p><b>⏳ Duration:</b> ${plan.duration} Days</p>
+
+        <p><b>✅ Status:</b> ${plan.status}</p>
+
+        <button class="btn investBtn" data-id="${plan.id}">
+          Buy Now
+        </button>
+
+      </div>
+
+      <br>
+    `;
+
+  });
+
+  document.querySelectorAll(".investBtn").forEach(btn => {
+
+    btn.onclick = async () => {
+
+      const plan = plans.find(p => p.id === btn.dataset.id);
+
+      if (plan) {
+        await buyPlan(plan);
+      }
+
+    };
+
+  });
+
+}
+
+async function buyPlan(plan) {
+
   try {
 
-    const userRef = doc(db, "users", user.uid);
+    const userRef = doc(db, "users", currentUser.uid);
     const userSnap = await getDoc(userRef);
 
     if (!userSnap.exists()) {
@@ -29,60 +109,56 @@ window.investPlan = async function(planName, price, duration, monthlyProfit){
     }
 
     const userData = userSnap.data();
+    const balance = Number(userData.balance || 0);
 
-    let balance = Number(userData.balance || 0);
-    let investment = Number(userData.investment || 0);
-
-    // Balance Check
-    if (balance < price) {
-      alert("❌ Insufficient Balance");
+    if (balance < Number(plan.price)) {
+      alert("Insufficient Balance");
       return;
     }
 
-    // Deduct Balance
-    balance -= price;
-    investment += price;
+    const newBalance = balance - Number(plan.price);
 
-    const dailyProfit = (price * (monthlyProfit / 100)) / 30;
-
-    // Update User Balance
     await updateDoc(userRef, {
-      balance: balance,
-      investment: investment
+      balance: newBalance
     });
 
-    // Save Investment
     await addDoc(collection(db, "userPlans"), {
-      uid: user.uid,
-      email: user.email,
-      planName: planName,
-      price: price,
-      duration: duration,
-      monthlyProfit: monthlyProfit,
-      dailyProfit: dailyProfit,
+      uid: currentUser.uid,
+      email: currentUser.email,
+      planName: plan.name,
+      price: Number(plan.price),
+      dailyProfit: Number(plan.dailyProfit),
+      duration: Number(plan.duration),
+      status: "Active",
       daysCompleted: 0,
       lastProfitDate: "",
-      status: "Active",
-      createdAt: serverTimestamp()
+      purchaseDate: serverTimestamp()
     });
 
-    // Save History
     await addDoc(collection(db, "history"), {
-      uid: user.uid,
-      email: user.email,
-      type: "Investment",
-      amount: price,
+      uid: currentUser.uid,
+      email: currentUser.email,
+      type: "Plan Purchase",
+      amount: Number(plan.price),
       currency: "USDT",
-      description: planName + " Activated",
+      description: plan.name,
+      status: "Completed",
       createdAt: serverTimestamp()
     });
 
-    alert("✅ Investment Successful!\n\nYour plan has been activated successfully.");
+    alert("Plan Purchased Successfully!");
 
     window.location.href = "dashboard.html";
 
   } catch (error) {
+
     console.error(error);
     alert(error.message);
+
   }
+
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+  console.log("GrowVest Plans Loaded Successfully");
+});
