@@ -1,9 +1,22 @@
-/* ===================================
+/* ======================================
    GrowVest Premium Dashboard
-   Part 1
-=================================== */
+   Style.css - Part 1
+====================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#08111f;
+    --card:#111827;
+    --card2:#182335;
+    --primary:#00c2ff;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#facc15;
+    --purple:#8b5cf6;
+    --text:#ffffff;
+    --muted:#94a3b8;
+}
 
 *{
     margin:0;
@@ -12,21 +25,16 @@
     font-family:'Poppins',sans-serif;
 }
 
-:root{
-    --bg:#07111f;
-    --card:#101b2d;
-    --card2:#162338;
-    --primary:#00c2ff;
-    --green:#22c55e;
-    --red:#ef4444;
-    --text:#ffffff;
-    --muted:#94a3b8;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
-    background:var(--bg);
+    background:linear-gradient(180deg,#08111f,#0f172a);
     color:var(--text);
+    min-height:100vh;
     overflow-x:hidden;
+    padding-bottom:90px;
 }
 
 a{
@@ -35,10 +43,10 @@ a{
 }
 
 .dashboard{
-    max-width:1200px;
+    width:100%;
+    max-width:520px;
     margin:auto;
-    padding:20px;
-    padding-bottom:100px;
+    padding:18px;
 }
 
 /* ================= Header ================= */
@@ -47,7 +55,7 @@ a{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:25px;
+    margin-bottom:22px;
 }
 
 .top-header h2{
@@ -57,12 +65,14 @@ a{
 
 .top-header p{
     color:var(--muted);
-    margin-top:5px;
+    font-size:14px;
+    margin-top:4px;
 }
 
 .right{
     display:flex;
-    gap:15px;
+    align-items:center;
+    gap:12px;
 }
 
 .notification,
@@ -70,29 +80,22 @@ a{
     width:48px;
     height:48px;
     border-radius:50%;
+    background:rgba(255,255,255,.08);
     display:flex;
     justify-content:center;
     align-items:center;
-    background:var(--card);
-    border:1px solid rgba(255,255,255,.08);
-    cursor:pointer;
-    transition:.3s;
+    font-size:20px;
+    backdrop-filter:blur(10px);
 }
 
-.notification:hover,
-.avatar:hover{
-    background:var(--primary);
-    color:#fff;
-}
-
-/* ================= Wallet ================= */
+/* ================= Wallet Card ================= */
 
 .wallet-card{
     background:linear-gradient(135deg,#2563eb,#06b6d4);
-    border-radius:25px;
-    padding:28px;
-    margin-bottom:25px;
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
+    border-radius:24px;
+    padding:24px;
+    margin-bottom:24px;
+    box-shadow:0 15px 35px rgba(0,194,255,.25);
 }
 
 .wallet-top{
@@ -103,17 +106,17 @@ a{
 
 .wallet-top p{
     opacity:.9;
+    margin-bottom:8px;
 }
 
 .wallet-top h1{
-    margin-top:8px;
-    font-size:42px;
+    font-size:34px;
     font-weight:700;
 }
 
 #toggleBalance{
-    width:50px;
-    height:50px;
+    width:48px;
+    height:48px;
     border:none;
     border-radius:50%;
     background:rgba(255,255,255,.18);
@@ -125,99 +128,35 @@ a{
 .wallet-bottom{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-top:25px;
-}
-
-.wallet-bottom div{
-    background:rgba(255,255,255,.12);
-    padding:15px;
-    border-radius:18px;
+    gap:18px;
+    margin-top:22px;
 }
 
 .wallet-bottom span{
-    display:block;
-    font-size:14px;
+    font-size:13px;
     opacity:.9;
 }
 
 .wallet-bottom h3{
     margin-top:6px;
-    font-size:22px;
+    font-size:18px;
 }
 
-/* ================= Live Market ================= */
-
-.market-box{
-    background:var(--card);
-    border-radius:22px;
-    padding:22px;
-    margin-bottom:25px;
-    border:1px solid rgba(255,255,255,.06);
-}
-
-.market-box h3{
-    margin-bottom:18px;
-}
-
-.ticker{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-    gap:15px;
-}
-
-.coin{
-    background:var(--card2);
-    padding:16px;
-    border-radius:16px;
-    text-align:center;
-    transition:.3s;
-}
-
-.coin:hover{
-    transform:translateY(-5px);
-    border:1px solid var(--primary);
-}
-
-.coin h4{
-    color:var(--primary);
-    margin-bottom:8px;
-}
-
-.coin p{
-    font-size:17px;
-    font-weight:600;
-}
-
-/* ================= Trading Chart ================= */
-
-.chart-card{
-    background:var(--card);
-    border-radius:22px;
-    padding:22px;
-    margin-bottom:25px;
-    border:1px solid rgba(255,255,255,.06);
-}
-
-.chart-card h3{
-    margin-bottom:15px;
-}
-/* ================= Action Grid ================= */
+/* ================= Action Buttons ================= */
 
 .action-grid{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:16px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:24px;
 }
 
 .action{
     display:flex;
     flex-direction:column;
-    justify-content:center;
     align-items:center;
-    gap:10px;
-    padding:22px;
+    justify-content:center;
+    padding:20px;
     border-radius:20px;
     color:#fff;
     font-weight:600;
@@ -226,6 +165,7 @@ a{
 
 .action i{
     font-size:28px;
+    margin-bottom:10px;
 }
 
 .deposit{
@@ -241,21 +181,90 @@ a{
 }
 
 .history{
-    background:linear-gradient(135deg,#7c3aed,#9333ea);
+    background:linear-gradient(135deg,#7c3aed,#8b5cf6);
 }
 
 .action:hover{
-    transform:translateY(-6px);
-    box-shadow:0 15px 30px rgba(0,0,0,.35);
+    transform:translateY(-5px);
+}
+/* ======================================
+   Style.css - Part 2
+   Market • Chart • Plans • Transactions
+====================================== */
+
+/* ================= Live Market ================= */
+
+.market-box{
+    background:var(--card);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:22px;
+    border:1px solid rgba(255,255,255,.06);
 }
 
-/* ================= Investment Section ================= */
+.market-box h3{
+    margin-bottom:18px;
+    font-size:20px;
+}
+
+.ticker{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.coin{
+    background:var(--card2);
+    border-radius:18px;
+    padding:18px;
+    text-align:center;
+    transition:.3s;
+}
+
+.coin:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,194,255,.15);
+}
+
+.coin h4{
+    margin-bottom:8px;
+    color:#cbd5e1;
+}
+
+.coin p{
+    color:#22c55e;
+    font-size:18px;
+    font-weight:700;
+}
+
+/* ================= Trading Chart ================= */
+
+.chart-card{
+    background:var(--card);
+    border-radius:22px;
+    padding:20px;
+    margin-bottom:22px;
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.chart-card h3{
+    margin-bottom:18px;
+}
+
+#tradingview_chart{
+    width:100%;
+    height:420px;
+    border-radius:18px;
+    overflow:hidden;
+}
+
+/* ================= Investment Plans ================= */
 
 .plan-section{
     background:var(--card);
     border-radius:22px;
-    padding:22px;
-    margin-bottom:25px;
+    padding:20px;
+    margin-bottom:22px;
     border:1px solid rgba(255,255,255,.06);
 }
 
@@ -267,19 +276,27 @@ a{
     background:var(--card2);
     border-radius:18px;
     padding:18px;
-    margin-bottom:15px;
-    border-left:4px solid var(--primary);
+    margin-bottom:16px;
+}
+
+.plan-card:last-child{
+    margin-bottom:0;
 }
 
 .plan-card h4{
     margin-bottom:10px;
 }
 
+.plan-card p{
+    margin:6px 0;
+    color:#d1d5db;
+}
+
 .progress{
     width:100%;
     height:8px;
-    background:#253247;
-    border-radius:10px;
+    background:#0f172a;
+    border-radius:50px;
     overflow:hidden;
     margin-top:12px;
 }
@@ -288,7 +305,7 @@ a{
     display:block;
     height:100%;
     background:linear-gradient(90deg,#00c2ff,#22c55e);
-    border-radius:10px;
+    border-radius:50px;
 }
 
 /* ================= Transactions ================= */
@@ -296,8 +313,8 @@ a{
 .transactions-section{
     background:var(--card);
     border-radius:22px;
-    padding:22px;
-    margin-bottom:25px;
+    padding:20px;
+    margin-bottom:22px;
     border:1px solid rgba(255,255,255,.06);
 }
 
@@ -312,7 +329,11 @@ a{
     background:var(--card2);
     padding:16px;
     border-radius:16px;
-    margin-bottom:12px;
+    margin-bottom:14px;
+}
+
+.transaction-card:last-child{
+    margin-bottom:0;
 }
 
 .transaction-card h4{
@@ -321,66 +342,59 @@ a{
 
 .transaction-card p{
     color:var(--muted);
-    font-size:14px;
-}
-
-.pending{
-    background:#f59e0b;
-    color:#fff;
-    padding:6px 12px;
-    border-radius:30px;
-    font-size:12px;
+    font-size:13px;
 }
 
 .success{
-    background:#16a34a;
-    color:#fff;
-    padding:6px 12px;
-    border-radius:30px;
-    font-size:12px;
+    color:#22c55e;
+    font-weight:600;
 }
 
-.failed{
-    background:#dc2626;
-    color:#fff;
-    padding:6px 12px;
-    border-radius:30px;
-    font-size:12px;
+.pending{
+    color:#facc15;
+    font-weight:600;
 }
+/* ======================================
+   Style.css - Part 3
+   Quick Menu • Logout • Bottom Nav • Footer
+====================================== */
 
 /* ================= Quick Menu ================= */
 
 .quick-menu{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
     margin-bottom:25px;
 }
 
 .menu-item{
     background:var(--card);
-    border-radius:18px;
+    border:1px solid rgba(255,255,255,.06);
+    border-radius:20px;
     padding:20px 10px;
     text-align:center;
     transition:.3s;
-    border:1px solid rgba(255,255,255,.06);
 }
 
 .menu-item:hover{
-    background:var(--primary);
     transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(0,194,255,.15);
 }
 
 .menu-item i{
-    display:block;
     font-size:28px;
+    color:var(--primary);
     margin-bottom:10px;
+    display:block;
 }
 
 .menu-item span{
     font-size:14px;
     font-weight:600;
+    color:#fff;
 }
+
 /* ================= Logout Button ================= */
 
 .logout-btn{
@@ -390,16 +404,15 @@ a{
     border-radius:18px;
     background:linear-gradient(135deg,#ef4444,#b91c1c);
     color:#fff;
-    font-size:18px;
-    font-weight:600;
+    font-size:17px;
+    font-weight:700;
     cursor:pointer;
-    transition:.3s;
     margin-bottom:25px;
+    transition:.3s;
 }
 
 .logout-btn:hover{
-    transform:translateY(-4px);
-    box-shadow:0 12px 25px rgba(239,68,68,.35);
+    transform:translateY(-3px);
 }
 
 /* ================= Bottom Navigation ================= */
@@ -407,25 +420,28 @@ a{
 .bottom-nav{
     position:fixed;
     left:0;
+    right:0;
     bottom:0;
-    width:100%;
-    height:72px;
-    background:rgba(8,17,31,.96);
-    backdrop-filter:blur(16px);
+    height:75px;
+    background:#0b1120;
     border-top:1px solid rgba(255,255,255,.08);
     display:flex;
     justify-content:space-around;
     align-items:center;
-    z-index:999;
+    z-index:9999;
+    backdrop-filter:blur(15px);
+    box-shadow:0 -5px 20px rgba(0,0,0,.35);
 }
 
 .bottom-nav a{
     display:flex;
     flex-direction:column;
     align-items:center;
+    justify-content:center;
     gap:4px;
-    color:var(--muted);
+    color:#94a3b8;
     transition:.3s;
+    flex:1;
 }
 
 .bottom-nav a i{
@@ -433,22 +449,25 @@ a{
 }
 
 .bottom-nav a span{
-    font-size:12px;
+    font-size:11px;
+    font-weight:500;
 }
 
-.bottom-nav a.active,
+.bottom-nav a.active{
+    color:var(--primary);
+}
+
 .bottom-nav a:hover{
     color:var(--primary);
-    transform:translateY(-3px);
 }
 
 /* ================= Footer ================= */
 
 .footer{
     text-align:center;
-    color:var(--muted);
-    padding:30px 15px 100px;
-    font-size:14px;
+    padding:25px 15px 95px;
+    color:#94a3b8;
+    font-size:13px;
 }
 
 .footer p{
@@ -462,23 +481,100 @@ a{
 .footer a:hover{
     color:#38bdf8;
 }
+/* ======================================
+   Style.css - Part 4
+   Responsive • Animation • Final
+====================================== */
 
-/* ================= Scrollbar ================= */
+/* ========= Responsive ========= */
 
-::-webkit-scrollbar{
-    width:8px;
+@media (max-width:768px){
+
+.dashboard{
+    padding:15px;
 }
 
-::-webkit-scrollbar-track{
-    background:#111827;
+.wallet-top{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:15px;
 }
 
-::-webkit-scrollbar-thumb{
-    background:var(--primary);
-    border-radius:10px;
+.wallet-top h1{
+    font-size:28px;
 }
 
-/* ================= Animations ================= */
+.wallet-bottom{
+    grid-template-columns:1fr;
+}
+
+.ticker{
+    grid-template-columns:1fr 1fr;
+}
+
+.quick-menu{
+    grid-template-columns:repeat(2,1fr);
+}
+
+#tradingview_chart{
+    height:320px !important;
+}
+
+}
+
+@media (max-width:480px){
+
+.dashboard{
+    padding:12px;
+}
+
+.top-header h2{
+    font-size:22px;
+}
+
+.wallet-card{
+    padding:18px;
+}
+
+.wallet-top h1{
+    font-size:24px;
+}
+
+.action-grid{
+    grid-template-columns:1fr 1fr;
+}
+
+.ticker{
+    grid-template-columns:1fr;
+}
+
+.quick-menu{
+    grid-template-columns:1fr 1fr;
+}
+
+.menu-item{
+    padding:18px 10px;
+}
+
+.bottom-nav{
+    height:72px;
+}
+
+.bottom-nav i{
+    font-size:20px;
+}
+
+.bottom-nav span{
+    font-size:10px;
+}
+
+.footer{
+    padding-bottom:90px;
+}
+
+}
+
+/* ========= Animation ========= */
 
 @keyframes fadeUp{
     from{
@@ -496,97 +592,53 @@ a{
 .chart-card,
 .plan-section,
 .transactions-section,
-.quick-menu,
-.action-grid{
-    animation:fadeUp .6s ease;
+.menu-item,
+.action{
+    animation:fadeUp .5s ease;
 }
 
-/* ================= Responsive ================= */
-
-@media(max-width:768px){
-
-.dashboard{
-    padding:15px;
-}
-
-.top-header{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:15px;
-}
-
-.wallet-bottom{
-    grid-template-columns:1fr;
-}
-
-.action-grid{
-    grid-template-columns:1fr 1fr;
-}
-
-.quick-menu{
-    grid-template-columns:repeat(2,1fr);
-}
-
-.ticker{
-    grid-template-columns:repeat(2,1fr);
-}
-
-#tradingview_chart{
-    height:350px !important;
-}
-
-}
-
-@media(max-width:480px){
-
-.dashboard{
-    padding:12px;
-}
-
-.top-header h2{
-    font-size:22px;
-}
-
-.wallet-top h1{
-    font-size:30px;
-}
-
-.action-grid,
-.quick-menu,
-.ticker{
-    grid-template-columns:1fr;
-}
-
-.bottom-nav{
-    height:68px;
-}
-
-.bottom-nav a i{
-    font-size:20px;
-}
-
-.bottom-nav a span{
-    font-size:11px;
-}
-
-}
-
-/* ================= Hover Effects ================= */
+/* ========= Hover Effects ========= */
 
 .wallet-card:hover,
 .market-box:hover,
 .chart-card:hover,
 .plan-section:hover,
 .transactions-section:hover{
-    transform:translateY(-4px);
+    transform:translateY(-3px);
     transition:.3s;
-    box-shadow:0 15px 35px rgba(0,194,255,.18);
+    box-shadow:0 12px 30px rgba(0,194,255,.15);
 }
 
 .action:active,
 .menu-item:active,
 .logout-btn:active{
-    transform:scale(.98);
+    transform:scale(.97);
 }
 
-/* ===== End of Style.css ===== */
+/* ========= Scrollbar ========= */
+
+::-webkit-scrollbar{
+    width:8px;
+}
+
+::-webkit-scrollbar-track{
+    background:#111827;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#00c2ff;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background:#38bdf8;
+}
+
+/* ========= Selection ========= */
+
+::selection{
+    background:#00c2ff;
+    color:#fff;
+}
+
+/* ========= End ========= */
