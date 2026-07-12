@@ -1,194 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GrowVest - Profile</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+<title>Profile</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<header class="topbar">
+<h1>My Profile</h1>
 
-    <div class="logo">
-        <i class="fa-solid fa-user"></i>
-        <h2>My Profile</h2>
-    </div>
+<p><strong>Name:</strong></p>
+<p id="name">Loading...</p>
 
-    <div class="menu">
-        <i class="fa-solid fa-gear"></i>
-        <i class="fa-solid fa-bell"></i>
-    </div>
+<p><strong>Email:</strong></p>
+<p id="email">Loading...</p>
 
-</header>
+<p><strong>Balance:</strong></p>
+<p id="balance">₹0</p>
 
-<section class="welcome">
+<p><strong>Join Date:</strong></p>
+<p id="joinDate">Loading...</p>
 
-    <h1>Welcome, Admin 👋</h1>
+<br>
 
-    <p>Manage your account details and settings.</p>
-
-</section>
-
-<section class="market-overview">
-
-    <div class="overview-card">
-        <i class="fa-solid fa-user"></i>
-        <h3>Name</h3>
-        <h2>Admin</h2>
-    </div>
-
-    <div class="overview-card">
-        <i class="fa-solid fa-envelope"></i>
-        <h3>Email</h3>
-        <h2>admin@growvest.com</h2>
-    </div>
-
-    <div class="overview-card">
-        <i class="fa-solid fa-wallet"></i>
-        <h3>Balance</h3>
-        <h2>$25,000</h2>
-    </div>
-
-    <div class="overview-card">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3>Account</h3>
-        <h2>Verified</h2>
-    </div>
-
-</section>
-
-<section class="action-section">
-
-    <h2>Account Options</h2>
-
-    <div class="action-buttons">
-
-        <a href="#" class="action-btn">✏️ Edit Profile</a>
-
-        <a href="#" class="action-btn">🔒 Change Password</a>
-
-        <a href="index.html" class="action-btn">🚪 Logout</a>
-
-    </div>
-
-</section>
-<section class="benefits-section">
-
-    <h2>Account Statistics</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-coins"></i>
-            <h3>Total Investment</h3>
-            <p>$15,000</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-chart-line"></i>
-            <h3>Total Profit</h3>
-            <p style="color:#22c55e;">+$4,250</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-wallet"></i>
-            <h3>Available Balance</h3>
-            <p>$25,000</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-calendar-check"></i>
-            <h3>Member Since</h3>
-            <p>January 2026</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="live-prices">
-
-    <h2>Personal Information</h2>
-
-    <div class="coin-grid">
-
-        <div class="coin-card">
-            <h3>👤 Full Name</h3>
-            <p>Admin User</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>📧 Email</h3>
-            <p>admin@growvest.com</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>📱 Phone</h3>
-            <p>+91 9876543210</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>🌍 Country</h3>
-            <p>India</p>
-        </div>
-
-    </div>
-
-</section>
-<nav class="bottom-nav">
-
-    <a href="dashboard.html">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
-
-    <a href="invest.html">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Invest</span>
-    </a>
-
-    <a href="treding.html">
-        <i class="fa-solid fa-arrow-trend-up"></i>
-        <span>Trading</span>
-    </a>
-
-    <a href="history.html">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
-
-    <a href="profile.html" class="active">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
-
-</nav>
+<a href="dashboard.html">
+<button class="btn">Back to Dashboard</button>
+</a>
 
 </div>
 
-<script src="dashboard.js"></script>
+<script type="module" src="profile.js"></script>
+<hr>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    console.log("Profile Page Loaded");
-});
-</script>
+<footer style="text-align:center; padding:20px;">
 
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
 </body>
 </html>
