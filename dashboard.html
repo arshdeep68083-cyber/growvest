@@ -1,200 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowVest Dashboard</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GrowVest Dashboard</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<header class="topbar">
+  <h1>GrowVest Dashboard</h1>
 
-<div class="logo">
-<i class="fa-solid fa-chart-line"></i>
-<h2>GrowVest</h2>
-</div>
+  <h2>Welcome</h2>
 
-<div class="menu">
-<i class="fa-solid fa-bell"></i>
-<i class="fa-solid fa-user-circle"></i>
-</div>
+  <p id="userEmail">Loading...</p>
 
-</header>
+  <p>
+    <strong>Balance:</strong>
+    <span id="balance">0.00 USDT</span>
+  </p>
 
-<section class="welcome">
+  <hr>
 
-<h1>Welcome Back 👋</h1>
+  <h2>My Active Plan</h2>
 
-<p>Manage your investments and track your portfolio.</p>
+  <div id="activePlan">
+    <p>No Active Plan</p>
+  </div>
 
-</section>
+  <hr>
 
-<section class="market-overview">
+  <a href="deposit.html">
+    <button class="btn">Deposit</button>
+  </a>
 
-<div class="overview-card">
-<i class="fa-solid fa-wallet"></i>
-<h3>Total Balance</h3>
-<h2>$25,000</h2>
-</div>
+  <br><br>
 
-<div class="overview-card">
-<i class="fa-solid fa-chart-line"></i>
-<h3>Total Profit</h3>
-<h2>$4,250</h2>
-</div>
+  <a href="withdraw.html">
+    <button class="btn">Withdraw</button>
+  </a>
 
-<div class="overview-card">
-<i class="fa-solid fa-coins"></i>
-<h3>Active Investments</h3>
-<h2>12</h2>
-</div>
+  <br><br>
 
-<div class="overview-card">
-<i class="fa-solid fa-arrow-trend-up"></i>
-<h3>Today's Growth</h3>
-<h2 style="color:#22c55e;">+8.5%</h2>
-</div>
+  <a href="history.html">
+    <button class="btn">History</button>
+  </a>
 
-</section>
+  <br><br>
 
-<section class="action-section">
+  <a href="plans.html">
+    <button class="btn">Investment Plans</button>
+  </a>
 
-<h2>Quick Actions</h2>
+  <br><br>
 
-<div class="action-buttons">
+  <a href="trading.html">
+    <button class="btn">📈 Trading</button>
+  </a>
 
-<a href="deposit.html" class="action-btn">💰 Deposit</a>
+  <br><br>
 
-<a href="withdraw.html" class="action-btn">💸 Withdraw</a>
+  <a href="profile.html">
+    <button class="btn">Profile</button>
+  </a>
 
-<a href="treding.html" class="action-btn">📈 Live Trading</a>
+  <br><br>
 
-</div>
+  <a href="admin.html">
+    <button class="btn">Admin Panel</button>
+  </a>
 
-</section>
-  <section class="live-prices">
+  <br><br>
 
-    <h2>📊 Investment Plans</h2>
+  <a href="help.html">
+    <button class="btn">Help & Support</button>
+  </a>
 
-    <div class="coin-grid">
+  <br><br>
 
-        <div class="coin-card">
-            <h3>Starter Plan</h3>
-            <p>Investment: $100</p>
-            <p>Daily Profit: 2%</p>
-            <p>Duration: 30 Days</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>Silver Plan</h3>
-            <p>Investment: $500</p>
-            <p>Daily Profit: 3%</p>
-            <p>Duration: 45 Days</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>Gold Plan</h3>
-            <p>Investment: $1000</p>
-            <p>Daily Profit: 4%</p>
-            <p>Duration: 60 Days</p>
-        </div>
-
-        <div class="coin-card">
-            <h3>VIP Plan</h3>
-            <p>Investment: $5000</p>
-            <p>Daily Profit: 5%</p>
-            <p>Duration: 90 Days</p>
-        </div>
-
-    </div>
-
-</section>
-
-<section class="benefits-section">
-
-    <h2>Why Choose GrowVest?</h2>
-
-    <div class="benefits-grid">
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-shield-halved"></i>
-            <h3>Secure Platform</h3>
-            <p>Your funds are protected with advanced security.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-bolt"></i>
-            <h3>Fast Transactions</h3>
-            <p>Quick deposits and withdrawals anytime.</p>
-        </div>
-
-        <div class="benefit-card">
-            <i class="fa-solid fa-headset"></i>
-            <h3>24/7 Support</h3>
-            <p>Professional customer support whenever you need it.</p>
-        </div>
-
-    </div>
-
-</section>
-  <!-- Bottom Navigation -->
-
-<nav class="bottom-nav">
-
-    <a href="dashboard.html" class="active">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
-
-    <a href="invest.html">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Invest</span>
-    </a>
-
-    <a href="treding.html">
-        <i class="fa-solid fa-arrow-trend-up"></i>
-        <span>Trading</span>
-    </a>
-
-    <a href="history.html">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
-
-    <a href="profile.html">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
-
-</nav>
+  <button id="logoutBtn" class="btn">
+    Logout
+  </button>
 
 </div>
 
-<script src="dashboard.js"></script>
+<script type="module" src="dashboard.js"></script>
+<hr>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
+<footer style="text-align:center; padding:20px;">
 
-    console.log("GrowVest Dashboard Loaded");
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
 
-});
-</script>
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
 
+</footer>
 </body>
 </html>
