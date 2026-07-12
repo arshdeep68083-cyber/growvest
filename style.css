@@ -456,3 +456,30 @@ color:#00d4ff;
     font-size:16px;
     cursor:pointer;
 }
+/* ===== Back To Dashboard Button ===== */
+
+.container a .btn{
+    width:100%;
+    max-width:320px;
+    display:block;
+    margin:20px auto;
+    padding:15px 20px;
+    border:none;
+    border-radius:14px;
+    background:linear-gradient(135deg,#00d4ff,#16c784);
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(0,212,255,.25);
+    transition:all .3s ease;
+}
+
+.container a .btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(22,199,132,.35);
+}
+
+.container a{
+    text-decoration:none;
+}
