@@ -1,153 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>GrowVest Dashboard</title>
+<title>GrowVest Dashboard</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-    <script src="https://s3.tradingview.com/tv.js"></script>
+<script src="https://s3.tradingview.com/tv.js"></script>
 </head>
 
 <body>
 
 <div class="dashboard">
 
-    <!-- Header -->
+<header class="top-header">
 
-    <header class="top-header">
+<div class="left">
+<h2>GrowVest</h2>
+<p>Welcome Back 👋</p>
+</div>
 
-        <div class="left">
-            <h2>GrowVest</h2>
-            <p>Welcome Back 👋</p>
-        </div>
+<div class="right">
 
-        <div class="right">
+<div class="notification">
+<i class="fas fa-bell"></i>
+</div>
 
-            <div class="notification">
-                <i class="fas fa-bell"></i>
-            </div>
+<div class="avatar">
+<i class="fas fa-user"></i>
+</div>
 
-            <div class="avatar">
-                <i class="fas fa-user"></i>
-            </div>
+</div>
 
-        </div>
+</header>
 
-    </header>
+<section class="wallet-card">
 
-    <!-- Wallet Card -->
+<div class="wallet-top">
 
-    <section class="wallet-card">
+<div>
+<p>Total Balance</p>
+<h1 id="balance">0.00 USDT</h1>
+</div>
 
-        <div class="wallet-top">
+<button id="toggleBalance">
+<i class="fas fa-eye"></i>
+</button>
 
-            <div>
-                <p>Total Balance</p>
-                <h1 id="balance">0.00 USDT</h1>
-            </div>
+</div>
 
-            <button id="toggleBalance">
-                <i class="fas fa-eye"></i>
-            </button>
+<div class="wallet-bottom">
 
-        </div>
+<div>
+<span>Today's Profit</span>
+<h3 id="todayProfit">+0.00 USDT</h3>
+</div>
 
-        <div class="wallet-bottom">
+<div>
+<span>Email</span>
+<h3 id="userEmail">Loading...</h3>
+</div>
 
-            <div>
-                <span>Today's Profit</span>
-                <h3 id="todayProfit">+0.00 USDT</h3>
-            </div>
+</div>
 
-            <div>
-                <span>Email</span>
-                <h3 id="userEmail">Loading...</h3>
-            </div>
+</section>
 
-        </div>
+<section class="action-grid">
 
-    </section>
+<a href="deposit.html" class="action deposit">
+<i class="fas fa-arrow-down"></i>
+<span>Deposit</span>
+</a>
 
-    <!-- Quick Actions -->
+<a href="withdraw.html" class="action withdraw">
+<i class="fas fa-arrow-up"></i>
+<span>Withdraw</span>
+</a>
 
-    <section class="action-grid">
+<a href="plans.html" class="action invest">
+<i class="fas fa-coins"></i>
+<span>Invest</span>
+</a>
 
-        <a href="deposit.html" class="action deposit">
-            <i class="fas fa-arrow-down"></i>
-            <span>Deposit</span>
-        </a>
+<a href="history.html" class="action history">
+<i class="fas fa-clock"></i>
+<span>History</span>
+</a>
 
-        <a href="withdraw.html" class="action withdraw">
-            <i class="fas fa-arrow-up"></i>
-            <span>Withdraw</span>
-        </a>
+</section>
 
-        <a href="plans.html" class="action invest">
-            <i class="fas fa-coins"></i>
-            <span>Invest</span>
-        </a>
+<section class="market-box">
 
-        <a href="history.html" class="action history">
-            <i class="fas fa-clock"></i>
-            <span>History</span>
-        </a>
+<h3>🔥 Live Crypto Market</h3>
 
-    </section>
+<div class="ticker">
 
-    <!-- Live Crypto Market -->
+<div class="coin">
+<h4>BTC</h4>
+<p id="btcPrice">Loading...</p>
+</div>
 
-    <section class="market-box">
+<div class="coin">
+<h4>ETH</h4>
+<p id="ethPrice">Loading...</p>
+</div>
 
-        <h3>🔥 Live Crypto Market</h3>
+<div class="coin">
+<h4>BNB</h4>
+<p id="bnbPrice">Loading...</p>
+</div>
 
-        <div class="ticker">
+<div class="coin">
+<h4>SOL</h4>
+<p id="solPrice">Loading...</p>
+</div>
 
-            <div class="coin">
-                <h4>BTC</h4>
-                <p id="btcPrice">Loading...</p>
-            </div>
+<div class="coin">
+<h4>XRP</h4>
+<p id="xrpPrice">Loading...</p>
+</div>
 
-            <div class="coin">
-                <h4>ETH</h4>
-                <p id="ethPrice">Loading...</p>
-            </div>
+</div>
 
-            <div class="coin">
-                <h4>BNB</h4>
-                <p id="bnbPrice">Loading...</p>
-            </div>
+</section>
 
-            <div class="coin">
-                <h4>SOL</h4>
-                <p id="solPrice">Loading...</p>
-            </div>
+<section class="chart-card">
 
-            <div class="coin">
-                <h4>XRP</h4>
-                <p id="xrpPrice">Loading...</p>
-            </div>
+<h3>📈 Live Trading Chart</h3>
 
-        </div>
+<div id="tradingview_chart" style="height:420px;width:100%;"></div>
 
-    </section>
-
-    <!-- Trading Chart -->
-
-    <section class="chart-card">
-
-        <h3>📈 Live Trading Chart</h3>
-
-        <div id="tradingview_chart" style="height:420px;width:100%;"></div>
-
-    </section>
-
+</section>
     <!-- Investment Plans -->
 
     <section class="plan-section">
@@ -246,7 +234,7 @@
 
         <a href="trading.html" class="menu-item">
             <i class="fas fa-chart-line"></i>
-            <span>Markets</span>
+            <span>Trade</span>
         </a>
 
         <a href="plans.html" class="menu-item">
@@ -275,8 +263,7 @@
         </a>
 
     </section>
-
-    <button id="logoutBtn" class="logout-btn">
+        <button id="logoutBtn" class="logout-btn">
         <i class="fas fa-sign-out-alt"></i>
         Logout
     </button>
@@ -292,7 +279,7 @@
 
         <a href="trading.html">
             <i class="fas fa-chart-line"></i>
-            <span>Markets</span>
+            <span>Trade</span>
         </a>
 
         <a href="plans.html">
