@@ -282,3 +282,177 @@ transition:.3s;
 footer a:hover{
 color:#00d4ff;
 }
+/* ===== DASHBOARD ===== */
+
+.dashboard-page{
+    background:#081320;
+    padding:20px;
+}
+
+.dashboard{
+    max-width:1100px;
+    margin:auto;
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand h2{
+    color:#fff;
+}
+
+.profile-mini i{
+    font-size:35px;
+    color:#00d4ff;
+}
+
+.balance-card{
+    background:linear-gradient(135deg,#00d4ff,#16c784);
+    border-radius:20px;
+    padding:25px;
+    color:#fff;
+    margin-bottom:25px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
+}
+
+.balance-card h1{
+    font-size:36px;
+    margin:10px 0;
+}
+
+.quick-actions{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.action-card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+}
+
+.action-card i{
+    font-size:28px;
+    margin-bottom:10px;
+    color:#00d4ff;
+}
+
+.plan-card{
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:20px;
+    margin-bottom:20px;
+}
+
+.plan-card-item{
+    background:#13263b;
+    border-radius:16px;
+    padding:18px;
+    margin-top:15px;
+}
+
+.plan-row{
+    display:flex;
+    justify-content:space-between;
+    margin:10px 0;
+}
+
+.plan-status{
+    margin-top:15px;
+    text-align:center;
+    padding:8px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.plan-status.active{
+    background:#16c784;
+}
+
+.plan-status.completed{
+    background:#2563eb;
+}
+
+.market-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:15px;
+    margin:20px 0;
+}
+
+.market-card{
+    background:#13263b;
+    border-radius:18px;
+    padding:20px;
+}
+
+.green{
+    color:#16c784;
+}
+
+.services{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin:25px 0;
+}
+
+.service-card{
+    background:#13263b;
+    padding:18px;
+    border-radius:18px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+}
+
+.bottom-nav{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+    background:#0d1b2a;
+    display:flex;
+    justify-content:space-around;
+    padding:12px;
+    border-top:1px solid rgba(255,255,255,.1);
+}
+
+.bottom-nav a{
+    color:#fff;
+    text-decoration:none;
+    text-align:center;
+    font-size:13px;
+}
+
+.bottom-nav .active{
+    color:#00d4ff;
+}
+
+.logout-btn{
+    width:100%;
+    padding:16px;
+    margin:30px 0 90px;
+    border:none;
+    border-radius:15px;
+    background:#ef4444;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+}
