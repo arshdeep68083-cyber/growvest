@@ -2,153 +2,59 @@
 <html lang="en">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GrowVest</title>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>GrowVest</title>
-
-<link rel="stylesheet" href="dashboard.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
+  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
 
-<div class="login-container">
+  <div class="container">
 
-<div class="login-card">
+    <h1>GrowVest</h1>
 
-<div class="logo">
+    <p>Welcome to GrowVest Investment Platform</p>
 
-<i class="fa-solid fa-chart-line"></i>
+    <br>
 
-<h1>GrowVest</h1>
+    <a href="register.html">
+      <button class="btn">Register</button>
+    </a>
 
-</div>
+    <br><br>
 
-<h2>Welcome Back</h2>
+    <a href="login.html">
+      <button class="btn">Login</button>
+    </a>
 
-<p>Login to your investment account</p>
+  </div>
 
-<form id="loginForm">
+  <hr>
 
-<div class="input-box">
+  <footer style="text-align:center; padding:20px;">
 
-<i class="fa-solid fa-user"></i>
+    <p>
+      <a href="about.html">About Us</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="terms.html">Terms & Conditions</a> |
+      <a href="help.html">Help & Support</a>
+    </p>
 
-<input
-type="text"
-id="username"
-placeholder="Username"
-required>
+    <p>© 2023 GrowVest. All Rights Reserved.</p>
 
-</div>
+  </footer>
 
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
-
-<input
-type="password"
-id="password"
-placeholder="Password"
-required>
-
-</div>
-
-<button type="submit" class="login-btn">
-
-Login
-
-</button>
-
-</form>
-
-<div class="extra-links">
-
-<a href="#">Forgot Password?</a>
-
-<a href="#">Create Account</a>
-
-</div>
-
-</div>
-
-</div>
-<div class="features">
-
-    <div class="feature-card">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3>100% Secure</h3>
-        <p>Your investments are protected with advanced security.</p>
-    </div>
-
-    <div class="feature-card">
-        <i class="fa-solid fa-chart-line"></i>
-        <h3>Live Trading</h3>
-        <p>Track live crypto prices and market trends.</p>
-    </div>
-
-    <div class="feature-card">
-        <i class="fa-solid fa-wallet"></i>
-        <h3>Fast Withdraw</h3>
-        <p>Quick deposits and withdrawals anytime.</p>
-    </div>
-
-</div>
-
-<footer class="footer">
-
-    <p>&copy; 2026 GrowVest. All Rights Reserved.</p>
-
-</footer>
-
-<script>
-
-document.getElementById("loginForm").addEventListener("submit", function(e){
-
-    e.preventDefault();
-
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    if(username==="admin" && password==="admin123"){
-
-        window.location.href="dashboard.html";
-
-    }else{
-
-        alert("Invalid Username or Password");
-
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function () {
+        navigator.serviceWorker.register('./pwabuilder-sw.js');
+      });
     }
-
-});
-
-</script>
-<script>
-
-const inputs = document.querySelectorAll("input");
-
-inputs.forEach(input => {
-
-    input.addEventListener("focus", function () {
-        this.parentElement.classList.add("active");
-    });
-
-    input.addEventListener("blur", function () {
-        this.parentElement.classList.remove("active");
-    });
-
-});
-
-</script>
+  </script>
 
 </body>
+
 </html>
