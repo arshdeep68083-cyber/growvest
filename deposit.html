@@ -4,64 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Deposit - GrowVest</title>
-
-<link rel="stylesheet" href="dashboard.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="dashboard">
+<div class="container">
 
-<h2>Deposit USDT (TRC20)</h2>
+<h1>Deposit</h1>
 
-<div class="card">
-<h3>Wallet Address</h3>
-
-<input
-type="text"
-id="walletAddress"
-value="TRCaFDAoRMmKvQPSDsJ1JdqhoQgioRhSXF"
-readonly>
-
-<button id="copyBtn">Copy Address</button>
-</div>
-
-<div class="card">
-<h3>Deposit Amount (USDT)</h3>
+<p>Enter Deposit Amount</p>
 
 <input
 type="number"
-id="depositAmount"
-placeholder="Enter Amount">
+id="amount"
+placeholder="Enter Amount"
+required
+>
 
-<h3>Transaction Hash (TXID)</h3>
+<br><br>
 
-<input
-type="text"
-id="txid"
-placeholder="Paste TXID Here">
-<button id="submitDeposit">Submit Deposit</button>
+<p><strong>USDT (TRC20) Wallet Address</strong></p>
 
-<p style="margin-top:15px;color:#64748b;font-size:14px;">
-⚠️ Send only <b>USDT (TRC20)</b> to the wallet address above.
-After payment, paste your Transaction Hash (TXID) and submit it for verification.
+<p id="wallet">
+TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF
 </p>
 
-</div>
+<br>
 
-<div class="card">
-<h3>Deposit Status</h3>
-<p id="depositStatus">No pending deposit.</p>
-</div>
+<button class="btn" id="copyBtn">
+Copy Wallet Address
+</button>
 
-<a href="dashboard.html" class="action" style="margin-top:20px;display:inline-flex;">
+<br><br>
+
+<button class="btn" id="depositBtn">
+Submit Deposit
+</button>
+
+<br><br>
+
+<a href="dashboard.html">
+<button class="btn">
 Back to Dashboard
+</button>
 </a>
 
 </div>
 
-<script type="module" src="deposit.js"></script>
+<script>
+document.getElementById("copyBtn").onclick = function () {
+navigator.clipboard.writeText("TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF");
+alert("Wallet copied successfully");
+};
+</script>
 
+<script type="module" src="deposit.js"></script>
+<hr>
+
+<footer style="text-align:center; padding:20px;">
+
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a> |
+    <a href="help.html">Help & Support</a>
+  </p>
+
+  <p>© 2023 GrowVest. All Rights Reserved.</p>
+
+</footer>
 </body>
 </html>
+
