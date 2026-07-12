@@ -13,7 +13,7 @@ import {
 
 const historyList = document.getElementById("historyList");
 
-// ===== USDT Format =====
+// ===== Format USDT =====
 function formatUSDT(amount) {
   amount = Number(amount) || 0;
 
@@ -23,6 +23,51 @@ function formatUSDT(amount) {
   }) + " USDT";
 }
 
+// ===== Format Date =====
+function formatDate(timestamp) {
+
+  if (!timestamp) return "N/A";
+
+  try {
+    const date = timestamp.toDate();
+
+    return date.toLocaleString("en-US", {
+      dateStyle: "medium",
+      timeStyle: "short"
+    });
+
+  } catch {
+    return "N/A";
+  }
+
+}
+
+// ===== Status Badge =====
+function statusBadge(status) {
+
+  status = status || "Completed";
+
+  let color = "#16c784";
+
+  if (status === "Pending") color = "#f59e0b";
+  if (status === "Rejected") color = "#ef4444";
+
+  return `
+    <span style="
+      background:${color};
+      color:#fff;
+      padding:6px 12px;
+      border-radius:20px;
+      font-size:12px;
+      font-weight:600;
+      display:inline-block;
+      margin-top:8px;
+    ">
+      ${status}
+    </span>
+  `;
+}
+
 onAuthStateChanged(auth, async (user) => {
 
   if (!user) {
@@ -30,13 +75,12 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  historyList.innerHTML = "<p>Loading...</p>";
+  historyList.innerHTML = "<p>Loading Transactions...</p>";
 
   try {
 
-    historyList.innerHTML = "";
-
-    // ===== Deposit History =====
+    let transactions = [];
+        // ===== Deposit History =====
     const depositSnap = await getDocs(
       query(
         collection(db, "deposits"),
@@ -48,14 +92,13 @@ onAuthStateChanged(auth, async (user) => {
 
       const data = docSnap.data();
 
-      historyList.innerHTML += `
-        <div class="card">
-          <h3>💰 Deposit</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Status:</b> ${data.status || "Pending"}</p>
-        </div>
-        <br>
-      `;
+      transactions.push({
+        type: "💰 Deposit",
+        amount: data.amount,
+        description: "USDT Deposit",
+        status: data.status || "Pending",
+        createdAt: data.createdAt || null
+      });
 
     });
 
@@ -71,18 +114,17 @@ onAuthStateChanged(auth, async (user) => {
 
       const data = docSnap.data();
 
-      historyList.innerHTML += `
-        <div class="card">
-          <h3>💸 Withdrawal</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Status:</b> ${data.status || "Pending"}</p>
-        </div>
-        <br>
-      `;
+      transactions.push({
+        type: "💸 Withdrawal",
+        amount: data.amount,
+        description: "USDT Withdrawal",
+        status: data.status || "Pending",
+        createdAt: data.createdAt || null
+      });
 
     });
 
-    // ===== Trading / Profit / Plan History =====
+    // ===== Other History =====
     const historySnap = await getDocs(
       query(
         collection(db, "history"),
@@ -94,21 +136,58 @@ onAuthStateChanged(auth, async (user) => {
 
       const data = docSnap.data();
 
+      transactions.push({
+        type: data.type || "History",
+        amount: data.amount,
+        description: data.description || "-",
+        status: data.status || "Completed",
+        createdAt: data.createdAt || null
+      });
+
+    });
+
+    // ===== Latest First =====
+    transactions.sort((a, b) => {
+
+      const timeA = a.createdAt ? a.createdAt.seconds : 0;
+      const timeB = b.createdAt ? b.createdAt.seconds : 0;
+
+      return timeB - timeA;
+
+    });
+
+    historyList.innerHTML = "";
+        if (transactions.length === 0) {
+      historyList.innerHTML = `
+        <div class="card">
+          <h3>No Transactions</h3>
+          <p>Your transaction history is empty.</p>
+        </div>
+      `;
+      return;
+    }
+
+    transactions.forEach((item) => {
+
       historyList.innerHTML += `
         <div class="card">
-          <h3>${data.type || "History"}</h3>
-          <p><b>Amount:</b> ${formatUSDT(data.amount)}</p>
-          <p><b>Description:</b> ${data.description || "-"}</p>
-          <p><b>Status:</b> ${data.status || "Completed"}</p>
+
+          <h3>${item.type}</h3>
+
+          <p><b>Amount:</b> ${formatUSDT(item.amount)}</p>
+
+          <p><b>Description:</b> ${item.description}</p>
+
+          <p><b>Date:</b> ${formatDate(item.createdAt)}</p>
+
+          ${statusBadge(item.status)}
+
         </div>
+
         <br>
       `;
 
     });
-
-    if (historyList.innerHTML === "") {
-      historyList.innerHTML = "<p>No transaction history found.</p>";
-    }
 
   } catch (error) {
 
@@ -116,7 +195,7 @@ onAuthStateChanged(auth, async (user) => {
 
     historyList.innerHTML = `
       <div class="card">
-        <h3>Error</h3>
+        <h3>❌ Error</h3>
         <p>${error.message}</p>
       </div>
     `;
