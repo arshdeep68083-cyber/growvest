@@ -13,11 +13,14 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+// ================= BUTTONS =================
+
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+
 // ================= REGISTER =================
 
-const registerBtn = document.querySelector("button");
-
-if (registerBtn && document.getElementById("confirmPassword")) {
+if (registerBtn) {
 
   registerBtn.addEventListener("click", async () => {
 
@@ -38,11 +41,12 @@ if (registerBtn && document.getElementById("confirmPassword")) {
 
     try {
 
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential =
+        await createUserWithEmailAndPassword(auth, email, password);
 
       await setDoc(doc(db, "users", userCredential.user.uid), {
-        name: name,
-        email: email,
+        name,
+        email,
         balance: 0,
         joinDate: new Date().toLocaleDateString()
       });
@@ -57,29 +61,36 @@ if (registerBtn && document.getElementById("confirmPassword")) {
   });
 
 }
-
 // ================= LOGIN =================
 
-if (registerBtn && !document.getElementById("confirmPassword")) {
+if (loginBtn) {
 
-  registerBtn.addEventListener("click", async () => {
+  loginBtn.addEventListener("click", async () => {
 
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
 
     if (!email || !password) {
-      alert("Enter Email & Password");
+      alert("Please enter Email & Password");
       return;
     }
 
     try {
+
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = "Signing In...";
 
       await signInWithEmailAndPassword(auth, email, password);
 
       window.location.href = "dashboard.html";
 
     } catch (error) {
+
       alert(error.message);
+
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = "Login Securely";
+
     }
 
   });
@@ -96,7 +107,7 @@ onAuthStateChanged(auth, async (user) => {
   const balanceBox = document.getElementById("balance");
 
   if (emailBox) {
-    emailBox.innerHTML = user.email;
+    emailBox.textContent = user.email;
   }
 
   if (balanceBox) {
@@ -110,24 +121,24 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = userSnap.data();
 
-        balanceBox.innerHTML = data.balance || 0;
+        balanceBox.textContent =
+          (Number(data.balance) || 0).toFixed(2) + " USDT";
 
       } else {
 
-        balanceBox.innerHTML = 0;
+        balanceBox.textContent = "0.00 USDT";
 
       }
 
     } catch (error) {
 
-      balanceBox.innerHTML = 0;
+      balanceBox.textContent = "0.00 USDT";
 
     }
 
   }
 
 });
-
 // ================= LOGOUT =================
 
 const logoutBtn = document.getElementById("logoutBtn");
@@ -136,10 +147,26 @@ if (logoutBtn) {
 
   logoutBtn.addEventListener("click", async () => {
 
-    await signOut(auth);
+    try {
 
-    window.location.href = "login.html";
+      await signOut(auth);
+
+      window.location.href = "login.html";
+
+    } catch (error) {
+
+      alert(error.message);
+
+    }
 
   });
 
 }
+
+// ================= APP READY =================
+
+window.addEventListener("DOMContentLoaded", () => {
+
+  console.log("GrowVest Loaded Successfully");
+
+});
