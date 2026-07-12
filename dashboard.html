@@ -388,3 +388,54 @@ new TradingView.widget({
 
 </body>
 </html>
+    <!-- Bottom Navigation -->
+
+    <div class="bottom-nav">
+
+        <a href="dashboard.html" class="nav-item active">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+        </a>
+
+        <a href="invest.html" class="nav-item">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Invest</span>
+        </a>
+
+        <a href="trade.html" class="nav-item">
+            <i class="fa-solid fa-chart-line"></i>
+            <span>Trade</span>
+        </a>
+
+        <a href="history.html" class="nav-item">
+            <i class="fa-solid fa-clock-rotate-left"></i>
+            <span>History</span>
+        </a>
+
+        <a href="profile.html" class="nav-item">
+            <i class="fa-solid fa-user"></i>
+            <span>Profile</span>
+        </a>
+
+    </div>
+
+</div>
+
+<!-- Firebase SDK -->
+<script type="module" src="firebase.js"></script>
+
+<!-- Main App -->
+<script src="app.js"></script>
+
+<script>
+function copyReferral() {
+    const input = document.getElementById("refLink");
+    input.select();
+    input.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(input.value);
+    alert("Referral link copied!");
+}
+</script>
+
+</body>
+</html>
