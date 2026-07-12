@@ -1,19 +1,49 @@
-import { auth, db } from "./firebase-config.js";
+// ======================================
+// GrowVest Premium Dashboard
+// dashboard.js - Part 1
+// ======================================
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
+  getAuth,
   onAuthStateChanged,
   signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 import {
+  getFirestore,
   doc,
   getDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const userEmail = document.getElementById("userEmail");
-const balance = document.getElementById("balance");
-const activePlan = document.getElementById("activePlan");
+// ---------- Firebase Config ----------
+// ⚠️ Apna Firebase config ithhe paste karo
+
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+// ---------- Initialize ----------
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+// ---------- Elements ----------
+
+const emailEl = document.getElementById("userEmail");
+const balanceEl = document.getElementById("balance");
+const activePlanEl = document.getElementById("activePlan");
+const todayProfitEl = document.getElementById("todayProfit");
 const logoutBtn = document.getElementById("logoutBtn");
+
+// ---------- Load User ----------
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -22,34 +52,22 @@ onAuthStateChanged(auth, async (user) => {
     return;
   }
 
-  userEmail.textContent = user.email;
+  emailEl.textContent = user.email;
 
   try {
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+    const ref = doc(db, "users", user.uid);
+    const snap = await getDoc(ref);
 
-    if (userSnap.exists()) {
+    if (snap.exists()) {
 
-      const data = userSnap.data();
+      const data = snap.data();
 
-      balance.textContent =
+      balanceEl.textContent =
         (data.balance || 0).toFixed(2) + " USDT";
 
-      if (data.activePlan) {
-
-        activePlan.innerHTML = `
-          <h3>${data.activePlan}</h3>
-          <p>Investment Active</p>
-        `;
-
-      } else {
-
-        activePlan.innerHTML = `
-          <p>No Active Plan</p>
-        `;
-
-      }
+      todayProfitEl.textContent =
+        "+" + (data.todayProfit || 0).toFixed(2) + " USDT";
 
     }
 
@@ -58,98 +76,243 @@ onAuthStateChanged(auth, async (user) => {
   }
 
 });
+// ======================================
+// dashboard.js - Part 2
+// ======================================
 
-logoutBtn.addEventListener("click", async () => {
+// ---------- Balance Show / Hide ----------
 
-  await signOut(auth);
+let balanceVisible = true;
 
-  window.location.href = "login.html";
+const toggleBtn = document.getElementById("toggleBalance");
 
-});
+if (toggleBtn) {
 
-// ===== Live Crypto Prices =====
+  toggleBtn.addEventListener("click", () => {
 
-async function loadCryptoPrices() {
+    balanceVisible = !balanceVisible;
+
+    if (balanceVisible) {
+
+      balanceEl.textContent =
+        balanceEl.dataset.real || "0.00 USDT";
+
+      toggleBtn.innerHTML = '<i class="fas fa-eye"></i>';
+
+    } else {
+
+      balanceEl.dataset.real = balanceEl.textContent;
+      balanceEl.textContent = "********";
+
+      toggleBtn.innerHTML = '<i class="fas fa-eye-slash"></i>';
+
+    }
+
+  });
+
+}
+
+// ---------- Live Crypto Prices ----------
+
+async function loadPrices() {
 
   try {
 
     const res = await fetch(
-      "https://api.binance.com/api/v3/ticker/price?symbols=%5B%22BTCUSDT%22,%22ETHUSDT%22,%22BNBUSDT%22,%22SOLUSDT%22%5D"
+      "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana,ripple&vs_currencies=usd"
     );
 
-    const prices = await res.json();
+    const data = await res.json();
 
-    document.getElementById("btcPrice").textContent =
-      "$" + Number(prices[0].price).toLocaleString();
+    const set = (id, value) => {
+      const el = document.getElementById(id);
+      if (el) el.textContent = "$" + Number(value).toLocaleString();
+    };
 
-    document.getElementById("ethPrice").textContent =
-      "$" + Number(prices[1].price).toLocaleString();
+    set("btcPrice", data.bitcoin.usd);
+    set("ethPrice", data.ethereum.usd);
+    set("bnbPrice", data.binancecoin.usd);
+    set("solPrice", data.solana.usd);
+    set("xrpPrice", data.ripple.usd);
 
-    document.getElementById("bnbPrice").textContent =
-      "$" + Number(prices[2].price).toLocaleString();
+  } catch (e) {
 
-    document.getElementById("solPrice").textContent =
-      "$" + Number(prices[3].price).toLocaleString();
-
-  } catch (error) {
-
-    console.error("Price Load Error:", error);
-
-    document.getElementById("btcPrice").textContent = "--";
-    document.getElementById("ethPrice").textContent = "--";
-    document.getElementById("bnbPrice").textContent = "--";
-    document.getElementById("solPrice").textContent = "--";
+    console.log("Price Error", e);
 
   }
 
 }
 
-// First Load
-loadCryptoPrices();
+loadPrices();
+setInterval(loadPrices, 30000);
 
-// Refresh every 10 seconds
-setInterval(loadCryptoPrices, 10000);
-// ===== Dashboard Final Setup =====
+// ---------- Active Investment Plan ----------
 
-function startDashboard() {
-  console.log("GrowVest Dashboard Loaded");
+async function loadPlans(uid) {
+
+  try {
+
+    const ref = doc(db, "users", uid);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) return;
+
+    const data = snap.data();
+
+    if (!data.activePlans || data.activePlans.length === 0) {
+
+      activePlanEl.innerHTML =
+        "<p>No Active Investment Plan</p>";
+
+      return;
+
+    }
+
+    activePlanEl.innerHTML = "";
+
+    data.activePlans.forEach(plan => {
+
+      activePlanEl.innerHTML += `
+      <div class="plan-card">
+        <h4>${plan.name}</h4>
+        <p>Investment: ${plan.amount} USDT</p>
+        <p>Daily Profit: ${plan.dailyProfit} USDT</p>
+        <p>Status:
+          <span style="color:#22c55e;">${plan.status}</span>
+        </p>
+      </div>
+      `;
+
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+  }
+
 }
 
-// Refresh active plan every 30 seconds
-async function refreshDashboard() {
-  const user = auth.currentUser;
+// ---------- Load After Login ----------
+
+onAuthStateChanged(auth, (user) => {
+
+  if (user) {
+    loadPlans(user.uid);
+  }
+
+});
+// ======================================
+// dashboard.js - Part 3
+// ======================================
+
+// ---------- Recent Transactions ----------
+
+const transactionEl = document.getElementById("transactions");
+
+async function loadTransactions(uid) {
+
+  if (!transactionEl) return;
+
+  try {
+
+    const ref = doc(db, "users", uid);
+    const snap = await getDoc(ref);
+
+    if (!snap.exists()) return;
+
+    const data = snap.data();
+
+    if (!data.transactions || data.transactions.length === 0) {
+
+      transactionEl.innerHTML =
+        "<p>No Transactions Found</p>";
+
+      return;
+
+    }
+
+    transactionEl.innerHTML = "";
+
+    data.transactions
+      .slice()
+      .reverse()
+      .forEach(tx => {
+
+        transactionEl.innerHTML += `
+        <div class="transaction-card">
+          <div>
+            <h4>${tx.type}</h4>
+            <p>${tx.date}</p>
+          </div>
+
+          <div>
+            <strong>${Number(tx.amount).toFixed(2)} USDT</strong><br>
+            <span class="${tx.status.toLowerCase()}">
+              ${tx.status}
+            </span>
+          </div>
+        </div>
+        `;
+
+      });
+
+  } catch (err) {
+
+    console.error(err);
+
+  }
+
+}
+
+// ---------- Logout ----------
+
+if (logoutBtn) {
+
+  logoutBtn.addEventListener("click", async () => {
+
+    try {
+
+      await signOut(auth);
+      window.location.href = "login.html";
+
+    } catch (err) {
+
+      alert("Logout Failed");
+
+    }
+
+  });
+
+}
+
+// ---------- Dashboard Load ----------
+
+onAuthStateChanged(auth, (user) => {
 
   if (!user) return;
 
-  try {
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
+  loadPlans(user.uid);
+  loadTransactions(user.uid);
 
-    if (userSnap.exists()) {
-      const data = userSnap.data();
+});
 
-      balance.textContent =
-        (data.balance || 0).toFixed(2) + " USDT";
+// ---------- Auto Refresh ----------
 
-      if (data.activePlan) {
-        activePlan.innerHTML = `
-          <h3>${data.activePlan}</h3>
-          <p>Investment Active</p>
-        `;
-      } else {
-        activePlan.innerHTML = `
-          <p>No Active Plan</p>
-        `;
-      }
-    }
+setInterval(() => {
 
-  } catch (err) {
-    console.error("Dashboard Refresh Error:", err);
+  const user = auth.currentUser;
+
+  if (user) {
+
+    loadPlans(user.uid);
+    loadTransactions(user.uid);
+    loadPrices();
+
   }
-}
 
-// Refresh dashboard every 30 seconds
-setInterval(refreshDashboard, 30000);
+}, 30000);
 
-// Start dashboard
-startDashboard();
+// ======================================
+// End of dashboard.js
+// ======================================
