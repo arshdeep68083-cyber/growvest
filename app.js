@@ -3,7 +3,7 @@
 // app.js - Part 1
 // =============================
 
-// Demo user data
+// Demo User Data
 const user = {
     name: "Arshdeep",
     email: "arshdeep68083@gmail.com",
@@ -13,7 +13,7 @@ const user = {
     referralCode: "GV123456"
 };
 
-// Format currency
+// Format USDT
 function formatUSDT(value) {
     return Number(value).toLocaleString("en-US", {
         minimumFractionDigits: 2,
@@ -21,7 +21,7 @@ function formatUSDT(value) {
     }) + " USDT";
 }
 
-// Load dashboard/profile data
+// Load Dashboard/Profile Data
 window.addEventListener("DOMContentLoaded", () => {
 
     const balance = document.getElementById("balance");
@@ -44,6 +44,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     const refCode = document.getElementById("refCode");
     if (refCode) refCode.textContent = user.referralCode;
+
 });
 // =============================
 // app.js - Part 2
@@ -51,36 +52,39 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Investment Plans
 const plans = [
-  {
-    name: "Starter Plan",
-    min: 100,
-    max: 999,
-    profit: "5% Monthly"
-  },
-  {
-    name: "Silver Plan",
-    min: 1000,
-    max: 4999,
-    profit: "10% Monthly"
-  },
-  {
-    name: "Gold Plan",
-    min: 5000,
-    max: 9999,
-    profit: "15% Monthly"
-  },
-  {
-    name: "VIP Plan",
-    min: 10000,
-    max: 99999,
-    profit: "20% Monthly"
-  }
+    {
+        name: "Starter Plan",
+        min: 100,
+        max: 999,
+        profit: "5% Monthly"
+    },
+    {
+        name: "Silver Plan",
+        min: 1000,
+        max: 4999,
+        profit: "10% Monthly"
+    },
+    {
+        name: "Gold Plan",
+        min: 5000,
+        max: 9999,
+        profit: "15% Monthly"
+    },
+    {
+        name: "VIP Plan",
+        min: 10000,
+        max: 99999,
+        profit: "20% Monthly"
+    }
 ];
 
-// Invest Buttons
+// Show Plan Details
 document.querySelectorAll(".plan-btn").forEach((btn, index) => {
+
     btn.addEventListener("click", () => {
+
         const plan = plans[index];
+
         if (!plan) return;
 
         alert(
@@ -88,89 +92,136 @@ document.querySelectorAll(".plan-btn").forEach((btn, index) => {
             `Investment: $${plan.min} - $${plan.max}\n` +
             `Profit: ${plan.profit}`
         );
+
     });
+
 });
 
 // Copy Referral Link
 function copyReferral() {
-    const input = document.getElementById("referralLink") ||
-                  document.getElementById("refLink");
+
+    const input =
+        document.getElementById("referralLink") ||
+        document.getElementById("refLink");
 
     if (!input) return;
 
     navigator.clipboard.writeText(input.value);
 
     alert("Referral link copied successfully!");
+
 }
 
 // Logout
 const logoutBtn = document.querySelector(".logout-btn");
 
 if (logoutBtn) {
+
     logoutBtn.addEventListener("click", () => {
 
         localStorage.removeItem("user");
 
-        alert("Logged out successfully.");
-
         window.location.href = "index.html";
 
     });
+
 }
 // =============================
-// app.js - Part 3 (Final)
+// app.js - Part 3
 // =============================
 
 // Demo Referral Bonus
 const referralBonus = 320.00;
 
 const bonusElement = document.getElementById("referralBonus");
+
 if (bonusElement) {
     bonusElement.textContent = formatUSDT(referralBonus);
 }
 
 // Deposit Button
 document.querySelectorAll(".deposit").forEach(btn => {
+
     btn.addEventListener("click", () => {
-        alert("Deposit feature will be connected to Firebase.");
+
+        window.location.href = "deposit.html";
+
     });
+
 });
 
 // Withdraw Button
 document.querySelectorAll(".withdraw").forEach(btn => {
+
     btn.addEventListener("click", () => {
-        alert("Withdraw request submitted.");
+
+        window.location.href = "withdraw.html";
+
     });
+
 });
 
 // Edit Profile
 const editBtn = document.querySelector(".edit-profile");
 
 if (editBtn) {
+
     editBtn.addEventListener("click", () => {
+
         const newName = prompt("Enter your new name:", user.name);
 
         if (newName && newName.trim() !== "") {
+
             user.name = newName.trim();
 
             const profileName = document.getElementById("profileName");
+
             if (profileName) {
                 profileName.textContent = user.name;
             }
 
             alert("Profile updated successfully!");
         }
+
     });
+
 }
+// =============================
+// app.js - Part 4 (Final)
+// =============================
 
 // Active Navigation
 document.querySelectorAll(".nav-item").forEach(item => {
+
     item.addEventListener("click", () => {
-        document.querySelectorAll(".nav-item")
-            .forEach(nav => nav.classList.remove("active"));
+
+        document.querySelectorAll(".nav-item").forEach(nav => {
+            nav.classList.remove("active");
+        });
 
         item.classList.add("active");
+
     });
+
 });
+
+// Copy Wallet Button (if exists)
+const copyBtn = document.getElementById("copyBtn");
+
+if (copyBtn) {
+
+    copyBtn.addEventListener("click", () => {
+
+        const wallet = document.getElementById("wallet");
+
+        if (!wallet) return;
+
+        navigator.clipboard.writeText(wallet.innerText);
+
+        alert("Wallet address copied successfully!");
+
+    });
+
+}
 
 console.log("✅ GrowVest App Loaded Successfully");
