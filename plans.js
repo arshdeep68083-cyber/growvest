@@ -1,190 +1,227 @@
-import { auth, db } from "./firebase-config.js";
+/* ==========================================
+   PLANS.JS - FINAL
+   PART 1
+========================================== */
 
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+document.addEventListener("DOMContentLoaded", () => {
 
-import {
-  collection,
-  getDocs,
-  getDoc,
-  doc,
-  updateDoc,
-  addDoc,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  // Available investment plans
+  const plans = [
+    {
+      id: "starter",
+      name: "Starter Plan",
+      min: 100,
+      max: 499,
+      monthlyReturn: 5
+    },
+    {
+      id: "silver",
+      name: "Silver Plan",
+      min: 500,
+      max: 999,
+      monthlyReturn: 7
+    },
+    {
+      id: "gold",
+      name: "Gold Plan",
+      min: 1000,
+      max: 4999,
+      monthlyReturn: 10
+    },
+    {
+      id: "platinum",
+      name: "Platinum Plan",
+      min: 5000,
+      max: 9999,
+      monthlyReturn: 15
+    }
+  ];
 
-const plansList = document.getElementById("plansList");
+  // Make plans available globally
+  window.investmentPlans = plans;
 
-let currentUser = null;
-
-function formatUSDT(amount) {
-  amount = Number(amount) || 0;
-
-  return amount.toLocaleString("en-US", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }) + " USDT";
-}
-
-onAuthStateChanged(auth, (user) => {
-
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
-
-  currentUser = user;
-  loadPlans();
+  console.log("Investment plans loaded.");
 
 });
+/* ==========================================
+   PLANS.JS - FINAL
+   PART 2
+========================================== */
 
-async function loadPlans() {
+// Calculate monthly profit
 
-  plansList.innerHTML = "";
+function calculateMonthlyProfit(amount, rate) {
+  return (amount * rate) / 100;
+}
 
-  const snapshot = await getDocs(collection(db, "plans"));
+// Validate investment amount
 
-  let plans = [];
+function validateInvestment(amount, plan) {
 
-  snapshot.forEach((docSnap) => {
+  if (!plan) {
+    return {
+      valid: false,
+      message: "Invalid plan selected."
+    };
+  }
 
-    plans.push({
-      id: docSnap.id,
-      ...docSnap.data()
-    });
+  if (amount < plan.min) {
+    return {
+      valid: false,
+      message: `Minimum investment is $${plan.min}.`
+    };
+  }
 
-  });
+  if (amount > plan.max) {
+    return {
+      valid: false,
+      message: `Maximum investment is $${plan.max}.`
+    };
+  }
 
-  plans.sort((a, b) => Number(a.price) - Number(b.price));
-
-  plans.forEach((plan) => {
-
-    plansList.innerHTML += `
-      <div class="card" style="
-        background:rgba(255,255,255,.08);
-        backdrop-filter:blur(18px);
-        border:1px solid rgba(255,255,255,.12);
-        border-radius:22px;
-        padding:25px;
-        margin-bottom:25px;
-        box-shadow:0 20px 40px rgba(0,0,0,.35);
-      ">
-
-        <h2 style="margin-bottom:15px;color:#fff;">
-          ${plan.name}
-        </h2>
-
-        <p><b>💰 Investment:</b> ${formatUSDT(plan.price)}</p>
-
-        <p><b>📈 Daily Profit:</b> ${formatUSDT(plan.dailyProfit)}</p>
-
-        <p><b>⏳ Duration:</b> ${plan.duration} Days</p>
-
-        <p><b>✅ Status:</b> ${plan.status}</p>
-                <div style="
-          margin-top:20px;
-          padding:18px;
-          border-radius:18px;
-          background:rgba(255,255,255,.05);
-          border:1px solid rgba(255,255,255,.10);
-        ">
-
-          <button
-            class="login-btn investBtn"
-            data-id="${plan.id}"
-            style="width:100%;">
-            🚀 Buy Now
-          </button>
-
-        </div>
-
-      </div>
-
-    `;
-
-  });
-
-  document.querySelectorAll(".investBtn").forEach((btn) => {
-
-    btn.addEventListener("click", async () => {
-
-      const plan = plans.find(
-        p => p.id === btn.dataset.id
-      );
-
-      if (plan) {
-        await buyPlan(plan);
-      }
-
-    });
-
-  });
+  return {
+    valid: true,
+    message: "Investment amount is valid."
+  };
 
 }
-async function buyPlan(plan) {
 
-  try {
+// Get plan by ID
 
-    const userRef = doc(db, "users", currentUser.uid);
-    const userSnap = await getDoc(userRef);
+function getPlanById(planId) {
+  return window.investmentPlans.find(plan => plan.id === planId);
+}
 
-    if (!userSnap.exists()) {
-      alert("User not found.");
-      return;
-    }
+// Create investment summary
 
-    const userData = userSnap.data();
-    const balance = Number(userData.balance || 0);
+function getInvestmentSummary(planId, amount) {
 
-    if (balance < Number(plan.price)) {
-      alert("Insufficient Balance");
-      return;
-    }
+  const plan = getPlanById(planId);
 
-    const newBalance = balance - Number(plan.price);
+  if (!plan) return null;
 
-    await updateDoc(userRef, {
-      balance: newBalance
-    });
+  return {
+    planName: plan.name,
+    investment: amount,
+    monthlyProfit: calculateMonthlyProfit(amount, plan.monthlyReturn),
+    monthlyReturn: plan.monthlyReturn
+  };
 
-    await addDoc(collection(db, "userPlans"), {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      planName: plan.name,
-      price: Number(plan.price),
-      dailyProfit: Number(plan.dailyProfit),
-      duration: Number(plan.duration),
-      status: "Active",
-      daysCompleted: 0,
-      lastProfitDate: "",
-      purchaseDate: serverTimestamp()
-    });
+}
+/* ==========================================
+   PLANS.JS - FINAL
+   PART 3
+========================================== */
 
-    await addDoc(collection(db, "history"), {
-      uid: currentUser.uid,
-      email: currentUser.email,
-      type: "Plan Purchase",
-      amount: Number(plan.price),
-      currency: "USDT",
-      description: plan.name,
-      status: "Completed",
-      createdAt: serverTimestamp()
-    });
+// Display investment preview
 
-    alert("✅ Plan Purchased Successfully!");
+function showInvestmentPreview(planId, amount) {
 
-    window.location.href = "dashboard.html";
+  const summary = getInvestmentSummary(planId, amount);
 
-  } catch (error) {
+  if (!summary) return;
 
-    console.error(error);
-    alert(error.message);
+  const preview = document.getElementById("investmentPreview");
 
+  if (!preview) return;
+
+  preview.innerHTML = `
+    <div class="summary-item">
+      <span>Plan</span>
+      <strong>${summary.planName}</strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Investment</span>
+      <strong>$${summary.investment.toFixed(2)}</strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Monthly Return</span>
+      <strong>${summary.monthlyReturn}%</strong>
+    </div>
+
+    <div class="summary-item">
+      <span>Estimated Monthly Profit</span>
+      <strong>$${summary.monthlyProfit.toFixed(2)}</strong>
+    </div>
+  `;
+}
+
+// Handle plan selection
+
+function selectPlan(planId, amount) {
+
+  const plan = getPlanById(planId);
+
+  const validation = validateInvestment(amount, plan);
+
+  if (!validation.valid) {
+    alert(validation.message);
+    return false;
+  }
+
+  showInvestmentPreview(planId, amount);
+
+  console.log(`Selected ${plan.name}`);
+
+  return true;
+}
+
+// Clear preview
+
+function clearInvestmentPreview() {
+
+  const preview = document.getElementById("investmentPreview");
+
+  if (preview) {
+    preview.innerHTML = "";
   }
 
 }
+/* ==========================================
+   PLANS.JS - FINAL
+   PART 4 (FINAL)
+========================================== */
 
-window.addEventListener("DOMContentLoaded", () => {
-  console.log("GrowVest Plans Loaded Successfully");
+// Initialize plans page
+
+function initializePlans() {
+
+  console.log("Plans page initialized.");
+
+  // Future setup logic can be added here.
+
+}
+
+// Attach event listeners
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  initializePlans();
+
+  const planButtons = document.querySelectorAll(".btn-primary");
+
+  planButtons.forEach((button) => {
+
+    button.addEventListener("click", () => {
+
+      console.log("Plan button clicked.");
+
+      // Future investment flow can be added here.
+
+    });
+
+  });
+
 });
+
+// Utility function
+
+function resetSelection() {
+
+  clearInvestmentPreview();
+
+  console.log("Selection reset.");
+
+}
