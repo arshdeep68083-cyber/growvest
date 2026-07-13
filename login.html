@@ -6,196 +6,257 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Secure Login</title>
+<title>GrowVest Pro | Secure Login</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="auth.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 </head>
 
-<body class="login-page">
+<body>
 
-<div class="bg-blur blur1"></div>
-<div class="bg-blur blur2"></div>
+<div class="auth-container">
 
-<div class="login-wrapper">
-
-<div class="login-card fade-up">
-
-<div class="logo-box">
-
-<div class="logo-icon">
+<div class="logo">
 <i class="fa-solid fa-chart-line"></i>
 </div>
 
-<h1>GrowVest</h1>
-
-<p>Smart Crypto Investment Platform</p>
-
-</div>
-
-<h2 style="text-align:center;margin-bottom:8px;">
+<h1 class="auth-title">
 Welcome Back
-</h2>
+</h1>
 
-<p style="text-align:center;color:#94A3B8;margin-bottom:28px;">
-Sign in securely to your account
+<p class="auth-subtitle">
+Sign in securely to access your GrowVest Pro dashboard and investment portfolio.
 </p>
 
-<div class="input-group">
+<form id="loginForm" class="auth-form">
+
+<div class="form-group">
+
+<label class="form-label">
+Email Address
+</label>
+
+<div class="input-box">
+
 <i class="fa-solid fa-envelope"></i>
 
 <input
 type="email"
 id="email"
-placeholder="Email Address"
+class="input"
+placeholder="Enter your email"
 required>
 
 </div>
 
-<div class="input-group">
+</div>
+
+<div class="form-group">
+
+<label class="form-label">
+Password
+</label>
+
+<div class="input-box">
+
 <i class="fa-solid fa-lock"></i>
 
 <input
 type="password"
 id="password"
-placeholder="Password"
+class="input"
+placeholder="Enter your password"
 required>
 
 </div>
 
-<div class="login-options">
+</div>
+<!-- =====================================================
+     LOGIN.HTML - FINAL
+     PART 2
+===================================================== -->
 
-<label>
-<input type="checkbox">
-Remember me
+<div class="auth-options">
+
+<label class="remember">
+
+<input
+type="checkbox"
+id="rememberMe">
+
+<span>
+Remember Me
+</span>
+
 </label>
 
-<a href="#">
+<a
+href="change-password.html"
+class="forgot-password">
+
 Forgot Password?
+
 </a>
 
 </div>
 
 <button
-id="loginBtn"
-class="login-btn">
+type="submit"
+class="btn btn-login">
 
-<i class="fa-solid fa-right-to-bracket"></i>
-&nbsp; Secure Login
+<i class="fa-solid fa-shield-halved"></i>
+
+Secure Login
 
 </button>
-
-<div style="margin-top:28px;text-align:center;">
-    <p style="color:#94A3B8;font-size:14px;">
-Don't have an account?
-</p>
-
-<br>
-
-<a href="register.html" style="text-decoration:none;">
 
 <button
 type="button"
-class="login-btn btn-green">
+class="btn btn-register"
+onclick="window.location.href='register.html'">
 
 <i class="fa-solid fa-user-plus"></i>
-&nbsp; Create Account
+
+Create Account
 
 </button>
 
+<div class="auth-divider">
+
+<span>OR</span>
+
+</div>
+
+<div class="auth-footer">
+
+<p>
+Protected by encrypted authentication.
+</p>
+
+<p style="margin-top:8px;">
+Don't have an account?
+<a href="register.html">
+Create one now
 </a>
+</p>
+
+</div>
+<!-- =====================================================
+     LOGIN.HTML - FINAL
+     PART 3
+===================================================== -->
+
+</form>
 
 </div>
 
-<hr style="
-margin:30px 0;
-border:none;
-height:1px;
-background:rgba(255,255,255,.08);
-">
-
-<div class="glass-card" style="padding:18px;">
-
-<h3 style="margin-bottom:15px;text-align:center;">
-📈 Live Market
-</h3>
-
-<div class="market-ticker">
-
-<div class="market-track">
-
-<span>🟢 BTC $118,240 +2.1%</span>
-
-<span>🟢 ETH $6,540 +1.8%</span>
-
-<span>🔴 BNB $1,248 -0.4%</span>
-
-<span>🟢 SOL $312 +3.6%</span>
-
-<span>🟢 XRP $2.84 +0.9%</span>
-
-<span>🔴 DOGE $0.41 -1.2%</span>
-
-</div>
-
-</div>
-
-</div>
-
-<div style="
-text-align:center;
-font-size:13px;
-color:#94A3B8;
-line-height:1.8;
-margin-top:25px;
-">
-
-<a href="about.html">About Us</a> |
-<a href="privacy.html">Privacy Policy</a> |
-<a href="terms.html">Terms & Conditions</a> |
-<a href="help.html">Help & Support</a>
-
-<br><br>
-
-© 2026 GrowVest. All Rights Reserved.
-
-</div>
-
-</div>
-
-</div>
-<script type="module" src="firebase-config.js"></script>
-<script type="module" src="auth.js"></script>
+<script src="firebase-config.js"></script>
+<script src="auth.js"></script>
 
 <script>
-// Premium loading effect
-const loginBtn = document.getElementById("loginBtn");
 
-if (loginBtn) {
-  loginBtn.addEventListener("click", () => {
-    loginBtn.disabled = true;
-    loginBtn.innerHTML = `
-      <i class="fa-solid fa-spinner fa-spin"></i>
-      &nbsp; Signing In...
-    `;
+// Show / Hide Password
 
-    // auth.js login handle karega.
-    // Je login fail hove taan auth.js button nu reset kar deve.
-  });
+const passwordInput =
+document.getElementById("password");
+
+const passwordBox =
+passwordInput.parentElement;
+
+const toggle =
+document.createElement("i");
+
+toggle.className =
+"fa-solid fa-eye";
+
+toggle.style.position = "absolute";
+toggle.style.right = "18px";
+toggle.style.top = "50%";
+toggle.style.transform = "translateY(-50%)";
+toggle.style.cursor = "pointer";
+toggle.style.color = "#8ea3c7";
+
+passwordBox.appendChild(toggle);
+
+toggle.onclick = () => {
+
+if(passwordInput.type === "password"){
+
+passwordInput.type = "text";
+toggle.className = "fa-solid fa-eye-slash";
+
+}else{
+
+passwordInput.type = "password";
+toggle.className = "fa-solid fa-eye";
+
 }
 
-// Fade animation
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelector(".login-card").classList.add("fade-up");
+};
+
+// Focus Email
+
+window.onload = () => {
+
+const email =
+document.getElementById("email");
+
+if(email){
+email.focus();
+}
+
+};
+
+</script>
+
+</body>
+</html>
+<!-- =====================================================
+     LOGIN.HTML - FINAL
+     PART 4 (FINAL)
+===================================================== -->
+
+<script>
+
+// Prevent multiple form submissions
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+  loginForm.addEventListener("submit", () => {
+
+    const btn = document.querySelector(".btn-login");
+
+    if (btn) {
+
+      btn.disabled = true;
+
+      btn.innerHTML =
+      '<i class="fa-solid fa-spinner fa-spin"></i> Signing In...';
+
+    }
+
+  });
+
+}
+
+// Check internet status
+
+window.addEventListener("offline", () => {
+
+  alert("No internet connection.");
+
 });
+
+window.addEventListener("online", () => {
+
+  console.log("Internet Connected");
+
+});
+
 </script>
 
 </body>
