@@ -2,49 +2,216 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest - Investment Plans</title>
+<title>GrowVest | Investment Plans</title>
 
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="login-page">
+<div class="container fade-up">
 
-<div class="bg-blur blur1"></div>
-<div class="bg-blur blur2"></div>
+<!-- HEADER -->
 
-<div class="login-wrapper">
+<div class="top-header">
 
-<div class="login-card">
+<div class="welcome-box">
 
-<div class="logo-box">
+<h2>Investment Plans</h2>
 
-<div class="logo-icon">💎</div>
-
-<h1>Investment Plans</h1>
-
-<p>Select a plan and start growing your investment.</p>
+<p>Choose the best plan to grow your portfolio.</p>
 
 </div>
 
-<div id="plansList">
-
-<p style="text-align:center;">Loading Investment Plans...</p>
-
-</div>
-
-<br>
-
+<div class="profile-icon">
 <a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+</a>
+</div>
+
+</div>
+
+<!-- HERO CARD -->
+
+<div class="balance-card">
+
+<div class="balance-top">
+<p>GrowVest Premium Investment</p>
+<i class="fa-solid fa-shield-halved"></i>
+</div>
+
+<h1>Earn Up To 15% Monthly</h1>
+
+<div class="profit-box">
+<span>Secure • Trusted • Fast Withdrawals</span>
+<h3>Start Investing Today</h3>
+</div>
+
+</div>
+
+<!-- PLANS -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-chart-line"></i>
+Investment Plans
+</h2>
+
+<div id="plansList" class="plans-container">
+
+<div class="plan-card">
+
+<h3>Starter Plan</h3>
+
+<p><strong>Investment:</strong> $100 – $499</p>
+
+<p><strong>Monthly Return:</strong> 5%</p>
+
+<p>Perfect for beginners.</p>
 
 <button class="login-btn">
+Invest Now
+</button>
 
-⬅ Back to Dashboard
+</div>
+
+<div class="plan-card">
+
+<h3>Silver Plan</h3>
+
+<p><strong>Investment:</strong> $500 – $999</p>
+
+<p><strong>Monthly Return:</strong> 7%</p>
+
+<p>Higher monthly rewards.</p>
+
+<button class="login-btn">
+Invest Now
+</button>
+
+</div>
+<div class="plan-card">
+
+<h3>Gold Plan</h3>
+
+<p><strong>Investment:</strong> $1000 – $4999</p>
+
+<p><strong>Monthly Return:</strong> 10%</p>
+
+<p>Best choice for serious investors with higher monthly income.</p>
+
+<button class="login-btn">
+<i class="fa-solid fa-coins"></i>
+&nbsp; Invest Now
+</button>
+
+</div>
+
+<div class="plan-card">
+
+<h3>Diamond Plan</h3>
+
+<p><strong>Investment:</strong> $5000 – $9999</p>
+
+<p><strong>Monthly Return:</strong> 15%</p>
+
+<p>Maximum monthly returns with premium investor benefits.</p>
+
+<button class="login-btn">
+<i class="fa-solid fa-gem"></i>
+&nbsp; Invest Now
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- WHY CHOOSE US -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-award"></i>
+Why Choose GrowVest
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fa-solid fa-shield-halved"></i>
+<h4>Secure</h4>
+<p>Advanced account security and encrypted transactions.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-bolt"></i>
+<h4>Fast Withdrawals</h4>
+<p>Quick processing for eligible withdrawal requests.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-chart-line"></i>
+<h4>Stable Growth</h4>
+<p>Multiple investment plans designed for different budgets.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-headset"></i>
+<h4>24/7 Support</h4>
+<p>Our support team is available whenever you need assistance.</p>
+</div>
+
+</div>
+
+</div>
+<!-- TRUST SECTION -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-circle-check"></i>
+Why Investors Trust Us
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fa-solid fa-lock"></i>
+<h4>Secure Platform</h4>
+<p>256-bit encrypted security for your account.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-money-bill-trend-up"></i>
+<h4>Monthly Returns</h4>
+<p>Transparent investment plans with fixed monthly rates.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div style="margin-top:30px;">
+
+<a href="dashboard.html" style="text-decoration:none;">
+
+<button class="logout-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+&nbsp; Back to Dashboard
 
 </button>
 
@@ -52,13 +219,9 @@
 
 </div>
 
-</div>
+<!-- FOOTER -->
 
-</div>
-
-<script type="module" src="plans.js"></script>
-
-<footer>
+<footer style="text-align:center;padding:30px 0;color:#94A3B8;font-size:13px;">
 
 <p>
 
@@ -72,10 +235,15 @@
 
 </p>
 
-<p>© 2026 GrowVest. All Rights Reserved.</p>
+<p style="margin-top:10px;">
+© 2026 GrowVest. All Rights Reserved.
+</p>
 
 </footer>
 
-</body>
+</div>
 
+<script type="module" src="plans.js"></script>
+
+</body>
 </html>
