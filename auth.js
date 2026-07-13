@@ -13,10 +13,11 @@ import {
   getDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// ================= BUTTONS =================
+// ================= ELEMENTS =================
 
 const loginBtn = document.getElementById("loginBtn");
 const registerBtn = document.getElementById("registerBtn");
+const logoutBtn = document.getElementById("logoutBtn");
 
 // ================= REGISTER =================
 
@@ -24,38 +25,62 @@ if (registerBtn) {
 
   registerBtn.addEventListener("click", async () => {
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    const name =
+      document.getElementById("name").value.trim();
+
+    const email =
+      document.getElementById("email").value.trim();
+
+    const password =
+      document.getElementById("password").value;
+
+    const confirmPassword =
+      document.getElementById("confirmPassword").value;
 
     if (!name || !email || !password || !confirmPassword) {
-      alert("Please fill all fields");
+      alert("Please fill all fields.");
       return;
     }
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match");
+      alert("Passwords do not match.");
       return;
     }
 
     try {
 
-      const userCredential =
-        await createUserWithEmailAndPassword(auth, email, password);
+      registerBtn.disabled = true;
+      registerBtn.innerHTML = "Creating Account...";
 
-      await setDoc(doc(db, "users", userCredential.user.uid), {
-        name,
-        email,
-        balance: 0,
-        joinDate: new Date().toLocaleDateString()
-      });
+      const userCredential =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      await setDoc(
+        doc(db, "users", userCredential.user.uid),
+        {
+          name: name,
+          email: email,
+          balance: 0,
+          joinDate: new Date().toLocaleDateString(),
+          createdAt: Date.now()
+        }
+      );
 
       alert("Account Created Successfully");
+
       window.location.href = "login.html";
 
     } catch (error) {
+
       alert(error.message);
+
+      registerBtn.disabled = false;
+      registerBtn.innerHTML = "Create Account";
+
     }
 
   });
@@ -89,7 +114,7 @@ if (loginBtn) {
       alert(error.message);
 
       loginBtn.disabled = false;
-      loginBtn.innerHTML = "Login Securely";
+      loginBtn.innerHTML = "Secure Login";
 
     }
 
@@ -101,16 +126,14 @@ if (loginBtn) {
 
 onAuthStateChanged(auth, async (user) => {
 
-  if (!user) return;
-
-  const emailBox = document.getElementById("userEmail");
-  const balanceBox = document.getElementById("balance");
-
-  if (emailBox) {
-    emailBox.textContent = user.email;
+  // Je login page te haan te user login nahi
+  if (!user && window.location.pathname.includes("dashboard")) {
+    window.location.href = "login.html";
+    return;
   }
 
-  if (balanceBox) {
+  // Dashboard te user login aa
+  if (user) {
 
     try {
 
@@ -121,19 +144,22 @@ onAuthStateChanged(auth, async (user) => {
 
         const data = userSnap.data();
 
-        balanceBox.textContent =
-          (Number(data.balance) || 0).toFixed(2) + " USDT";
+        const userName = document.getElementById("userName");
+        const balance = document.getElementById("balance");
 
-      } else {
+        if (userName) {
+          userName.textContent = data.name || user.email;
+        }
 
-        balanceBox.textContent = "0.00 USDT";
+        if (balance) {
+          balance.textContent =
+            "₹" + Number(data.balance || 0).toLocaleString("en-IN");
+        }
 
       }
 
-    } catch (error) {
-
-      balanceBox.textContent = "0.00 USDT";
-
+    } catch (err) {
+      console.error("Dashboard Error:", err);
     }
 
   }
@@ -141,13 +167,14 @@ onAuthStateChanged(auth, async (user) => {
 });
 // ================= LOGOUT =================
 
-const logoutBtn = document.getElementById("logoutBtn");
-
 if (logoutBtn) {
 
   logoutBtn.addEventListener("click", async () => {
 
     try {
+
+      logoutBtn.disabled = true;
+      logoutBtn.innerHTML = "Signing Out...";
 
       await signOut(auth);
 
@@ -157,16 +184,81 @@ if (logoutBtn) {
 
       alert(error.message);
 
+      logoutBtn.disabled = false;
+      logoutBtn.innerHTML = "Logout";
+
     }
 
   });
 
 }
 
+// ================= SESSION CHECK =================
+
+onAuthStateChanged(auth, (user) => {
+
+  const page = window.location.pathname;
+
+  // Login/Register page te already login hai
+  if (
+    user &&
+    (page.includes("login.html") || page.includes("register.html"))
+  ) {
+    window.location.href = "dashboard.html";
+  }
+
+});
+
 // ================= APP READY =================
 
 window.addEventListener("DOMContentLoaded", () => {
 
-  console.log("GrowVest Loaded Successfully");
+  console.log("✅ GrowVest Ready");
+
+  document.body.classList.add("loaded");
+
+});
+// ================= SAFE HELPERS =================
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function formatCurrency(amount) {
+  return "₹" + Number(amount || 0).toLocaleString("en-IN");
+}
+
+// ================= LOAD USER INFO =================
+
+async function loadUserData(user) {
+  try {
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+
+    if (!userSnap.exists()) return;
+
+    const data = userSnap.data();
+
+    setText("userName", data.name || user.email);
+    setText("userEmail", data.email || user.email);
+    setText("balance", formatCurrency(data.balance));
+
+  } catch (err) {
+    console.error("Load User Error:", err);
+  }
+}
+
+// ================= APP START =================
+
+window.addEventListener("load", async () => {
+
+  const user = auth.currentUser;
+
+  if (user) {
+    await loadUserData(user);
+  }
+
+  console.log("🚀 GrowVest App Loaded");
 
 });
