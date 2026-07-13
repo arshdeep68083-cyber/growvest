@@ -6,14 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest Pro Dashboard</title>
+<title>GrowVest Pro | Dashboard</title>
 
-<link rel="stylesheet" href="style.css">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="dashboard.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -22,581 +17,354 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <body>
 
-<div class="container fade-up">
+<div class="page-container">
 
-<!-- HEADER -->
+<!-- Header -->
 
-<div class="header">
+<div class="page-header">
 
-<div class="header-left">
-<h2>Welcome 👋</h2>
-<p id="userName">Loading...</p>
-</div>
-
-<div class="header-right">
-
-<div class="icon-btn">
-<i class="fa-solid fa-bell"></i>
-</div>
-
-<div class="icon-btn">
-<i class="fa-solid fa-wallet"></i>
-</div>
-
-<div class="icon-btn">
-<i class="fa-solid fa-user"></i>
-</div>
-
-</div>
-
-</div>
-
-<!-- BALANCE CARD -->
-
-<div class="glass-card">
-
-<p style="color:#94A3B8;font-size:14px;">
-Total Portfolio Balance
-</p>
-
-<h1 id="balance">
-₹0.00
+<h1>
+<i class="fa-solid fa-chart-line"></i>
+Dashboard
 </h1>
 
-<p style="color:#22C55E;">
-<i class="fa-solid fa-arrow-trend-up"></i>
-+5.42% This Month
+<p>
+Welcome back to your GrowVest Pro account.
 </p>
 
-<div style="margin-top:25px;display:flex;gap:12px;">
+</div>
 
-<a href="deposit.html" style="flex:1;">
-<button class="btn">
-Deposit
-</button>
-</a>
+<!-- Balance Card -->
 
-<a href="withdraw.html" style="flex:1;">
-<button class="btn btn-green">
-Withdraw
-</button>
-</a>
+<div class="card balance-card">
+
+<h2>Total Balance</h2>
+
+<h1 id="totalBalance">$0.00</h1>
+
+<p>Available for investment and withdrawal</p>
 
 </div>
 
-</div>
-
-<!-- PORTFOLIO STATS -->
+<!-- Statistics -->
 
 <div class="stats-grid">
 
 <div class="stat-card">
+
 <i class="fa-solid fa-wallet"></i>
-<h3 id="depositAmount">₹0</h3>
-<p>Total Deposits</p>
+
+<h3 id="activeInvestment">$0.00</h3>
+
+<p>Active Investment</p>
+
 </div>
 
 <div class="stat-card">
-<i class="fa-solid fa-money-bill-wave"></i>
-<h3 id="withdrawAmount">₹0</h3>
-<p>Total Withdrawals</p>
+
+<i class="fa-solid fa-coins"></i>
+
+<h3 id="monthlyProfit">$0.00</h3>
+
+<p>Monthly Profit</p>
+
 </div>
 
 <div class="stat-card">
-<i class="fa-solid fa-chart-line"></i>
-<h3 id="profitAmount">₹0</h3>
-<p>Total Profit</p>
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+<h3 id="totalWithdraw">$0.00</h3>
+
+<p>Total Withdrawn</p>
+
 </div>
 
 <div class="stat-card">
+
+<i class="fa-solid fa-arrow-down"></i>
+
+<h3 id="totalDeposit">$0.00</h3>
+
+<p>Total Deposited</p>
+
+</div>
+
+</div>
+
+<!-- Quick Actions -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-bolt"></i>
+Quick Actions
+</h2>
+
+<div class="profile-actions">
+
+<a href="deposit.html" class="btn btn-primary">
+<i class="fa-solid fa-arrow-down"></i>
+Deposit
+</a>
+
+<a href="withdrawal.html" class="btn btn-primary">
+<i class="fa-solid fa-arrow-up"></i>
+Withdraw
+</a>
+
+</div>
+
+</div>
+<!-- =====================================================
+     DASHBOARD.HTML - FINAL
+     PART 2
+===================================================== -->
+
+<!-- Investment Plans -->
+
+<div class="card">
+
+<h2>
 <i class="fa-solid fa-layer-group"></i>
-<h3 id="activePlans">0</h3>
-<p>Active Plans</p>
-</div>
-
-</div>
-<!-- QUICK ACTIONS -->
-
-<div class="section-title">
-    <h3>Quick Actions</h3>
-</div>
-
-<div class="quick-actions">
-
-    <a href="deposit.html" class="action-card">
-        <i class="fa-solid fa-money-bill-wave"></i>
-        <h4>Deposit</h4>
-    </a>
-
-    <a href="withdraw.html" class="action-card">
-        <i class="fa-solid fa-wallet"></i>
-        <h4>Withdraw</h4>
-    </a>
-
-    <a href="plans.html" class="action-card">
-        <i class="fa-solid fa-chart-line"></i>
-        <h4>Invest</h4>
-    </a>
-
-    <a href="trade.html" class="action-card">
-        <i class="fa-solid fa-arrow-trend-up"></i>
-        <h4>Trade</h4>
-    </a>
-
-</div>
-
-<!-- LIVE MARKET -->
-
-<div class="section-title">
-    <h3>📈 Live Crypto Market</h3>
-</div>
-
-<div class="market-card">
-
-    <div class="market-ticker">
-        <div class="market-track">
-
-            <span>🟢 BTC +2.14%</span>
-            <span>🟢 ETH +1.84%</span>
-            <span>🔴 BNB -0.42%</span>
-            <span>🟢 SOL +3.51%</span>
-            <span>🟢 XRP +0.93%</span>
-            <span>🔴 DOGE -1.26%</span>
-            <span>🟢 ADA +1.45%</span>
-
-        </div>
-    </div>
-
-    <div style="margin-top:20px;border-radius:18px;overflow:hidden;">
-
-        <div class="tradingview-widget-container">
-
-            <div id="tradingview_chart"></div>
-
-            <script src="https://s3.tradingview.com/tv.js"></script>
-
-            <script>
-            new TradingView.widget({
-                container_id: "tradingview_chart",
-                width: "100%",
-                height: 360,
-                symbol: "BINANCE:BTCUSDT",
-                interval: "30",
-                timezone: "Etc/UTC",
-                theme: "dark",
-                style: "1",
-                locale: "en",
-                toolbar_bg: "#0f172a",
-                enable_publishing: false,
-                hide_side_toolbar: false,
-                allow_symbol_change: true
-            });
-            </script>
-
-        </div>
-
-    </div>
-
-</div>
-<!-- INVESTMENT PLANS -->
-
-<div class="section-title">
-    <h3>💼 Investment Plans & Commission</h3>
-</div>
-
-<div class="plan-card">
-
-    <span class="plan-badge">⭐ Starter</span>
-
-    <h2>Basic Investor</h2>
-
-    <div class="plan-price">$100 - $499</div>
-
-    <p>📈 Monthly Commission: <b>5%</b></p>
-    <p>💰 Minimum Investment: <b>$100</b></p>
-    <p>🛡 Secure Investment</p>
-
-    <br>
-
-    <a href="plans.html">
-        <button class="btn">
-            Invest Now
-        </button>
-    </a>
-
-</div>
-
-<div class="plan-card">
-
-    <span class="plan-badge">🔥 Popular</span>
-
-    <h2>Silver Investor</h2>
-
-    <div class="plan-price">$500 - $999</div>
-
-    <p>📈 Monthly Commission: <b>7%</b></p>
-    <p>💰 Minimum Investment: <b>$500</b></p>
-    <p>⭐ Higher Monthly Returns</p>
-
-    <br>
-
-    <a href="plans.html">
-        <button class="btn btn-green">
-            Choose Plan
-        </button>
-    </a>
-
-</div>
-
-<div class="plan-card">
-
-    <span class="plan-badge">💎 Premium</span>
-
-    <h2>Gold Investor</h2>
-
-    <div class="plan-price">$1000 - $4999</div>
-
-    <p>📈 Monthly Commission: <b>10%</b></p>
-    <p>💰 Minimum Investment: <b>$1000</b></p>
-    <p>🚀 Premium Growth Plan</p>
-
-    <br>
-
-    <a href="plans.html">
-        <button class="btn">
-            Invest Now
-        </button>
-    </a>
-
-</div>
-
-<div class="plan-card">
-
-    <span class="plan-badge">👑 VIP</span>
-
-    <h2>Platinum Investor</h2>
-
-    <div class="plan-price">$5000 - $9999</div>
-
-    <p>📈 Monthly Commission: <b>15%</b></p>
-    <p>💰 Minimum Investment: <b>$5000</b></p>
-    <p>🏆 Highest Monthly Returns</p>
-
-    <br>
-
-    <a href="plans.html">
-        <button class="btn btn-green">
-            Join VIP
-        </button>
-    </a>
-
-</div>
-<!-- PORTFOLIO OVERVIEW -->
-
-<div class="section-title">
-    <h3>📊 Portfolio Overview</h3>
-</div>
+Investment Plans
+</h2>
 
 <div class="stats-grid">
 
-    <div class="stat-card">
-        <i class="fa-solid fa-coins"></i>
-        <h3 id="totalInvestment">$0</h3>
-        <p>Total Investment</p>
-    </div>
+<div class="stat-card">
+<h3>$100 - $499</h3>
+<p>5% Monthly</p>
+</div>
 
-    <div class="stat-card">
-        <i class="fa-solid fa-hand-holding-dollar"></i>
-        <h3 id="monthlyProfit">$0</h3>
-        <p>Monthly Profit</p>
-    </div>
+<div class="stat-card">
+<h3>$500 - $999</h3>
+<p>7% Monthly</p>
+</div>
 
-    <div class="stat-card">
-        <i class="fa-solid fa-users"></i>
-        <h3 id="referralCount">0</h3>
-        <p>Total Referrals</p>
-    </div>
+<div class="stat-card">
+<h3>$1000 - $4999</h3>
+<p>10% Monthly</p>
+</div>
 
-    <div class="stat-card">
-        <i class="fa-solid fa-gift"></i>
-        <h3 id="referralIncome">$0</h3>
-        <p>Referral Earnings</p>
-    </div>
+<div class="stat-card">
+<h3>$5000 - $9999</h3>
+<p>15% Monthly</p>
+</div>
 
 </div>
 
-<!-- INVITE FRIENDS -->
-
-<div class="section-title">
-    <h3>👥 Invite Friends</h3>
 </div>
 
-<div class="glass-card">
-
-    <p style="margin-bottom:12px;color:#94A3B8;">
-        Your Referral Code
-    </p>
-
-    <h2 id="referralCode"
-        style="font-size:30px;font-weight:700;">
-        GV123456
-    </h2>
-
-    <br>
-
-    <input
-        id="referralLink"
-        class="input"
-        readonly
-        value="https://yourdomain.netlify.app/register.html?ref=GV123456">
-
-    <div style="display:flex;gap:12px;margin-top:18px;">
-
-        <button class="btn" id="copyReferralBtn">
-            <i class="fa-solid fa-copy"></i>
-            Copy Link
-        </button>
-
-        <button class="btn btn-green" id="shareReferralBtn">
-            <i class="fa-solid fa-share-nodes"></i>
-            Share
-        </button>
-
-    </div>
-
-</div>
-
-<!-- RECENT ACTIVITY -->
-
-<div class="section-title">
-    <h3>⚡ Recent Activity</h3>
-</div>
-
-<div class="history-card">
-
-    <div class="history-left">
-
-        <div class="history-icon">
-            <i class="fa-solid fa-user-plus"></i>
-        </div>
-
-        <div>
-            <div class="history-title">
-                Welcome to GrowVest Pro
-            </div>
-
-            <div class="history-date">
-                Start investing to build your portfolio.
-            </div>
-        </div>
-
-    </div>
-
-    <div class="badge badge-success">
-        Active
-    </div>
-
-</div>
-<!-- RECENT TRANSACTIONS -->
-
-<div class="section-title">
-    <h3>📜 Recent Transactions</h3>
-</div>
-
-<div id="recentTransactions">
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-money-bill-wave"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    No transactions yet
-                </div>
-
-                <div class="history-date">
-                    Your deposits, withdrawals and investments will appear here.
-                </div>
-            </div>
-
-        </div>
-
-        <div class="badge badge-warning">
-            Empty
-        </div>
-
-    </div>
-
-</div>
-
-<!-- MARKET NEWS -->
-
-<div class="section-title">
-    <h3>📰 Market Highlights</h3>
-</div>
+<!-- Recent Activity -->
 
 <div class="card">
 
-    <div class="flex-between">
+<h2>
+<i class="fa-solid fa-clock-rotate-left"></i>
+Recent Activity
+</h2>
 
-        <div>
-            <h3>Bitcoin Market</h3>
-            <p style="color:#94A3B8;font-size:13px;margin-top:6px;">
-                Follow the live chart from the Trade page to monitor current market movement.
-            </p>
-        </div>
+<div class="history-list">
 
-        <i class="fa-solid fa-bitcoin"
-           style="font-size:34px;color:#f7931a;"></i>
+<div class="history-item">
 
-    </div>
+<div>
+<h4>Deposit</h4>
+<p>+$500.00 • Today</p>
+</div>
+
+<span class="status success">
+Completed
+</span>
 
 </div>
+
+<div class="history-item">
+
+<div>
+<h4>Investment Activated</h4>
+<p>$1000 Plan • Yesterday</p>
+</div>
+
+<span class="status success">
+Active
+</span>
+
+</div>
+
+<div class="history-item">
+
+<div>
+<h4>Withdrawal</h4>
+<p>-$150.00 • 2 Days Ago</p>
+</div>
+
+<span class="status pending">
+Pending
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Commission Summary -->
 
 <div class="card">
 
-    <div class="flex-between">
-
-        <div>
-            <h3>Portfolio Security</h3>
-            <p style="color:#94A3B8;font-size:13px;margin-top:6px;">
-                Keep your account secure by using a strong password and protecting your login credentials.
-            </p>
-        </div>
-
-        <i class="fa-solid fa-shield-halved"
-           style="font-size:30px;color:#22c55e;"></i>
-
-    </div>
-
-</div>
-
-<!-- PREMIUM FEATURES -->
-
-<div class="section-title">
-    <h3>🚀 Premium Features</h3>
-</div>
+<h2>
+<i class="fa-solid fa-coins"></i>
+Commission Summary
+</h2>
 
 <div class="stats-grid">
 
-    <div class="stat-card">
-        <i class="fa-solid fa-chart-pie"></i>
-        <h3>Live</h3>
-        <p>Portfolio Analytics</p>
-    </div>
+<div class="stat-card">
+<h3>$0.00</h3>
+<p>This Month</p>
+</div>
 
-    <div class="stat-card">
-        <i class="fa-solid fa-bell"></i>
-        <h3>24/7</h3>
-        <p>Notifications</p>
-    </div>
-
-    <div class="stat-card">
-        <i class="fa-solid fa-user-group"></i>
-        <h3>Referral</h3>
-        <p>Invite System</p>
-    </div>
-
-    <div class="stat-card">
-        <i class="fa-solid fa-lock"></i>
-        <h3>Secure</h3>
-        <p>Protected Account</p>
-    </div>
+<div class="stat-card">
+<h3>$0.00</h3>
+<p>Total Earnings</p>
+</div>
 
 </div>
 
-<!-- ANNOUNCEMENT -->
-
-<div class="glass-card">
-
-    <h3 style="margin-bottom:12px;">
-        📢 Announcement
-    </h3>
-
-    <p style="line-height:1.8;color:#cbd5e1;">
-        Welcome to <strong>GrowVest Pro</strong>. Explore investment plans,
-        monitor the market from the Trade section, and manage your portfolio
-        from one place.
-    </p>
-
 </div>
-<!-- BOTTOM NAVIGATION -->
+<!-- =====================================================
+     DASHBOARD.HTML - FINAL
+     PART 3
+===================================================== -->
 
-<nav class="bottom-nav">
+<!-- User Profile Summary -->
 
-    <a href="dashboard.html" class="nav-item active">
-        <i class="fa-solid fa-house"></i>
-        <span>Home</span>
-    </a>
+<div class="card">
 
-    <a href="trade.html" class="nav-item">
-        <i class="fa-solid fa-chart-line"></i>
-        <span>Trade</span>
-    </a>
+<h2>
+<i class="fa-solid fa-user"></i>
+Profile Summary
+</h2>
 
-    <a href="plans.html" class="nav-item">
-        <i class="fa-solid fa-layer-group"></i>
-        <span>Invest</span>
-    </a>
+<div class="info-list">
 
-    <a href="history.html" class="nav-item">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <span>History</span>
-    </a>
+<div class="info-item">
+<span>Account Status</span>
+<strong class="status success">Verified</strong>
+</div>
 
-    <a href="profile.html" class="nav-item">
-        <i class="fa-solid fa-user"></i>
-        <span>Profile</span>
-    </a>
+<div class="info-item">
+<span>Current Plan</span>
+<strong>Starter Plan</strong>
+</div>
 
-</nav>
+<div class="info-item">
+<span>Monthly Commission</span>
+<strong>5%</strong>
+</div>
 
 </div>
 
-<!-- Firebase -->
-<script type="module" src="firebase-config.js"></script>
+</div>
 
-<!-- Main App -->
-<script type="module" src="app.js"></script>
+<!-- Notifications -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-bell"></i>
+Notifications
+</h2>
+
+<div class="history-list">
+
+<div class="history-item">
+
+<div>
+<h4>Welcome to GrowVest Pro</h4>
+<p>Your account is active and ready.</p>
+</div>
+
+</div>
+
+<div class="history-item">
+
+<div>
+<h4>Investment Reminder</h4>
+<p>Invest to start earning monthly commission.</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Quick Navigation -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-compass"></i>
+Quick Navigation
+</h2>
+
+<div class="profile-actions">
+
+<a href="plans.html" class="btn btn-primary">
+<i class="fa-solid fa-layer-group"></i>
+Investment Plans
+</a>
+
+<a href="history.html" class="btn btn-secondary">
+<i class="fa-solid fa-clock-rotate-left"></i>
+History
+</a>
+
+<a href="profile.html" class="btn btn-primary">
+<i class="fa-solid fa-user"></i>
+Profile
+</a>
+
+</div>
+
+</div>
+<!-- =====================================================
+     DASHBOARD.HTML - FINAL
+     PART 4 (FINAL)
+===================================================== -->
+
+<div style="margin-top:25px;">
+
+<a href="profile.html" class="btn btn-secondary">
+
+<i class="fa-solid fa-user"></i>
+
+My Profile
+
+</a>
+
+</div>
+
+</div>
 
 <script>
-// Highlight active nav
-document.querySelectorAll(".nav-item").forEach(item => {
-    item.addEventListener("click", () => {
-        document.querySelectorAll(".nav-item")
-            .forEach(nav => nav.classList.remove("active"));
-        item.classList.add("active");
-    });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  console.log("Dashboard Loaded");
+
+  // Example dashboard values
+  document.getElementById("totalBalance").textContent = "$0.00";
+  document.getElementById("activeInvestment").textContent = "$0.00";
+  document.getElementById("monthlyProfit").textContent = "$0.00";
+  document.getElementById("totalWithdraw").textContent = "$0.00";
+  document.getElementById("totalDeposit").textContent = "$0.00";
+
 });
 
-// Copy referral link
-const copyBtn = document.getElementById("copyReferralBtn");
-if (copyBtn) {
-    copyBtn.addEventListener("click", () => {
-        const link = document.getElementById("referralLink");
-        link.select();
-        document.execCommand("copy");
-        alert("Referral link copied!");
-    });
-}
-
-// Share referral link
-const shareBtn = document.getElementById("shareReferralBtn");
-if (shareBtn && navigator.share) {
-    shareBtn.addEventListener("click", async () => {
-        try {
-            await navigator.share({
-                title: "GrowVest Pro",
-                text: "Join using my referral link.",
-                url: document.getElementById("referralLink").value
-            });
-        } catch (e) {}
-    });
-}
 </script>
 
 </body>
