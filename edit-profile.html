@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Edit Profile</title>
+<title>Edit Profile | GrowVest</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -23,18 +22,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="header-left">
 <h2>Edit Profile</h2>
-<p>Update your account information</p>
+<p>Update your personal information</p>
 </div>
 
 </div>
 
 <div class="glass-card">
 
+<div class="profile-avatar" style="text-align:center;margin-bottom:20px;">
+<i class="fa-solid fa-user-circle"
+style="font-size:70px;color:#16a34a;"></i>
+</div>
+
 <div class="input-group">
 <i class="fa-solid fa-user"></i>
 <input
 type="text"
-id="fullName"
+id="name"
 placeholder="Full Name">
 </div>
 
@@ -45,7 +49,8 @@ placeholder="Full Name">
 <input
 type="email"
 id="email"
-placeholder="Email Address">
+placeholder="Email Address"
+readonly>
 </div>
 
 <br>
@@ -71,35 +76,32 @@ placeholder="Country">
 <br>
 
 <button
-id="saveProfileBtn"
+id="saveBtn"
 class="login-btn">
 
 <i class="fa-solid fa-floppy-disk"></i>
-&nbsp; Save Changes
+Save Profile
 
 </button>
 
 <br><br>
 
-<a href="profile.html" style="text-decoration:none;">
+<a href="profile.html">
 
 <button
 type="button"
 class="btn"
-style="
-width:100%;
-background:#374151;
-color:#fff;
-">
+style="width:100%;">
 
-<i class="fa-solid fa-arrow-left"></i>
-&nbsp; Back to Profile
+⬅ Back to Profile
 
 </button>
 
 </a>
 
 </div>
+    </div>
+
 <nav class="bottom-nav">
 
 <a href="dashboard.html" class="nav-item">
@@ -129,28 +131,65 @@ color:#fff;
 
 </nav>
 
-<script>
-document.getElementById("saveProfileBtn").addEventListener("click", function () {
+<script type="module">
 
-    const name = document.getElementById("fullName").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const country = document.getElementById("country").value.trim();
+import { auth, db } from "./firebase-config.js";
 
-    if (!name || !email) {
-        alert("Please enter your name and email.");
-        return;
-    }
+import {
+onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-    localStorage.setItem("userName", name);
-    localStorage.setItem("userEmail", email);
-    localStorage.setItem("userPhone", phone);
-    localStorage.setItem("userCountry", country);
+import {
+doc,
+getDoc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-    alert("Profile updated successfully!");
-    window.location.href = "profile.html";
+onAuthStateChanged(auth, async (user) => {
+
+if (!user) {
+window.location.href = "login.html";
+return;
+}
+
+const userRef = doc(db, "users", user.uid);
+const snap = await getDoc(userRef);
+
+if (snap.exists()) {
+
+const data = snap.data();
+
+document.getElementById("name").value = data.name || "";
+document.getElementById("email").value = data.email || user.email;
+document.getElementById("phone").value = data.phone || "";
+document.getElementById("country").value = data.country || "";
+
+}
+
 });
+
+document.getElementById("saveBtn").addEventListener("click", async () => {
+
+const user = auth.currentUser;
+
+if (!user) return;
+
+await updateDoc(doc(db, "users", user.uid), {
+
+name: document.getElementById("name").value,
+phone: document.getElementById("phone").value,
+country: document.getElementById("country").value
+
+});
+
+alert("Profile updated successfully!");
+
+window.location.href = "profile.html";
+
+});
+
 </script>
 
 </body>
 </html>
+
