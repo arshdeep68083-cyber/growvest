@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest Pro | Secure Login</title>
+<title>GrowVest Pro | Login</title>
 
 <link rel="stylesheet" href="auth.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -19,59 +19,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="auth-container">
 
-<div class="logo">
-<i class="fa-solid fa-chart-line"></i>
-</div>
+<div class="auth-card">
 
-<h1 class="auth-title">
-Welcome Back
-</h1>
+<h1>Welcome Back</h1>
 
-<p class="auth-subtitle">
-Sign in securely to access your GrowVest Pro dashboard and investment portfolio.
-</p>
+<p>Sign in to access your GrowVest Pro account.</p>
 
-<form id="loginForm" class="auth-form">
+<form id="loginForm">
 
-<div class="form-group">
+<div class="input-group">
 
-<label class="form-label">
-Email Address
-</label>
-
-<div class="input-box">
-
-<i class="fa-solid fa-envelope"></i>
+<label for="email">Email or Username</label>
 
 <input
-type="email"
+type="text"
 id="email"
-class="input"
-placeholder="Enter your email"
+name="email"
+placeholder="Enter your email or username"
 required>
 
 </div>
 
-</div>
+<div class="input-group">
 
-<div class="form-group">
-
-<label class="form-label">
-Password
-</label>
-
-<div class="input-box">
-
-<i class="fa-solid fa-lock"></i>
+<label for="password">Password</label>
 
 <input
 type="password"
 id="password"
-class="input"
+name="password"
 placeholder="Enter your password"
 required>
-
-</div>
 
 </div>
 <!-- =====================================================
@@ -79,23 +57,19 @@ required>
      PART 2
 ===================================================== -->
 
-<div class="auth-options">
+<div class="form-options">
 
-<label class="remember">
+<label class="remember-me">
 
 <input
 type="checkbox"
 id="rememberMe">
 
-<span>
 Remember Me
-</span>
 
 </label>
 
-<a
-href="change-password.html"
-class="forgot-password">
+<a href="#" class="forgot-password">
 
 Forgot Password?
 
@@ -105,42 +79,26 @@ Forgot Password?
 
 <button
 type="submit"
-class="btn btn-login">
+class="btn btn-primary">
 
-<i class="fa-solid fa-shield-halved"></i>
+<i class="fa-solid fa-right-to-bracket"></i>
 
-Secure Login
-
-</button>
-
-<button
-type="button"
-class="btn btn-register"
-onclick="window.location.href='register.html'">
-
-<i class="fa-solid fa-user-plus"></i>
-
-Create Account
+Login
 
 </button>
-
-<div class="auth-divider">
-
-<span>OR</span>
-
-</div>
 
 <div class="auth-footer">
 
 <p>
-Protected by encrypted authentication.
-</p>
 
-<p style="margin-top:8px;">
 Don't have an account?
+
 <a href="register.html">
-Create one now
+
+Create a New Account
+
 </a>
+
 </p>
 
 </div>
@@ -149,71 +107,31 @@ Create one now
      PART 3
 ===================================================== -->
 
+<div class="auth-note">
+
+<h3>
+
+<i class="fa-solid fa-shield-halved"></i>
+
+Secure Login
+
+</h3>
+
+<p>
+
+Your account is protected with secure encryption.
+Never share your password with anyone and always log
+out after using a public or shared device.
+
+</p>
+
+</div>
+
 </form>
 
 </div>
 
-<script src="firebase-config.js"></script>
-<script src="auth.js"></script>
-
-<script>
-
-// Show / Hide Password
-
-const passwordInput =
-document.getElementById("password");
-
-const passwordBox =
-passwordInput.parentElement;
-
-const toggle =
-document.createElement("i");
-
-toggle.className =
-"fa-solid fa-eye";
-
-toggle.style.position = "absolute";
-toggle.style.right = "18px";
-toggle.style.top = "50%";
-toggle.style.transform = "translateY(-50%)";
-toggle.style.cursor = "pointer";
-toggle.style.color = "#8ea3c7";
-
-passwordBox.appendChild(toggle);
-
-toggle.onclick = () => {
-
-if(passwordInput.type === "password"){
-
-passwordInput.type = "text";
-toggle.className = "fa-solid fa-eye-slash";
-
-}else{
-
-passwordInput.type = "password";
-toggle.className = "fa-solid fa-eye";
-
-}
-
-};
-
-// Focus Email
-
-window.onload = () => {
-
-const email =
-document.getElementById("email");
-
-if(email){
-email.focus();
-}
-
-};
-
-</script>
-
-</body>
-</html>
+</div>
 <!-- =====================================================
      LOGIN.HTML - FINAL
      PART 4 (FINAL)
@@ -221,39 +139,29 @@ email.focus();
 
 <script>
 
-// Prevent multiple form submissions
-const loginForm = document.getElementById("loginForm");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (loginForm) {
+  const loginForm = document.getElementById("loginForm");
 
-  loginForm.addEventListener("submit", () => {
+  loginForm.addEventListener("submit", (event) => {
 
-    const btn = document.querySelector(".btn-login");
+    event.preventDefault();
 
-    if (btn) {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
 
-      btn.disabled = true;
-
-      btn.innerHTML =
-      '<i class="fa-solid fa-spinner fa-spin"></i> Signing In...';
-
+    if (!email || !password) {
+      alert("Please enter your email/username and password.");
+      return;
     }
 
+    // Future backend/API login can be added here.
+
+    alert("Login successful!");
+
+    window.location.href = "dashboard.html";
+
   });
-
-}
-
-// Check internet status
-
-window.addEventListener("offline", () => {
-
-  alert("No internet connection.");
-
-});
-
-window.addEventListener("online", () => {
-
-  console.log("Internet Connected");
 
 });
 
