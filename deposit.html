@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Deposit Funds</title>
+<title>GrowVest | Deposit</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -20,54 +19,112 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <div class="container fade-up">
 
 <div class="header">
-
-<div class="header-left">
-<h2>Deposit Funds</h2>
-<p>Add funds securely to your account</p>
-</div>
-
+    <div class="header-left">
+        <h2>Deposit Funds</h2>
+        <p>Choose your preferred payment method</p>
+    </div>
 </div>
 
 <div class="glass-card">
 
+<h3 style="margin-bottom:15px;">
+USDT (TRC20)
+</h3>
+
+<p style="color:#94A3B8;margin-bottom:10px;">
+Send only USDT on the TRC20 network.
+</p>
+
+<div style="
+background:rgba(255,255,255,.06);
+padding:16px;
+border-radius:15px;
+border:1px solid rgba(255,255,255,.08);
+word-break:break-all;
+text-align:center;
+font-weight:600;
+">
+
+<span id="wallet">
+TRCaFDAoRMmKvQPSDsJ1JdqhoQgioRhSXF
+</span>
+
+</div>
+
+<button id="copyBtn" class="login-btn" style="margin-top:15px;">
+
+<i class="fa-solid fa-copy"></i>
+&nbsp; Copy TRC20 Address
+
+</button>
+
+<div style="text-align:center;margin-top:25px;">
+
+<img
+src="images/trc20-qr.png"
+alt="TRC20 QR"
+style="
+width:220px;
+max-width:100%;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.08);
+">
+
+<p style="margin-top:10px;color:#94A3B8;">
+Scan to pay with USDT (TRC20)
+</p>
+
+</div>
+
+<hr style="
+margin:30px 0;
+border:none;
+height:1px;
+background:rgba(255,255,255,.08);
+">
+
+<h3>
+Pay with UPI / Bank (INR)
+</h3>
+
+<p style="color:#94A3B8;margin-top:10px;">
+Scan this QR using PhonePe, Google Pay, Paytm or any UPI app.
+</p>
+
+<div style="text-align:center;margin-top:20px;">
+
+<img
+src="images/bank-qr.png"
+alt="Bank QR"
+style="
+width:220px;
+max-width:100%;
+border-radius:18px;
+border:1px solid rgba(255,255,255,.08);
+">
+
+</div>
+<br>
+
+<h3 style="margin-top:25px;">
+Deposit Amount
+</h3>
+
 <div class="input-group">
+
 <i class="fa-solid fa-dollar-sign"></i>
 
 <input
 type="number"
 id="amount"
-placeholder="Enter Deposit Amount (USDT)">
-</div>
-
-<h3 style="margin-top:25px;">USDT (TRC20) Wallet Address</h3>
-
-<div style="
-margin-top:12px;
-padding:16px;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.08);
-border-radius:16px;
-word-break:break-all;
-text-align:center;
-">
-
-<span id="wallet">
-YOUR_TRC20_WALLET_ADDRESS
-</span>
+placeholder="Enter Deposit Amount (USD/USDT)"
+min="10">
 
 </div>
 
-<button
-id="copyBtn"
-class="login-btn"
-style="margin-top:15px;">
-
-<i class="fa-solid fa-copy"></i>
-&nbsp; Copy Wallet Address
-
-</button>
-
-<h3 style="margin-top:30px;">Upload Payment Screenshot</h3>
+<h3 style="margin-top:25px;">
+Upload Payment Screenshot
+</h3>
 
 <input
 type="file"
@@ -76,76 +133,108 @@ accept="image/*"
 style="
 width:100%;
 margin-top:12px;
-padding:12px;
-border-radius:12px;
+padding:14px;
+border-radius:15px;
 background:rgba(255,255,255,.06);
-color:white;
 border:1px solid rgba(255,255,255,.08);
+color:#fff;
 ">
 
-<br><br>
+<p style="
+margin-top:12px;
+font-size:13px;
+color:#94A3B8;
+line-height:1.6;
+">
+After completing your payment, upload a clear screenshot and click the button below.
+</p>
 
 <button
 id="depositBtn"
-class="login-btn">
+class="login-btn"
+style="margin-top:20px;">
 
 <i class="fa-solid fa-paper-plane"></i>
-&nbsp; Submit Deposit
+&nbsp; Submit Deposit Request
 
 </button>
 
 <br><br>
 
-<a href="dashboard.html">
+<a href="dashboard.html" style="text-decoration:none;">
+
 <button
 type="button"
 class="btn"
-style="width:100%;background:#374151;color:#fff;">
+style="
+width:100%;
+background:#374151;
+color:#fff;
+">
 
 <i class="fa-solid fa-arrow-left"></i>
 &nbsp; Back to Dashboard
 
 </button>
+
 </a>
 
 </div>
-</div>
-
 <nav class="bottom-nav">
 
 <a href="dashboard.html" class="nav-item">
-<i class="fa-solid fa-house"></i>
-<span>Home</span>
+    <i class="fa-solid fa-house"></i>
+    <span>Home</span>
 </a>
 
 <a href="plans.html" class="nav-item">
-<i class="fa-solid fa-chart-line"></i>
-<span>Plans</span>
+    <i class="fa-solid fa-chart-line"></i>
+    <span>Plans</span>
 </a>
 
 <a href="deposit.html" class="nav-item active">
-<i class="fa-solid fa-wallet"></i>
-<span>Deposit</span>
+    <i class="fa-solid fa-wallet"></i>
+    <span>Deposit</span>
 </a>
 
 <a href="history.html" class="nav-item">
-<i class="fa-solid fa-clock-rotate-left"></i>
-<span>History</span>
+    <i class="fa-solid fa-clock-rotate-left"></i>
+    <span>History</span>
 </a>
 
 <a href="profile.html" class="nav-item">
-<i class="fa-solid fa-user"></i>
-<span>Profile</span>
+    <i class="fa-solid fa-user"></i>
+    <span>Profile</span>
 </a>
 
 </nav>
 
 <script>
-document.getElementById("copyBtn").onclick = function () {
-    const wallet = document.getElementById("wallet").innerText;
-    navigator.clipboard.writeText(wallet);
-    alert("Wallet address copied successfully!");
-};
+document.getElementById("copyBtn").addEventListener("click", function () {
+    const wallet = document.getElementById("wallet").innerText.trim();
+
+    navigator.clipboard.writeText(wallet).then(() => {
+        alert("TRC20 wallet address copied successfully.");
+    });
+});
+
+document.getElementById("depositBtn").addEventListener("click", function () {
+
+    const amount = document.getElementById("amount").value;
+    const proof = document.getElementById("paymentProof").files[0];
+
+    if (!amount) {
+        alert("Please enter deposit amount.");
+        return;
+    }
+
+    if (!proof) {
+        alert("Please upload payment screenshot.");
+        return;
+    }
+
+    alert("Deposit request submitted successfully. Our team will verify your payment shortly.");
+});
 </script>
 
 <script type="module" src="deposit.js"></script>
