@@ -6,12 +6,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Dashboard</title>
+<title>GrowVest Pro Dashboard</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -25,22 +24,23 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container fade-up">
 
-<!-- Header -->
+<!-- HEADER -->
 
 <div class="header">
 
 <div class="header-left">
-
 <h2>Welcome 👋</h2>
-
 <p id="userName">Loading...</p>
-
 </div>
 
 <div class="header-right">
 
 <div class="icon-btn">
 <i class="fa-solid fa-bell"></i>
+</div>
+
+<div class="icon-btn">
+<i class="fa-solid fa-wallet"></i>
 </div>
 
 <div class="icon-btn">
@@ -51,7 +51,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </div>
 
-<!-- Balance Card -->
+<!-- BALANCE CARD -->
 
 <div class="glass-card">
 
@@ -59,15 +59,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 Total Portfolio Balance
 </p>
 
-<h1 id="balance"
-style="
-font-size:38px;
-margin:12px 0;
-font-weight:800;
-">
-
+<h1 id="balance">
 ₹0.00
-
 </h1>
 
 <p style="color:#22C55E;">
@@ -75,64 +68,56 @@ font-weight:800;
 +5.42% This Month
 </p>
 
+<div style="margin-top:25px;display:flex;gap:12px;">
+
+<a href="deposit.html" style="flex:1;">
+<button class="btn">
+Deposit
+</button>
+</a>
+
+<a href="withdraw.html" style="flex:1;">
+<button class="btn btn-green">
+Withdraw
+</button>
+</a>
+
 </div>
 
-<!-- Statistics -->
+</div>
+
+<!-- PORTFOLIO STATS -->
 
 <div class="stats-grid">
 
 <div class="stat-card">
-
 <i class="fa-solid fa-wallet"></i>
-
-<h3 id="depositAmount">
-₹0
-</h3>
-
+<h3 id="depositAmount">₹0</h3>
 <p>Total Deposits</p>
-
 </div>
 
 <div class="stat-card">
-
 <i class="fa-solid fa-money-bill-wave"></i>
-
-<h3 id="withdrawAmount">
-₹0
-</h3>
-
+<h3 id="withdrawAmount">₹0</h3>
 <p>Total Withdrawals</p>
-
 </div>
 
 <div class="stat-card">
-
 <i class="fa-solid fa-chart-line"></i>
-
-<h3 id="profitAmount">
-₹0
-</h3>
-
+<h3 id="profitAmount">₹0</h3>
 <p>Total Profit</p>
-
 </div>
 
 <div class="stat-card">
-
 <i class="fa-solid fa-layer-group"></i>
-
-<h3 id="activePlans">
-0
-</h3>
-
+<h3 id="activePlans">0</h3>
 <p>Active Plans</p>
-
 </div>
 
 </div>
-<!-- Quick Actions -->
+<!-- QUICK ACTIONS -->
 
-<div class="section-title" style="margin-top:30px;">
+<div class="section-title">
     <h3>Quick Actions</h3>
 </div>
 
@@ -153,29 +138,83 @@ font-weight:800;
         <h4>Invest</h4>
     </a>
 
-    <a href="history.html" class="action-card">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        <h4>History</h4>
+    <a href="trade.html" class="action-card">
+        <i class="fa-solid fa-arrow-trend-up"></i>
+        <h4>Trade</h4>
     </a>
 
 </div>
 
-<!-- Investment Plans -->
+<!-- LIVE MARKET -->
 
-<div class="section-title" style="margin-top:35px;">
-    <h3>Popular Investment Plans</h3>
+<div class="section-title">
+    <h3>📈 Live Crypto Market</h3>
+</div>
+
+<div class="market-card">
+
+    <div class="market-ticker">
+        <div class="market-track">
+
+            <span>🟢 BTC +2.14%</span>
+            <span>🟢 ETH +1.84%</span>
+            <span>🔴 BNB -0.42%</span>
+            <span>🟢 SOL +3.51%</span>
+            <span>🟢 XRP +0.93%</span>
+            <span>🔴 DOGE -1.26%</span>
+            <span>🟢 ADA +1.45%</span>
+
+        </div>
+    </div>
+
+    <div style="margin-top:20px;border-radius:18px;overflow:hidden;">
+
+        <div class="tradingview-widget-container">
+
+            <div id="tradingview_chart"></div>
+
+            <script src="https://s3.tradingview.com/tv.js"></script>
+
+            <script>
+            new TradingView.widget({
+                container_id: "tradingview_chart",
+                width: "100%",
+                height: 360,
+                symbol: "BINANCE:BTCUSDT",
+                interval: "30",
+                timezone: "Etc/UTC",
+                theme: "dark",
+                style: "1",
+                locale: "en",
+                toolbar_bg: "#0f172a",
+                enable_publishing: false,
+                hide_side_toolbar: false,
+                allow_symbol_change: true
+            });
+            </script>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- INVESTMENT PLANS -->
+
+<div class="section-title">
+    <h3>💼 Investment Plans & Commission</h3>
 </div>
 
 <div class="plan-card">
 
-    <span class="plan-badge">🔥 Most Popular</span>
+    <span class="plan-badge">⭐ Starter</span>
 
-    <h2>Starter Plan</h2>
+    <h2>Basic Investor</h2>
 
-    <div class="plan-price">₹500</div>
+    <div class="plan-price">$100 - $499</div>
 
-    <p>Daily Profit: <b>2%</b></p>
-    <p>Duration: <b>30 Days</b></p>
+    <p>📈 Monthly Commission: <b>5%</b></p>
+    <p>💰 Minimum Investment: <b>$100</b></p>
+    <p>🛡 Secure Investment</p>
 
     <br>
 
@@ -189,14 +228,15 @@ font-weight:800;
 
 <div class="plan-card">
 
-    <span class="plan-badge">⭐ Premium</span>
+    <span class="plan-badge">🔥 Popular</span>
 
-    <h2>Gold Plan</h2>
+    <h2>Silver Investor</h2>
 
-    <div class="plan-price">₹5,000</div>
+    <div class="plan-price">$500 - $999</div>
 
-    <p>Daily Profit: <b>3%</b></p>
-    <p>Duration: <b>45 Days</b></p>
+    <p>📈 Monthly Commission: <b>7%</b></p>
+    <p>💰 Minimum Investment: <b>$500</b></p>
+    <p>⭐ Higher Monthly Returns</p>
 
     <br>
 
@@ -207,58 +247,159 @@ font-weight:800;
     </a>
 
 </div>
-<!-- Live Market -->
 
-<div class="section-title" style="margin-top:35px;">
-    <h3>📈 Live Market</h3>
-</div>
+<div class="plan-card">
 
-<div class="market-card">
+    <span class="plan-badge">💎 Premium</span>
 
-    <div class="market-ticker">
-        <div class="market-track">
-            <span>🟢 BTC $118,240 +2.1%</span>
-            <span>🟢 ETH $6,540 +1.8%</span>
-            <span>🔴 BNB $1,248 -0.4%</span>
-            <span>🟢 SOL $312 +3.6%</span>
-            <span>🟢 XRP $2.84 +0.9%</span>
-            <span>🔴 DOGE $0.41 -1.2%</span>
-        </div>
-    </div>
+    <h2>Gold Investor</h2>
 
-    <div style="margin-top:20px;border-radius:18px;overflow:hidden;">
+    <div class="plan-price">$1000 - $4999</div>
 
-        <!-- TradingView Widget -->
-        <div class="tradingview-widget-container">
-            <div id="tradingview_chart"></div>
+    <p>📈 Monthly Commission: <b>10%</b></p>
+    <p>💰 Minimum Investment: <b>$1000</b></p>
+    <p>🚀 Premium Growth Plan</p>
 
-            <script src="https://s3.tradingview.com/tv.js"></script>
+    <br>
 
-            <script>
-            new TradingView.widget({
-                "container_id": "tradingview_chart",
-                "width": "100%",
-                "height": 350,
-                "symbol": "BINANCE:BTCUSDT",
-                "interval": "30",
-                "theme": "dark",
-                "style": "1",
-                "locale": "en",
-                "toolbar_bg": "#0f172a",
-                "hide_top_toolbar": false,
-                "allow_symbol_change": true
-            });
-            </script>
-
-        </div>
-
-    </div>
+    <a href="plans.html">
+        <button class="btn">
+            Invest Now
+        </button>
+    </a>
 
 </div>
 
-<!-- Recent Transactions -->
+<div class="plan-card">
 
-<div class="section-title" style="margin-top:35px;">
+    <span class="plan-badge">👑 VIP</span>
+
+    <h2>Platinum Investor</h2>
+
+    <div class="plan-price">$5000 - $9999</div>
+
+    <p>📈 Monthly Commission: <b>15%</b></p>
+    <p>💰 Minimum Investment: <b>$5000</b></p>
+    <p>🏆 Highest Monthly Returns</p>
+
+    <br>
+
+    <a href="plans.html">
+        <button class="btn btn-green">
+            Join VIP
+        </button>
+    </a>
+
+</div>
+<!-- PORTFOLIO OVERVIEW -->
+
+<div class="section-title">
+    <h3>📊 Portfolio Overview</h3>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <i class="fa-solid fa-coins"></i>
+        <h3 id="totalInvestment">$0</h3>
+        <p>Total Investment</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-hand-holding-dollar"></i>
+        <h3 id="monthlyProfit">$0</h3>
+        <p>Monthly Profit</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-users"></i>
+        <h3 id="referralCount">0</h3>
+        <p>Total Referrals</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-gift"></i>
+        <h3 id="referralIncome">$0</h3>
+        <p>Referral Earnings</p>
+    </div>
+
+</div>
+
+<!-- INVITE FRIENDS -->
+
+<div class="section-title">
+    <h3>👥 Invite Friends</h3>
+</div>
+
+<div class="glass-card">
+
+    <p style="margin-bottom:12px;color:#94A3B8;">
+        Your Referral Code
+    </p>
+
+    <h2 id="referralCode"
+        style="font-size:30px;font-weight:700;">
+        GV123456
+    </h2>
+
+    <br>
+
+    <input
+        id="referralLink"
+        class="input"
+        readonly
+        value="https://yourdomain.netlify.app/register.html?ref=GV123456">
+
+    <div style="display:flex;gap:12px;margin-top:18px;">
+
+        <button class="btn" id="copyReferralBtn">
+            <i class="fa-solid fa-copy"></i>
+            Copy Link
+        </button>
+
+        <button class="btn btn-green" id="shareReferralBtn">
+            <i class="fa-solid fa-share-nodes"></i>
+            Share
+        </button>
+
+    </div>
+
+</div>
+
+<!-- RECENT ACTIVITY -->
+
+<div class="section-title">
+    <h3>⚡ Recent Activity</h3>
+</div>
+
+<div class="history-card">
+
+    <div class="history-left">
+
+        <div class="history-icon">
+            <i class="fa-solid fa-user-plus"></i>
+        </div>
+
+        <div>
+            <div class="history-title">
+                Welcome to GrowVest Pro
+            </div>
+
+            <div class="history-date">
+                Start investing to build your portfolio.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="badge badge-success">
+        Active
+    </div>
+
+</div>
+<!-- RECENT TRANSACTIONS -->
+
+<div class="section-title">
     <h3>📜 Recent Transactions</h3>
 </div>
 
@@ -273,22 +414,117 @@ font-weight:800;
             </div>
 
             <div>
-                <div class="history-title">No transactions yet</div>
+                <div class="history-title">
+                    No transactions yet
+                </div>
+
                 <div class="history-date">
-                    Your latest deposits and withdrawals will appear here.
+                    Your deposits, withdrawals and investments will appear here.
                 </div>
             </div>
 
         </div>
 
-        <div class="amount-plus">
-            ₹0
+        <div class="badge badge-warning">
+            Empty
         </div>
 
     </div>
 
 </div>
-<!-- Bottom Navigation -->
+
+<!-- MARKET NEWS -->
+
+<div class="section-title">
+    <h3>📰 Market Highlights</h3>
+</div>
+
+<div class="card">
+
+    <div class="flex-between">
+
+        <div>
+            <h3>Bitcoin Market</h3>
+            <p style="color:#94A3B8;font-size:13px;margin-top:6px;">
+                Follow the live chart from the Trade page to monitor current market movement.
+            </p>
+        </div>
+
+        <i class="fa-solid fa-bitcoin"
+           style="font-size:34px;color:#f7931a;"></i>
+
+    </div>
+
+</div>
+
+<div class="card">
+
+    <div class="flex-between">
+
+        <div>
+            <h3>Portfolio Security</h3>
+            <p style="color:#94A3B8;font-size:13px;margin-top:6px;">
+                Keep your account secure by using a strong password and protecting your login credentials.
+            </p>
+        </div>
+
+        <i class="fa-solid fa-shield-halved"
+           style="font-size:30px;color:#22c55e;"></i>
+
+    </div>
+
+</div>
+
+<!-- PREMIUM FEATURES -->
+
+<div class="section-title">
+    <h3>🚀 Premium Features</h3>
+</div>
+
+<div class="stats-grid">
+
+    <div class="stat-card">
+        <i class="fa-solid fa-chart-pie"></i>
+        <h3>Live</h3>
+        <p>Portfolio Analytics</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-bell"></i>
+        <h3>24/7</h3>
+        <p>Notifications</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-user-group"></i>
+        <h3>Referral</h3>
+        <p>Invite System</p>
+    </div>
+
+    <div class="stat-card">
+        <i class="fa-solid fa-lock"></i>
+        <h3>Secure</h3>
+        <p>Protected Account</p>
+    </div>
+
+</div>
+
+<!-- ANNOUNCEMENT -->
+
+<div class="glass-card">
+
+    <h3 style="margin-bottom:12px;">
+        📢 Announcement
+    </h3>
+
+    <p style="line-height:1.8;color:#cbd5e1;">
+        Welcome to <strong>GrowVest Pro</strong>. Explore investment plans,
+        monitor the market from the Trade section, and manage your portfolio
+        from one place.
+    </p>
+
+</div>
+<!-- BOTTOM NAVIGATION -->
 
 <nav class="bottom-nav">
 
@@ -297,14 +533,14 @@ font-weight:800;
         <span>Home</span>
     </a>
 
-    <a href="plans.html" class="nav-item">
+    <a href="trade.html" class="nav-item">
         <i class="fa-solid fa-chart-line"></i>
-        <span>Invest</span>
+        <span>Trade</span>
     </a>
 
-    <a href="deposit.html" class="nav-item">
-        <i class="fa-solid fa-money-bill-wave"></i>
-        <span>Deposit</span>
+    <a href="plans.html" class="nav-item">
+        <i class="fa-solid fa-layer-group"></i>
+        <span>Invest</span>
     </a>
 
     <a href="history.html" class="nav-item">
@@ -321,12 +557,14 @@ font-weight:800;
 
 </div>
 
-<!-- Firebase & Dashboard Script -->
+<!-- Firebase -->
 <script type="module" src="firebase-config.js"></script>
+
+<!-- Main App -->
 <script type="module" src="app.js"></script>
 
 <script>
-// Highlight active navigation item
+// Highlight active nav
 document.querySelectorAll(".nav-item").forEach(item => {
     item.addEventListener("click", () => {
         document.querySelectorAll(".nav-item")
@@ -334,6 +572,31 @@ document.querySelectorAll(".nav-item").forEach(item => {
         item.classList.add("active");
     });
 });
+
+// Copy referral link
+const copyBtn = document.getElementById("copyReferralBtn");
+if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+        const link = document.getElementById("referralLink");
+        link.select();
+        document.execCommand("copy");
+        alert("Referral link copied!");
+    });
+}
+
+// Share referral link
+const shareBtn = document.getElementById("shareReferralBtn");
+if (shareBtn && navigator.share) {
+    shareBtn.addEventListener("click", async () => {
+        try {
+            await navigator.share({
+                title: "GrowVest Pro",
+                text: "Join using my referral link.",
+                url: document.getElementById("referralLink").value
+            });
+        } catch (e) {}
+    });
+}
 </script>
 
 </body>
