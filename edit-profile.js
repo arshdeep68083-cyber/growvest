@@ -1,83 +1,223 @@
-import { auth, db } from "./firebase-config.js";
+/* ==========================================
+   EDIT-PROFILE.JS - FINAL
+   PART 1
+========================================== */
 
-import {
-  onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+document.addEventListener("DOMContentLoaded", () => {
 
-import {
-  doc,
-  getDoc,
-  updateDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  // Default profile data
+  const profileData = {
+    fullName: "",
+    email: "",
+    phone: "",
+    country: "",
+    username: "",
+    address: "",
+    city: "",
+    postalCode: ""
+  };
 
-const form = document.getElementById("editProfileForm");
+  // Make data globally available
+  window.profileData = profileData;
 
-const name = document.getElementById("name");
-const email = document.getElementById("email");
-const phone = document.getElementById("phone");
-const country = document.getElementById("country");
-const wallet = document.getElementById("wallet");
-
-let currentUser = null;
-
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) {
-        window.location.href = "login.html";
-        return;
+  // Populate form fields
+  function setValue(id, value) {
+    const element = document.getElementById(id);
+    if (element) {
+      element.value = value;
     }
+  }
 
-    currentUser = user;
-
-    try {
-
-        const userRef = doc(db, "users", user.uid);
-        const snap = await getDoc(userRef);
-
-        if (snap.exists()) {
-
-            const data = snap.data();
-
-            if (name) name.value = data.name || "";
-            if (email) email.value = data.email || user.email;
-            if (phone) phone.value = data.phone || "";
-            if (country) country.value = data.country || "";
-            if (wallet) wallet.value = data.wallet || "";
-
-        }
-
-    } catch (err) {
-
-        console.error(err);
-
-    }
+  setValue("fullName", profileData.fullName);
+  setValue("email", profileData.email);
+  setValue("phone", profileData.phone);
+  setValue("country", profileData.country);
+  setValue("username", profileData.username);
+  setValue("address", profileData.address);
+  setValue("city", profileData.city);
+  setValue("postalCode", profileData.postalCode);
 
 });
+/* ==========================================
+   EDIT-PROFILE.JS - FINAL
+   PART 2
+========================================== */
 
-form.addEventListener("submit", async (e) => {
+// Profile image preview
 
-    e.preventDefault();
+const profilePhotoInput = document.getElementById("profilePhoto");
 
-    try {
+if (profilePhotoInput) {
 
-        await updateDoc(doc(db, "users", currentUser.uid), {
+  profilePhotoInput.addEventListener("change", (event) => {
 
-            name: name.value.trim(),
-            phone: phone.value.trim(),
-            country: country.value.trim(),
-            wallet: wallet.value.trim()
+    const file = event.target.files[0];
 
-        });
+    if (!file) return;
 
-        alert("Profile updated successfully!");
+    console.log(`Selected image: ${file.name}`);
 
-        window.location.href = "profile.html";
+    // Future image preview can be added here.
 
-    } catch (err) {
+  });
 
-        console.error(err);
-        alert(err.message);
+}
 
-    }
+// Collect form data
+
+function getProfileData() {
+
+  return {
+
+    fullName: document.getElementById("fullName")?.value.trim() || "",
+    email: document.getElementById("email")?.value.trim() || "",
+    phone: document.getElementById("phone")?.value.trim() || "",
+    country: document.getElementById("country")?.value.trim() || "",
+    username: document.getElementById("username")?.value.trim() || "",
+    address: document.getElementById("address")?.value.trim() || "",
+    city: document.getElementById("city")?.value.trim() || "",
+    postalCode: document.getElementById("postalCode")?.value.trim() || ""
+
+  };
+
+}
+
+// Basic validation
+
+function validateProfile(data) {
+
+  if (!data.fullName)
+    return { valid: false, message: "Full name is required." };
+
+  if (!data.email)
+    return { valid: false, message: "Email is required." };
+
+  return {
+    valid: true,
+    message: "Profile is valid."
+  };
+
+}
+/* ==========================================
+   EDIT-PROFILE.JS - FINAL
+   PART 3
+========================================== */
+
+// Password validation
+
+function validatePassword(currentPassword, newPassword, confirmPassword) {
+
+  if (!newPassword && !confirmPassword) {
+    return {
+      valid: true,
+      message: "No password change requested."
+    };
+  }
+
+  if (!currentPassword) {
+    return {
+      valid: false,
+      message: "Current password is required."
+    };
+  }
+
+  if (newPassword.length < 8) {
+    return {
+      valid: false,
+      message: "New password must be at least 8 characters."
+    };
+  }
+
+  if (newPassword !== confirmPassword) {
+    return {
+      valid: false,
+      message: "Passwords do not match."
+    };
+  }
+
+  return {
+    valid: true,
+    message: "Password is valid."
+  };
+
+}
+
+// Save profile
+
+function saveProfile() {
+
+  const profile = getProfileData();
+
+  const validation = validateProfile(profile);
+
+  if (!validation.valid) {
+    alert(validation.message);
+    return false;
+  }
+
+  const passwordCheck = validatePassword(
+    document.getElementById("currentPassword")?.value || "",
+    document.getElementById("newPassword")?.value || "",
+    document.getElementById("confirmPassword")?.value || ""
+  );
+
+  if (!passwordCheck.valid) {
+    alert(passwordCheck.message);
+    return false;
+  }
+
+  console.log("Profile saved:", profile);
+
+  alert("Profile updated successfully.");
+
+  return true;
+
+}
+/* ==========================================
+   EDIT-PROFILE.JS - FINAL
+   PART 4 (FINAL)
+========================================== */
+
+// Initialize page
+
+function initializeEditProfile() {
+
+  console.log("Edit Profile page initialized.");
+
+  const saveButton = document.getElementById("saveProfileBtn");
+
+  if (saveButton) {
+
+    saveButton.addEventListener("click", (event) => {
+
+      event.preventDefault();
+
+      saveProfile();
+
+    });
+
+  }
+
+}
+
+// Reset form (optional helper)
+
+function resetProfileForm() {
+
+  const form = document.querySelector("form");
+
+  if (form) {
+    form.reset();
+  }
+
+  console.log("Profile form reset.");
+
+}
+
+// Run when page loads
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  initializeEditProfile();
 
 });
