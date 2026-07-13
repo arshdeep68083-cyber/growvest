@@ -12,9 +12,9 @@ import {
   getDocs
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-// ======================
+// =========================
 // HTML Elements
-// ======================
+// =========================
 
 const userEmail = document.getElementById("userEmail");
 const balance = document.getElementById("balance");
@@ -28,14 +28,14 @@ const ethPrice = document.getElementById("ethPrice");
 const bnbPrice = document.getElementById("bnbPrice");
 const solPrice = document.getElementById("solPrice");
 
-const toggleBtn = document.getElementById("toggleBalance");
+const toggleBalance = document.getElementById("toggleBalance");
 
 let balanceVisible = true;
-let originalBalance = "0.00 USDT";
+let realBalance = "0.00 USDT";
 
-// ======================
-// Auth State
-// ======================
+// =========================
+// Check Login
+// =========================
 
 onAuthStateChanged(auth, async (user) => {
 
@@ -44,8 +44,9 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
 
-    if (userEmail)
+    if (userEmail) {
         userEmail.textContent = user.email;
+    }
 
     try {
 
@@ -56,51 +57,55 @@ onAuthStateChanged(auth, async (user) => {
 
             const data = userSnap.data();
 
-            originalBalance =
+            realBalance =
                 Number(data.balance || 0).toFixed(2) + " USDT";
 
-            if (balance)
-                balance.textContent = originalBalance;
+            if (balance) {
+                balance.textContent = realBalance;
+            }
 
-            if (todayProfit)
+            if (todayProfit) {
                 todayProfit.textContent =
                     "+" + Number(data.todayProfit || 0).toFixed(2) + " USDT";
+            }
 
         }
 
         loadPlans(user.uid);
         loadTransactions(user.uid);
-        loadPrices();
+        loadCryptoPrices();
 
-    } catch (err) {
+    } catch (error) {
 
-        console.error(err);
+        console.error("Dashboard Error:", error);
 
     }
 
 });
-// ======================
+// =========================
 // Balance Show / Hide
-// ======================
+// =========================
 
-if (toggleBtn) {
+if (toggleBalance) {
 
-    toggleBtn.addEventListener("click", () => {
+    toggleBalance.addEventListener("click", () => {
 
         if (balanceVisible) {
 
-            if (balance)
+            if (balance) {
                 balance.textContent = "********";
+            }
 
-            toggleBtn.innerHTML =
+            toggleBalance.innerHTML =
                 '<i class="fa-solid fa-eye-slash"></i>';
 
         } else {
 
-            if (balance)
-                balance.textContent = originalBalance;
+            if (balance) {
+                balance.textContent = realBalance;
+            }
 
-            toggleBtn.innerHTML =
+            toggleBalance.innerHTML =
                 '<i class="fa-solid fa-eye"></i>';
 
         }
@@ -111,138 +116,122 @@ if (toggleBtn) {
 
 }
 
-// ======================
+// =========================
 // Live Crypto Prices
-// ======================
+// =========================
 
-async function loadPrices() {
+async function loadCryptoPrices() {
 
     try {
 
-        const res = await fetch(
+        const response = await fetch(
             "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana&vs_currencies=usd"
         );
 
-        const data = await res.json();
+        const data = await response.json();
 
-        if (btcPrice)
-            btcPrice.textContent = "$" + data.bitcoin.usd;
+        if (btcPrice) btcPrice.textContent = "$" + data.bitcoin.usd;
+        if (ethPrice) ethPrice.textContent = "$" + data.ethereum.usd;
+        if (bnbPrice) bnbPrice.textContent = "$" + data.binancecoin.usd;
+        if (solPrice) solPrice.textContent = "$" + data.solana.usd;
 
-        if (ethPrice)
-            ethPrice.textContent = "$" + data.ethereum.usd;
+    } catch (error) {
 
-        if (bnbPrice)
-            bnbPrice.textContent = "$" + data.binancecoin.usd;
-
-        if (solPrice)
-            solPrice.textContent = "$" + data.solana.usd;
-
-    } catch (err) {
-
-        console.error("Price Error:", err);
+        console.error("Crypto Price Error:", error);
 
     }
 
 }
 
-// ======================
-// Active Plans
-// ======================
+// =========================
+// Load Active Plans
+// =========================
 
 async function loadPlans(uid) {
 
     if (!activePlan) return;
 
+    activePlan.innerHTML = "";
+
     try {
 
-        const plansRef = collection(db, "userPlans");
-        const snap = await getDocs(plansRef);
+        const plansSnapshot = await getDocs(collection(db, "userPlans"));
 
-        activePlan.innerHTML = "";
+        let found = false;
 
-        let count = 0;
+        plansSnapshot.forEach((planDoc) => {
 
-        snap.forEach((doc) => {
-
-            const plan = doc.data();
+            const plan = planDoc.data();
 
             if (plan.uid === uid && plan.status === "Active") {
 
-                count++;
+                found = true;
 
                 activePlan.innerHTML += `
-                <div class="plan-card">
-                    <h3>${plan.name}</h3>
-                    <p>Investment: ${plan.amount} USDT</p>
-                    <p>Profit: ${plan.monthlyProfit}% Monthly</p>
-                    <span class="status active">${plan.status}</span>
-                </div>`;
+                    <div class="plan-card">
+                        <h3>${plan.name}</h3>
+                        <p>Investment: ${plan.amount} USDT</p>
+                        <p>Monthly Profit: ${plan.monthlyProfit}%</p>
+                        <span class="status active">${plan.status}</span>
+                    </div>
+                `;
             }
 
         });
 
-        if (count === 0) {
+        if (!found) {
 
             activePlan.innerHTML =
-                "<p>No Active Investment Plans</p>";
+                "<div class='loading-card'>No Active Investment Plans</div>";
 
         }
 
-    } catch (err) {
+    } catch (error) {
 
-        console.error(err);
+        console.error("Plans Error:", error);
 
     }
 
 }
-// ======================
-// Recent Transactions
-// ======================
+// =========================
+// Load Recent Transactions
+// =========================
 
 async function loadTransactions(uid) {
 
     if (!transactions) return;
 
+    transactions.innerHTML = "";
+
     try {
 
-        const txRef = collection(db, "transactions");
-        const snap = await getDocs(txRef);
-
-        transactions.innerHTML = "";
+        const txSnapshot = await getDocs(collection(db, "transactions"));
 
         let found = false;
 
-        snap.forEach((doc) => {
+        txSnapshot.forEach((txDoc) => {
 
-            const tx = doc.data();
+            const tx = txDoc.data();
 
             if (tx.uid === uid) {
 
                 found = true;
 
                 transactions.innerHTML += `
+                    <div class="transaction-card">
+                        <div>
+                            <h4>${tx.type || "Transaction"}</h4>
+                            <p>${tx.date || "--"}</p>
+                        </div>
 
-                <div class="transaction-card">
-
-                    <div>
-                        <h4>${tx.type}</h4>
-                        <p>${tx.date || "--"}</p>
+                        <div style="text-align:right">
+                            <strong>${Number(tx.amount || 0).toFixed(2)} USDT</strong>
+                            <br>
+                            <span class="${tx.status === "Completed" ? "status active" : "status pending"}">
+                                ${tx.status || "Pending"}
+                            </span>
+                        </div>
                     </div>
-
-                    <div style="text-align:right">
-
-                        <strong>${Number(tx.amount || 0).toFixed(2)} USDT</strong>
-
-                        <br>
-
-                        <span class="${tx.status === "Completed" ? "success" : "pending"}">
-                            ${tx.status || "Pending"}
-                        </span>
-
-                    </div>
-
-                </div>
-
                 `;
 
             }
@@ -252,21 +241,21 @@ async function loadTransactions(uid) {
         if (!found) {
 
             transactions.innerHTML =
-                "<p>No transactions found.</p>";
+                "<div class='loading-card'>No Transactions Found</div>";
 
         }
 
-    } catch (err) {
+    } catch (error) {
 
-        console.error(err);
+        console.error("Transaction Error:", error);
 
     }
 
 }
 
-// ======================
+// =========================
 // Auto Refresh
-// ======================
+// =========================
 
 setInterval(() => {
 
@@ -274,7 +263,7 @@ setInterval(() => {
 
     if (user) {
 
-        loadPrices();
+        loadCryptoPrices();
         loadPlans(user.uid);
         loadTransactions(user.uid);
 
@@ -282,27 +271,25 @@ setInterval(() => {
 
 }, 30000);
 
-// ======================
+// =========================
 // Logout
-// ======================
+// =========================
 
 if (logoutBtn) {
 
     logoutBtn.addEventListener("click", async () => {
 
-        if (!confirm("Are you sure you want to logout?"))
-            return;
+        if (!confirm("Are you sure you want to logout?")) return;
 
         try {
 
             await signOut(auth);
-
             window.location.href = "login.html";
 
-        } catch (err) {
+        } catch (error) {
 
-            console.error(err);
-            alert("Logout failed!");
+            console.error(error);
+            alert("Logout Failed!");
 
         }
 
@@ -310,4 +297,4 @@ if (logoutBtn) {
 
 }
 
-console.log("✅ GrowVest Premium Dashboard Loaded");
+console.log("✅ GrowVest Premium Dashboard Loaded Successfully");
