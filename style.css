@@ -1,7 +1,7 @@
-/* ==================================================
-   GrowVest Premium UI - style.css
-   PART 1
-================================================== */
+/* ==========================================
+   GrowVest Premium UI
+   style.css - PART 1
+========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
@@ -13,20 +13,21 @@
 }
 
 :root{
-    --primary:#2563eb;
-    --primary2:#3b82f6;
-    --success:#22c55e;
-    --danger:#ef4444;
-    --warning:#f59e0b;
-
-    --bg:#090c16;
-    --bg2:#111827;
+    --bg:#08111f;
+    --bg2:#101827;
     --card:rgba(255,255,255,.08);
     --border:rgba(255,255,255,.10);
 
-    --white:#fff;
-    --text:#d7dce7;
-    --muted:#94a3b8;
+    --primary:#2563EB;
+    --primary2:#3B82F6;
+
+    --green:#22C55E;
+    --red:#EF4444;
+    --yellow:#FACC15;
+
+    --white:#ffffff;
+    --text:#dce3ee;
+    --muted:#94A3B8;
 
     --radius:22px;
 }
@@ -36,85 +37,93 @@ html{
 }
 
 body{
-    background:linear-gradient(180deg,#0b1020,#070b14);
+    background:linear-gradient(180deg,#08111f,#0b1020,#050913);
     color:var(--white);
     min-height:100vh;
     overflow-x:hidden;
 }
 
-/* ---------- LOGIN PAGE ---------- */
-
-.login-page{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-    padding:25px;
-}
+/* Background Blur */
 
 .bg-blur{
-    position:absolute;
+    position:fixed;
     border-radius:50%;
-    filter:blur(100px);
+    filter:blur(120px);
+    z-index:-1;
 }
 
 .blur1{
-    width:280px;
-    height:280px;
-    background:#2563eb;
-    top:-80px;
+    width:260px;
+    height:260px;
+    background:#2563EB;
+    top:-100px;
     left:-80px;
-    opacity:.45;
+    opacity:.35;
 }
 
 .blur2{
-    width:250px;
-    height:250px;
-    background:#06b6d4;
-    right:-70px;
-    bottom:-70px;
-    opacity:.35;
+    width:280px;
+    height:280px;
+    background:#0EA5E9;
+    bottom:-120px;
+    right:-80px;
+    opacity:.30;
+}
+
+/* Container */
+
+.container{
+    width:100%;
+    max-width:480px;
+    margin:auto;
+    padding:18px;
+}
+
+/* Login */
+
+.login-page{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding:20px;
 }
 
 .login-wrapper{
     width:100%;
-    max-width:420px;
-    position:relative;
-    z-index:2;
+    max-width:430px;
 }
 
 .login-card{
     background:rgba(255,255,255,.08);
+    backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.10);
-    backdrop-filter:blur(18px);
     border-radius:28px;
     padding:35px 25px;
-    box-shadow:0 15px 45px rgba(0,0,0,.35);
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
 }
 
 .logo-box{
     text-align:center;
-    margin-bottom:25px;
+    margin-bottom:30px;
 }
 
 .logo-icon{
     width:80px;
     height:80px;
-    margin:auto;
     border-radius:50%;
+    margin:auto;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:34px;
     color:#fff;
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-    box-shadow:0 10px 25px rgba(37,99,235,.4);
+    box-shadow:0 10px 30px rgba(37,99,235,.35);
 }
 
 .logo-box h1{
-    margin-top:18px;
+    margin-top:20px;
     font-size:30px;
     font-weight:700;
 }
@@ -127,7 +136,7 @@ body{
 
 .input-group{
     position:relative;
-    margin-top:18px;
+    margin-bottom:18px;
 }
 
 .input-group i{
@@ -135,61 +144,67 @@ body{
     left:16px;
     top:50%;
     transform:translateY(-50%);
-    color:#94a3b8;
+    color:#94A3B8;
 }
 
 .input-group input{
     width:100%;
-    padding:15px 18px 15px 48px;
+    padding:16px 16px 16px 48px;
+    border:none;
+    outline:none;
     border-radius:16px;
-    border:1px solid rgba(255,255,255,.10);
     background:rgba(255,255,255,.06);
     color:#fff;
-    outline:none;
-    font-size:15px;
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .input-group input::placeholder{
-    color:#94a3b8;
+    color:#94A3B8;
+}
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+    font-size:13px;
+}
+
+.login-options a{
+    color:#3B82F6;
+    text-decoration:none;
 }
 
 .login-btn{
     width:100%;
-    margin-top:22px;
     border:none;
+    border-radius:18px;
     padding:16px;
-    border-radius:16px;
-    cursor:pointer;
-    color:#fff;
     font-size:16px;
     font-weight:600;
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    cursor:pointer;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
     transition:.3s;
 }
 
 .login-btn:hover{
     transform:translateY(-2px);
-    box-shadow:0 10px 20px rgba(37,99,235,.35);
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
 }
+/* ==========================================
+   GrowVest Premium UI
+   style.css - PART 2
+========================================== */
 
-.container{
-    width:100%;
-    max-width:480px;
-    margin:auto;
-    padding:18px;
-}
-/* ==================================================
-   GrowVest Premium UI - style.css
-   PART 2
-================================================== */
-
-/* ---------- HEADER ---------- */
+/* Header */
 
 .header{
     display:flex;
     justify-content:space-between;
     align-items:center;
     margin-top:10px;
+    margin-bottom:20px;
 }
 
 .header-left h2{
@@ -199,8 +214,8 @@ body{
 
 .header-left p{
     color:var(--muted);
-    font-size:13px;
     margin-top:4px;
+    font-size:13px;
 }
 
 .header-right{
@@ -212,24 +227,24 @@ body{
     width:46px;
     height:46px;
     border-radius:50%;
+    background:var(--card);
+    border:1px solid var(--border);
     display:flex;
     align-items:center;
     justify-content:center;
-    background:var(--card);
-    border:1px solid var(--border);
-    backdrop-filter:blur(15px);
     color:#fff;
-    font-size:20px;
+    font-size:18px;
+    backdrop-filter:blur(15px);
 }
 
-/* ---------- BALANCE CARD ---------- */
+/* Balance Card */
 
 .balance-card{
-    margin-top:25px;
+    background:linear-gradient(135deg,#2563EB,#3B82F6,#0EA5E9);
+    border-radius:26px;
     padding:25px;
-    border-radius:28px;
-    background:linear-gradient(135deg,#2563eb,#3b82f6,#0ea5e9);
-    box-shadow:0 15px 40px rgba(37,99,235,.35);
+    color:#fff;
+    box-shadow:0 18px 40px rgba(37,99,235,.35);
 }
 
 .balance-title{
@@ -244,18 +259,18 @@ body{
 }
 
 .today-profit{
-    margin-top:18px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    margin-top:18px;
 }
 
 .profit{
-    color:#bbf7d0;
+    color:#D1FAE5;
     font-weight:700;
 }
 
-/* ---------- BUTTONS ---------- */
+/* Buttons */
 
 .action-buttons{
     display:grid;
@@ -265,10 +280,9 @@ body{
 }
 
 .btn{
-    width:100%;
     border:none;
     border-radius:18px;
-    padding:16px;
+    padding:15px;
     font-size:15px;
     font-weight:600;
     cursor:pointer;
@@ -280,19 +294,19 @@ body{
 }
 
 .deposit{
-    background:#22c55e;
+    background:#22C55E;
     color:#fff;
 }
 
 .withdraw{
-    background:#ef4444;
+    background:#EF4444;
     color:#fff;
 }
 
-/* ---------- SECTION ---------- */
+/* Sections */
 
 .section{
-    margin-top:28px;
+    margin-top:30px;
 }
 
 .section-title{
@@ -307,28 +321,28 @@ body{
 }
 
 .section-title a{
+    color:#3B82F6;
     text-decoration:none;
-    color:#3b82f6;
 }
 
-/* ---------- GLASS CARD ---------- */
+/* Glass Card */
 
 .glass-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    backdrop-filter:blur(18px);
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
+    backdrop-filter:blur(18px);
     padding:18px;
 }
 
-/* ---------- MARKET ---------- */
+/* Market Cards */
 
 .market-scroll{
     display:flex;
     gap:15px;
     overflow-x:auto;
+    padding-bottom:10px;
     scrollbar-width:none;
-    padding-bottom:5px;
 }
 
 .market-scroll::-webkit-scrollbar{
@@ -337,10 +351,10 @@ body{
 
 .market-card{
     min-width:150px;
-    padding:18px;
-    border-radius:20px;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+    padding:18px;
     transition:.3s;
 }
 
@@ -349,8 +363,8 @@ body{
 }
 
 .market-card h4{
-    margin-bottom:10px;
     font-size:18px;
+    margin-bottom:10px;
 }
 
 .market-price{
@@ -359,25 +373,21 @@ body{
 }
 
 .up{
-    color:#22c55e;
+    color:#22C55E;
 }
 
 .down{
-    color:#ef4444;
+    color:#EF4444;
 }
-/* ==================================================
-   GrowVest Premium UI - style.css
-   PART 3
-================================================== */
 
-/* ---------- INVESTMENT CARD ---------- */
+/* Investment Card */
 
 .invest-card{
-    margin-top:18px;
+    margin-top:15px;
     background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
     border-radius:22px;
     padding:20px;
+    border:1px solid rgba(255,255,255,.08);
 }
 
 .plan-name{
@@ -386,15 +396,15 @@ body{
 }
 
 .plan-profit{
+    color:#22C55E;
     margin:10px 0;
-    color:#22c55e;
     font-weight:600;
 }
 
 .progress{
     width:100%;
     height:10px;
-    background:#1e293b;
+    background:#1f2937;
     border-radius:20px;
     overflow:hidden;
     margin-top:15px;
@@ -404,60 +414,65 @@ body{
     display:block;
     width:70%;
     height:100%;
-    background:linear-gradient(90deg,#22c55e,#16a34a);
+    background:linear-gradient(90deg,#22C55E,#16A34A);
     border-radius:20px;
 }
+/* ==========================================
+   GrowVest Premium UI
+   style.css - PART 3
+========================================== */
 
-/* ---------- PLANS ---------- */
+/* Plans */
 
 .plan-card{
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.08);
     border-radius:20px;
-    padding:18px;
+    padding:20px;
     margin-bottom:16px;
+    transition:.3s;
+}
+
+.plan-card:hover{
+    transform:translateY(-4px);
+    border-color:#3B82F6;
 }
 
 .plan-card h4{
-    margin-bottom:8px;
-    font-size:18px;
+    font-size:20px;
+    margin-bottom:10px;
 }
 
 .plan-card p{
-    color:#bfc7d5;
+    color:var(--muted);
+    margin-bottom:8px;
     font-size:14px;
-    line-height:1.6;
-    margin-bottom:12px;
 }
 
 .plan-btn{
     width:100%;
-    padding:14px;
+    margin-top:15px;
     border:none;
     border-radius:16px;
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
-    color:#fff;
+    padding:14px;
     font-size:15px;
     font-weight:600;
+    color:#fff;
     cursor:pointer;
-    transition:.3s;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
 }
 
-.plan-btn:hover{
-    transform:translateY(-2px);
-}
-
-/* ---------- HISTORY ---------- */
+/* History */
 
 .history-card{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:16px;
-    margin-bottom:14px;
-    border-radius:18px;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
 }
 
 .history-left{
@@ -470,49 +485,41 @@ body{
     width:48px;
     height:48px;
     border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     background:rgba(59,130,246,.15);
-    color:#3b82f6;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#3B82F6;
     font-size:20px;
 }
 
 .history-title{
-    font-size:15px;
     font-weight:600;
 }
 
 .history-date{
     font-size:12px;
-    color:#94a3b8;
-}
-
-.history-amount{
-    font-size:16px;
-    font-weight:700;
+    color:var(--muted);
 }
 
 .amount-plus{
-    color:#22c55e;
+    color:#22C55E;
+    font-weight:700;
 }
 
 .amount-minus{
-    color:#ef4444;
+    color:#EF4444;
+    font-weight:700;
 }
-/* ==================================================
-   GrowVest Premium UI - style.css
-   PART 4 (FINAL)
-================================================== */
 
-/* ---------- PROFILE ---------- */
+/* Profile */
 
 .profile-card{
     text-align:center;
-    padding:30px 20px;
     background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.08);
     border-radius:24px;
+    padding:30px 20px;
 }
 
 .profile-avatar{
@@ -520,7 +527,7 @@ body{
     height:90px;
     margin:auto;
     border-radius:50%;
-    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
     display:flex;
     align-items:center;
     justify-content:center;
@@ -536,7 +543,7 @@ body{
 
 .profile-email{
     margin-top:6px;
-    color:#94a3b8;
+    color:var(--muted);
     font-size:14px;
 }
 
@@ -548,11 +555,11 @@ body{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:18px;
-    margin-bottom:12px;
-    border-radius:18px;
     background:rgba(255,255,255,.05);
     border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:18px;
+    margin-bottom:12px;
     cursor:pointer;
     transition:.3s;
 }
@@ -561,25 +568,39 @@ body{
     background:rgba(59,130,246,.12);
 }
 
-.profile-item span{
-    font-size:15px;
-    font-weight:500;
-}
-
 .logout-btn{
     width:100%;
     margin-top:20px;
-    padding:16px;
     border:none;
     border-radius:18px;
-    background:linear-gradient(135deg,#ef4444,#dc2626);
+    padding:16px;
+    background:linear-gradient(135deg,#EF4444,#DC2626);
     color:#fff;
     font-size:16px;
     font-weight:600;
     cursor:pointer;
 }
+/* ==========================================
+   GrowVest Premium UI
+   style.css - PART 4
+========================================== */
 
-/* ---------- BOTTOM NAV ---------- */
+/* Footer */
+
+footer{
+    text-align:center;
+    padding:25px 15px;
+    color:var(--muted);
+    font-size:13px;
+}
+
+footer a{
+    color:#3B82F6;
+    text-decoration:none;
+    margin:0 6px;
+}
+
+/* Bottom Navigation */
 
 .bottom-nav{
     position:fixed;
@@ -588,42 +609,43 @@ body{
     transform:translateX(-50%);
     width:95%;
     max-width:470px;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:12px 5px;
     background:rgba(15,23,42,.95);
     backdrop-filter:blur(20px);
     border:1px solid rgba(255,255,255,.08);
     border-radius:28px;
-    box-shadow:0 15px 40px rgba(0,0,0,.45);
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    padding:12px 5px;
+    box-shadow:0 15px 40px rgba(0,0,0,.35);
     z-index:999;
 }
 
 .nav-item{
-    text-decoration:none;
-    color:#94a3b8;
     display:flex;
     flex-direction:column;
     align-items:center;
     gap:5px;
+    text-decoration:none;
+    color:#94A3B8;
     font-size:12px;
     transition:.3s;
 }
 
 .nav-item i{
-    font-size:22px;
+    font-size:20px;
 }
 
+.nav-item:hover,
 .nav-item.active{
-    color:#3b82f6;
+    color:#3B82F6;
 }
 
 .nav-item.active i{
-    transform:translateY(-3px);
+    transform:translateY(-2px);
 }
 
-/* ---------- ANIMATION ---------- */
+/* Animation */
 
 .fade-up{
     animation:fadeUp .6s ease;
@@ -632,7 +654,7 @@ body{
 @keyframes fadeUp{
     from{
         opacity:0;
-        transform:translateY(25px);
+        transform:translateY(20px);
     }
     to{
         opacity:1;
@@ -640,48 +662,82 @@ body{
     }
 }
 
-/* ---------- SCROLLBAR ---------- */
+/* Scrollbar */
 
 ::-webkit-scrollbar{
     width:6px;
 }
 
 ::-webkit-scrollbar-thumb{
-    background:#2563eb;
+    background:#2563EB;
     border-radius:10px;
 }
 
 ::-webkit-scrollbar-track{
-    background:#0b1020;
+    background:#08111f;
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* Responsive */
 
-@media(max-width:480px){
+@media (max-width:768px){
 
     .container{
-        padding:15px;
+        padding:16px;
     }
 
     .balance{
         font-size:28px;
     }
 
-    .icon-btn{
-        width:42px;
-        height:42px;
+    .action-buttons{
+        grid-template-columns:1fr;
     }
 
-    .btn,
-    .login-btn{
-        padding:14px;
+    .login-card{
+        padding:25px 20px;
     }
 
-    .section-title h3{
-        font-size:17px;
+    .logo-box h1{
+        font-size:26px;
+    }
+
+    .header-left h2{
+        font-size:22px;
     }
 
     .bottom-nav{
         width:96%;
+    }
+}
+
+@media (max-width:480px){
+
+    .container{
+        max-width:100%;
+    }
+
+    .market-card{
+        min-width:140px;
+    }
+
+    .profile-avatar{
+        width:80px;
+        height:80px;
+        font-size:30px;
+    }
+
+    .balance{
+        font-size:26px;
+    }
+
+    .btn,
+    .login-btn,
+    .plan-btn{
+        font-size:15px;
+        padding:14px;
+    }
+
+    .header-left h2{
+        font-size:20px;
     }
 }
