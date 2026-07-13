@@ -1,743 +1,449 @@
-/* ==========================================
-   GrowVest Premium UI
-   style.css - PART 1
-========================================== */
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+/* ===========================
+   PREMIUM DASHBOARD CSS
+   PART 1
+=========================== */
 
 :root{
-    --bg:#08111f;
-    --bg2:#101827;
-    --card:rgba(255,255,255,.08);
-    --border:rgba(255,255,255,.10);
 
-    --primary:#2563EB;
-    --primary2:#3B82F6;
+--primary:#00d084;
+--secondary:#00b4ff;
+--dark:#0f172a;
+--card:#182236;
+--text:#ffffff;
+--muted:#94a3b8;
+--border:rgba(255,255,255,.08);
 
-    --green:#22C55E;
-    --red:#EF4444;
-    --yellow:#FACC15;
-
-    --white:#ffffff;
-    --text:#dce3ee;
-    --muted:#94A3B8;
-
-    --radius:22px;
-}
-
-html{
-    scroll-behavior:smooth;
 }
 
 body{
-    background:linear-gradient(180deg,#08111f,#0b1020,#050913);
-    color:var(--white);
-    min-height:100vh;
-    overflow-x:hidden;
+
+margin:0;
+padding:0;
+font-family:Poppins,sans-serif;
+background:linear-gradient(180deg,#07111f,#111827);
+color:var(--text);
+
 }
-
-/* Background Blur */
-
-.bg-blur{
-    position:fixed;
-    border-radius:50%;
-    filter:blur(120px);
-    z-index:-1;
-}
-
-.blur1{
-    width:260px;
-    height:260px;
-    background:#2563EB;
-    top:-100px;
-    left:-80px;
-    opacity:.35;
-}
-
-.blur2{
-    width:280px;
-    height:280px;
-    background:#0EA5E9;
-    bottom:-120px;
-    right:-80px;
-    opacity:.30;
-}
-
-/* Container */
 
 .container{
-    width:100%;
-    max-width:480px;
-    margin:auto;
-    padding:18px;
+
+max-width:480px;
+margin:auto;
+padding:20px;
+padding-bottom:90px;
+
 }
 
-/* Login */
+.top-header{
 
-.login-page{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
+
 }
 
-.login-wrapper{
-    width:100%;
-    max-width:430px;
+.welcome-box h3{
+
+margin:0;
+font-size:24px;
+font-weight:700;
+
 }
 
-.login-card{
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.10);
-    border-radius:28px;
-    padding:35px 25px;
-    box-shadow:0 20px 50px rgba(0,0,0,.35);
+.welcome-box p{
+
+margin-top:6px;
+color:var(--muted);
+font-size:14px;
+
 }
 
-.logo-box{
-    text-align:center;
-    margin-bottom:30px;
+.profile-icon{
+
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:linear-gradient(135deg,#00d084,#00b4ff);
+font-size:22px;
+
 }
 
-.logo-icon{
-    width:80px;
-    height:80px;
-    border-radius:50%;
-    margin:auto;
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    color:#fff;
-    box-shadow:0 10px 30px rgba(37,99,235,.35);
+.profile-icon a{
+
+color:#fff;
+text-decoration:none;
+
 }
-
-.logo-box h1{
-    margin-top:20px;
-    font-size:30px;
-    font-weight:700;
-}
-
-.logo-box p{
-    margin-top:8px;
-    color:var(--muted);
-    font-size:14px;
-}
-
-.input-group{
-    position:relative;
-    margin-bottom:18px;
-}
-
-.input-group i{
-    position:absolute;
-    left:16px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#94A3B8;
-}
-
-.input-group input{
-    width:100%;
-    padding:16px 16px 16px 48px;
-    border:none;
-    outline:none;
-    border-radius:16px;
-    background:rgba(255,255,255,.06);
-    color:#fff;
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.input-group input::placeholder{
-    color:#94A3B8;
-}
-
-.login-options{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:20px;
-    font-size:13px;
-}
-
-.login-options a{
-    color:#3B82F6;
-    text-decoration:none;
-}
-
-.login-btn{
-    width:100%;
-    border:none;
-    border-radius:18px;
-    padding:16px;
-    font-size:16px;
-    font-weight:600;
-    color:#fff;
-    cursor:pointer;
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
-    transition:.3s;
-}
-
-.login-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 12px 25px rgba(37,99,235,.35);
-}
-/* ==========================================
-   GrowVest Premium UI
-   style.css - PART 2
-========================================== */
-
-/* Header */
-
-.header{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:10px;
-    margin-bottom:20px;
-}
-
-.header-left h2{
-    font-size:24px;
-    font-weight:700;
-}
-
-.header-left p{
-    color:var(--muted);
-    margin-top:4px;
-    font-size:13px;
-}
-
-.header-right{
-    display:flex;
-    gap:12px;
-}
-
-.icon-btn{
-    width:46px;
-    height:46px;
-    border-radius:50%;
-    background:var(--card);
-    border:1px solid var(--border);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:18px;
-    backdrop-filter:blur(15px);
-}
-
-/* Balance Card */
 
 .balance-card{
-    background:linear-gradient(135deg,#2563EB,#3B82F6,#0EA5E9);
-    border-radius:26px;
-    padding:25px;
-    color:#fff;
-    box-shadow:0 18px 40px rgba(37,99,235,.35);
+
+background:linear-gradient(135deg,#00d084,#00b4ff);
+padding:25px;
+border-radius:22px;
+box-shadow:0 20px 45px rgba(0,0,0,.30);
+margin-bottom:22px;
+
 }
 
-.balance-title{
-    font-size:14px;
-    opacity:.9;
+.balance-top{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
 }
 
-.balance{
-    font-size:34px;
-    font-weight:700;
-    margin-top:8px;
+.balance-top p{
+
+margin:0;
+font-size:15px;
+opacity:.9;
+
 }
 
-.today-profit{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-top:18px;
+.eye-btn{
+
+background:none;
+border:none;
+color:#fff;
+font-size:20px;
+cursor:pointer;
+
 }
 
-.profit{
-    color:#D1FAE5;
-    font-weight:700;
+.balance-card h1{
+
+font-size:36px;
+margin:18px 0;
+
 }
 
-/* Buttons */
+.profit-box{
 
-.action-buttons{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:15px;
-    margin-top:22px;
+background:rgba(255,255,255,.15);
+padding:12px;
+border-radius:14px;
+
 }
 
-.btn{
-    border:none;
-    border-radius:18px;
-    padding:15px;
-    font-size:15px;
-    font-weight:600;
-    cursor:pointer;
-    transition:.3s;
+.profit-box span{
+
+font-size:13px;
+display:block;
+
 }
 
-.btn:hover{
-    transform:translateY(-2px);
+.profit-box h3{
+
+margin-top:8px;
+font-size:22px;
+
 }
 
-.deposit{
-    background:#22C55E;
-    color:#fff;
+.quick-actions{
+
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:15px;
+margin-bottom:25px;
+
 }
 
-.withdraw{
-    background:#EF4444;
-    color:#fff;
+.action-card{
+
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px 10px;
+text-align:center;
+text-decoration:none;
+color:#fff;
+transition:.3s;
+
 }
 
-/* Sections */
+.action-card i{
 
-.section{
-    margin-top:30px;
+font-size:24px;
+margin-bottom:10px;
+color:var(--primary);
+display:block;
+
 }
 
-.section-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:15px;
+.action-card:hover{
+
+transform:translateY(-5px);
+
+}
+/* ===========================
+   PREMIUM DASHBOARD CSS
+   PART 2
+=========================== */
+
+.dashboard-section{
+
+margin-bottom:24px;
+
 }
 
-.section-title h3{
-    font-size:18px;
+.dashboard-section h2{
+
+display:flex;
+align-items:center;
+gap:10px;
+font-size:20px;
+margin-bottom:16px;
+font-weight:700;
+
 }
 
-.section-title a{
-    color:#3B82F6;
-    text-decoration:none;
+.dashboard-section h2 i{
+
+color:var(--primary);
+
 }
 
-/* Glass Card */
+.crypto-grid{
 
-.glass-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:22px;
-    backdrop-filter:blur(18px);
-    padding:18px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+
 }
 
-/* Market Cards */
+.crypto-card{
 
-.market-scroll{
-    display:flex;
-    gap:15px;
-    overflow-x:auto;
-    padding-bottom:10px;
-    scrollbar-width:none;
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+transition:.3s;
+
 }
 
-.market-scroll::-webkit-scrollbar{
-    display:none;
+.crypto-card:hover{
+
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,212,132,.15);
+
 }
 
-.market-card{
-    min-width:150px;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:18px;
-    transition:.3s;
+.crypto-card h4{
+
+margin:0 0 10px;
+font-size:15px;
+color:#cbd5e1;
+
 }
 
-.market-card:hover{
-    transform:translateY(-5px);
+.crypto-card p{
+
+margin:0;
+font-size:22px;
+font-weight:700;
+color:#00d084;
+
 }
 
-.market-card h4{
-    font-size:18px;
-    margin-bottom:10px;
+.plans-container,
+.transactions-container{
+
+display:flex;
+flex-direction:column;
+gap:15px;
+
 }
 
-.market-price{
-    font-size:22px;
-    font-weight:700;
+.plan-card,
+.transaction-card{
+
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:18px;
+transition:.3s;
+
 }
 
-.up{
-    color:#22C55E;
+.plan-card:hover,
+.transaction-card:hover{
+
+transform:translateY(-4px);
+
 }
 
-.down{
-    color:#EF4444;
+.plan-card h3{
+
+margin:0 0 10px;
+font-size:18px;
+
 }
 
-/* Investment Card */
+.plan-card p,
+.transaction-card p{
 
-.invest-card{
-    margin-top:15px;
-    background:rgba(255,255,255,.06);
-    border-radius:22px;
-    padding:20px;
-    border:1px solid rgba(255,255,255,.08);
+margin:6px 0;
+color:#cbd5e1;
+
 }
 
-.plan-name{
-    font-size:20px;
-    font-weight:700;
+.status.active{
+
+display:inline-block;
+margin-top:8px;
+padding:6px 12px;
+background:#00d084;
+color:#fff;
+border-radius:30px;
+font-size:12px;
+font-weight:600;
+
 }
 
-.plan-profit{
-    color:#22C55E;
-    margin:10px 0;
-    font-weight:600;
+.loading-card{
+
+background:var(--card);
+padding:20px;
+border-radius:18px;
+text-align:center;
+color:#94a3b8;
+
+}
+/* ===========================
+   PREMIUM DASHBOARD CSS
+   PART 3
+=========================== */
+
+.quick-grid{
+
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:15px;
+
 }
 
-.progress{
-    width:100%;
-    height:10px;
-    background:#1f2937;
-    border-radius:20px;
-    overflow:hidden;
-    margin-top:15px;
+.quick-card{
+
+background:var(--card);
+border:1px solid var(--border);
+border-radius:18px;
+padding:20px;
+text-align:center;
+text-decoration:none;
+color:#fff;
+transition:.3s;
+
 }
 
-.progress span{
-    display:block;
-    width:70%;
-    height:100%;
-    background:linear-gradient(90deg,#22C55E,#16A34A);
-    border-radius:20px;
-}
-/* ==========================================
-   GrowVest Premium UI
-   style.css - PART 3
-========================================== */
+.quick-card:hover{
 
-/* Plans */
+transform:translateY(-5px);
+box-shadow:0 15px 35px rgba(0,180,255,.20);
 
-.plan-card{
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:20px;
-    padding:20px;
-    margin-bottom:16px;
-    transition:.3s;
 }
 
-.plan-card:hover{
-    transform:translateY(-4px);
-    border-color:#3B82F6;
-}
+.quick-card i{
 
-.plan-card h4{
-    font-size:20px;
-    margin-bottom:10px;
-}
+font-size:28px;
+display:block;
+margin-bottom:10px;
+color:var(--secondary);
 
-.plan-card p{
-    color:var(--muted);
-    margin-bottom:8px;
-    font-size:14px;
-}
-
-.plan-btn{
-    width:100%;
-    margin-top:15px;
-    border:none;
-    border-radius:16px;
-    padding:14px;
-    font-size:15px;
-    font-weight:600;
-    color:#fff;
-    cursor:pointer;
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
-}
-
-/* History */
-
-.history-card{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:16px;
-    margin-bottom:14px;
-}
-
-.history-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-}
-
-.history-icon{
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background:rgba(59,130,246,.15);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    color:#3B82F6;
-    font-size:20px;
-}
-
-.history-title{
-    font-weight:600;
-}
-
-.history-date{
-    font-size:12px;
-    color:var(--muted);
-}
-
-.amount-plus{
-    color:#22C55E;
-    font-weight:700;
-}
-
-.amount-minus{
-    color:#EF4444;
-    font-weight:700;
-}
-
-/* Profile */
-
-.profile-card{
-    text-align:center;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:24px;
-    padding:30px 20px;
-}
-
-.profile-avatar{
-    width:90px;
-    height:90px;
-    margin:auto;
-    border-radius:50%;
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-size:34px;
-}
-
-.profile-name{
-    margin-top:18px;
-    font-size:22px;
-    font-weight:700;
-}
-
-.profile-email{
-    margin-top:6px;
-    color:var(--muted);
-    font-size:14px;
-}
-
-.profile-menu{
-    margin-top:25px;
-}
-
-.profile-item{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:rgba(255,255,255,.05);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:18px;
-    padding:18px;
-    margin-bottom:12px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.profile-item:hover{
-    background:rgba(59,130,246,.12);
 }
 
 .logout-btn{
-    width:100%;
-    margin-top:20px;
-    border:none;
-    border-radius:18px;
-    padding:16px;
-    background:linear-gradient(135deg,#EF4444,#DC2626);
-    color:#fff;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-}
-/* ==========================================
-   GrowVest Premium UI
-   style.css - PART 4
-========================================== */
 
-/* Footer */
+width:100%;
+margin-top:25px;
+padding:16px;
+border:none;
+border-radius:16px;
+background:linear-gradient(135deg,#ef4444,#dc2626);
+color:#fff;
+font-size:17px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
 
-footer{
-    text-align:center;
-    padding:25px 15px;
-    color:var(--muted);
-    font-size:13px;
 }
 
-footer a{
-    color:#3B82F6;
-    text-decoration:none;
-    margin:0 6px;
-}
+.logout-btn:hover{
 
-/* Bottom Navigation */
+transform:translateY(-3px);
+
+}
 
 .bottom-nav{
-    position:fixed;
-    left:50%;
-    bottom:15px;
-    transform:translateX(-50%);
-    width:95%;
-    max-width:470px;
-    background:rgba(15,23,42,.95);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:28px;
-    display:flex;
-    justify-content:space-around;
-    align-items:center;
-    padding:12px 5px;
-    box-shadow:0 15px 40px rgba(0,0,0,.35);
-    z-index:999;
+
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+max-width:480px;
+margin:auto;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:12px 0;
+background:#111827;
+border-top:1px solid rgba(255,255,255,.08);
+
 }
 
 .nav-item{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:5px;
-    text-decoration:none;
-    color:#94A3B8;
-    font-size:12px;
-    transition:.3s;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+text-decoration:none;
+color:#94a3b8;
+font-size:12px;
+
 }
 
 .nav-item i{
-    font-size:20px;
+
+font-size:22px;
+margin-bottom:5px;
+
 }
 
-.nav-item:hover,
 .nav-item.active{
-    color:#3B82F6;
-}
 
-.nav-item.active i{
-    transform:translateY(-2px);
-}
+color:#00d084;
 
-/* Animation */
-
-.fade-up{
-    animation:fadeUp .6s ease;
-}
-
-@keyframes fadeUp{
-    from{
-        opacity:0;
-        transform:translateY(20px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar{
-    width:6px;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#2563EB;
-    border-radius:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#08111f;
-}
-
-/* Responsive */
-
-@media (max-width:768px){
-
-    .container{
-        padding:16px;
-    }
-
-    .balance{
-        font-size:28px;
-    }
-
-    .action-buttons{
-        grid-template-columns:1fr;
-    }
-
-    .login-card{
-        padding:25px 20px;
-    }
-
-    .logo-box h1{
-        font-size:26px;
-    }
-
-    .header-left h2{
-        font-size:22px;
-    }
-
-    .bottom-nav{
-        width:96%;
-    }
 }
 
 @media (max-width:480px){
 
-    .container{
-        max-width:100%;
-    }
+.crypto-grid{
 
-    .market-card{
-        min-width:140px;
-    }
+grid-template-columns:1fr;
 
-    .profile-avatar{
-        width:80px;
-        height:80px;
-        font-size:30px;
-    }
+}
 
-    .balance{
-        font-size:26px;
-    }
+.quick-actions{
 
-    .btn,
-    .login-btn,
-    .plan-btn{
-        font-size:15px;
-        padding:14px;
-    }
+grid-template-columns:repeat(2,1fr);
 
-    .header-left h2{
-        font-size:20px;
-    }
+}
+
+.quick-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.balance-card h1{
+
+font-size:30px;
+
+}
+
 }
