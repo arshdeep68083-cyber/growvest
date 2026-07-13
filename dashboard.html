@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,25 +19,37 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container fade-up">
 
+<!-- Header -->
+
 <div class="top-header">
 
 <div class="welcome-box">
 
-<h3>Welcome Back 👋</h3>
+<h2>Welcome Back 👋</h2>
 
 <p id="userEmail">Loading...</p>
 
 </div>
 
-<div class="profile-icon">
+<div class="header-icons">
 
-<a href="profile.html">
+<a href="notifications.html" class="icon-btn">
+
+<i class="fa-solid fa-bell"></i>
+
+</a>
+
+<a href="profile.html" class="icon-btn">
+
 <i class="fa-solid fa-user"></i>
+
 </a>
 
 </div>
 
 </div>
+
+<!-- Balance Card -->
 
 <div class="balance-card">
 
@@ -52,25 +65,19 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </div>
 
-<h1 id="balance">
-
-0.00 USDT
-
-</h1>
+<h1 id="balance">0.00 USDT</h1>
 
 <div class="profit-box">
 
 <span>Today's Profit</span>
 
-<h3 id="todayProfit">
-
-+0.00 USDT
-
-</h3>
+<h3 id="todayProfit">+0.00 USDT</h3>
 
 </div>
 
 </div>
+
+<!-- Quick Actions -->
 
 <div class="quick-actions">
 
@@ -107,55 +114,76 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </a>
 
 </div>
+
+<!-- Live Crypto Prices -->
+
 <div class="dashboard-section">
 
 <h2>
-<i class="fa-solid fa-chart-simple"></i>
-Live Crypto Market
+
+<i class="fa-brands fa-bitcoin"></i>
+
+Live Crypto Prices
+
 </h2>
 
 <div class="crypto-grid">
 
 <div class="crypto-card">
+
 <h4>Bitcoin</h4>
-<p id="btcPrice">$0.00</p>
+
+<p id="btcPrice">Loading...</p>
+
 </div>
 
 <div class="crypto-card">
+
 <h4>Ethereum</h4>
-<p id="ethPrice">$0.00</p>
+
+<p id="ethPrice">Loading...</p>
+
 </div>
 
 <div class="crypto-card">
+
 <h4>BNB</h4>
-<p id="bnbPrice">$0.00</p>
+
+<p id="bnbPrice">Loading...</p>
+
 </div>
 
 <div class="crypto-card">
+
 <h4>Solana</h4>
-<p id="solPrice">$0.00</p>
-</div>
+
+<p id="solPrice">Loading...</p>
 
 </div>
 
 </div>
+
+</div>
+<!-- Active Investment -->
 
 <div class="dashboard-section">
 
 <h2>
-<i class="fa-solid fa-layer-group"></i>
-Active Investment Plans
+<i class="fa-solid fa-chart-line"></i>
+Active Investment
 </h2>
 
 <div id="activePlan" class="plans-container">
 
 <div class="loading-card">
-Loading investment plans...
+Loading active investment...
 </div>
 
 </div>
 
 </div>
+
+<!-- Recent Transactions -->
 
 <div class="dashboard-section">
 
@@ -174,6 +202,8 @@ Loading transactions...
 
 </div>
 
+<!-- Quick Links -->
+
 <div class="dashboard-section">
 
 <h2>
@@ -183,14 +213,29 @@ Quick Access
 
 <div class="quick-grid">
 
+<a href="deposit.html" class="quick-card">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="withdraw.html" class="quick-card">
+<i class="fa-solid fa-money-bill-transfer"></i>
+<span>Withdraw</span>
+</a>
+
+<a href="plans.html" class="quick-card">
+<i class="fa-solid fa-chart-pie"></i>
+<span>Investment Plans</span>
+</a>
+
+<a href="history.html" class="quick-card">
+<i class="fa-solid fa-receipt"></i>
+<span>History</span>
+</a>
+
 <a href="profile.html" class="quick-card">
 <i class="fa-solid fa-user"></i>
 <span>Profile</span>
-</a>
-
-<a href="security.html" class="quick-card">
-<i class="fa-solid fa-shield-halved"></i>
-<span>Security</span>
 </a>
 
 <a href="help.html" class="quick-card">
@@ -198,19 +243,11 @@ Quick Access
 <span>Support</span>
 </a>
 
-<a href="terms.html" class="quick-card">
-<i class="fa-solid fa-file-contract"></i>
-<span>Terms</span>
-</a>
-
 </div>
 
 </div>
+<!-- Bottom Navigation -->
 
-<button id="logoutBtn" class="logout-btn">
-<i class="fa-solid fa-right-from-bracket"></i>
-Logout
-</button>
 <nav class="bottom-nav">
 
 <a href="dashboard.html" class="nav-item active">
@@ -240,7 +277,23 @@ Logout
 
 </nav>
 
+<!-- Logout Button -->
+
+<div class="logout-section">
+
+<button id="logoutBtn" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
 <script type="module" src="dashboard.js"></script>
 
 </body>
-</html>
+  </html>
