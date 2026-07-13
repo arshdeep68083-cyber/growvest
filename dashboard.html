@@ -19,48 +19,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container fade-up">
 
-<!-- Header -->
+<!-- HEADER -->
 
 <div class="top-header">
 
 <div class="welcome-box">
 
-<h2>Welcome Back 👋</h2>
+<h2>👋 Welcome Back</h2>
 
-<p id="userEmail">Loading...</p>
+<p id="userEmail">Loading account...</p>
 
 </div>
 
 <div class="header-icons">
 
 <a href="notifications.html" class="icon-btn">
-
 <i class="fa-solid fa-bell"></i>
-
 </a>
 
 <a href="profile.html" class="icon-btn">
-
 <i class="fa-solid fa-user"></i>
-
 </a>
 
 </div>
 
 </div>
 
-<!-- Balance Card -->
+<!-- BALANCE CARD -->
 
 <div class="balance-card">
 
 <div class="balance-top">
 
-<p>Total Balance</p>
+<p>Total Portfolio Balance</p>
 
 <button id="toggleBalance" class="eye-btn">
-
 <i class="fa-solid fa-eye"></i>
-
 </button>
 
 </div>
@@ -77,7 +71,57 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 </div>
 
-<!-- Quick Actions -->
+<!-- PORTFOLIO SUMMARY -->
+
+<div class="dashboard-section">
+
+<h2>
+
+<i class="fa-solid fa-chart-pie"></i>
+
+Portfolio Summary
+
+</h2>
+
+<div class="crypto-grid">
+
+<div class="crypto-card">
+
+<h4>Total Investment</h4>
+
+<p id="totalInvestment">0.00 USDT</p>
+
+</div>
+
+<div class="crypto-card">
+
+<h4>Total Profit</h4>
+
+<p id="totalProfit">0.00 USDT</p>
+
+</div>
+
+<div class="crypto-card">
+
+<h4>Active Plans</h4>
+
+<p id="activePlans">0</p>
+
+</div>
+
+<div class="crypto-card">
+
+<h4>Total Withdraw</h4>
+
+<p id="totalWithdraw">0.00 USDT</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- QUICK ACTIONS -->
 
 <div class="quick-actions">
 
@@ -114,57 +158,42 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 </a>
 
 </div>
-
-<!-- Live Crypto Prices -->
+<!-- LIVE CRYPTO PRICES -->
 
 <div class="dashboard-section">
 
 <h2>
-
 <i class="fa-brands fa-bitcoin"></i>
-
-Live Crypto Prices
-
+Live Crypto Market
 </h2>
 
 <div class="crypto-grid">
 
 <div class="crypto-card">
-
-<h4>Bitcoin</h4>
-
+<h4>Bitcoin (BTC)</h4>
 <p id="btcPrice">Loading...</p>
-
 </div>
 
 <div class="crypto-card">
-
-<h4>Ethereum</h4>
-
+<h4>Ethereum (ETH)</h4>
 <p id="ethPrice">Loading...</p>
-
 </div>
 
 <div class="crypto-card">
-
 <h4>BNB</h4>
-
 <p id="bnbPrice">Loading...</p>
-
 </div>
 
 <div class="crypto-card">
-
-<h4>Solana</h4>
-
+<h4>Solana (SOL)</h4>
 <p id="solPrice">Loading...</p>
-
 </div>
 
 </div>
 
 </div>
-<!-- Active Investment -->
+
+<!-- ACTIVE INVESTMENT -->
 
 <div class="dashboard-section">
 
@@ -176,77 +205,121 @@ Active Investment
 <div id="activePlan" class="plans-container">
 
 <div class="loading-card">
-Loading active investment...
-</div>
+
+<i class="fa-solid fa-spinner"></i>
+
+<p>Loading active investment...</p>
 
 </div>
 
 </div>
 
-<!-- Recent Transactions -->
+</div>
+
+<!-- RECENT TRANSACTIONS -->
 
 <div class="dashboard-section">
 
 <h2>
+
 <i class="fa-solid fa-clock-rotate-left"></i>
+
 Recent Transactions
+
 </h2>
 
 <div id="transactions" class="transactions-container">
 
 <div class="loading-card">
-Loading transactions...
-</div>
+
+<i class="fa-solid fa-spinner"></i>
+
+<p>Loading transactions...</p>
 
 </div>
 
 </div>
 
-<!-- Quick Links -->
+</div>
+
+<!-- QUICK ACCESS -->
 
 <div class="dashboard-section">
 
 <h2>
+
 <i class="fa-solid fa-bolt"></i>
+
 Quick Access
+
 </h2>
 
 <div class="quick-grid">
 
 <a href="deposit.html" class="quick-card">
+
 <i class="fa-solid fa-wallet"></i>
-<span>Deposit</span>
+
+<h4>Deposit</h4>
+
+<p>Add funds securely</p>
+
 </a>
 
 <a href="withdraw.html" class="quick-card">
+
 <i class="fa-solid fa-money-bill-transfer"></i>
-<span>Withdraw</span>
+
+<h4>Withdraw</h4>
+
+<p>Request withdrawals</p>
+
 </a>
 
 <a href="plans.html" class="quick-card">
+
 <i class="fa-solid fa-chart-pie"></i>
-<span>Investment Plans</span>
+
+<h4>Plans</h4>
+
+<p>View investment plans</p>
+
 </a>
 
 <a href="history.html" class="quick-card">
+
 <i class="fa-solid fa-receipt"></i>
-<span>History</span>
+
+<h4>History</h4>
+
+<p>Transaction records</p>
+
 </a>
 
 <a href="profile.html" class="quick-card">
+
 <i class="fa-solid fa-user"></i>
-<span>Profile</span>
+
+<h4>Profile</h4>
+
+<p>Manage your account</p>
+
 </a>
 
 <a href="help.html" class="quick-card">
+
 <i class="fa-solid fa-headset"></i>
-<span>Support</span>
+
+<h4>Support</h4>
+
+<p>24/7 customer help</p>
+
 </a>
 
 </div>
 
 </div>
-<!-- Bottom Navigation -->
+<!-- BOTTOM NAVIGATION -->
 
 <nav class="bottom-nav">
 
@@ -277,23 +350,37 @@ Quick Access
 
 </nav>
 
-<!-- Logout Button -->
+<!-- LOGOUT -->
 
 <div class="logout-section">
 
 <button id="logoutBtn" class="logout-btn">
 
 <i class="fa-solid fa-right-from-bracket"></i>
-
-Logout
+ Logout
 
 </button>
 
 </div>
+
+<!-- FOOTER -->
+
+<footer style="text-align:center;padding:25px 0;color:#94A3B8;font-size:13px;">
+
+<p>
+<i class="fa-solid fa-shield-halved"></i>
+ Secure • Fast • Trusted Investment Platform
+</p>
+
+<p style="margin-top:10px;">
+© 2026 GrowVest. All Rights Reserved.
+</p>
+
+</footer>
 
 </div>
 
 <script type="module" src="dashboard.js"></script>
 
 </body>
-  </html>
+</html>
