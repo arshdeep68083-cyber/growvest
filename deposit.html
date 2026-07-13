@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | Deposit</title>
+<title>GrowVest | Secure Deposit</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -18,26 +19,58 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container fade-up">
 
-<div class="header">
-    <div class="header-left">
-        <h2>Deposit Funds</h2>
-        <p>Choose your preferred payment method</p>
-    </div>
+<!-- HEADER -->
+
+<div class="top-header">
+
+<div class="welcome-box">
+<h2>Secure Deposit</h2>
+<p>Fast • Safe • Verified Payments</p>
 </div>
 
-<div class="glass-card">
+<div class="profile-icon">
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+</a>
+</div>
 
-<h3 style="margin-bottom:15px;">
+</div>
+
+<!-- HERO -->
+
+<div class="balance-card">
+
+<div class="balance-top">
+<p>Deposit Funds</p>
+<i class="fa-solid fa-wallet"></i>
+</div>
+
+<h1>Instant Funding</h1>
+
+<div class="profit-box">
+<span>USDT TRC20 & Bank / UPI Supported</span>
+<h3>100% Secure Transactions</h3>
+</div>
+
+</div>
+
+<!-- USDT CARD -->
+
+<div class="plan-card">
+
+<h3>
+<i class="fa-solid fa-coins"></i>
 USDT (TRC20)
 </h3>
 
-<p style="color:#94A3B8;margin-bottom:10px;">
-Send only USDT on the TRC20 network.
+<p>
+Send only <b>USDT</b> using the <b>TRC20</b> network.
 </p>
 
 <div style="
-background:rgba(255,255,255,.06);
+margin-top:15px;
 padding:16px;
+background:rgba(255,255,255,.06);
 border-radius:15px;
 border:1px solid rgba(255,255,255,.08);
 word-break:break-all;
@@ -54,7 +87,8 @@ TRCaFDAoRMmKvQPSDsJ1JdqhoQgioRhSXF
 <button id="copyBtn" class="login-btn" style="margin-top:15px;">
 
 <i class="fa-solid fa-copy"></i>
-&nbsp; Copy TRC20 Address
+
+&nbsp; Copy Wallet Address
 
 </button>
 
@@ -62,33 +96,30 @@ TRCaFDAoRMmKvQPSDsJ1JdqhoQgioRhSXF
 
 <img
 src="images/trc20-qr.png"
-alt="TRC20 QR"
 style="
 width:220px;
-max-width:100%;
 border-radius:18px;
-border:1px solid rgba(255,255,255,.08);
+max-width:100%;
 ">
 
 <p style="margin-top:10px;color:#94A3B8;">
-Scan to pay with USDT (TRC20)
+Scan QR using your crypto wallet.
 </p>
 
 </div>
 
-<hr style="
-margin:30px 0;
-border:none;
-height:1px;
-background:rgba(255,255,255,.08);
-">
+</div>
+<!-- BANK / UPI -->
+
+<div class="plan-card" style="margin-top:25px;">
 
 <h3>
-Pay with UPI / Bank (INR)
+<i class="fa-solid fa-building-columns"></i>
+Bank / UPI Payment
 </h3>
 
-<p style="color:#94A3B8;margin-top:10px;">
-Scan this QR using PhonePe, Google Pay, Paytm or any UPI app.
+<p>
+Pay using PhonePe, Google Pay, Paytm or any UPI app by scanning the QR code below.
 </p>
 
 <div style="text-align:center;margin-top:20px;">
@@ -103,23 +134,39 @@ border-radius:18px;
 border:1px solid rgba(255,255,255,.08);
 ">
 
-</div>
-<br>
+<p style="margin-top:10px;color:#94A3B8;">
+Scan the QR to complete your payment.
+</p>
 
-<h3 style="margin-top:25px;">
-Deposit Amount
-</h3>
+</div>
+
+</div>
+
+<!-- DEPOSIT FORM -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-file-invoice-dollar"></i>
+Submit Deposit Request
+</h2>
+
+<div class="plan-card">
 
 <div class="input-group">
-
 <i class="fa-solid fa-dollar-sign"></i>
-
 <input
 type="number"
 id="amount"
-placeholder="Enter Deposit Amount (USD/USDT)"
-min="10">
+placeholder="Enter Deposit Amount (Minimum $100)">
+</div>
 
+<div class="input-group" style="margin-top:15px;">
+<i class="fa-solid fa-hashtag"></i>
+<input
+type="text"
+id="txid"
+placeholder="Enter Transaction ID (TxID) - Optional">
 </div>
 
 <h3 style="margin-top:25px;">
@@ -132,8 +179,8 @@ id="paymentProof"
 accept="image/*"
 style="
 width:100%;
-margin-top:12px;
 padding:14px;
+margin-top:10px;
 border-radius:15px;
 background:rgba(255,255,255,.06);
 border:1px solid rgba(255,255,255,.08);
@@ -146,7 +193,7 @@ font-size:13px;
 color:#94A3B8;
 line-height:1.6;
 ">
-After completing your payment, upload a clear screenshot and click the button below.
+Upload a clear screenshot after completing your payment for faster verification.
 </p>
 
 <button
@@ -159,18 +206,55 @@ style="margin-top:20px;">
 
 </button>
 
-<br><br>
+</div>
+
+</div>
+<!-- SECURITY FEATURES -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+Why Deposit With GrowVest
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fa-solid fa-lock"></i>
+<h4>256-bit Security</h4>
+<p>Your payments are protected with advanced encryption.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-bolt"></i>
+<h4>Fast Verification</h4>
+<p>Deposit requests are reviewed as quickly as possible.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-wallet"></i>
+<h4>Multiple Payment Methods</h4>
+<p>Support for USDT (TRC20) and Bank/UPI payments.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-headset"></i>
+<h4>24/7 Support</h4>
+<p>Our support team is available whenever you need help.</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- BACK BUTTON -->
+
+<div style="margin-top:30px;">
 
 <a href="dashboard.html" style="text-decoration:none;">
 
-<button
-type="button"
-class="btn"
-style="
-width:100%;
-background:#374151;
-color:#fff;
-">
+<button class="logout-btn">
 
 <i class="fa-solid fa-arrow-left"></i>
 &nbsp; Back to Dashboard
@@ -180,41 +264,34 @@ color:#fff;
 </a>
 
 </div>
-<nav class="bottom-nav">
 
-<a href="dashboard.html" class="nav-item">
-    <i class="fa-solid fa-house"></i>
-    <span>Home</span>
-</a>
+<!-- FOOTER -->
 
-<a href="plans.html" class="nav-item">
-    <i class="fa-solid fa-chart-line"></i>
-    <span>Plans</span>
-</a>
+<footer style="text-align:center;padding:30px 0;color:#94A3B8;font-size:13px;">
 
-<a href="deposit.html" class="nav-item active">
-    <i class="fa-solid fa-wallet"></i>
-    <span>Deposit</span>
-</a>
+<p>
 
-<a href="history.html" class="nav-item">
-    <i class="fa-solid fa-clock-rotate-left"></i>
-    <span>History</span>
-</a>
+<a href="about.html">About Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a> |
+<a href="help.html">Help & Support</a>
 
-<a href="profile.html" class="nav-item">
-    <i class="fa-solid fa-user"></i>
-    <span>Profile</span>
-</a>
+</p>
 
-</nav>
+<p style="margin-top:10px;">
+© 2026 GrowVest. All Rights Reserved.
+</p>
+
+</footer>
+
+</div>
 
 <script>
 document.getElementById("copyBtn").addEventListener("click", function () {
     const wallet = document.getElementById("wallet").innerText.trim();
 
     navigator.clipboard.writeText(wallet).then(() => {
-        alert("TRC20 wallet address copied successfully.");
+        alert("Wallet address copied successfully.");
     });
 });
 
@@ -224,16 +301,16 @@ document.getElementById("depositBtn").addEventListener("click", function () {
     const proof = document.getElementById("paymentProof").files[0];
 
     if (!amount) {
-        alert("Please enter deposit amount.");
+        alert("Please enter the deposit amount.");
         return;
     }
 
     if (!proof) {
-        alert("Please upload payment screenshot.");
+        alert("Please upload your payment screenshot.");
         return;
     }
 
-    alert("Deposit request submitted successfully. Our team will verify your payment shortly.");
+    alert("Your deposit request has been submitted successfully. Our team will verify it shortly.");
 });
 </script>
 
