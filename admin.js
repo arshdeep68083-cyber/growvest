@@ -26,6 +26,7 @@ const totalWithdrawals = document.getElementById("totalWithdrawals");
 const activePlans = document.getElementById("activePlans");
 
 async function updateUserBalance(uid, amount) {
+
   const userRef = doc(db, "users", uid);
   const userSnap = await getDoc(userRef);
 
@@ -38,6 +39,7 @@ async function updateUserBalance(uid, amount) {
   await updateDoc(userRef, {
     balance: currentBalance + Number(amount)
   });
+
 }
 
 onAuthStateChanged(auth, async (user) => {
@@ -67,8 +69,9 @@ onAuthStateChanged(auth, async (user) => {
 
     let depTotal = 0;
 
-    depAll.forEach((doc) => {
-      const data = doc.data();
+    depAll.forEach((docSnap) => {
+      const data = docSnap.data();
+
       if (data.status === "Approved") {
         depTotal += Number(data.amount || 0);
       }
@@ -80,8 +83,9 @@ onAuthStateChanged(auth, async (user) => {
 
     let withTotal = 0;
 
-    withAll.forEach((doc) => {
-      const data = doc.data();
+    withAll.forEach((docSnap) => {
+      const data = docSnap.data();
+
       if (data.status === "Approved") {
         withTotal += Number(data.amount || 0);
       }
@@ -97,9 +101,9 @@ onAuthStateChanged(auth, async (user) => {
     );
 
     activePlans.textContent = planSnap.size;
+        usersList.innerHTML = "";
 
-    usersList.innerHTML = "";
-        usersSnap.forEach((u) => {
+    usersSnap.forEach((u) => {
 
       const data = u.data();
 
@@ -111,6 +115,8 @@ onAuthStateChanged(auth, async (user) => {
       </div><br>
       `;
     });
+
+    // Pending Deposits
 
     const depSnap = await getDocs(
       query(
@@ -133,17 +139,19 @@ onAuthStateChanged(auth, async (user) => {
 
         <button class="btn"
         onclick="approveDeposit('${d.id}')">
-        Approve
+        ✅ Approve
         </button>
 
         <button class="btn"
         onclick="rejectDeposit('${d.id}')">
-        Reject
+        ❌ Reject
         </button>
 
       </div><br>
       `;
     });
+
+    // Pending Withdrawals
 
     const withSnap = await getDocs(
       query(
@@ -167,12 +175,12 @@ onAuthStateChanged(auth, async (user) => {
 
         <button class="btn"
         onclick="approveWithdraw('${w.id}')">
-        Approve
+        ✅ Approve
         </button>
 
         <button class="btn"
         onclick="rejectWithdraw('${w.id}')">
-        Reject
+        ❌ Reject
         </button>
 
       </div><br>
@@ -188,7 +196,7 @@ onAuthStateChanged(auth, async (user) => {
 // Deposit Approve
 // =========================
 
-window.approveDeposit = async function(id) {
+window.approveDeposit = async function (id) {
 
   try {
 
@@ -207,7 +215,7 @@ window.approveDeposit = async function(id) {
       return;
     }
 
-    await updateUserBalance(data.uid, data.amount);
+    await updateUserBalance(data.uid, Number(data.amount));
 
     await updateDoc(depRef, {
       status: "Approved"
@@ -217,7 +225,7 @@ window.approveDeposit = async function(id) {
       uid: data.uid,
       email: data.email,
       type: "Deposit",
-      amount: data.amount,
+      amount: Number(data.amount),
       status: "Approved",
       description: "Deposit Approved",
       createdAt: serverTimestamp()
@@ -236,7 +244,7 @@ window.approveDeposit = async function(id) {
 // Deposit Reject
 // =========================
 
-window.rejectDeposit = async function(id) {
+window.rejectDeposit = async function (id) {
 
   try {
 
@@ -257,7 +265,7 @@ window.rejectDeposit = async function(id) {
 // Withdraw Approve
 // =========================
 
-window.approveWithdraw = async function(id) {
+window.approveWithdraw = async function (id) {
 
   try {
 
@@ -303,7 +311,7 @@ window.approveWithdraw = async function(id) {
       uid: data.uid,
       email: data.email,
       type: "Withdrawal",
-      amount: data.amount,
+      amount: Number(data.amount),
       status: "Approved",
       description: "Withdrawal Approved",
       createdAt: serverTimestamp()
@@ -322,7 +330,7 @@ window.approveWithdraw = async function(id) {
 // Withdraw Reject
 // =========================
 
-window.rejectWithdraw = async function(id) {
+window.rejectWithdraw = async function (id) {
 
   try {
 
