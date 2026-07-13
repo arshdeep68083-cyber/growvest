@@ -1,7 +1,8 @@
 import { auth, db } from "./firebase-config.js";
 
 import {
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
 import {
@@ -32,40 +33,70 @@ onAuthStateChanged(auth, async (user) => {
 
     const data = userSnap.data();
 
-    document.getElementById("name").textContent =
-      data.name || "N/A";
+    const nameEl = document.getElementById("name");
+    const emailEl = document.getElementById("email");
+    const balanceEl = document.getElementById("balance");
+    const joinDateEl = document.getElementById("joinDate");
 
-    document.getElementById("email").textContent =
-      data.email || user.email;
+    if (nameEl) {
+      nameEl.textContent = data.name || "N/A";
+    }
 
-    document.getElementById("balance").textContent =
-      (Number(data.balance || 0)).toFixed(2) + " USDT";
+    if (emailEl) {
+      emailEl.textContent = data.email || user.email;
+    }
 
-    document.getElementById("joinDate").textContent =
-      data.joinDate || data.joindate || "N/A";
+    if (balanceEl) {
+      balanceEl.textContent =
+        (Number(data.balance || 0)).toFixed(2) + " USDT";
+    }
 
-    const plansSnap = await getDocs(
-      query(
-        collection(db, "userPlans"),
-        where("uid", "==", user.uid),
-        where("status", "==", "Active")
-      )
+    if (joinDateEl) {
+      joinDateEl.textContent =
+        data.joinDate || data.joindate || "N/A";
+    }
+
+    const plansQuery = query(
+      collection(db, "userPlans"),
+      where("uid", "==", user.uid),
+      where("status", "==", "Active")
     );
 
-    let activePlans = document.getElementById("activePlans");
+    const plansSnap = await getDocs(plansQuery);
+        let activePlans = document.getElementById("activePlans");
 
     if (!activePlans) {
       activePlans = document.createElement("p");
       activePlans.id = "activePlans";
-      document.querySelector(".container").appendChild(activePlans);
+      activePlans.style.marginTop = "15px";
+      activePlans.style.textAlign = "center";
+      activePlans.innerHTML = "<strong>Active Plans:</strong> 0";
+
+      const profileCard = document.querySelector(".profile-card");
+      if (profileCard) {
+        profileCard.appendChild(activePlans);
+      }
     }
 
     activePlans.innerHTML =
       "<strong>Active Plans:</strong> " + plansSnap.size;
 
   } catch (error) {
-    console.log(error);
+    console.error(error);
     alert(error.message);
   }
-
 });
+
+const logoutBtn = document.getElementById("logoutBtn");
+
+if (logoutBtn) {
+  logoutBtn.addEventListener("click", async () => {
+    try {
+      await signOut(auth);
+      window.location.href = "login.html";
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+}
+
