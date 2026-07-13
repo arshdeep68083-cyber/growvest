@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest - History</title>
+<title>GrowVest | Transaction History</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -19,252 +19,276 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="container fade-up">
 
-    <!-- Header -->
-
-    <div class="header">
-
-        <div class="header-left">
-            <h2>📜 Transaction History</h2>
-            <p>Your recent deposits, withdrawals & profits</p>
-        </div>
-
-        <div class="header-right">
-            <div class="icon-btn">
-                <i class="fa-solid fa-clock-rotate-left"></i>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Deposit -->
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-wallet"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    Deposit
-                </div>
-
-                <div class="history-date">
-                    Today • 10:30 AM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="history-amount amount-plus">
-            +500 USDT
-        </div>
-
-    </div>
-
-    <!-- Profit -->
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-chart-line"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    Monthly Profit
-                </div>
-
-                <div class="history-date">
-                    Today • 09:00 AM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="history-amount amount-plus">
-            +375 USDT
-        </div>
-
-    </div>
-
-    <!-- Withdraw -->
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    Withdraw
-                </div>
-
-                <div class="history-date">
-                    Yesterday • 08:45 PM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="history-amount amount-minus">
-            -200 USDT
-        </div>
-
-    </div>
-        <!-- Referral Bonus -->
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-user-plus"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    Referral Bonus
-                </div>
-
-                <div class="history-date">
-                    Yesterday • 04:20 PM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="history-amount amount-plus">
-            +50 USDT
-        </div>
-
-    </div>
-
-    <!-- Investment -->
-
-    <div class="history-card">
-
-        <div class="history-left">
-
-            <div class="history-icon">
-                <i class="fa-solid fa-coins"></i>
-            </div>
-
-            <div>
-                <div class="history-title">
-                    New Investment
-                </div>
-
-                <div class="history-date">
-                    Jul 10 • 11:15 AM
-                </div>
-            </div>
-
-        </div>
-
-        <div class="history-amount amount-minus">
-            -5,500 USDT
-        </div>
-
-    </div>
-
-    <!-- Earnings Summary -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>📊 Earnings Summary</h3>
-        </div>
-
-        <div class="glass-card">
-
-            <p>
-                💰 Total Profit
-                <strong style="float:right;color:#22C55E;">
-                    +1,275 USDT
-                </strong>
-            </p>
-
-            <br>
-
-            <p>
-                📥 Total Deposit
-                <strong style="float:right;">
-                    8,000 USDT
-                </strong>
-            </p>
-
-            <br>
-
-            <p>
-                📤 Total Withdraw
-                <strong style="float:right;">
-                    2,500 USDT
-                </strong>
-            </p>
-
-            <br>
-
-            <p>
-                👥 Referral Bonus
-                <strong style="float:right;color:#22C55E;">
-                    +320 USDT
-                </strong>
-            </p>
-
-        </div>
-
-    </div>
-        <!-- Bottom Navigation -->
-
-    <div class="bottom-nav">
-
-        <a href="dashboard.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-
-        <a href="plans.html" class="nav-item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Invest</span>
-        </a>
-
-        <a href="trading.html" class="nav-item">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Trade</span>
-        </a>
-
-        <a href="history.html" class="nav-item active">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>History</span>
-        </a>
-
-        <a href="profile.html" class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </a>
-
-    </div>
+<!-- HEADER -->
+
+<div class="top-header">
+
+<div class="welcome-box">
+<h2>Transaction History</h2>
+<p>View all deposits, withdrawals and earnings</p>
+</div>
+
+<div class="profile-icon">
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+</a>
+</div>
 
 </div>
-<!-- Firebase -->
-<script type="module" src="firebase-config.js"></script>
 
-<!-- Main JS -->
+<!-- SUMMARY -->
+
+<div class="balance-card">
+
+<div class="balance-top">
+<p>Total Profit</p>
+<i class="fa-solid fa-chart-line"></i>
+</div>
+
+<h1>+1,275 USDT</h1>
+
+<div class="profit-box">
+<span>Total Transactions</span>
+<h3>48 Completed</h3>
+</div>
+
+</div>
+
+<!-- FILTER -->
+
+<div class="plan-card">
+
+<h3>
+<i class="fa-solid fa-filter"></i>
+Filter Transactions
+</h3>
+
+<div class="input-group">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input
+type="text"
+placeholder="Search Transaction...">
+</div>
+
+</div>
+
+<!-- RECENT TRANSACTIONS -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-clock-rotate-left"></i>
+Recent Transactions
+</h2>
+
+<div class="transactions-container">
+
+<div class="transaction-card">
+
+<h3>
+<i class="fa-solid fa-wallet"></i>
+Deposit
+</h3>
+
+<p>Amount: <strong>500 USDT</strong></p>
+
+<p>Date: Today • 10:30 AM</p>
+
+<span class="status active">Completed</span>
+
+</div>
+
+<div class="transaction-card">
+
+<h3>
+<i class="fa-solid fa-chart-line"></i>
+Monthly Profit
+</h3>
+
+<p>Amount: <strong>+375 USDT</strong></p>
+
+<p>Date: Today • 09:00 AM</p>
+
+<span class="status active">Credited</span>
+
+</div>
+   <div class="transaction-card">
+
+<h3>
+<i class="fa-solid fa-money-bill-transfer"></i>
+Withdrawal
+</h3>
+
+<p>Amount: <strong>-200 USDT</strong></p>
+
+<p>Date: Yesterday • 08:45 PM</p>
+
+<span style="
+display:inline-block;
+padding:6px 12px;
+background:#F59E0B;
+color:#fff;
+border-radius:30px;
+font-size:12px;
+font-weight:600;
+">
+Pending
+</span>
+
+</div>
+
+<div class="transaction-card">
+
+<h3>
+<i class="fa-solid fa-user-plus"></i>
+Referral Bonus
+</h3>
+
+<p>Amount: <strong>+320 USDT</strong></p>
+
+<p>Date: Yesterday • 04:20 PM</p>
+
+<span class="status active">Completed</span>
+
+</div>
+
+<div class="transaction-card">
+
+<h3>
+<i class="fa-solid fa-coins"></i>
+New Investment
+</h3>
+
+<p>Amount: <strong>-5,500 USDT</strong></p>
+
+<p>Date: Jul 10 • 11:15 AM</p>
+
+<span class="status active">Active</span>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- EARNINGS SUMMARY -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-chart-pie"></i>
+Earnings Summary
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fa-solid fa-sack-dollar"></i>
+<h4>Total Deposit</h4>
+<p><strong>8,000 USDT</strong></p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-money-bill-wave"></i>
+<h4>Total Withdrawal</h4>
+<p><strong>2,500 USDT</strong></p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-chart-line"></i>
+<h4>Total Profit</h4>
+<p><strong>1,275 USDT</strong></p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-users"></i>
+<h4>Referral Bonus</h4>
+<p><strong>320 USDT</strong></p>
+</div>
+
+</div>
+
+</div>
+   <!-- BACK BUTTON -->
+
+<div style="margin-top:30px;">
+
+<a href="dashboard.html" style="text-decoration:none;">
+
+<button class="logout-btn">
+
+<i class="fa-solid fa-arrow-left"></i>
+&nbsp; Back to Dashboard
+
+</button>
+
+</a>
+
+</div>
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+<a href="dashboard.html" class="nav-item">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="plans.html" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
+
+<a href="deposit.html" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="history.html" class="nav-item active">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+<a href="profile.html" class="nav-item">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+</nav>
+
+<!-- FOOTER -->
+
+<footer style="
+text-align:center;
+padding:30px 0;
+color:#94A3B8;
+font-size:13px;
+">
+
+<p>
+<a href="about.html">About Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a> |
+<a href="help.html">Help & Support</a>
+</p>
+
+<p style="margin-top:10px;">
+© 2026 GrowVest. All Rights Reserved.
+</p>
+
+</footer>
+
+</div>
+
+<script type="module" src="firebase-config.js"></script>
 <script src="app.js"></script>
 
 <script>
 window.addEventListener("load", () => {
-    console.log("History page loaded successfully.");
+    console.log("Premium History page loaded successfully.");
 });
 </script>
 
 </body>
-</html>
+</html> 
