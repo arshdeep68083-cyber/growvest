@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,55 +26,46 @@
 
 <div class="login-wrapper">
 
-<div class="login-card">
+<div class="login-card fade-up">
 
 <div class="logo-box">
 
 <div class="logo-icon">
-💎
+<i class="fa-solid fa-chart-line"></i>
 </div>
 
-<h1>Welcome Back</h1>
+<h1>GrowVest</h1>
 
-<p>Sign in to access your GrowVest Dashboard</p>
+<p>Secure Investment Platform</p>
 
 </div>
 
 <div class="input-group">
-
 <i class="fa-solid fa-envelope"></i>
-
 <input
 type="email"
 id="email"
-placeholder="Enter your email"
+placeholder="Enter Email Address"
 required>
-
 </div>
 
 <div class="input-group">
-
 <i class="fa-solid fa-lock"></i>
-
 <input
 type="password"
 id="password"
-placeholder="Enter your password"
+placeholder="Enter Password"
 required>
-
 </div>
 
 <div class="login-options">
 
 <label>
-
 <input type="checkbox">
-
 Remember Me
-
 </label>
 
-<a href="help.html">
+<a href="#">
 Forgot Password?
 </a>
 
@@ -83,28 +76,57 @@ id="loginBtn"
 class="login-btn">
 
 <i class="fa-solid fa-right-to-bracket"></i>
-
-&nbsp; Login
+&nbsp; Login Securely
 
 </button>
 
-<div class="divider">
-
-<span>OR</span>
-
-</div>
-
-<p class="register-text">
-
+<div style="margin-top:25px;text-align:center;">
+  <p style="color:#94A3B8;font-size:14px;">
 Don't have an account?
+</p>
 
-<a href="register.html">
+<br>
 
-Create Account
+<a href="register.html" style="text-decoration:none;">
+
+<button
+type="button"
+class="login-btn"
+style="background:linear-gradient(135deg,#22C55E,#16A34A);">
+
+<i class="fa-solid fa-user-plus"></i>
+&nbsp; Create Account
+
+</button>
 
 </a>
 
-</p>
+</div>
+
+<hr style="
+margin:30px 0;
+border:none;
+height:1px;
+background:rgba(255,255,255,.08);
+">
+
+<div style="
+text-align:center;
+font-size:13px;
+color:#94A3B8;
+line-height:1.8;
+">
+
+<a href="about.html">About Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a> |
+<a href="help.html">Help & Support</a>
+
+<br><br>
+
+© 2026 GrowVest. All Rights Reserved.
+
+</div>
 
 </div>
 
@@ -112,24 +134,6 @@ Create Account
 
 <script type="module" src="firebase-config.js"></script>
 <script type="module" src="auth.js"></script>
-
-<footer style="text-align:center;padding:20px;color:#94a3b8;">
-
-<p>
-
-<a href="about.html">About Us</a> |
-
-<a href="privacy.html">Privacy Policy</a> |
-
-<a href="terms.html">Terms & Conditions</a> |
-
-<a href="help.html">Help & Support</a>
-
-</p>
-
-<p>© 2026 GrowVest. All Rights Reserved.</p>
-
-</footer>
 
 </body>
 </html>
