@@ -6,233 +6,300 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest - Invest</title>
+<title>GrowVest Pro | Invest</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="container fade-up">
+<div class="page-container">
 
-    <!-- Header -->
+<!-- Header -->
 
-    <div class="header">
+<div class="page-header">
 
-        <div class="header-left">
-            <h2>💰 Investment Plans</h2>
-            <p>Choose your best investment plan</p>
-        </div>
+<h1>
+<i class="fa-solid fa-hand-holding-dollar"></i>
+Invest Now
+</h1>
 
-        <div class="header-right">
-
-            <div class="icon-btn">
-                <i class="fa-solid fa-wallet"></i>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Starter Plan -->
-
-    <div class="plan-card">
-
-        <h4>🥉 Starter Plan</h4>
-
-        <p>
-            Investment:
-            <strong>$100 - $999</strong>
-        </p>
-
-        <h3 style="color:#22C55E;">
-            5% Monthly Profit
-        </h3>
-
-        <br>
-
-        <button class="plan-btn">
-            Invest Now
-        </button>
-
-    </div>
-
-    <!-- Silver Plan -->
-
-    <div class="plan-card">
-
-        <h4>🥈 Silver Plan</h4>
-
-        <p>
-            Investment:
-            <strong>$1,000 - $4,999</strong>
-        </p>
-
-        <h3 style="color:#22C55E;">
-            10% Monthly Profit
-        </h3>
-
-        <br>
-
-        <button class="plan-btn">
-            Invest Now
-        </button>
-
-    </div>
-        <!-- Gold Plan -->
-
-    <div class="plan-card">
-
-        <h4>🥇 Gold Plan</h4>
-
-        <p>
-            Investment:
-            <strong>$5,000 - $9,999</strong>
-        </p>
-
-        <h3 style="color:#22C55E;">
-            15% Monthly Profit
-        </h3>
-
-        <br>
-
-        <button class="plan-btn">
-            Invest Now
-        </button>
-
-    </div>
-
-    <!-- VIP Plan -->
-
-    <div class="plan-card">
-
-        <h4>💎 VIP Plan</h4>
-
-        <p>
-            Investment:
-            <strong>$10,000+</strong>
-        </p>
-
-        <h3 style="color:#22C55E;">
-            20% Monthly Profit
-        </h3>
-
-        <br>
-
-        <button class="plan-btn">
-            Invest Now
-        </button>
-
-    </div>
-
-    <!-- Active Investment -->
-
-    <div class="section">
-
-        <div class="section-title">
-            <h3>📊 Your Active Investment</h3>
-        </div>
-
-        <div class="invest-card">
-
-            <div class="plan-name">
-                Gold Plan
-            </div>
-
-            <div class="plan-profit">
-                15% Monthly Return
-            </div>
-
-            <p>
-                Invested Amount:
-                <strong id="activeInvestment">
-                    5,500.00 USDT
-                </strong>
-            </p>
-
-            <br>
-
-            <p>
-                Monthly Profit:
-                <strong style="color:#22C55E;">
-                    +825.00 USDT
-                </strong>
-            </p>
-
-            <div class="progress">
-                <span></span>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- Investment Tips -->
-
-    <div class="section">
-
-        <div class="glass-card">
-
-            <h3>💡 Investment Tips</h3>
-
-            <br>
-
-            <p>✔ Invest according to your budget.</p>
-            <p>✔ Track your monthly earnings.</p>
-            <p>✔ Invite friends to earn referral bonuses.</p>
-
-        </div>
-
-    </div>
-        <!-- Bottom Navigation -->
-
-    <div class="bottom-nav">
-
-        <a href="dashboard.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-
-        <a href="invest.html" class="nav-item active">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Invest</span>
-        </a>
-
-        <a href="trade.html" class="nav-item">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Trade</span>
-        </a>
-
-        <a href="history.html" class="nav-item">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>History</span>
-        </a>
-
-        <a href="profile.html" class="nav-item">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </a>
-
-    </div>
+<p>
+Select your investment plan and enter the amount to continue.
+</p>
 
 </div>
 
-<!-- Firebase -->
-<script type="module" src="firebase.js"></script>
+<!-- Investment Form -->
 
-<!-- Main JS -->
-<script src="app.js"></script>
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-file-invoice-dollar"></i>
+Investment Details
+</h2>
+
+<div class="form-group">
+
+<label for="planSelect">Choose Plan</label>
+
+<select id="planSelect">
+
+<option value="">Select a Plan</option>
+<option value="starter">Starter Plan (5%)</option>
+<option value="silver">Silver Plan (7%)</option>
+<option value="gold">Gold Plan (10%)</option>
+<option value="platinum">Platinum Plan (15%)</option>
+
+</select>
+
+</div>
+
+<div class="form-group">
+
+<label for="investmentAmount">Investment Amount ($)</label>
+
+<input
+type="number"
+id="investmentAmount"
+class="input"
+placeholder="Enter investment amount">
+
+</div>
+
+<button id="previewBtn" class="btn btn-primary">
+
+<i class="fa-solid fa-calculator"></i>
+
+Preview Investment
+
+</button>
+
+</div>
+
+<!-- Investment Preview -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-chart-pie"></i>
+Investment Preview
+</h2>
+
+<div id="investmentPreview" class="summary-box">
+
+<p>Select a plan and enter an amount to view the summary.</p>
+
+</div>
+
+</div>
+    <!-- =====================================================
+     INVEST.HTML - FINAL
+     PART 2
+===================================================== -->
+
+<!-- Investment Summary -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-chart-line"></i>
+Estimated Returns
+</h2>
+
+<div class="summary-box">
+
+<div class="summary-item">
+<span>Selected Plan</span>
+<strong id="summaryPlan">Not Selected</strong>
+</div>
+
+<div class="summary-item">
+<span>Investment</span>
+<strong id="summaryAmount">$0.00</strong>
+</div>
+
+<div class="summary-item">
+<span>Monthly Return</span>
+<strong id="summaryRate">0%</strong>
+</div>
+
+<div class="summary-item">
+<span>Estimated Monthly Profit</span>
+<strong id="summaryProfit">$0.00</strong>
+</div>
+
+</div>
+
+</div>
+
+<!-- Confirmation -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-circle-check"></i>
+Confirm Investment
+</h2>
+
+<p>
+Please review your investment details carefully before confirming your investment.
+</p>
+
+<div class="profile-actions">
+
+<button id="confirmInvestmentBtn" class="btn btn-primary">
+
+<i class="fa-solid fa-check"></i>
+
+Confirm Investment
+
+</button>
+
+<a href="plans.html" class="btn btn-secondary">
+
+<i class="fa-solid fa-arrow-left"></i>
+
+Back to Plans
+
+</a>
+
+</div>
+
+</div>
+    <!-- =====================================================
+     INVEST.HTML - FINAL
+     PART 3
+===================================================== -->
+
+<!-- Investment Rules -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-list-check"></i>
+Investment Rules
+</h2>
+
+<ul class="deposit-rules">
+<li>Choose a plan according to your investment budget.</li>
+<li>Invest only an amount that falls within the selected plan limits.</li>
+<li>Monthly profits are calculated based on your selected plan.</li>
+<li>Withdrawals are subject to platform policies.</li>
+<li>Please verify all details before confirming.</li>
+</ul>
+
+</div>
+
+<!-- Important Notice -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-triangle-exclamation"></i>
+Important Notice
+</h2>
+
+<p>
+Investments involve financial risk. Please read all terms and conditions before proceeding. Ensure the information you provide is accurate.
+</p>
+
+</div>
+
+<!-- Security Information -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-shield-halved"></i>
+Security
+</h2>
+
+<div class="info-list">
+
+<div class="info-item">
+<span>Data Protection</span>
+<strong>Encrypted</strong>
+</div>
+
+<div class="info-item">
+<span>Transaction Security</span>
+<strong>Secure</strong>
+</div>
+
+<div class="info-item">
+<span>Account Status</span>
+<strong class="status success">Verified</strong>
+</div>
+
+</div>
+
+</div>
+
+<div style="margin-top:25px;">
+
+<a href="dashboard.html" class="btn btn-secondary">
+
+<i class="fa-solid fa-house"></i>
+
+Back to Dashboard
+
+</a>
+
+</div>
+    <!-- =====================================================
+     INVEST.HTML - FINAL
+     PART 4 (FINAL)
+===================================================== -->
+
+</div>
+
+<script src="plans.js"></script>
 
 <script>
-document.querySelectorAll(".plan-btn").forEach(button => {
-    button.addEventListener("click", () => {
-        alert("Investment request submitted successfully!");
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const previewBtn = document.getElementById("previewBtn");
+
+  if (previewBtn) {
+
+    previewBtn.addEventListener("click", () => {
+
+      const planId = document.getElementById("planSelect").value;
+      const amount = Number(document.getElementById("investmentAmount").value);
+
+      if (!planId || amount <= 0) {
+        alert("Please select a plan and enter a valid investment amount.");
+        return;
+      }
+
+      if (typeof selectPlan === "function") {
+        selectPlan(planId, amount);
+      }
+
     });
+
+  }
+
+  const confirmBtn = document.getElementById("confirmInvestmentBtn");
+
+  if (confirmBtn) {
+
+    confirmBtn.addEventListener("click", () => {
+
+      alert("Your investment request has been submitted successfully.");
+
+    });
+
+  }
+
 });
+
 </script>
 
 </body>
