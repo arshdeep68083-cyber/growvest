@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest | My Profile</title>
+<title>GrowVest | Premium Profile</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -17,6 +18,8 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 <body>
 
 <div class="container fade-up">
+
+<!-- PROFILE HEADER -->
 
 <div class="profile-header">
 
@@ -32,34 +35,69 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="profile-badge">
 <i class="fa-solid fa-circle-check"></i>
-Verified Member
+Verified Investor
 </div>
 
 </div>
 
-<div class="profile-stats">
+<!-- ACCOUNT SUMMARY -->
 
-<div class="stat-card">
+<div class="balance-card">
+
+<div class="balance-top">
+<p>Total Portfolio</p>
 <i class="fa-solid fa-wallet"></i>
-<h3 id="balance">0.00 USDT</h3>
-<p>Total Balance</p>
 </div>
 
-<div class="stat-card">
+<h1 id="balance">0.00 USDT</h1>
+
+<div class="profit-box">
+<span>Account Status</span>
+<h3>Active & Verified</h3>
+</div>
+
+</div>
+
+<!-- QUICK STATS -->
+
+<div class="quick-grid">
+
+<div class="quick-card">
 <i class="fa-solid fa-chart-line"></i>
-<h3 id="activePlans">0</h3>
+<h4 id="activePlans">0</h4>
 <p>Active Plans</p>
 </div>
 
-<div class="stat-card">
+<div class="quick-card">
 <i class="fa-solid fa-calendar-days"></i>
-<h3 id="joinDate">--</h3>
+<h4 id="joinDate">--</h4>
 <p>Join Date</p>
 </div>
 
+<div class="quick-card">
+<i class="fa-solid fa-medal"></i>
+<h4>VIP</h4>
+<p>Membership</p>
 </div>
 
-<div class="profile-menu">
+<div class="quick-card">
+<i class="fa-solid fa-shield-halved"></i>
+<h4>100%</h4>
+<p>Security</p>
+</div>
+
+</div>
+
+<!-- ACCOUNT MENU -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-user-gear"></i>
+Account Settings
+</h2>
+
+<div class="plans-container">
   <a href="edit-profile.html" class="menu-link">
 
 <div class="profile-item">
@@ -149,7 +187,7 @@ Support Center
 <div class="profile-item">
 <span>
 <i class="fa-solid fa-file-contract"></i>
-Terms & Privacy
+Terms & Conditions
 </span>
 <i class="fa-solid fa-chevron-right"></i>
 </div>
@@ -158,12 +196,45 @@ Terms & Privacy
 
 </div>
 
-<button id="logoutBtn" class="logout-btn">
-<i class="fa-solid fa-right-from-bracket"></i>
-&nbsp; Logout
-</button>
+</div>
+
+<!-- ACCOUNT SECURITY -->
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-shield"></i>
+Account Security
+</h2>
+
+<div class="quick-grid">
+
+<div class="quick-card">
+<i class="fa-solid fa-envelope-circle-check"></i>
+<h4>Email Verified</h4>
+<p>Your account email is verified.</p>
+</div>
+
+<div class="quick-card">
+<i class="fa-solid fa-user-shield"></i>
+<h4>Secure Account</h4>
+<p>Your account is protected.</p>
+</div>
 
 </div>
+
+</div>
+<!-- LOGOUT -->
+
+<button id="logoutBtn" class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+&nbsp; Logout Securely
+
+</button>
+
+<!-- BOTTOM NAVIGATION -->
+
 <nav class="bottom-nav">
 
 <a href="dashboard.html" class="nav-item">
@@ -192,6 +263,31 @@ Terms & Privacy
 </a>
 
 </nav>
+
+<!-- FOOTER -->
+
+<footer style="
+margin-top:40px;
+padding:25px 0;
+text-align:center;
+color:#94A3B8;
+font-size:13px;
+">
+
+<p>
+<a href="about.html">About Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a> |
+<a href="help.html">Help & Support</a>
+</p>
+
+<p style="margin-top:10px;">
+© 2026 GrowVest. All Rights Reserved.
+</p>
+
+</footer>
+
+</div>
 
 <script type="module" src="profile.js"></script>
 
