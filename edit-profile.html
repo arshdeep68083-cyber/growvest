@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -20,176 +21,120 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="header">
 
+<a href="profile.html" class="back-btn">
+<i class="fa-solid fa-arrow-left"></i>
+</a>
+
 <div class="header-left">
 <h2>Edit Profile</h2>
-<p>Update your personal information</p>
+<p>Update your account information</p>
 </div>
 
 </div>
 
 <div class="glass-card">
 
-<div class="profile-avatar" style="text-align:center;margin-bottom:20px;">
-<i class="fa-solid fa-user-circle"
-style="font-size:70px;color:#16a34a;"></i>
+<div class="profile-avatar large">
+
+<i class="fa-solid fa-user"></i>
+
 </div>
 
-<div class="input-group">
-<i class="fa-solid fa-user"></i>
+<form id="editProfileForm">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
 <input
 type="text"
 id="name"
-placeholder="Full Name">
+class="input"
+placeholder="Enter your full name"
+required>
+
 </div>
 
-<br>
+<div class="form-group">
 
-<div class="input-group">
-<i class="fa-solid fa-envelope"></i>
+<label>Email Address</label>
+
 <input
 type="email"
 id="email"
-placeholder="Email Address"
+class="input"
 readonly>
+
 </div>
 
-<br>
+<div class="form-group">
 
-<div class="input-group">
-<i class="fa-solid fa-phone"></i>
+<label>Phone Number</label>
+
 <input
 type="tel"
 id="phone"
-placeholder="Phone Number">
+class="input"
+placeholder="Enter phone number">
+
 </div>
 
-<br>
+<div class="form-group">
 
-<div class="input-group">
-<i class="fa-solid fa-location-dot"></i>
+<label>Country</label>
+
 <input
 type="text"
 id="country"
-placeholder="Country">
+class="input"
+placeholder="Enter your country">
+
+</div>
+<div class="form-group">
+
+<label>Wallet Address (TRC20)</label>
+
+<input
+type="text"
+id="wallet"
+class="input"
+placeholder="Enter your TRC20 wallet">
+
 </div>
 
-<br>
-
-<button
-id="saveBtn"
-class="login-btn">
+<button type="submit" class="btn">
 
 <i class="fa-solid fa-floppy-disk"></i>
-Save Profile
+&nbsp; Save Changes
 
 </button>
 
-<br><br>
+</form>
 
-<a href="profile.html">
+</div>
 
-<button
-type="button"
-class="btn"
-style="width:100%;">
+<div class="profile-menu">
 
-⬅ Back to Profile
+<a href="profile.html" class="menu-link">
 
-</button>
+<div class="profile-item">
+
+<span>
+<i class="fa-solid fa-user"></i>
+Back to Profile
+</span>
+
+<i class="fa-solid fa-chevron-right"></i>
+
+</div>
 
 </a>
 
 </div>
-    </div>
 
-<nav class="bottom-nav">
+</div>
 
-<a href="dashboard.html" class="nav-item">
-<i class="fa-solid fa-house"></i>
-<span>Home</span>
-</a>
-
-<a href="plans.html" class="nav-item">
-<i class="fa-solid fa-chart-line"></i>
-<span>Plans</span>
-</a>
-
-<a href="deposit.html" class="nav-item">
-<i class="fa-solid fa-wallet"></i>
-<span>Deposit</span>
-</a>
-
-<a href="history.html" class="nav-item">
-<i class="fa-solid fa-clock-rotate-left"></i>
-<span>History</span>
-</a>
-
-<a href="profile.html" class="nav-item active">
-<i class="fa-solid fa-user"></i>
-<span>Profile</span>
-</a>
-
-</nav>
-
-<script type="module">
-
-import { auth, db } from "./firebase-config.js";
-
-import {
-onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-
-import {
-doc,
-getDoc,
-updateDoc
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
-
-onAuthStateChanged(auth, async (user) => {
-
-if (!user) {
-window.location.href = "login.html";
-return;
-}
-
-const userRef = doc(db, "users", user.uid);
-const snap = await getDoc(userRef);
-
-if (snap.exists()) {
-
-const data = snap.data();
-
-document.getElementById("name").value = data.name || "";
-document.getElementById("email").value = data.email || user.email;
-document.getElementById("phone").value = data.phone || "";
-document.getElementById("country").value = data.country || "";
-
-}
-
-});
-
-document.getElementById("saveBtn").addEventListener("click", async () => {
-
-const user = auth.currentUser;
-
-if (!user) return;
-
-await updateDoc(doc(db, "users", user.uid), {
-
-name: document.getElementById("name").value,
-phone: document.getElementById("phone").value,
-country: document.getElementById("country").value
-
-});
-
-alert("Profile updated successfully!");
-
-window.location.href = "profile.html";
-
-});
-
-</script>
+<script type="module" src="edit-profile.js"></script>
 
 </body>
 </html>
-
