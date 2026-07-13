@@ -1,31 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Coming Soon</title>
+
+<title>GrowVest | Edit Profile</title>
+
 <link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
 </head>
 
-<body class="login-page">
+<body>
 
-<div class="login-wrapper">
-    <div class="login-card">
+<div class="container fade-up">
 
-        <h1>Coming Soon</h1>
+<div class="header">
 
-        <p>This page is under development.</p>
-
-        <br>
-
-        <a href="profile.html">
-            <button class="login-btn">
-                ⬅ Back to Profile
-            </button>
-        </a>
-
-    </div>
+<div class="header-left">
+<h2>Edit Profile</h2>
+<p>Update your account information</p>
 </div>
+
+</div>
+
+<div class="glass-card">
+
+<div class="input-group">
+<i class="fa-solid fa-user"></i>
+<input
+type="text"
+id="fullName"
+placeholder="Full Name">
+</div>
+
+<br>
+
+<div class="input-group">
+<i class="fa-solid fa-envelope"></i>
+<input
+type="email"
+id="email"
+placeholder="Email Address">
+</div>
+
+<br>
+
+<div class="input-group">
+<i class="fa-solid fa-phone"></i>
+<input
+type="tel"
+id="phone"
+placeholder="Phone Number">
+</div>
+
+<br>
+
+<div class="input-group">
+<i class="fa-solid fa-location-dot"></i>
+<input
+type="text"
+id="country"
+placeholder="Country">
+</div>
+
+<br>
+
+<button
+id="saveProfileBtn"
+class="login-btn">
+
+<i class="fa-solid fa-floppy-disk"></i>
+&nbsp; Save Changes
+
+</button>
+
+<br><br>
+
+<a href="profile.html" style="text-decoration:none;">
+
+<button
+type="button"
+class="btn"
+style="
+width:100%;
+background:#374151;
+color:#fff;
+">
+
+<i class="fa-solid fa-arrow-left"></i>
+&nbsp; Back to Profile
+
+</button>
+
+</a>
+
+</div>
+<nav class="bottom-nav">
+
+<a href="dashboard.html" class="nav-item">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="plans.html" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
+
+<a href="deposit.html" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="history.html" class="nav-item">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+<a href="profile.html" class="nav-item active">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+</nav>
+
+<script>
+document.getElementById("saveProfileBtn").addEventListener("click", function () {
+
+    const name = document.getElementById("fullName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const country = document.getElementById("country").value.trim();
+
+    if (!name || !email) {
+        alert("Please enter your name and email.");
+        return;
+    }
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userEmail", email);
+    localStorage.setItem("userPhone", phone);
+    localStorage.setItem("userCountry", country);
+
+    alert("Profile updated successfully!");
+    window.location.href = "profile.html";
+});
+</script>
 
 </body>
 </html>
