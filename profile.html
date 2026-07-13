@@ -2,16 +2,15 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest - Profile</title>
+<title>GrowVest | Profile</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
@@ -19,199 +18,106 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <div class="container fade-up">
 
-    <!-- Header -->
+<div class="header">
 
-    <div class="header">
+<div class="header-left">
+<h2>My Profile</h2>
+<p>Manage your GrowVest account</p>
+</div>
 
-        <div class="header-left">
-            <h2>👤 My Profile</h2>
-            <p>Manage your account</p>
-        </div>
+</div>
 
-        <div class="header-right">
-            <div class="icon-btn">
-                <i class="fa-solid fa-gear"></i>
-            </div>
-        </div>
+<div class="profile-card">
 
-    </div>
+<div class="profile-avatar">
+<i class="fa-solid fa-user"></i>
+</div>
 
-    <!-- Profile Card -->
+<h2 class="profile-name" id="userName">
+User Name
+</h2>
 
-    <div class="profile-card">
+<p class="profile-email" id="userEmail">
+user@email.com
+</p>
 
-        <div class="profile-avatar">
-            <i class="fa-solid fa-user"></i>
-        </div>
+</div>
 
-        <div class="profile-name" id="profileName">
-            Arshdeep
-        </div>
+<div class="profile-menu">
 
-        <div class="profile-email" id="profileEmail">
-            arshdeep68083@gmail.com
-        </div>
+<a href="edit-profile.html" style="text-decoration:none;color:inherit;">
+<div class="profile-item">
+<span><i class="fa-solid fa-user-pen"></i> Edit Profile</span>
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</a>
 
-        <br>
+<a href="change-password.html" style="text-decoration:none;color:inherit;">
+<div class="profile-item">
+<span><i class="fa-solid fa-key"></i> Change Password</span>
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</a>
 
-        <button class="btn deposit" style="width:100%;">
-            <i class="fa-solid fa-pen"></i>
-            Edit Profile
-        </button>
+<a href="security.html" style="text-decoration:none;color:inherit;">
+<div class="profile-item">
+<span><i class="fa-solid fa-shield-halved"></i> Security</span>
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</a>
 
-    </div>
+<a href="help.html" style="text-decoration:none;color:inherit;">
+<div class="profile-item">
+<span><i class="fa-solid fa-headset"></i> Support Center</span>
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</a>
+<a href="terms.html" style="text-decoration:none;color:inherit;">
+<div class="profile-item">
+<span><i class="fa-solid fa-file-contract"></i> Terms & Privacy</span>
+<i class="fa-solid fa-chevron-right"></i>
+</div>
+</a>
 
-    <!-- Account Menu -->
+</div>
 
-    <div class="profile-menu">
+<button id="logoutBtn" class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+&nbsp; Logout
+</button>
 
-        <div class="profile-item">
-            <span>💰 Total Balance</span>
-            <strong>12,750 USDT</strong>
-        </div>
+</div>
 
-        <div class="profile-item">
-            <span>📈 Active Plan</span>
-            <strong>Gold Plan</strong>
-        </div>
+<nav class="bottom-nav">
 
-        <div class="profile-item">
-            <span>👥 Referral Bonus</span>
-            <strong>320 USDT</strong>
-        </div>
+<a href="dashboard.html" class="nav-item">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
 
-        <div class="profile-item">
-            <span>🎁 Invite Friends</span>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-            <!-- Account Menu -->
+<a href="plans.html" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
 
-    <div class="profile-menu">
+<a href="deposit.html" class="nav-item">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
 
-        <div class="profile-item">
-            <span>💰 Total Balance</span>
-            <strong>12,750 USDT</strong>
-        </div>
+<a href="history.html" class="nav-item">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
 
-        <div class="profile-item">
-            <span>📈 Active Plan</span>
-            <strong>Gold Plan</strong>
-        </div>
+<a href="profile.html" class="nav-item active">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
 
-        <div class="profile-item">
-            <span>👥 Referral Bonus</span>
-            <strong>320 USDT</strong>
-        </div>
+</nav>
 
-        <!-- Referral Section -->
-
-        <div class="glass-card">
-
-            <h3>🎁 Invite & Earn</h3>
-
-            <p style="margin-top:10px;">
-                Earn <strong>5% Referral Bonus</strong> when your friend makes their first investment.
-            </p>
-
-            <br>
-
-            <input
-                type="text"
-                id="referralLink"
-                value="https://growvest.app/register.html?ref=GV123456"
-                readonly
-                style="width:100%;padding:14px;border:none;border-radius:12px;background:#1B2436;color:#fff;">
-
-            <br><br>
-
-            <button class="btn deposit" style="width:100%;" onclick="copyReferral()">
-                <i class="fa-solid fa-copy"></i>
-                Copy Invite Link
-            </button>
-
-        </div>
-
-        <br>
-
-        <div class="profile-item">
-            <span>🔒 Change Password</span>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="profile-item">
-            <span>🛡 Security Settings</span>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="profile-item">
-            <span>💬 Support Center</span>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-        <div class="profile-item">
-            <span>📄 Terms & Privacy</span>
-            <i class="fa-solid fa-chevron-right"></i>
-        </div>
-
-    </div>
-
-    <button class="logout-btn">
-        <i class="fa-solid fa-right-from-bracket"></i>
-        Logout
-    </button>
-        <!-- Bottom Navigation -->
-
-    <div class="bottom-nav">
-
-        <a href="dashboard.html" class="nav-item">
-            <i class="fa-solid fa-house"></i>
-            <span>Home</span>
-        </a>
-
-        <a href="plans.html" class="nav-item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Invest</span>
-        </a>
-
-        <a href="trading.html" class="nav-item">
-            <i class="fa-solid fa-chart-line"></i>
-            <span>Trade</span>
-        </a>
-
-        <a href="history.html" class="nav-item">
-            <i class="fa-solid fa-clock-rotate-left"></i>
-            <span>History</span>
-        </a>
-
-        <a href="profile.html" class="nav-item active">
-            <i class="fa-solid fa-user"></i>
-            <span>Profile</span>
-        </a>
-
-    </div>
-
-    </div>
-    <!-- Firebase -->
-<script type="module" src="firebase-config.js"></script>
-
-<!-- Main JS -->
-<script src="app.js"></script>
-
-<script>
-function copyReferral() {
-    const input = document.getElementById("referralLink");
-    input.select();
-    input.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(input.value);
-    alert("Referral link copied successfully!");
-}
-
-document.querySelector(".logout-btn").addEventListener("click", () => {
-    if (confirm("Are you sure you want to logout?")) {
-        window.location.href = "index.html";
-    }
-});
-</script>
+<script type="module" src="profile.js"></script>
 
 </body>
 </html>
