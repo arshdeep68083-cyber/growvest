@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GrowVest Pro</title>
+<title>GrowVest | Smart Investment Platform</title>
 
 <link rel="stylesheet" href="style.css">
 
@@ -14,55 +14,127 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
-<body>
+<body class="login-page">
 
-<div class="hero">
+<div class="bg-blur blur1"></div>
+<div class="bg-blur blur2"></div>
 
-<div class="overlay"></div>
+<div class="login-wrapper">
 
-<div class="login-card">
+<div class="login-card fade-up">
+
+<div class="logo-box">
+
+<div class="logo-icon">
+<i class="fa-solid fa-chart-line"></i>
+</div>
 
 <h1>GrowVest</h1>
 
-<p>Smart Investing Starts Here</p>
+<p>
+Invest Smarter. Grow Faster.
+</p>
 
-<a href="register.html" class="primary-btn">
-Create Account
+</div>
+
+<div style="text-align:center; margin-bottom:25px;">
+
+<h2 style="font-size:24px;font-weight:700;">
+Welcome
+</h2>
+
+<p style="color:#94A3B8;margin-top:10px;line-height:1.7;">
+Grow your wealth with secure investment plans, instant deposits, easy withdrawals and a professional investment dashboard.
+</p>
+
+</div>
+
+<div style="display:grid;gap:15px;">
+
+<a href="login.html" style="text-decoration:none;">
+
+<button class="login-btn">
+<i class="fa-solid fa-right-to-bracket"></i>
+&nbsp; Login
+</button>
+
 </a>
 
-<a href="login.html" class="secondary-btn">
-Login
+<a href="register.html" style="text-decoration:none;">
+
+<button class="login-btn"
+style="background:linear-gradient(135deg,#22C55E,#16A34A);">
+
+<i class="fa-solid fa-user-plus"></i>
+&nbsp; Create Account
+
+</button>
+
 </a>
 
 </div>
 
+<br>
+<div style="margin-top:30px;">
+
+<div style="
+display:flex;
+justify-content:space-between;
+margin-bottom:15px;
+">
+
+<div style="text-align:center;flex:1;">
+<h2 style="color:#22C55E;">100%</h2>
+<p style="font-size:13px;color:#94A3B8;">
+Secure
+</p>
 </div>
 
-<footer>
+<div style="text-align:center;flex:1;">
+<h2 style="color:#3B82F6;">24/7</h2>
+<p style="font-size:13px;color:#94A3B8;">
+Support
+</p>
+</div>
 
-<a href="about.html">About</a>
+<div style="text-align:center;flex:1;">
+<h2 style="color:#FACC15;">Fast</h2>
+<p style="font-size:13px;color:#94A3B8;">
+Withdrawal
+</p>
+</div>
 
-<a href="privacy.html">Privacy</a>
+</div>
 
-<a href="terms.html">Terms</a>
+</div>
 
-<a href="help.html">Support</a>
+<hr style="
+margin:25px 0;
+border:none;
+height:1px;
+background:rgba(255,255,255,.08);
+">
 
-<p>© 2026 GrowVest. All Rights Reserved.</p>
+<p style="
+text-align:center;
+color:#94A3B8;
+font-size:13px;
+line-height:1.7;
+">
 
-</footer>
+© 2026 <strong>GrowVest</strong><br>
+Secure Investment Platform
 
-<script>
-if ('serviceWorker' in navigator) {
-window.addEventListener('load', () => {
-navigator.serviceWorker.register('./pwabuilder-sw.js');
-});
-}
-</script>
+</p>
+
+</div>
+
+</div>
 
 </body>
+
 </html>
