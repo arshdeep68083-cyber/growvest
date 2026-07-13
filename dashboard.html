@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -19,22 +18,21 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="container fade-up">
 
-<div class="header">
+<div class="top-header">
 
-<div class="header-left">
-<h2>Dashboard</h2>
-<p>Welcome back to GrowVest</p>
+<div class="welcome-box">
+
+<h3>Welcome Back 👋</h3>
+
+<p id="userEmail">Loading...</p>
+
 </div>
 
-<div class="header-right">
+<div class="profile-icon">
 
-<div class="icon-btn">
-<i class="fa-solid fa-bell"></i>
-</div>
-
-<div class="icon-btn">
+<a href="profile.html">
 <i class="fa-solid fa-user"></i>
-</div>
+</a>
 
 </div>
 
@@ -42,113 +40,177 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <div class="balance-card">
 
-<p class="balance-title">
-Total Balance
-</p>
+<div class="balance-top">
 
-<h1 class="balance" id="balance">
-$0.00
+<p>Total Balance</p>
+
+<button id="toggleBalance" class="eye-btn">
+
+<i class="fa-solid fa-eye"></i>
+
+</button>
+
+</div>
+
+<h1 id="balance">
+
+0.00 USDT
+
 </h1>
 
-<div class="today-profit">
+<div class="profit-box">
 
 <span>Today's Profit</span>
 
-<span class="profit" id="todayProfit">
-+$0.00
-</span>
+<h3 id="todayProfit">
+
++0.00 USDT
+
+</h3>
 
 </div>
 
 </div>
 
-<div class="action-buttons">
+<div class="quick-actions">
 
-<a href="deposit.html">
-<button class="btn deposit">
+<a href="deposit.html" class="action-card">
+
 <i class="fa-solid fa-wallet"></i>
-&nbsp; Deposit
-</button>
+
+<span>Deposit</span>
+
 </a>
 
-<a href="withdraw.html">
-<button class="btn withdraw">
+<a href="withdraw.html" class="action-card">
+
 <i class="fa-solid fa-money-bill-transfer"></i>
-&nbsp; Withdraw
-</button>
+
+<span>Withdraw</span>
+
+</a>
+
+<a href="plans.html" class="action-card">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>Plans</span>
+
+</a>
+
+<a href="history.html" class="action-card">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>History</span>
+
+</a>
+
+</div>
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-chart-simple"></i>
+Live Crypto Market
+</h2>
+
+<div class="crypto-grid">
+
+<div class="crypto-card">
+<h4>Bitcoin</h4>
+<p id="btcPrice">$0.00</p>
+</div>
+
+<div class="crypto-card">
+<h4>Ethereum</h4>
+<p id="ethPrice">$0.00</p>
+</div>
+
+<div class="crypto-card">
+<h4>BNB</h4>
+<p id="bnbPrice">$0.00</p>
+</div>
+
+<div class="crypto-card">
+<h4>Solana</h4>
+<p id="solPrice">$0.00</p>
+</div>
+
+</div>
+
+</div>
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-layer-group"></i>
+Active Investment Plans
+</h2>
+
+<div id="activePlan" class="plans-container">
+
+<div class="loading-card">
+Loading investment plans...
+</div>
+
+</div>
+
+</div>
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-clock-rotate-left"></i>
+Recent Transactions
+</h2>
+
+<div id="transactions" class="transactions-container">
+
+<div class="loading-card">
+Loading transactions...
+</div>
+
+</div>
+
+</div>
+
+<div class="dashboard-section">
+
+<h2>
+<i class="fa-solid fa-bolt"></i>
+Quick Access
+</h2>
+
+<div class="quick-grid">
+
+<a href="profile.html" class="quick-card">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+<a href="security.html" class="quick-card">
+<i class="fa-solid fa-shield-halved"></i>
+<span>Security</span>
+</a>
+
+<a href="help.html" class="quick-card">
+<i class="fa-solid fa-headset"></i>
+<span>Support</span>
+</a>
+
+<a href="terms.html" class="quick-card">
+<i class="fa-solid fa-file-contract"></i>
+<span>Terms</span>
 </a>
 
 </div>
 
-<div class="section">
-
-<div class="section-title">
-
-<h3>Investment Plans</h3>
-
-<a href="plans.html">
-View All
-</a>
-
 </div>
 
-<div class="plan-card">
-
-<h4>Starter Plan</h4>
-
-<p>Investment: <b>$100 - $499</b></p>
-
-<p>Monthly Profit: <span style="color:#22C55E;">5%</span></p>
-
-<button class="plan-btn">
-Invest Now
+<button id="logoutBtn" class="logout-btn">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
 </button>
-
-</div>
-
-<div class="plan-card">
-
-<h4>Silver Plan</h4>
-
-<p>Investment: <b>$500 - $999</b></p>
-
-<p>Monthly Profit: <span style="color:#22C55E;">7%</span></p>
-
-<button class="plan-btn">
-Invest Now
-</button>
-
-</div>
-<div class="plan-card">
-
-<h4>Gold Plan</h4>
-
-<p>Investment: <b>$1,000 - $4,999</b></p>
-
-<p>Monthly Profit: <span style="color:#22C55E;">10%</span></p>
-
-<button class="plan-btn">
-Invest Now
-</button>
-
-</div>
-
-<div class="plan-card">
-
-<h4>VIP Plan</h4>
-
-<p>Investment: <b>$5,000 - $99,995</b></p>
-
-<p>Monthly Profit: <span style="color:#22C55E;">15%</span></p>
-
-<button class="plan-btn">
-Invest Now
-</button>
-
-</div>
-
-</div>
-
 <nav class="bottom-nav">
 
 <a href="dashboard.html" class="nav-item active">
