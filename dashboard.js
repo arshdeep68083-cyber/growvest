@@ -1,300 +1,218 @@
-import { auth, db } from "./firebase-config.js";
+/* ==========================================
+   DASHBOARD.JS - FINAL
+   PART 1
+========================================== */
 
-import {
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
+document.addEventListener("DOMContentLoaded", () => {
 
-import {
-  doc,
-  getDoc,
-  collection,
-  getDocs
-} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+  // Demo dashboard data
+  const dashboardData = {
+    balance: 0,
+    activeInvestment: 0,
+    monthlyProfit: 0,
+    totalDeposit: 0,
+    totalWithdraw: 0,
+    notifications: [
+      "Welcome to GrowVest Pro!",
+      "Your account is ready to use."
+    ]
+  };
 
-// =========================
-// HTML Elements
-// =========================
+  // Update dashboard cards
+  const setText = (id, value) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = value;
+  };
 
-const userEmail = document.getElementById("userEmail");
-const balance = document.getElementById("balance");
-const todayProfit = document.getElementById("todayProfit");
-const activePlan = document.getElementById("activePlan");
-const transactions = document.getElementById("transactions");
-const logoutBtn = document.getElementById("logoutBtn");
+  setText("totalBalance", `$${dashboardData.balance.toFixed(2)}`);
+  setText("activeInvestment", `$${dashboardData.activeInvestment.toFixed(2)}`);
+  setText("monthlyProfit", `$${dashboardData.monthlyProfit.toFixed(2)}`);
+  setText("totalDeposit", `$${dashboardData.totalDeposit.toFixed(2)}`);
+  setText("totalWithdraw", `$${dashboardData.totalWithdraw.toFixed(2)}`);
 
-const btcPrice = document.getElementById("btcPrice");
-const ethPrice = document.getElementById("ethPrice");
-const bnbPrice = document.getElementById("bnbPrice");
-const solPrice = document.getElementById("solPrice");
-
-const toggleBalance = document.getElementById("toggleBalance");
-
-let balanceVisible = true;
-let realBalance = "0.00 USDT";
-
-// =========================
-// Check Login
-// =========================
-
-onAuthStateChanged(auth, async (user) => {
-
-    if (!user) {
-        window.location.href = "login.html";
-        return;
-    }
-
-    if (userEmail) {
-        userEmail.textContent = user.email;
-    }
-
-    try {
-
-        const userRef = doc(db, "users", user.uid);
-        const userSnap = await getDoc(userRef);
-
-        if (userSnap.exists()) {
-
-            const data = userSnap.data();
-
-            realBalance =
-                Number(data.balance || 0).toFixed(2) + " USDT";
-
-            if (balance) {
-                balance.textContent = realBalance;
-            }
-
-            if (todayProfit) {
-                todayProfit.textContent =
-                    "+" + Number(data.todayProfit || 0).toFixed(2) + " USDT";
-            }
-
-        }
-
-        loadPlans(user.uid);
-        loadTransactions(user.uid);
-        loadCryptoPrices();
-
-    } catch (error) {
-
-        console.error("Dashboard Error:", error);
-
-    }
+  // Store globally for next parts
+  window.dashboardData = dashboardData;
 
 });
-// =========================
-// Balance Show / Hide
-// =========================
+/* ==========================================
+   DASHBOARD.JS - FINAL
+   PART 2
+========================================== */
 
-if (toggleBalance) {
+// Animate balance values
 
-    toggleBalance.addEventListener("click", () => {
+function animateValue(id, endValue, duration = 1000) {
 
-        if (balanceVisible) {
+  const element = document.getElementById(id);
 
-            if (balance) {
-                balance.textContent = "********";
-            }
+  if (!element) return;
 
-            toggleBalance.innerHTML =
-                '<i class="fa-solid fa-eye-slash"></i>';
+  let startValue = 0;
+  const increment = endValue / (duration / 16);
 
-        } else {
+  function update() {
 
-            if (balance) {
-                balance.textContent = realBalance;
-            }
+    startValue += increment;
 
-            toggleBalance.innerHTML =
-                '<i class="fa-solid fa-eye"></i>';
-
-        }
-
-        balanceVisible = !balanceVisible;
-
-    });
-
-}
-
-// =========================
-// Live Crypto Prices
-// =========================
-
-async function loadCryptoPrices() {
-
-    try {
-
-        const response = await fetch(
-            "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,binancecoin,solana&vs_currencies=usd"
-        );
-
-        const data = await response.json();
-
-        if (btcPrice) btcPrice.textContent = "$" + data.bitcoin.usd;
-        if (ethPrice) ethPrice.textContent = "$" + data.ethereum.usd;
-        if (bnbPrice) bnbPrice.textContent = "$" + data.binancecoin.usd;
-        if (solPrice) solPrice.textContent = "$" + data.solana.usd;
-
-    } catch (error) {
-
-        console.error("Crypto Price Error:", error);
-
+    if (startValue >= endValue) {
+      element.textContent = `$${endValue.toFixed(2)}`;
+      return;
     }
 
+    element.textContent = `$${startValue.toFixed(2)}`;
+
+    requestAnimationFrame(update);
+
+  }
+
+  update();
+
 }
 
-// =========================
-// Load Active Plans
-// =========================
+// Animate dashboard cards
 
-async function loadPlans(uid) {
+animateValue("totalBalance", window.dashboardData.balance);
+animateValue("activeInvestment", window.dashboardData.activeInvestment);
+animateValue("monthlyProfit", window.dashboardData.monthlyProfit);
+animateValue("totalDeposit", window.dashboardData.totalDeposit);
+animateValue("totalWithdraw", window.dashboardData.totalWithdraw);
 
-    if (!activePlan) return;
+// Notifications
 
-    activePlan.innerHTML = "";
+const notificationList =
+document.getElementById("notificationList");
 
-    try {
+if (notificationList && window.dashboardData.notifications) {
 
-        const plansSnapshot = await getDocs(collection(db, "userPlans"));
+  notificationList.innerHTML = "";
 
-        let found = false;
+  window.dashboardData.notifications.forEach(text => {
 
-        plansSnapshot.forEach((planDoc) => {
+    const item = document.createElement("div");
 
-            const plan = planDoc.data();
+    item.className = "history-item";
 
-            if (plan.uid === uid && plan.status === "Active") {
+    item.innerHTML = `
+      <div>
+        <h4>${text}</h4>
+      </div>
+    `;
 
-                found = true;
+    notificationList.appendChild(item);
 
-                activePlan.innerHTML += `
-                    <div class="plan-card">
-                        <h3>${plan.name}</h3>
-                        <p>Investment: ${plan.amount} USDT</p>
-                        <p>Monthly Profit: ${plan.monthlyProfit}%</p>
-                        <span class="status active">${plan.status}</span>
-                    </div>
-                `;
-            }
+  });
 
-        });
+}
+/* ==========================================
+   DASHBOARD.JS - FINAL
+   PART 3
+========================================== */
 
-        if (!found) {
+// Recent Activity
 
-            activePlan.innerHTML =
-                "<div class='loading-card'>No Active Investment Plans</div>";
+const activityList = document.getElementById("recentActivity");
 
-        }
+if (activityList) {
 
-    } catch (error) {
-
-        console.error("Plans Error:", error);
-
+  const activities = [
+    {
+      title: "Deposit Completed",
+      details: "$500.00 • Today"
+    },
+    {
+      title: "Investment Activated",
+      details: "$1000 Plan • Yesterday"
+    },
+    {
+      title: "Withdrawal Requested",
+      details: "$150.00 • Pending"
     }
+  ];
 
-}
-// =========================
-// Load Recent Transactions
-// =========================
+  activityList.innerHTML = "";
 
-async function loadTransactions(uid) {
+  activities.forEach(activity => {
 
-    if (!transactions) return;
+    const item = document.createElement("div");
 
-    transactions.innerHTML = "";
+    item.className = "history-item";
 
-    try {
+    item.innerHTML = `
+      <div>
+        <h4>${activity.title}</h4>
+        <p>${activity.details}</p>
+      </div>
+    `;
 
-        const txSnapshot = await getDocs(collection(db, "transactions"));
+    activityList.appendChild(item);
 
-        let found = false;
-
-        txSnapshot.forEach((txDoc) => {
-
-            const tx = txDoc.data();
-
-            if (tx.uid === uid) {
-
-                found = true;
-
-                transactions.innerHTML += `
-                    <div class="transaction-card">
-                        <div>
-                            <h4>${tx.type || "Transaction"}</h4>
-                            <p>${tx.date || "--"}</p>
-                        </div>
-
-                        <div style="text-align:right">
-                            <strong>${Number(tx.amount || 0).toFixed(2)} USDT</strong>
-                            <br>
-                            <span class="${tx.status === "Completed" ? "status active" : "status pending"}">
-                                ${tx.status || "Pending"}
-                            </span>
-                        </div>
-                    </div>
-                `;
-
-            }
-
-        });
-
-        if (!found) {
-
-            transactions.innerHTML =
-                "<div class='loading-card'>No Transactions Found</div>";
-
-        }
-
-    } catch (error) {
-
-        console.error("Transaction Error:", error);
-
-    }
+  });
 
 }
 
-// =========================
-// Auto Refresh
-// =========================
+// Helper function
+
+function formatCurrency(amount) {
+  return `$${Number(amount).toFixed(2)}`;
+}
+
+// Auto Refresh (every 60 seconds)
 
 setInterval(() => {
 
-    const user = auth.currentUser;
+  console.log("Refreshing dashboard data...");
 
-    if (user) {
+  // Future API refresh can be added here.
 
-        loadCryptoPrices();
-        loadPlans(user.uid);
-        loadTransactions(user.uid);
+}, 60000);
+/* ==========================================
+   DASHBOARD.JS - FINAL
+   PART 4 (FINAL)
+========================================== */
 
-    }
+// Dashboard Initialization
 
-}, 30000);
+function initializeDashboard() {
 
-// =========================
-// Logout
-// =========================
+  console.log("Dashboard initialized successfully.");
 
-if (logoutBtn) {
-
-    logoutBtn.addEventListener("click", async () => {
-
-        if (!confirm("Are you sure you want to logout?")) return;
-
-        try {
-
-            await signOut(auth);
-            window.location.href = "login.html";
-
-        } catch (error) {
-
-            console.error(error);
-            alert("Logout Failed!");
-
-        }
-
-    });
+  // Future initialization logic can be added here.
 
 }
 
-console.log("✅ GrowVest Premium Dashboard Loaded Successfully");
+// Refresh dashboard values
+
+function refreshDashboard() {
+
+  if (!window.dashboardData) return;
+
+  document.getElementById("totalBalance") &&
+    (document.getElementById("totalBalance").textContent =
+      formatCurrency(window.dashboardData.balance));
+
+  document.getElementById("activeInvestment") &&
+    (document.getElementById("activeInvestment").textContent =
+      formatCurrency(window.dashboardData.activeInvestment));
+
+  document.getElementById("monthlyProfit") &&
+    (document.getElementById("monthlyProfit").textContent =
+      formatCurrency(window.dashboardData.monthlyProfit));
+
+  document.getElementById("totalDeposit") &&
+    (document.getElementById("totalDeposit").textContent =
+      formatCurrency(window.dashboardData.totalDeposit));
+
+  document.getElementById("totalWithdraw") &&
+    (document.getElementById("totalWithdraw").textContent =
+      formatCurrency(window.dashboardData.totalWithdraw));
+
+}
+
+// Run on page load
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  initializeDashboard();
+  refreshDashboard();
+
+});
