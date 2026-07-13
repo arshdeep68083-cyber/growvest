@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Edit Profile | GrowVest</title>
+<title>GrowVest Pro | Edit Profile</title>
 
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="dashboard.css">
 
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
@@ -17,71 +17,71 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 
 <body>
 
-<div class="container fade-up">
+<div class="page-container">
 
-<div class="header">
+<!-- Header -->
 
-<a href="profile.html" class="back-btn">
-<i class="fa-solid fa-arrow-left"></i>
-</a>
+<div class="page-header">
 
-<div class="header-left">
-<h2>Edit Profile</h2>
-<p>Update your account information</p>
-</div>
+<h1>
+<i class="fa-solid fa-user-pen"></i>
+Edit Profile
+</h1>
 
-</div>
-
-<div class="glass-card">
-
-<div class="profile-avatar large">
-
-<i class="fa-solid fa-user"></i>
+<p>
+Update your personal information and account details.
+</p>
 
 </div>
 
-<form id="editProfileForm">
+<!-- Profile Form -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-id-card"></i>
+Personal Information
+</h2>
 
 <div class="form-group">
 
-<label>Full Name</label>
+<label for="fullName">Full Name</label>
 
 <input
 type="text"
-id="name"
+id="fullName"
 class="input"
-placeholder="Enter your full name"
-required>
+placeholder="Enter your full name">
 
 </div>
 
 <div class="form-group">
 
-<label>Email Address</label>
+<label for="email">Email Address</label>
 
 <input
 type="email"
 id="email"
 class="input"
-readonly>
+placeholder="Enter your email">
 
 </div>
 
 <div class="form-group">
 
-<label>Phone Number</label>
+<label for="phone">Phone Number</label>
 
 <input
 type="tel"
 id="phone"
 class="input"
-placeholder="Enter phone number">
+placeholder="Enter your phone number">
 
 </div>
 
 <div class="form-group">
 
-<label>Country</label>
+<label for="country">Country</label>
 
 <input
 type="text"
@@ -90,51 +90,225 @@ class="input"
 placeholder="Enter your country">
 
 </div>
+  
+<!-- =====================================================
+     EDIT-PROFILE.HTML - FINAL
+     PART 2
+===================================================== -->
+
+<!-- Profile Photo -->
+
 <div class="form-group">
 
-<label>Wallet Address (TRC20)</label>
+<label for="profilePhoto">Profile Photo</label>
+
+<input
+type="file"
+id="profilePhoto"
+class="input"
+accept="image/*">
+
+</div>
+
+<div class="form-group">
+
+<label for="username">Username</label>
 
 <input
 type="text"
-id="wallet"
+id="username"
 class="input"
-placeholder="Enter your TRC20 wallet">
+placeholder="Choose a username">
 
 </div>
 
-<button type="submit" class="btn">
+<div class="form-group">
+
+<label for="address">Address</label>
+
+<textarea
+id="address"
+class="input"
+rows="4"
+placeholder="Enter your address"></textarea>
+
+</div>
+
+<div class="form-group">
+
+<label for="city">City</label>
+
+<input
+type="text"
+id="city"
+class="input"
+placeholder="Enter your city">
+
+</div>
+
+<div class="form-group">
+
+<label for="postalCode">Postal Code</label>
+
+<input
+type="text"
+id="postalCode"
+class="input"
+placeholder="Enter postal code">
+
+</div>
+
+</div>
+
+<!-- Account Information -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-user-shield"></i>
+Account Information
+</h2>
+
+<div class="info-list">
+
+<div class="info-item">
+<span>Account Status</span>
+<strong class="status success">Verified</strong>
+</div>
+
+<div class="info-item">
+<span>Membership</span>
+<strong>Starter Plan</strong>
+</div>
+
+<div class="info-item">
+<span>Registration Date</span>
+<strong>01 Jan 2026</strong>
+</div>
+
+</div>
+
+</div>
+<!-- =====================================================
+     EDIT-PROFILE.HTML - FINAL
+     PART 3
+===================================================== -->
+
+<!-- Change Password -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-lock"></i>
+Change Password
+</h2>
+
+<div class="form-group">
+
+<label for="currentPassword">Current Password</label>
+
+<input
+type="password"
+id="currentPassword"
+class="input"
+placeholder="Enter current password">
+
+</div>
+
+<div class="form-group">
+
+<label for="newPassword">New Password</label>
+
+<input
+type="password"
+id="newPassword"
+class="input"
+placeholder="Enter new password">
+
+</div>
+
+<div class="form-group">
+
+<label for="confirmPassword">Confirm New Password</label>
+
+<input
+type="password"
+id="confirmPassword"
+class="input"
+placeholder="Confirm new password">
+
+</div>
+
+</div>
+
+<!-- Save Changes -->
+
+<div class="card">
+
+<h2>
+<i class="fa-solid fa-floppy-disk"></i>
+Save Changes
+</h2>
+
+<p>
+Review your updated information before saving your profile changes.
+</p>
+
+<div class="profile-actions">
+
+<button id="saveProfileBtn" class="btn btn-primary">
 
 <i class="fa-solid fa-floppy-disk"></i>
-&nbsp; Save Changes
+
+Save Profile
 
 </button>
 
-</form>
+<a href="profile.html" class="btn btn-secondary">
 
-</div>
+<i class="fa-solid fa-arrow-left"></i>
 
-<div class="profile-menu">
-
-<a href="profile.html" class="menu-link">
-
-<div class="profile-item">
-
-<span>
-<i class="fa-solid fa-user"></i>
 Back to Profile
-</span>
-
-<i class="fa-solid fa-chevron-right"></i>
-
-</div>
 
 </a>
 
 </div>
 
 </div>
+<!-- =====================================================
+     EDIT-PROFILE.HTML - FINAL
+     PART 4 (FINAL)
+===================================================== -->
 
-<script type="module" src="edit-profile.js"></script>
+</div>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const saveBtn = document.getElementById("saveProfileBtn");
+
+  if (saveBtn) {
+
+    saveBtn.addEventListener("click", () => {
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      if (!fullName || !email) {
+        alert("Please fill in all required fields.");
+        return;
+      }
+
+      alert("Profile updated successfully!");
+
+    });
+
+  }
+
+});
+
+</script>
 
 </body>
 </html>
