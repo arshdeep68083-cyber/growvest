@@ -4,84 +4,70 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Deposit Funds | GrowVest</title>
+<title>GrowVest | Deposit Funds</title>
 
 <link rel="stylesheet" href="style.css">
 
 <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="login-page">
+<div class="container fade-up">
 
-<div class="bg-blur blur1"></div>
-<div class="bg-blur blur2"></div>
+<div class="header">
 
-<div class="login-wrapper">
-
-<div class="login-card">
-
-<div class="logo-box">
-
-<div class="logo-icon">
-<i class="fas fa-wallet"></i>
+<div class="header-left">
+<h2>Deposit Funds</h2>
+<p>Add funds securely to your account</p>
 </div>
 
-<h1>Deposit</h1>
-
-<p>Add funds securely to your GrowVest account</p>
-
 </div>
+
+<div class="glass-card">
 
 <div class="input-group">
-
-<i class="fas fa-dollar-sign"></i>
+<i class="fa-solid fa-dollar-sign"></i>
 
 <input
 type="number"
 id="amount"
-placeholder="Enter Deposit Amount">
-
+placeholder="Enter Deposit Amount (USDT)">
 </div>
 
-<h3 style="margin-top:20px;">
-USDT (TRC20) Wallet
-</h3>
+<h3 style="margin-top:25px;">USDT (TRC20) Wallet Address</h3>
 
 <div style="
-background:rgba(255,255,255,.08);
-padding:15px;
-border-radius:15px;
-margin-top:10px;
+margin-top:12px;
+padding:16px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.08);
+border-radius:16px;
 word-break:break-all;
 text-align:center;
 ">
 
 <span id="wallet">
-TRCaFDAORMmKvQPSDsJ1JdqhoQgioRhSXF
+YOUR_TRC20_WALLET_ADDRESS
 </span>
 
 </div>
 
-<br>
-
 <button
+id="copyBtn"
 class="login-btn"
-id="copyBtn">
+style="margin-top:15px;">
 
-Copy Wallet Address
+<i class="fa-solid fa-copy"></i>
+&nbsp; Copy Wallet Address
 
 </button>
 
-<br><br>
-
-<h3>Upload Payment Screenshot</h3>
+<h3 style="margin-top:30px;">Upload Payment Screenshot</h3>
 
 <input
 type="file"
@@ -89,81 +75,80 @@ id="paymentProof"
 accept="image/*"
 style="
 width:100%;
+margin-top:12px;
 padding:12px;
-background:rgba(255,255,255,.08);
 border-radius:12px;
+background:rgba(255,255,255,.06);
 color:white;
+border:1px solid rgba(255,255,255,.08);
 ">
 
 <br><br>
-  <button
-class="login-btn"
-id="depositBtn">
 
-<i class="fas fa-paper-plane"></i>
-Submit Deposit
+<button
+id="depositBtn"
+class="login-btn">
+
+<i class="fa-solid fa-paper-plane"></i>
+&nbsp; Submit Deposit
 
 </button>
 
 <br><br>
 
 <a href="dashboard.html">
-
 <button
 type="button"
-class="login-btn"
-style="background:linear-gradient(135deg,#64748b,#334155);">
+class="btn"
+style="width:100%;background:#374151;color:#fff;">
 
-<i class="fas fa-arrow-left"></i>
-Back to Dashboard
+<i class="fa-solid fa-arrow-left"></i>
+&nbsp; Back to Dashboard
 
 </button>
-
 </a>
 
 </div>
-
 </div>
 
-</div>
+<nav class="bottom-nav">
+
+<a href="dashboard.html" class="nav-item">
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+</a>
+
+<a href="plans.html" class="nav-item">
+<i class="fa-solid fa-chart-line"></i>
+<span>Plans</span>
+</a>
+
+<a href="deposit.html" class="nav-item active">
+<i class="fa-solid fa-wallet"></i>
+<span>Deposit</span>
+</a>
+
+<a href="history.html" class="nav-item">
+<i class="fa-solid fa-clock-rotate-left"></i>
+<span>History</span>
+</a>
+
+<a href="profile.html" class="nav-item">
+<i class="fa-solid fa-user"></i>
+<span>Profile</span>
+</a>
+
+</nav>
 
 <script>
-
 document.getElementById("copyBtn").onclick = function () {
-
-const wallet =
-document.getElementById("wallet").innerText;
-
-navigator.clipboard.writeText(wallet);
-
-alert("Wallet Address Copied Successfully!");
-
+    const wallet = document.getElementById("wallet").innerText;
+    navigator.clipboard.writeText(wallet);
+    alert("Wallet address copied successfully!");
 };
-
 </script>
 
 <script type="module" src="deposit.js"></script>
 
-<hr>
-
-<footer style="text-align:center;padding:20px;">
-
-<p>
-
-<a href="about.html">About Us</a> |
-
-<a href="privacy.html">Privacy Policy</a> |
-
-<a href="terms.html">Terms & Conditions</a> |
-
-<a href="help.html">Help & Support</a>
-
-</p>
-
-<p>© 2026 GrowVest. All Rights Reserved.</p>
-
-</footer>
-
 </body>
-
 </html>
